@@ -1,0 +1,14 @@
+/* Global styles are imported in App.vue */
+
+@import '02_global/reset.scss';
+
+/* utility classes stolen primarily from tacyhons: https://github.com/tinynow/tachyons */
+@import '04_utilities/display.scss';
+@import '04_utilities/flex.scss';
+@import '04_utilities/floats.scss';
+@import '04_utilities/max-width.scss';
+@import '04_utilities/overflow.scss';
+@import '04_utilities/spacing.scss';
+@import '04_utilities/text-align.scss';
+@import '04_utilities/text-transform.scss';
+@import '04_utilities/white-space.scss';
