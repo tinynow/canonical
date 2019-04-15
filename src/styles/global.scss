@@ -1,6 +1,8 @@
 /* Global styles are imported in App.vue */
 
 @import '02_global/reset.scss';
+@import '02_global/responsive.scss';
+@import '02_global/typography.scss';
 
 /* utility classes stolen primarily from tacyhons: https://github.com/tinynow/tachyons */
 @import '04_utilities/display.scss';
