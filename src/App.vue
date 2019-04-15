@@ -2,7 +2,9 @@
     <div id="app">
         <h1>
             Canonical
-            <span class="block font-size--sm">Accessible, usable, performant components.</span>
+            <span class="block font-size--sm">
+                Accessible, usable, performant components.
+            </span>
         </h1>
     </div>
 </template>
@@ -11,3 +13,6 @@ export default {
     name: 'App',
 };
 </script>
+<style lang="scss">
+@import './styles/global.scss';
+</style>
