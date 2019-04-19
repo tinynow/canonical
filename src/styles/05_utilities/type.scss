@@ -1,0 +1,5 @@
+@each $sizeName, $size in $type-scale {
+    .type--#{$sizeName} {
+        @include type-setting($sizeName);
+    }
+}

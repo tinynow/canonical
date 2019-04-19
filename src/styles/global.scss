@@ -1,3 +1,5 @@
+@import 'configuration.scss';
+
 /* Global styles are imported in App.vue */
 @import '02_global/reset.scss';
 @import '02_global/responsive.scss';
@@ -13,3 +15,4 @@
 @import '05_utilities/text-align.scss';
 @import '05_utilities/text-transform.scss';
 @import '05_utilities/white-space.scss';
+@import '05_utilities/type.scss';
