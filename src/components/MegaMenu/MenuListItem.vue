@@ -18,7 +18,10 @@
                 class="canon-c-mega-menu__level"
             >
                 <slot name="level-header" />
-                <canon-mega-menu-list :items="children" />
+                <canon-mega-menu-list
+                    :items="children"
+                    :open-items="openItems"
+                />
             </div>
         </template>
     </li>
@@ -52,8 +55,12 @@ export default {
             default: null,
         },
         expanded: {
-            type: [String, null],
+            type: [Boolean, null],
             default: null,
+        },
+        openItems: {
+            type: Array,
+            required: true,
         },
     },
 };

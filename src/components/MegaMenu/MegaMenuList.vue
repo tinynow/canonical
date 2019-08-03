@@ -6,6 +6,7 @@
             v-bind="item"
             :expanded="openItems.includes(item.id)"
             :controls="item.id"
+            :open-items="openItems"
             @click="$emit('click')"
         >
         </canon-mega-menu-list-item>

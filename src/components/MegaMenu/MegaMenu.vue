@@ -49,6 +49,7 @@
                         <canon-mega-menu-list
                             :items="item.children.slice(1)"
                             :open-items="[level2Open, level3Open]"
+                            @click="toggleOpen()"
                         />
                         <ul class="canon-c-mega-menu__list --level2">
                             <li
