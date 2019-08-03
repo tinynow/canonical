@@ -1,0 +1,2319 @@
+{
+    "courtesyMenu": {
+        "helpLabel": "Help",
+        "homeLabel": "Home",
+        "loginLabel": "My L&I: Sign In",
+        "searchLabel": "Search L&I",
+        "skipToContent": "Skip to content"
+    },
+    "topTasks": [
+        {
+            "emailLink": {
+                "label": "",
+                "email": "EyeOnSafety@Lni.wa.gov"
+            },
+            "links": [
+                {
+                    "label": "Request a safety consultation with L&I",
+                    "href": "/safety-health/preventing-injuries-illnesses/request-consultation/"
+                },
+                {
+                    "label": "Report a safety hazard",
+                    "href": "/workers-rights/workplace-complaints/safety-complaints"
+                },
+                {
+                    "label": "Find safety posters",
+                    "href": "/safety-health/safety-training-materials/safety-posters-publications"
+                },
+                {
+                    "label": "Report a death or hospitalization",
+                    "href": "/safety-health/preventing-injuries-illnesses/workplace-injuries-fatalities/"
+                },
+                {
+                    "label": "Find sample safety programs",
+                    "href": "/safety-health/preventing-injuries-illnesses/create-a-safety-program/"
+                }
+            ],
+            "phoneLink": {
+                "number": "8005478367",
+                "label": "Safety questions or to report serious injuries: Call"
+            }
+        },
+        {
+            "emailLink": {
+                "label": "",
+                "email": ""
+            },
+            "links": [
+                {
+                    "label": "Check claim status",
+                    "href": "/claims/for-workers/check-the-status-of-my-claim"
+                },
+                {
+                    "label": "Check your employee's claim status",
+                    "href": "/claims/for-employers/staying-involved-with-your-employee-s-claim"
+                },
+                {
+                    "label": "File a claim as a worker",
+                    "href": "/claims/for-workers/filing-a-claim"
+                }
+            ],
+            "phoneLink": {
+                "number": "8004BESAFE",
+                "label": "Automated Claims information:  Call"
+            }
+        },
+        {
+            "emailLink": {
+                "label": "",
+                "email": "ProvNet@Lni.wa.gov"
+            },
+            "links": [
+                {
+                    "label": "Check patient claim status",
+                    "href": "/claims/for-medical-providers/check-claim-status"
+                },
+                {
+                    "label": "Check for allowed/Denied diagnosis",
+                    "href": "/patient-care/treating-patients/condition-and-treatment-index"
+                },
+                {
+                    "label": "Bill L&I for services",
+                    "href": "/patient-care/billing-payments/billing-li/"
+                },
+                {
+                    "label": "Login to the Claim & Account Center",
+                    "href": "https://secure.lni.wa.gov/home/"
+                },
+                {
+                    "label": "File a Report of Accident (ROA)",
+                    "href": "/claims/for-medical-providers/filing-claims/filefast-report-of-accident"
+                }
+            ],
+            "phoneLink": {
+                "number": "8008480811",
+                "label": "Provider Hotline"
+            }
+        },
+        {
+            "emailLink": {
+                "label": "",
+                "email": ""
+            },
+            "links": [
+                {
+                    "label": "Look up a contractor or business",
+                    "href": "/licensing-permits/contractors/verify-a-contractor"
+                },
+                {
+                    "label": "File a quarterly report",
+                    "href": "/insurance/quarterly-reports/file-quarterly-reports/"
+                },
+                {
+                    "label": "Login to the Claim & Account Center",
+                    "href": "https://secure.lni.wa.gov/home/"
+                }
+            ],
+            "phoneLink": {
+                "number": "3609024817",
+                "label": "Account Questions?  Call"
+            }
+        },
+        {
+            "emailLink": {
+                "label": "",
+                "email": "EsGeneral@Lni.wa.gov"
+            },
+            "links": [
+                {
+                    "label": "File a wage complaint",
+                    "href": "/workers-rights/workplace-complaints/workplace-rights-complaints"
+                },
+                {
+                    "label": "Learn about paid sick leave",
+                    "href": "/workers-rights/leave/paid-sick-leave/"
+                },
+                {
+                    "label": "Report descrimination",
+                    "href": "/workers-rights/workplace-complaints/discrimination-in-the-workplace"
+                },
+                {
+                    "label": "Report a safety hazard",
+                    "href": "/workers-rights/workplace-complaints/safety-complaints"
+                }
+            ],
+            "phoneLink": {
+                "number": "3609025316",
+                "label": "Employment Questions?  Call"
+            }
+        },
+        {
+            "emailLink": {
+                "label": "",
+                "email": ""
+            },
+            "links": [
+                {
+                    "label": "Hire a contractor",
+                    "href": "/licensing-permits/contractors/hiring-a-contractor/"
+                },
+                {
+                    "label": "Register as a contractor",
+                    "href": "/licensing-permits/contractors/register-as-a-contractor/"
+                },
+                {
+                    "label": "Request an inspection",
+                    "href": "/licensing-permits/other-licenses-permits/permits-inspections-folder/"
+                },
+                {
+                    "label": "Purchase a permit",
+                    "href": "/licensing-permits/electrical/electrical-permits-fees-and-inspections/"
+                },
+                {
+                    "label": "Look up a contractor or business",
+                    "href": "/licensing-permits/contractors/verify-a-contractor"
+                }
+            ],
+            "phoneLink": {
+                "number": "8006470928",
+                "label": "Licensing information: Call"
+            }
+        }
+    ],
+    "primaryNavigation": [
+        {
+            "route": "/safety-health",
+            "children": [
+                {
+                    "route": "/safety-health",
+                    "label": "Everything You Need to Know About Safety & Health"
+                },
+                {
+                    "route": "/safety-health/safety-rules",
+                    "children": [
+                        {
+                            "route": "/safety-health/safety-rules/find-safety-rules",
+                            "label": "Find Safety Rules"
+                        },
+                        {
+                            "route": "/safety-health/safety-rules/rules-by-chapter",
+                            "label": "Rules by Chapter"
+                        },
+                        {
+                            "route": "/safety-health/safety-rules/enforcement-policies",
+                            "label": "Enforcement Policies"
+                        }
+                    ],
+                    "label": "Safety Rules"
+                },
+                {
+                    "route": "/safety-health/safety-topics",
+                    "children": [
+                        {
+                            "route": "/safety-health/safety-topics/index",
+                            "label": "Search by Topic or Industry"
+                        }
+                    ],
+                    "label": "Safety Topics"
+                },
+                {
+                    "route": "/safety-health/preventing-injuries-illnesses",
+                    "children": [
+                        {
+                            "route": "/safety-health/preventing-injuries-illnesses/get-started-with-safety-health",
+                            "children": [
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/get-started-with-safety-health/biological-hazards",
+                                    "label": "Biological Hazards"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/get-started-with-safety-health/chemical-safety-basics",
+                                    "label": "Chemical Safety Basics"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/get-started-with-safety-health/machine-safety",
+                                    "label": "Machine Safety"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/get-started-with-safety-health/personal-protective-equipment-ppe",
+                                    "label": "Personal Protective Equipment (PPE)"
+                                }
+                            ],
+                            "label": "Get Started With Safety & Health"
+                        },
+                        {
+                            "route": "/safety-health/preventing-injuries-illnesses/create-a-safety-program",
+                            "children": [
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/create-a-safety-program/accident-prevention-program",
+                                    "label": "Accident Prevention Program"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/create-a-safety-program/sample-safety-programs-plans",
+                                    "label": "Sample Safety Programs & Plans"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/create-a-safety-program/safety-meetings-and-committees",
+                                    "label": "Safety Meetings and Committees"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/create-a-safety-program/training-requirements",
+                                    "label": "Identify your training needs"
+                                }
+                            ],
+                            "label": "Create a Safety Program"
+                        },
+                        {
+                            "route": "/safety-health/preventing-injuries-illnesses/workplace-injuries-fatalities",
+                            "label": "Workplace Injuries & Fatalities"
+                        },
+                        {
+                            "route": "/safety-health/preventing-injuries-illnesses/request-consultation",
+                            "children": [
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/request-consultation/sh-preventing-consultant-near-you",
+                                    "label": "Consultant Near You"
+                                }
+                            ],
+                            "label": "Request Consultation"
+                        },
+                        {
+                            "route": "/safety-health/preventing-injuries-illnesses/sprains-strains",
+                            "children": [
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/sprains-strains/get-help-with-ergonomics",
+                                    "label": "Get Help with Ergonomics"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/sprains-strains/ergonomics-process",
+                                    "label": "Ergonomics Process"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/sprains-strains/evaluation-tools",
+                                    "label": "Evaluation Tools"
+                                },
+                                {
+                                    "route": "/safety-health/preventing-injuries-illnesses/sprains-strains/solutions-for-sprains-strains",
+                                    "label": "Solutions for Sprains & Strains"
+                                }
+                            ],
+                            "label": "Sprains & Strains"
+                        },
+                        {
+                            "route": "/safety-health/preventing-injuries-illnesses/seasonal-safety",
+                            "label": "Seasonal Safety"
+                        }
+                    ],
+                    "label": "Preventing Injuries & Illnesses"
+                },
+                {
+                    "route": "/safety-health/grants-committees-partnerships",
+                    "children": [
+                        {
+                            "route": "/safety-health/grants-committees-partnerships/advisory-committees",
+                            "children": [
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/sh-committees-construction-advisory-committee",
+                                    "label": "Construction Advisory Committee"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/exoskeleton-advisory-committee",
+                                    "label": "Exoskeleton Advisory Committee"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/sh-committees-governors-industrial-safety-and-health-advisory-board",
+                                    "label": "Governors Industrial Safety and Health Advisory Board"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/sh-committees-hazardous-drugs-advisory-committee",
+                                    "label": "Hazardous Drugs Advisory Committee"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/sh-comimttees-process-safety-management",
+                                    "label": "Process Safety Management Advisory Committee"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/sh-comimttees-ship",
+                                    "label": "SHIP Grant Review Committee"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/advisory-committees/sh-comimttees-wisha-advisory-committee",
+                                    "label": "WISHA Advisory Committee"
+                                }
+                            ],
+                            "label": "Advisory Committees"
+                        },
+                        {
+                            "route": "/safety-health/grants-committees-partnerships/governors-industrial-safety-health-conference",
+                            "label": "Governor's Industrial Safety & Health Conference"
+                        },
+                        {
+                            "route": "/safety-health/grants-committees-partnerships/logger-safety-initiative",
+                            "label": "Logger Safety Initiative"
+                        },
+                        {
+                            "route": "/safety-health/grants-committees-partnerships/safety-health-investment-projects-grant-program",
+                            "children": [
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/safety-health-investment-projects-grant-program/sh-grants-projects",
+                                    "label": "SHIP Grant Projects"
+                                },
+                                {
+                                    "route": "/safety-health/grants-committees-partnerships/safety-health-investment-projects-grant-program/general-questions",
+                                    "label": "FAQs -- General Questions"
+                                }
+                            ],
+                            "label": "Safety & Health Investment Projects (SHIP) Grant Program"
+                        },
+                        {
+                            "route": "/safety-health/grants-committees-partnerships/safety-through-achieving-recognition-together",
+                            "label": "Safety Through Achieving Recognition Together (START)"
+                        },
+                        {
+                            "route": "/safety-health/grants-committees-partnerships/voluntary-protection-program-vpp",
+                            "label": "Voluntary Protection Program (VPP)"
+                        }
+                    ],
+                    "label": "Grants, Committees & Partnerships"
+                },
+                {
+                    "route": "/safety-health/safety-training-materials",
+                    "children": [
+                        {
+                            "route": "/safety-health/safety-training-materials/safety-workshops",
+                            "label": "Safety Workshops"
+                        },
+                        {
+                            "route": "/safety-health/safety-training-materials/safety-videos",
+                            "label": "Safety Videos"
+                        },
+                        {
+                            "route": "/safety-health/safety-training-materials/online-safety-training",
+                            "label": "Online Safety Training"
+                        },
+                        {
+                            "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health",
+                            "children": [
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/chemical-spray-safety-in-60",
+                                    "label": "Chemical Spray (Safety in 60)"
+                                },
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/diving-fatality-safety-in-60",
+                                    "label": "Diving Fatality (Safety in 60)"
+                                },
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/60-seconds-for-safety-health-fall-from-a-cell-tower",
+                                    "label": "Fall from a Cell Tower (Safety in 60)"
+                                },
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/fall-from-roof-safety-in-60",
+                                    "label": "Fall from Roof (Safety in 60)"
+                                },
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/fall-through-skylight-safety-in-60",
+                                    "label": "Fall Through Skylight (Safety in 60)"
+                                },
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/late-night-store-shooting-safety-in-60",
+                                    "label": "Late Night Store Shooting (Safety in 60)"
+                                },
+                                {
+                                    "route": "/safety-health/safety-training-materials/60-seconds-for-safety-health/lead-poisoning-in-an-indoor-firing-range-safety-in-60",
+                                    "label": "Lead Poisoning in an Indoor Firing Range (Safety in 60)"
+                                }
+                            ],
+                            "label": "60 Seconds for Safety & Health"
+                        },
+                        {
+                            "route": "/safety-health/safety-training-materials/safety-posters-publications",
+                            "label": "Safety Posters & Publications"
+                        },
+                        {
+                            "route": "/safety-health/safety-training-materials/training-kits",
+                            "label": "Training Kits"
+                        }
+                    ],
+                    "label": "Safety Training Materials"
+                },
+                {
+                    "route": "/safety-health/sharp-research",
+                    "children": [
+                        {
+                            "route": "/safety-health/sharp-research/ongoing-projects",
+                            "label": "Ongoing Projects"
+                        },
+                        {
+                            "route": "/safety-health/sharp-research/completed-projects",
+                            "children": [
+                                {
+                                    "route": "/safety-health/sharp-research/completed-projects/healthy-workplaces-electrical-millwork-food",
+                                    "label": "Healthy Workplaces (Electrical/Millwork/Food)"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/completed-projects/hospitalized-burns",
+                                    "label": "Hospitalized Burns"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/completed-projects/long-term-burden-of-carpal-tunnel-syndrome",
+                                    "label": "Long-term Burden of Carpal Tunnel Syndrome"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/completed-projects/safe-patient-handling",
+                                    "label": "Safe Patient Handling"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/completed-projects/skin-disorders",
+                                    "label": "Skin Disorders"
+                                }
+                            ],
+                            "label": "Completed Projects"
+                        },
+                        {
+                            "route": "/safety-health/sharp-research/sharp-publications",
+                            "label": "SHARP Publications"
+                        },
+                        {
+                            "route": "/safety-health/sharp-research/publications",
+                            "children": [
+                                {
+                                    "route": "/safety-health/sharp-research/publications/journal-articles",
+                                    "label": "Journal Articles"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/publications/research-findings",
+                                    "label": "Research Findings"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/publications/sharp-stats",
+                                    "label": "SHARP Stats"
+                                },
+                                {
+                                    "route": "/safety-health/sharp-research/publications/online-training",
+                                    "label": "Online Training"
+                                }
+                            ],
+                            "label": "Publications"
+                        },
+                        {
+                            "route": "/safety-health/sharp-research/about-us",
+                            "label": "About Us"
+                        }
+                    ],
+                    "label": "SHARP Research"
+                }
+            ],
+            "label": "Safety & Health"
+        },
+        {
+            "route": "/claims",
+            "children": [
+                {
+                    "route": "/claims",
+                    "label": "Everything You Need to Know About Claims"
+                },
+                {
+                    "route": "/claims/for-workers",
+                    "children": [
+                        {
+                            "route": "/claims/for-workers/injured-what-you-need-to-know",
+                            "children": [
+                                {
+                                    "route": "/claims/for-workers/injured-what-you-need-to-know/injured-by-a-third-party",
+                                    "label": "Injured by a Third Party?"
+                                }
+                            ],
+                            "label": "Injured? What You Need to Know"
+                        },
+                        {
+                            "route": "/claims/for-workers/find-a-doctor",
+                            "label": "Find a Doctor"
+                        },
+                        {
+                            "route": "/claims/for-workers/file-a-claim",
+                            "children": [
+                                {
+                                    "route": "/claims/for-workers/file-a-claim/next-steps",
+                                    "label": "Next Steps"
+                                },
+                                {
+                                    "route": "/claims/for-workers/file-a-claim/injured-outside-washington",
+                                    "label": "Injured Outside Washington"
+                                },
+                                {
+                                    "route": "/claims/for-workers/file-a-claim/living-or-moving-outside-wa",
+                                    "label": "Living or Moving Outside WA"
+                                },
+                                {
+                                    "route": "/claims/for-workers/file-a-claim/claim-reopenings",
+                                    "label": "Claim Reopenings"
+                                }
+                            ],
+                            "label": "File a Claim"
+                        },
+                        {
+                            "route": "/claims/for-workers/check-the-status-of-my-claim",
+                            "label": "Check the Status of My Claim"
+                        },
+                        {
+                            "route": "/claims/for-workers/getting-back-to-work",
+                            "children": [
+                                {
+                                    "route": "/claims/for-workers/getting-back-to-work/working-with-your-doctor",
+                                    "label": "Working With Your Doctor"
+                                },
+                                {
+                                    "route": "/claims/for-workers/getting-back-to-work/light-duty-job",
+                                    "label": "Light Duty Job"
+                                },
+                                {
+                                    "route": "/claims/for-workers/getting-back-to-work/training-options",
+                                    "label": "Training Options"
+                                }
+                            ],
+                            "label": "Getting Back to Work"
+                        },
+                        {
+                            "route": "/claims/for-workers/claim-benefits",
+                            "children": [
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/medical-benefits",
+                                    "label": "Medical Benefits"
+                                },
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/wage-replacement",
+                                    "label": "Wage Replacement"
+                                },
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/expense-reimbursement",
+                                    "label": "Expense Reimbursement"
+                                },
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/permanent-partial-disability",
+                                    "label": "Permanent Partial Disability"
+                                },
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/pensions-permanent-total-disability",
+                                    "label": "Pensions \u2013 Permanent Total Disability"
+                                },
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/settle-your-claim",
+                                    "label": "Settle Your Claim"
+                                },
+                                {
+                                    "route": "/claims/for-workers/claim-benefits/vocational-benefits",
+                                    "label": "Vocational Benefits"
+                                }
+                            ],
+                            "label": "Claim Benefits"
+                        },
+                        {
+                            "route": "/claims/for-workers/protest-or-appeal-a-claim-decision",
+                            "children": [
+                                {
+                                    "route": "/claims/for-workers/protest-or-appeal-a-claim-decision/vocational-dispute-resolution",
+                                    "label": "Vocational Dispute Resolution"
+                                }
+                            ],
+                            "label": "Protest or Appeal a Claim Decision"
+                        }
+                    ],
+                    "label": "For Workers"
+                },
+                {
+                    "route": "/claims/for-employers",
+                    "children": [
+                        {
+                            "route": "/claims/for-employers/injured-worker-what-you-need-to-know",
+                            "children": [
+                                {
+                                    "route": "/claims/for-employers/injured-worker-what-you-need-to-know/third-party-claims",
+                                    "label": "Third-Party Claims"
+                                },
+                                {
+                                    "route": "/claims/for-employers/injured-worker-what-you-need-to-know/third-party-claims-for-attorneys",
+                                    "label": "Third Party Claims for Attorneys"
+                                }
+                            ],
+                            "label": "Injured Worker? What You Need to Know"
+                        },
+                        {
+                            "route": "/claims/for-employers/file-employers-report-of-accident",
+                            "label": "File Employer's Report of Accident"
+                        },
+                        {
+                            "route": "/claims/for-employers/staying-involved-with-your-employee-s-claim",
+                            "label": "Staying Involved With Your Employee's Claim"
+                        },
+                        {
+                            "route": "/claims/for-employers/help-your-employee-return-to-work",
+                            "label": "Help Your Employee Return to Work"
+                        },
+                        {
+                            "route": "/claims/for-employers/employer-incentives",
+                            "children": [
+                                {
+                                    "route": "/claims/for-employers/employer-incentives/preferred-worker-program",
+                                    "label": "Preferred Worker Program"
+                                }
+                            ],
+                            "label": "Employer Incentives"
+                        },
+                        {
+                            "route": "/claims/for-employers/protest-or-appeal-a-claim-decision",
+                            "children": [
+                                {
+                                    "route": "/claims/for-employers/protest-or-appeal-a-claim-decision/vocational-dispute-resolution",
+                                    "label": "Vocational Dispute Resolution"
+                                }
+                            ],
+                            "label": "Protest or Appeal a Claim Decision"
+                        },
+                        {
+                            "route": "/claims/for-employers/settle-a-claim",
+                            "label": "Settle a Claim"
+                        },
+                        {
+                            "route": "/claims/for-employers/out-of-state-injured-workers",
+                            "label": "Out-of-State Injured Workers"
+                        }
+                    ],
+                    "label": "For Employers"
+                },
+                {
+                    "route": "/claims/for-medical-providers",
+                    "children": [
+                        {
+                            "route": "/claims/for-medical-providers/filing-claims",
+                            "children": [
+                                {
+                                    "route": "/claims/for-medical-providers/filing-claims/deciding-when-to-file-an-accident-report-for-your-patient",
+                                    "label": "Deciding when to file an accident report for your patient"
+                                },
+                                {
+                                    "route": "/claims/for-medical-providers/filing-claims/online-claim-filing",
+                                    "label": "Online Claim Filing"
+                                },
+                                {
+                                    "route": "/claims/for-medical-providers/filing-claims/filefast-report-of-accident",
+                                    "label": "FileFast: Report of Accident"
+                                },
+                                {
+                                    "route": "/claims/for-medical-providers/filing-claims/filling-out-the-report-of-accident",
+                                    "label": "Filling out the Report of Accident"
+                                }
+                            ],
+                            "label": "Filing claims"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/check-claim-status",
+                            "label": "Check Claim Status"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/activity-prescription-form",
+                            "label": "Activity Prescription Form"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/protest-or-appeal-an-li-decision",
+                            "children": [
+                                {
+                                    "route": "/claims/for-medical-providers/protest-or-appeal-an-li-decision/appeal-an-l-i-claim-decision",
+                                    "label": "Appeal an L&I Claim Decision"
+                                }
+                            ],
+                            "label": "Protest or Appeal an L&I Decision"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/out-of-state-care-coordination",
+                            "label": "Out of State Care Coordination"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/hipaa-and-lni",
+                            "label": "HIPAA and L&I"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/get-paper-mail-online",
+                            "label": "Get Paper Mail Online"
+                        },
+                        {
+                            "route": "/claims/for-medical-providers/documentation-reporting",
+                            "label": "Documentation & Reporting"
+                        }
+                    ],
+                    "label": "For Medical Providers"
+                },
+                {
+                    "route": "/claims/for-vocational-providers",
+                    "children": [
+                        {
+                            "route": "/claims/for-vocational-providers/working-with-li",
+                            "children": [
+                                {
+                                    "route": "/claims/for-vocational-providers/working-with-li/index",
+                                    "label": "Working With L&I"
+                                }
+                            ],
+                            "label": "Working with L&I"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/whats-new-for-vocational-counselors",
+                            "children": [
+                                {
+                                    "route": "/claims/for-vocational-providers/whats-new-for-vocational-counselors/index",
+                                    "label": "What's New for Vocational Counselors"
+                                }
+                            ],
+                            "label": "What's New for Vocational Counselors"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/vocational-recovery-project",
+                            "children": [
+                                {
+                                    "route": "/claims/for-vocational-providers/vocational-recovery-project/doing-the-work",
+                                    "label": "Doing the Work"
+                                },
+                                {
+                                    "route": "/claims/for-vocational-providers/vocational-recovery-project/vrp-updates",
+                                    "label": "VRP Updates"
+                                },
+                                {
+                                    "route": "/claims/for-vocational-providers/vocational-recovery-project/resources-faq",
+                                    "label": "Resources & FAQ"
+                                }
+                            ],
+                            "label": "Vocational Recovery Project"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/transitioning-back-to-work",
+                            "label": "Transitioning Back to Work"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/vocational-services",
+                            "label": "Vocational Services"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/schools-and-training-programs",
+                            "label": "Schools and Training Programs"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/self-insurance",
+                            "label": "Self-Insurance"
+                        },
+                        {
+                            "route": "/claims/for-vocational-providers/resources-for-vocational-providers",
+                            "children": [
+                                {
+                                    "route": "/claims/for-vocational-providers/resources-for-vocational-providers/interpreter-services",
+                                    "label": "Interpreter Services"
+                                }
+                            ],
+                            "label": "Resources for Vocational Providers"
+                        }
+                    ],
+                    "label": "For Vocational Providers"
+                },
+                {
+                    "route": "/claims/crime-victim-claims",
+                    "children": [
+                        {
+                            "route": "/claims/crime-victim-claims/apply-for-crime-victim-benefits",
+                            "children": [
+                                {
+                                    "route": "/claims/crime-victim-claims/apply-for-crime-victim-benefits/file-a-crime-victim-claim-online",
+                                    "label": "File a Crime Victim Claim Online"
+                                }
+                            ],
+                            "label": "Apply for Crime Victim Benefits"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/who-can-file-and-what-is-covered",
+                            "label": "Who Can File and What is Covered"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/sexual-assault-victims",
+                            "label": "Sexual Assault Victims"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/find-a-doctor-or-provider-for-crime-victims",
+                            "label": "Find a Doctor or Provider for Crime Victims"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/crime-victim-and-provider-resources",
+                            "label": "Crime Victim and Provider Resources"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/homicide-victims-family-benefits",
+                            "label": "Homicide Victim's Family Benefits"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/lawsuits-settlements-and-insurance",
+                            "children": [
+                                {
+                                    "route": "/claims/crime-victim-claims/lawsuits-settlements-and-insurance/how-we-re-funded",
+                                    "label": "How We're Funded"
+                                }
+                            ],
+                            "label": "Lawsuits, Settlements, and Insurance"
+                        },
+                        {
+                            "route": "/claims/crime-victim-claims/forms-and-publications",
+                            "label": "Forms and Publications"
+                        }
+                    ],
+                    "label": "Crime Victim Claims"
+                },
+                {
+                    "route": "/claims/fraud-complaints",
+                    "children": [
+                        {
+                            "route": "/claims/fraud-complaints/report-workers-comp-fraud",
+                            "label": "Report Workers' Comp Fraud"
+                        },
+                        {
+                            "route": "/claims/fraud-complaints/file-complaints-about-providers",
+                            "label": "File Complaints About Providers"
+                        },
+                        {
+                            "route": "/claims/fraud-complaints/about-stop-work-orders",
+                            "label": "About Stop Work Orders"
+                        },
+                        {
+                            "route": "/claims/fraud-complaints/lni-claims-workers-employers-rights",
+                            "label": "L&I Claims: Workers' & Employers' Rights"
+                        }
+                    ],
+                    "label": "Fraud Complaints"
+                }
+            ],
+            "label": "Claims"
+        },
+        {
+            "route": "/patient-care",
+            "children": [
+                {
+                    "route": "/patient-care",
+                    "label": "Everything You Need to Know About Patient Care"
+                },
+                {
+                    "route": "/patient-care/treating-patients",
+                    "children": [
+                        {
+                            "route": "/patient-care/treating-patients/by-specialty",
+                            "children": [
+                                {
+                                    "route": "/patient-care/treating-patients/by-specialty/chiropractic-services",
+                                    "label": "Chiropractic Services"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/by-specialty/dental-services",
+                                    "label": "Dental Services"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/by-specialty/mental-health-services",
+                                    "label": "Mental Health Services"
+                                }
+                            ],
+                            "label": "By Specialty"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/conditions-and-treatments",
+                            "label": "Conditions and Treatments"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/drugs-and-prescriptions",
+                            "children": [
+                                {
+                                    "route": "/patient-care/treating-patients/drugs-and-prescriptions/opioid-prescribing-report",
+                                    "label": "Opioid Prescribing Report"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/drugs-and-prescriptions/authorization-request",
+                                    "label": "Authorization Request"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/drugs-and-prescriptions/billing-l-i-for-pharmacy-services",
+                                    "label": "Billing L&I for Pharmacy Services"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/drugs-and-prescriptions/mail-order-pharmacy",
+                                    "label": "Mail-order Pharmacy"
+                                }
+                            ],
+                            "label": "Drugs and Prescriptions"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/helping-workers-get-back-to-work",
+                            "children": [
+                                {
+                                    "route": "/patient-care/treating-patients/helping-workers-get-back-to-work/work-hardening",
+                                    "label": "Work Hardening"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/helping-workers-get-back-to-work/approved-work-hardening-providers",
+                                    "label": "Approved Work Hardening Providers"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/helping-workers-get-back-to-work/becoming-a-work-hardening-provider",
+                                    "label": "Becoming a Work Hardening Provider"
+                                },
+                                {
+                                    "route": "/patient-care/treating-patients/helping-workers-get-back-to-work/becoming-an-activity-coach",
+                                    "label": "Becoming an Activity Coach"
+                                }
+                            ],
+                            "label": "Helping Workers Get Back to Work"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/independent-medical-exams-ime-and-impairment-rating-information",
+                            "label": "Independent Medical Exams (IME) and Impairment Rating Information"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/interpreter-services",
+                            "label": "Interpreter Services"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/medical-treatment-guidelines",
+                            "label": "Medical Treatment Guidelines"
+                        },
+                        {
+                            "route": "/patient-care/treating-patients/treating-crime-victims",
+                            "label": "Treating Crime Victims"
+                        }
+                    ],
+                    "label": "Treating Patients"
+                },
+                {
+                    "route": "/patient-care/billing-payments",
+                    "children": [
+                        {
+                            "route": "/patient-care/billing-payments/billing-li",
+                            "children": [
+                                {
+                                    "route": "/patient-care/billing-payments/billing-li/provider-express-billing",
+                                    "label": "Provider Express Billing"
+                                },
+                                {
+                                    "route": "/patient-care/billing-payments/billing-li/getting-a-payment-adjusted",
+                                    "label": "Getting a Payment Adjusted"
+                                },
+                                {
+                                    "route": "/patient-care/billing-payments/billing-li/submitting-bills-and-reports",
+                                    "label": "Submitting Bills and Reports"
+                                }
+                            ],
+                            "label": "Billing L&I"
+                        },
+                        {
+                            "route": "/patient-care/billing-payments/understanding-your-payment",
+                            "label": "Understanding Your Payment"
+                        },
+                        {
+                            "route": "/patient-care/billing-payments/payment-status",
+                            "label": "Payment Status"
+                        },
+                        {
+                            "route": "/patient-care/billing-payments/fee-schedules-and-payment-policies",
+                            "children": [
+                                {
+                                    "route": "/patient-care/billing-payments/fee-schedules-and-payment-policies/policy-2019",
+                                    "label": "Policy 2019"
+                                },
+                                {
+                                    "route": "/patient-care/billing-payments/fee-schedules-and-payment-policies/policy-2018",
+                                    "label": "Policy 2018"
+                                },
+                                {
+                                    "route": "/patient-care/billing-payments/fee-schedules-and-payment-policies/policy-2017",
+                                    "label": "Policy 2017"
+                                }
+                            ],
+                            "label": "Fee Schedules and Payment Policies (MARFS)"
+                        },
+                        {
+                            "route": "/patient-care/billing-payments/billing-self-insured-employers",
+                            "label": "Billing Self-Insured Employers"
+                        },
+                        {
+                            "route": "/patient-care/billing-payments/billing-federal-tribal-or-other-insurers",
+                            "label": "Billing Federal, Tribal, or Other Insurers"
+                        }
+                    ],
+                    "label": "Billing & Payments"
+                },
+                {
+                    "route": "/patient-care/authorizations-referrals",
+                    "children": [
+                        {
+                            "route": "/patient-care/authorizations-referrals/authorization",
+                            "children": [
+                                {
+                                    "route": "/patient-care/authorizations-referrals/authorization/claim-manager-authorizations",
+                                    "label": "Services That Require Claim Manager Authorization"
+                                },
+                                {
+                                    "route": "/patient-care/authorizations-referrals/authorization/utilization-review",
+                                    "label": "Utilization Review"
+                                },
+                                {
+                                    "route": "/patient-care/authorizations-referrals/authorization/occupational-nurse-consultant-authorization",
+                                    "label": "Occupational Nurse Consultant Authorization"
+                                },
+                                {
+                                    "route": "/patient-care/authorizations-referrals/authorization/retrospective-authorization",
+                                    "label": "Retrospective Authorization"
+                                },
+                                {
+                                    "route": "/patient-care/authorizations-referrals/authorization/provider-hotline-authorizations",
+                                    "label": "Provider Hotline Authorizations"
+                                }
+                            ],
+                            "label": "Authorization"
+                        },
+                        {
+                            "route": "/patient-care/authorizations-referrals/referrals-to-specialists",
+                            "label": "Referrals to Specialists"
+                        },
+                        {
+                            "route": "/patient-care/authorizations-referrals/find-a-doctor",
+                            "label": "Find a Doctor"
+                        }
+                    ],
+                    "label": "Authorizations Referrals"
+                },
+                {
+                    "route": "/patient-care/health-care-incentive-programs",
+                    "children": [
+                        {
+                            "route": "/patient-care/health-care-incentive-programs/understanding-health-care-incentive-programs",
+                            "label": "Understanding Health Care Incentive Programs"
+                        },
+                        {
+                            "route": "/patient-care/health-care-incentive-programs/centers-of-occupational-health-education-cohe",
+                            "label": "Centers of Occupational Health & Education (COHE)"
+                        },
+                        {
+                            "route": "/patient-care/health-care-incentive-programs/orthopedic-and-neurological-surgeon-quality-project",
+                            "label": "Orthopedic and Neurological Surgeon Quality Project"
+                        },
+                        {
+                            "route": "/patient-care/health-care-incentive-programs/top-tier",
+                            "label": "Top Tier"
+                        },
+                        {
+                            "route": "/patient-care/health-care-incentive-programs/physical-medicine-best-practices-project",
+                            "label": "Physical Medicine Best Practices Project"
+                        },
+                        {
+                            "route": "/patient-care/health-care-incentive-programs/exchanging-data-with-lni",
+                            "children": [
+                                {
+                                    "route": "/patient-care/health-care-incentive-programs/exchanging-data-with-lni/health-information-exchange-hie",
+                                    "label": "Health Information Exchange"
+                                },
+                                {
+                                    "route": "/patient-care/health-care-incentive-programs/exchanging-data-with-lni/hie-supported-transactions-for-l-i",
+                                    "label": "HIE Supported Transactions for L&I"
+                                }
+                            ],
+                            "label": "Exchanging Data with L&I"
+                        }
+                    ],
+                    "label": "Health Care Incentive Programs"
+                },
+                {
+                    "route": "/patient-care/advisory-committees",
+                    "children": [
+                        {
+                            "route": "/patient-care/advisory-committees/industrial-insurance-medical-advisory-committee-iimac",
+                            "label": "Industrial Insurance Medical Advisory Committee (IIMAC)"
+                        },
+                        {
+                            "route": "/patient-care/advisory-committees/industrial-insurance-chiropractic-advisory-committee-iicac",
+                            "label": "Industrial Insurance Chiropractic Advisory Committee (IICAC)"
+                        },
+                        {
+                            "route": "/patient-care/advisory-committees/advisory-committee-on-health-care-innovation-and-evaluation",
+                            "label": "Advisory Committee on Health Care Innovation and Evaluation"
+                        }
+                    ],
+                    "label": "Advisory Committees"
+                },
+                {
+                    "route": "/patient-care/workshops-training",
+                    "children": [
+                        {
+                            "route": "/patient-care/workshops-training/continuing-education-for-providers-and-staff",
+                            "label": "Continuing Education for Providers and Staff"
+                        },
+                        {
+                            "route": "/patient-care/workshops-training/billing-workshops",
+                            "label": "Billing Workshops"
+                        }
+                    ],
+                    "label": "Workshops & Training"
+                },
+                {
+                    "route": "/patient-care/provider-accounts",
+                    "children": [
+                        {
+                            "route": "/patient-care/provider-accounts/provider-one",
+                            "label": "Provider One (coming 2019)"
+                        },
+                        {
+                            "route": "/patient-care/provider-accounts/become-a-provider",
+                            "children": [
+                                {
+                                    "route": "/patient-care/provider-accounts/become-a-provider/how-to-become-an-interpreter",
+                                    "label": "How to become an interpreter"
+                                },
+                                {
+                                    "route": "/patient-care/provider-accounts/become-a-provider/becoming-a-work-hardening-provider",
+                                    "label": "Becoming a Work Hardening Provider"
+                                },
+                                {
+                                    "route": "/patient-care/provider-accounts/become-a-provider/becoming-an-activity-coach",
+                                    "label": "Becoming an Activity Coach"
+                                },
+                                {
+                                    "route": "/patient-care/provider-accounts/become-a-provider/becoming-a-chiropractic-consultant",
+                                    "label": "Becoming a Chiropractic Consultant"
+                                }
+                            ],
+                            "label": "Become a Provider"
+                        },
+                        {
+                            "route": "/patient-care/provider-accounts/changes-to-your-account",
+                            "label": "Changes to your account"
+                        }
+                    ],
+                    "label": "Provider Accounts"
+                }
+            ],
+            "label": "Patient Care"
+        },
+        {
+            "route": "/insurance",
+            "children": [
+                {
+                    "route": "/insurance",
+                    "label": "Everything You Need to Know About Insurance"
+                },
+                {
+                    "route": "/insurance/insurance-requirements",
+                    "children": [
+                        {
+                            "route": "/insurance/insurance-requirements/do-i-need-a-workers-comp-account",
+                            "children": [
+                                {
+                                    "route": "/insurance/insurance-requirements/do-i-need-a-workers-comp-account/out-of-state-employers-and-out-of-state-workers",
+                                    "label": "Out-of-State Employers and Out-of-State Workers"
+                                },
+                                {
+                                    "route": "/insurance/insurance-requirements/do-i-need-a-workers-comp-account/corporate-officers",
+                                    "label": "Corporate Officers"
+                                },
+                                {
+                                    "route": "/insurance/insurance-requirements/do-i-need-a-workers-comp-account/llc-members",
+                                    "label": "LLC Members"
+                                },
+                                {
+                                    "route": "/insurance/insurance-requirements/do-i-need-a-workers-comp-account/taxi-limousine-cabulance",
+                                    "label": "Taxi/Limousine/Cabulance"
+                                },
+                                {
+                                    "route": "/insurance/insurance-requirements/do-i-need-a-workers-comp-account/maritime",
+                                    "label": "Maritime"
+                                }
+                            ],
+                            "label": "Do I Need a Workers' Comp Account?"
+                        },
+                        {
+                            "route": "/insurance/insurance-requirements/how-to-get-a-workers-compensation-account",
+                            "label": "How to Get a Workers' Compensation Account"
+                        },
+                        {
+                            "route": "/insurance/insurance-requirements/independent-contractors",
+                            "label": "Independent Contractors"
+                        },
+                        {
+                            "route": "/insurance/insurance-requirements/volunteers",
+                            "label": "Volunteers"
+                        },
+                        {
+                            "route": "/insurance/insurance-requirements/trucking",
+                            "label": "Trucking"
+                        }
+                    ],
+                    "label": "Insurance Requirements"
+                },
+                {
+                    "route": "/insurance/quarterly-reports",
+                    "children": [
+                        {
+                            "route": "/insurance/quarterly-reports/file-quarterly-reports",
+                            "children": [
+                                {
+                                    "route": "/insurance/quarterly-reports/file-quarterly-reports/out-of-state-supplemental-reporting",
+                                    "label": "Out-of-State Supplemental Reporting"
+                                },
+                                {
+                                    "route": "/insurance/quarterly-reports/file-quarterly-reports/drywall",
+                                    "label": "Drywall"
+                                },
+                                {
+                                    "route": "/insurance/quarterly-reports/file-quarterly-reports/volunteers",
+                                    "label": "Volunteers"
+                                },
+                                {
+                                    "route": "/insurance/quarterly-reports/file-quarterly-reports/mechanized-logging",
+                                    "label": "Mechanized Logging"
+                                },
+                                {
+                                    "route": "/insurance/quarterly-reports/file-quarterly-reports/reforestation",
+                                    "label": "Reforestation"
+                                }
+                            ],
+                            "label": "File Quarterly Reports"
+                        },
+                        {
+                            "route": "/insurance/quarterly-reports/filing-on-behalf-of-clients",
+                            "label": "Filing on Behalf of Clients?"
+                        },
+                        {
+                            "route": "/insurance/quarterly-reports/penalties-and-interest-for-filing-late",
+                            "label": "Penalties and Interest for Filing Late"
+                        }
+                    ],
+                    "label": "Quarterly Reports"
+                },
+                {
+                    "route": "/insurance/verify-contractor",
+                    "children": [
+                        {
+                            "route": "/insurance/verify-contractor/verify-a-contractor-tradesperson-or-business",
+                            "label": "Verify a Contractor, Tradesperson or Business"
+                        },
+                        {
+                            "route": "/insurance/verify-contractor/employer-liability-certificate-of-coverage",
+                            "label": "Employer Liability Certificate (Certificate of Coverage)"
+                        },
+                        {
+                            "route": "/insurance/verify-contractor/guide-to-using-verification-services",
+                            "label": "Guide to Using Verification Services"
+                        },
+                        {
+                            "route": "/insurance/verify-contractor/liability-for-unpaid-workers-comp",
+                            "label": "Liability for Unpaid Workers' Comp"
+                        }
+                    ],
+                    "label": "Verify Contractor"
+                },
+                {
+                    "route": "/insurance/rates-risk-classes",
+                    "children": [
+                        {
+                            "route": "/insurance/rates-risk-classes/rates-for-workers-compensation",
+                            "children": [
+                                {
+                                    "route": "/insurance/rates-risk-classes/rates-for-workers-compensation/base-rates",
+                                    "label": "Base Rates"
+                                },
+                                {
+                                    "route": "/insurance/rates-risk-classes/rates-for-workers-compensation/experience-rating",
+                                    "label": "Experience Rating"
+                                },
+                                {
+                                    "route": "/insurance/rates-risk-classes/rates-for-workers-compensation/calculating-premium-rates",
+                                    "label": "Calculating Premium Rates"
+                                },
+                                {
+                                    "route": "/insurance/rates-risk-classes/rates-for-workers-compensation/calculations-for-experience-factors",
+                                    "label": "Calculations for Experience Factors"
+                                },
+                                {
+                                    "route": "/insurance/rates-risk-classes/rates-for-workers-compensation/claim-free-discount",
+                                    "label": "Claim Free Discount"
+                                },
+                                {
+                                    "route": "/insurance/rates-risk-classes/rates-for-workers-compensation/unique-premium-rating-features-in-washington",
+                                    "label": "Unique Premium Rating Features in Washington"
+                                }
+                            ],
+                            "label": "Rates for Workers' Compensation"
+                        },
+                        {
+                            "route": "/insurance/rates-risk-classes/risk-classes-for-workers-compensation",
+                            "children": [
+                                {
+                                    "route": "/insurance/rates-risk-classes/risk-classes-for-workers-compensation/average-hourly-wage-rates",
+                                    "label": "Average Hourly Wage Rates"
+                                },
+                                {
+                                    "route": "/insurance/rates-risk-classes/risk-classes-for-workers-compensation/about-risk-classifications",
+                                    "label": "About Risk Classifications"
+                                }
+                            ],
+                            "label": "Risk Classes for Workers' Compensation"
+                        },
+                        {
+                            "route": "/insurance/rates-risk-classes/reducing-rates",
+                            "children": [
+                                {
+                                    "route": "/insurance/rates-risk-classes/reducing-rates/index",
+                                    "label": "Reducing Rates"
+                                }
+                            ],
+                            "label": "Reducing Rates"
+                        },
+                        {
+                            "route": "/insurance/rates-risk-classes/appeal-coverage-rates",
+                            "label": "Appeal Coverage & Rates"
+                        }
+                    ],
+                    "label": "Rates & Risk Classes"
+                },
+                {
+                    "route": "/insurance/self-insurance",
+                    "children": [
+                        {
+                            "route": "/insurance/self-insurance/about-self-insurance",
+                            "children": [
+                                {
+                                    "route": "/insurance/self-insurance/about-self-insurance/how-do-i-contact-self-insurance",
+                                    "label": "How Do I Contact Self-Insurance"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/about-self-insurance/oversight",
+                                    "label": "Oversight"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/about-self-insurance/rules",
+                                    "label": "Rules"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/about-self-insurance/forms-publications",
+                                    "label": "Forms & Publications"
+                                }
+                            ],
+                            "label": "About Self-Insurance"
+                        },
+                        {
+                            "route": "/insurance/self-insurance/lists-of-self-insured-employers",
+                            "label": "Lists of Self-Insured Employers"
+                        },
+                        {
+                            "route": "/insurance/self-insurance/employers",
+                            "children": [
+                                {
+                                    "route": "/insurance/self-insurance/employers/how-to-self-insure",
+                                    "label": "How to Self-Insure"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/employers/self-insurance-reporting-requirements",
+                                    "label": "Self-Insurance Reporting Requirements"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/employers/siedrs-quarterly-reporting",
+                                    "label": "SIEDRS Quarterly Reporting"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/employers/self-insurance-assessments",
+                                    "label": "Self-Insurance Assessments"
+                                }
+                            ],
+                            "label": "Employers"
+                        },
+                        {
+                            "route": "/insurance/self-insurance/workers",
+                            "children": [
+                                {
+                                    "route": "/insurance/self-insurance/workers/what-do-i-do-if-i-m-injured-at-work",
+                                    "label": "What Do I Do if I'm Injured at Work?"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/workers/who-do-i-talk-to-about-my-claim",
+                                    "label": "Who Do I Talk To About My Claim?"
+                                }
+                            ],
+                            "label": "Workers"
+                        },
+                        {
+                            "route": "/insurance/self-insurance/claims-management",
+                            "children": [
+                                {
+                                    "route": "/insurance/self-insurance/claims-management/claims-adjudications-guidelines",
+                                    "label": "Claims Adjudications Guidelines"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/claims-management/calculators-checklists-coversheets",
+                                    "label": "Claim Management Tools"
+                                }
+                            ],
+                            "label": "Claims Management"
+                        },
+                        {
+                            "route": "/insurance/self-insurance/training",
+                            "children": [
+                                {
+                                    "route": "/insurance/self-insurance/training/testing-certification",
+                                    "label": "Testing & Certification"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/training/core-curriculum",
+                                    "label": "Core Curriculum"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/training/continuing-education",
+                                    "label": "Continuing Education"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/training/submit-proof-of-attendance",
+                                    "label": "Submit Proof of Attendance"
+                                },
+                                {
+                                    "route": "/insurance/self-insurance/training/submit-a-course-curriculum-for-approval",
+                                    "label": "Submit a Course Curriculum for Approval"
+                                }
+                            ],
+                            "label": "Training"
+                        }
+                    ],
+                    "label": "Self-Insurance"
+                }
+            ],
+            "label": "Insurance"
+        },
+        {
+            "route": "/workers-rights",
+            "children": [
+                {
+                    "route": "/workers-rights",
+                    "label": "Everything You Need to Know About Workers' Rights"
+                },
+                {
+                    "route": "/workers-rights/wages",
+                    "children": [
+                        {
+                            "route": "/workers-rights/wages/minimum-wage",
+                            "children": [
+                                {
+                                    "route": "/workers-rights/wages/minimum-wage/history-of-washington-states-minimum-wage",
+                                    "label": "History of Washington State's Minimum Wage"
+                                },
+                                {
+                                    "route": "/workers-rights/wages/minimum-wage/internships-apprenticeships-and-volunteers",
+                                    "label": "Internships, Apprenticeships & Volunteers"
+                                },
+                                {
+                                    "route": "/workers-rights/wages/minimum-wage/paying-certain-workers-less-than-minimum-wage",
+                                    "label": "Paying Certain Workers Less than Minimum Wage"
+                                },
+                                {
+                                    "route": "/workers-rights/wages/minimum-wage/jobs-exempt-from-the-minimum-wage-act",
+                                    "label": "Jobs Exempt From the Minimum Wage Act"
+                                }
+                            ],
+                            "label": "Minimum Wage"
+                        },
+                        {
+                            "route": "/workers-rights/wages/overtime",
+                            "children": [
+                                {
+                                    "route": "/workers-rights/wages/overtime/mandatory-nurses-overtime",
+                                    "label": "Mandatory Nurse's Overtime"
+                                },
+                                {
+                                    "route": "/workers-rights/wages/overtime/jobs-not-paid-overtime",
+                                    "label": "Jobs Not Paid Overtime"
+                                },
+                                {
+                                    "route": "/workers-rights/wages/overtime/executive-administrative-and-professional-exemption-rulemaking",
+                                    "label": "Executive, Administrative & Professional Exemption Rulemaking"
+                                }
+                            ],
+                            "label": "Overtime"
+                        },
+                        {
+                            "route": "/workers-rights/wages/getting-paid",
+                            "children": [
+                                {
+                                    "route": "/workers-rights/wages/getting-paid/paycheck-deductions",
+                                    "label": "Paycheck Deductions"
+                                }
+                            ],
+                            "label": "Getting Paid"
+                        },
+                        {
+                            "route": "/workers-rights/wages/tips-and-service-charges",
+                            "label": "Tips and Service Charges"
+                        },
+                        {
+                            "route": "/workers-rights/wages/equal-pay-and-opportunities-act",
+                            "label": "Equal Pay & Opportunities Act"
+                        },
+                        {
+                            "route": "/workers-rights/wages/prevailing-wage-rates",
+                            "label": "Prevailing Wage Rates"
+                        }
+                    ],
+                    "label": "Wages"
+                },
+                {
+                    "route": "/workers-rights/workplace-policies",
+                    "children": [
+                        {
+                            "route": "/workers-rights/workplace-policies/rest-breaks-meal-periods-and-schedules",
+                            "label": "Rest Breaks, Meal Periods & Schedules"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-policies/termination-retaliation",
+                            "label": "Termination & Retaliation"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-policies/payroll-and-personnel-records",
+                            "label": "Payroll & Personnel Records"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-policies/pregnancy-accommodations",
+                            "label": "Pregnancy Accommodations"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-policies/uniforms",
+                            "label": "Uniforms"
+                        }
+                    ],
+                    "label": "Workplace Policies"
+                },
+                {
+                    "route": "/workers-rights/leave",
+                    "children": [
+                        {
+                            "route": "/workers-rights/leave/paid-sick-leave",
+                            "children": [
+                                {
+                                    "route": "/workers-rights/leave/paid-sick-leave/information-for-employees",
+                                    "label": "Information for employees"
+                                },
+                                {
+                                    "route": "/workers-rights/leave/paid-sick-leave/implementing-a-paid-sick-leave-policy",
+                                    "label": "Implementing a Paid Sick Leave Policy"
+                                },
+                                {
+                                    "route": "/workers-rights/leave/paid-sick-leave/paid-sick-leave-minimum-requirements",
+                                    "label": "Paid Sick Leave Minimum Requirements"
+                                },
+                                {
+                                    "route": "/workers-rights/leave/paid-sick-leave/optional-paid-sick-leave-policies",
+                                    "label": "Optional Paid Sick Leave Policies"
+                                },
+                                {
+                                    "route": "/workers-rights/leave/paid-sick-leave/enforcement-of-paid-sick-leave-laws",
+                                    "label": "Enforcement of Paid Sick Leave Laws"
+                                }
+                            ],
+                            "label": "Paid Sick Leave"
+                        },
+                        {
+                            "route": "/workers-rights/leave/family-care-act",
+                            "label": "Family Care Act"
+                        },
+                        {
+                            "route": "/workers-rights/leave/holiday-vacation-bereavement-leave",
+                            "label": "Holiday, Vacation & Bereavement Leave"
+                        },
+                        {
+                            "route": "/workers-rights/leave/pregnancy-and-parental-leave",
+                            "label": "Pregnancy & Parental Leave"
+                        },
+                        {
+                            "route": "/workers-rights/leave/domestic-violence-leave",
+                            "label": "Domestic Violence Leave"
+                        },
+                        {
+                            "route": "/workers-rights/leave/family-leave-act",
+                            "label": "Family Leave Act"
+                        },
+                        {
+                            "route": "/workers-rights/leave/paid-family-and-medical-leave",
+                            "label": "Paid Family & Medical Leave"
+                        },
+                        {
+                            "route": "/workers-rights/leave/leave-for-military-spouses-and-certain-emergency-personnel",
+                            "label": "Leave for Military Spouses & Certain Emergency Personnel"
+                        }
+                    ],
+                    "label": "Leave"
+                },
+                {
+                    "route": "/workers-rights/agriculture-policies",
+                    "children": [
+                        {
+                            "route": "/workers-rights/agriculture-policies/wages",
+                            "label": "Wages"
+                        },
+                        {
+                            "route": "/workers-rights/agriculture-policies/rest-breaks-and-meal-periods",
+                            "label": "Rest Breaks & Meal Periods"
+                        },
+                        {
+                            "route": "/workers-rights/agriculture-policies/recordkeeping",
+                            "label": "Recordkeeping"
+                        },
+                        {
+                            "route": "/workers-rights/agriculture-policies/agricultural-jobs-for-youth",
+                            "label": "Agricultural Jobs for Youth"
+                        },
+                        {
+                            "route": "/workers-rights/agriculture-policies/farm-labor-contractors",
+                            "children": [
+                                {
+                                    "route": "/workers-rights/agriculture-policies/farm-labor-contractors/complaints-penalties-and-violations",
+                                    "label": "Complaints, Penalties & Violations"
+                                },
+                                {
+                                    "route": "/workers-rights/agriculture-policies/farm-labor-contractors/index",
+                                    "label": "Farm Labor Contractors"
+                                }
+                            ],
+                            "label": "Farm Labor Contractors"
+                        },
+                        {
+                            "route": "/workers-rights/agriculture-policies/farm-internship-project",
+                            "label": "Farm Internship Project"
+                        }
+                    ],
+                    "label": "Agriculture Policies"
+                },
+                {
+                    "route": "/workers-rights/workplace-complaints",
+                    "children": [
+                        {
+                            "route": "/workers-rights/workplace-complaints/equal-pay-and-opportunities-act-complaints",
+                            "label": "Equal Pay and Opportunities Act Complaints"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-complaints/worker-rights-complaints",
+                            "label": "Worker Rights Complaints"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-complaints/protected-leave-complaints",
+                            "label": "Protected Leave Complaints"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-complaints/safety-complaints",
+                            "label": "Safety Complaints"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-complaints/discrimination-in-the-workplace",
+                            "label": "Discrimination in the Workplace"
+                        },
+                        {
+                            "route": "/workers-rights/workplace-complaints/look-up-employers-who-have-violated-wage-laws",
+                            "label": "Look Up Employers Who Have Violated Wage Laws"
+                        }
+                    ],
+                    "label": "Workplace Complaints"
+                },
+                {
+                    "route": "/workers-rights/youth-employment",
+                    "children": [
+                        {
+                            "route": "/workers-rights/youth-employment/prohibited-duties",
+                            "label": "Prohibited Duties"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/how-to-hire-minors",
+                            "children": [
+                                {
+                                    "route": "/workers-rights/youth-employment/how-to-hire-minors/student-workers-learners",
+                                    "label": "Student Workers & Learners"
+                                },
+                                {
+                                    "route": "/workers-rights/youth-employment/how-to-hire-minors/legal-age-to-work",
+                                    "label": "Legal Age to Work"
+                                },
+                                {
+                                    "route": "/workers-rights/youth-employment/how-to-hire-minors/hiring-youth-under-14",
+                                    "label": "Hiring Youth Under 14"
+                                }
+                            ],
+                            "label": "How to Hire Minors"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/hours-of-work",
+                            "label": "Hours of Work"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/variances",
+                            "label": "Variances"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/wages-rest-breaks-and-meal-periods",
+                            "label": "Wages, Rest Breaks & Meal Periods"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/injured-young-workers-speakers-program",
+                            "label": "Injured Young Workers Speakers Program"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/teen-worker-safety",
+                            "label": "Teen Worker Safety"
+                        },
+                        {
+                            "route": "/workers-rights/youth-employment/my-first-job",
+                            "label": "My First Job"
+                        }
+                    ],
+                    "label": "Youth Employment"
+                }
+            ],
+            "label": "Workers' Rights"
+        },
+        {
+            "route": "/licensing-permits",
+            "children": [
+                {
+                    "route": "/licensing-permits",
+                    "label": "Everything You Need to Know About Licensing & Permits"
+                },
+                {
+                    "route": "/licensing-permits/public-works-projects",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/public-works-projects/strike-and-debar",
+                            "label": "Strike and Debar"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/index",
+                            "label": "Prevailing Wage"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/employers-contractors",
+                            "label": "Contractor/Employer Responsibilities"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/contractors-not-allowed-to-bid",
+                            "label": "Contractors Not Allowed to Bid"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/awarding-agencies",
+                            "label": "Awarding Agencies"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/scopes-of-work",
+                            "label": "Scopes of Work"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/workers",
+                            "label": "Workers"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/interested-parties",
+                            "label": "Interested  Parties"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/contractor-strikes",
+                            "label": "Contractor Strikes"
+                        },
+                        {
+                            "route": "/licensing-permits/public-works-projects/prevailing-wage-advisory",
+                            "label": "Prevailing Wage Advisory"
+                        }
+                    ],
+                    "label": "Public Works Projects"
+                },
+                {
+                    "route": "/licensing-permits/contractors",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/contractors/register-as-a-contractor",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/contractors/register-as-a-contractor/how-to-choose-a-business-structure",
+                                    "label": "How to Choose a Business Structure"
+                                },
+                                {
+                                    "route": "/licensing-permits/contractors/register-as-a-contractor/submit-insurance-online",
+                                    "label": "Submit Insurance Online"
+                                }
+                            ],
+                            "label": "Register as a Contractor"
+                        },
+                        {
+                            "route": "/licensing-permits/contractors/hiring-a-contractor",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/contractors/hiring-a-contractor/protect-my-home",
+                                    "label": "Protect My Home"
+                                },
+                                {
+                                    "route": "/licensing-permits/contractors/hiring-a-contractor/before-you-hire-a-contractor",
+                                    "label": "Before You Hire a Contractor"
+                                },
+                                {
+                                    "route": "/licensing-permits/contractors/hiring-a-contractor/hiring-your-contractor",
+                                    "label": "Hiring Your Contractor"
+                                },
+                                {
+                                    "route": "/licensing-permits/contractors/hiring-a-contractor/monitoring-your-contractors-work",
+                                    "label": "Monitoring Your Contractor's Work"
+                                },
+                                {
+                                    "route": "/licensing-permits/contractors/hiring-a-contractor/closing-the-deal-with-the-contractor",
+                                    "label": "Closing the Deal with the Contractor"
+                                }
+                            ],
+                            "label": "Hiring a Contractor"
+                        },
+                        {
+                            "route": "/licensing-permits/contractors/employers-contractors",
+                            "label": "Employers/Contractors"
+                        },
+                        {
+                            "route": "/licensing-permits/contractors/report-a-contractor",
+                            "label": "Report a Contractor"
+                        },
+                        {
+                            "route": "/licensing-permits/contractors/verify-a-contractor",
+                            "label": "Verify a Contractor"
+                        },
+                        {
+                            "route": "/licensing-permits/contractors/training-workshops",
+                            "label": "Training & Workshops"
+                        },
+                        {
+                            "route": "/licensing-permits/contractors/combat-the-underground-economy-committee",
+                            "label": "Combat the Underground Economy Committee"
+                        }
+                    ],
+                    "label": "Contractors"
+                },
+                {
+                    "route": "/licensing-permits/plumbing",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/plumbing/about-the-plumber-program",
+                            "label": "About the Plumber Program"
+                        },
+                        {
+                            "route": "/licensing-permits/plumbing/plumber-certification",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/plumbing/plumber-certification/plumber-trainee",
+                                    "label": "Plumber Trainee"
+                                },
+                                {
+                                    "route": "/licensing-permits/plumbing/plumber-certification/combination-plumber-electrician",
+                                    "label": "Combination Plumber & Electrician"
+                                },
+                                {
+                                    "route": "/licensing-permits/plumbing/plumber-certification/medical-gas-endorsement",
+                                    "label": "Medical Gas Endorsement"
+                                }
+                            ],
+                            "label": "Plumber Certification"
+                        },
+                        {
+                            "route": "/licensing-permits/plumbing/continuing-education",
+                            "label": "Continuing Education"
+                        },
+                        {
+                            "route": "/licensing-permits/plumbing/plumber-examination",
+                            "label": "Plumber Examination"
+                        },
+                        {
+                            "route": "/licensing-permits/plumbing/plumber-advisory-board",
+                            "label": "Plumber Advisory Board"
+                        },
+                        {
+                            "route": "/licensing-permits/plumbing/compliance-inspectors",
+                            "label": "Compliance Inspectors"
+                        }
+                    ],
+                    "label": "Plumbing"
+                },
+                {
+                    "route": "/licensing-permits/electrical",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/electrical/electrical-permits-fees-and-inspections",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-permits-fees-and-inspections/electrical-utility-providers",
+                                    "label": "Electrical Utility Providers"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-permits-fees-and-inspections/electrical-product-testing-and-engineering-evaluation",
+                                    "label": "Electrical Product Testing & Engineering Evaluation"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-permits-fees-and-inspections/electrical-plan-review",
+                                    "label": "Electrical Plan Review"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-permits-fees-and-inspections/inspection-request-lines",
+                                    "label": "Inspection Request Lines"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-permits-fees-and-inspections/cities-that-do-their-own-permits-and-inspections",
+                                    "label": "Cities That Do Their Own Permits & Inspections"
+                                }
+                            ],
+                            "label": "Electrical Permits, Fees & Inspections"
+                        },
+                        {
+                            "route": "/licensing-permits/electrical/electrical-licensing",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/electrical-apprenticeship",
+                                    "label": "Electrical Apprenticeship"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/electrical-trainee",
+                                    "label": "Electrical Trainee"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/electrician",
+                                    "label": "Electrician"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/electrical-administrator",
+                                    "label": "Electrical Administrator"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/electrical-contractor",
+                                    "label": "Electrical Contractor"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/master-electrician-certificate",
+                                    "label": "Master Electrician Certificate"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/telecommunications-contractor",
+                                    "label": "Telecommunications Contractor"
+                                },
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-licensing/telecommunications-administrator",
+                                    "label": "Telecommunications Administrator"
+                                }
+                            ],
+                            "label": "Electrical Licensing"
+                        },
+                        {
+                            "route": "/licensing-permits/electrical/electrical-basics-for-home-business-owners",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/electrical/electrical-basics-for-home-business-owners/appliance-installation-and-repair",
+                                    "label": "Appliance Installation & Repair"
+                                }
+                            ],
+                            "label": "Electrical Basics for Home & Business Owners"
+                        },
+                        {
+                            "route": "/licensing-permits/electrical/basic-classroom-instruction-and-continuing-education",
+                            "label": "Basic Classroom Instruction & Continuing Education"
+                        },
+                        {
+                            "route": "/licensing-permits/electrical/electrical-examination",
+                            "label": "Electrical Examination"
+                        },
+                        {
+                            "route": "/licensing-permits/electrical/electrical-violators",
+                            "label": "Electrical Violators"
+                        },
+                        {
+                            "route": "/licensing-permits/electrical/electrical-board",
+                            "label": "Electrical Board"
+                        }
+                    ],
+                    "label": "Electrical"
+                },
+                {
+                    "route": "/licensing-permits/elevators",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/elevators/plans-permits-fees",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/elevators/plans-permits-fees/installation-fees",
+                                    "label": "Installation Fees"
+                                },
+                                {
+                                    "route": "/licensing-permits/elevators/plans-permits-fees/alteration-fees",
+                                    "label": "Alteration Fees"
+                                },
+                                {
+                                    "route": "/licensing-permits/elevators/plans-permits-fees/operating-certificate-fees",
+                                    "label": "Operating Certificate Fees"
+                                }
+                            ],
+                            "label": "Plans, Permits, and Fees"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/elevator-licensing",
+                            "label": "Elevator Licensing"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/pay-invoice-online",
+                            "label": "Pay Invoice Online"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/look-up-elevator-inspections",
+                            "label": "Look Up Elevator Inspections"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/maintenance-control-programs",
+                            "label": "Maintenance Control Programs"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/elevator-company-contractor-information",
+                            "label": "Elevator Company & Contractor Information"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/building-owner-property-manager",
+                            "label": "Building Owners & Property Managers"
+                        },
+                        {
+                            "route": "/licensing-permits/elevators/about-the-elevator-program",
+                            "label": "About the Elevator Program"
+                        }
+                    ],
+                    "label": "Elevators"
+                },
+                {
+                    "route": "/licensing-permits/boilers",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/boilers/about-the-boiler-program",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/boilers/about-the-boiler-program/what-we-regulate",
+                                    "label": "What We Regulate"
+                                }
+                            ],
+                            "label": "About the Boiler Program"
+                        },
+                        {
+                            "route": "/licensing-permits/boilers/permits-fees-inspections",
+                            "label": "Permits, Fees & Inspections"
+                        },
+                        {
+                            "route": "/licensing-permits/boilers/boiler-exams-training-certification",
+                            "label": "Boiler Exams, Training & Certification"
+                        },
+                        {
+                            "route": "/licensing-permits/boilers/board-of-boiler-rules",
+                            "label": "The Board of Boiler Rules"
+                        }
+                    ],
+                    "label": "Boilers"
+                },
+                {
+                    "route": "/licensing-permits/manufactured-mobile-homes",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/manufactured-mobile-homes/realtors-lenders-appraisers",
+                            "label": "Realtors, Lenders & Appraisers"
+                        },
+                        {
+                            "route": "/licensing-permits/manufactured-mobile-homes/installers-dealers",
+                            "label": "Installers & Dealers"
+                        },
+                        {
+                            "route": "/licensing-permits/manufactured-mobile-homes/food-trucks-trailers",
+                            "label": "Food Trucks & Trailers"
+                        },
+                        {
+                            "route": "/licensing-permits/manufactured-mobile-homes/other-mobile-or-modular-structures",
+                            "label": "Other Mobile or Modular Structures"
+                        },
+                        {
+                            "route": "/licensing-permits/manufactured-mobile-homes/factory-assembled-structures-fas-advisory-board",
+                            "label": "Factory Assembled Structures (FAS) Advisory Board"
+                        },
+                        {
+                            "route": "/licensing-permits/manufactured-mobile-homes/protect-my-manufactured-home",
+                            "label": "Protect My Manufactured Home"
+                        }
+                    ],
+                    "label": "Manufactured Mobile Homes"
+                },
+                {
+                    "route": "/licensing-permits/apprenticeship",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/apprenticeship/apprenticeship-preparation",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/apprenticeship/apprenticeship-preparation/offer-an-apprenticeship-preparation-program",
+                                    "label": "Offer an Apprenticeship Preparation Program"
+                                }
+                            ],
+                            "label": "Apprenticeship Preparation"
+                        },
+                        {
+                            "route": "/licensing-permits/apprenticeship/become-an-apprentice",
+                            "label": "Become an Apprentice"
+                        },
+                        {
+                            "route": "/licensing-permits/apprenticeship/offer-a-registered-apprenticeship",
+                            "label": "Offer a Registered Apprenticeship"
+                        },
+                        {
+                            "route": "/licensing-permits/apprenticeship/news-and-calendar-of-events",
+                            "label": "News & Calendar of Events"
+                        },
+                        {
+                            "route": "/licensing-permits/apprenticeship/wsatc",
+                            "label": "Washington State Apprenticeship & Training Council"
+                        },
+                        {
+                            "route": "/licensing-permits/apprenticeship/apprenticeship-registration-and-tracking-system",
+                            "label": "Apprenticeship Registration & Tracking System (ARTS)"
+                        }
+                    ],
+                    "label": "Apprenticeship"
+                },
+                {
+                    "route": "/licensing-permits/other-licenses-permits",
+                    "children": [
+                        {
+                            "route": "/licensing-permits/other-licenses-permits/licenses-registrations-folder",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/licenses-registrations-folder/asbestos-certification",
+                                    "label": "Asbestos Certification"
+                                },
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/licenses-registrations-folder/charter-boats",
+                                    "label": "Charter Boats"
+                                },
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/licenses-registrations-folder/explosives-licensing",
+                                    "label": "Explosives Licensing"
+                                }
+                            ],
+                            "label": "Licenses & Registrations"
+                        },
+                        {
+                            "route": "/licensing-permits/other-licenses-permits/amusement-ride-safety-permits-and-inspections",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/amusement-ride-safety-permits-and-inspections/certified-amusement-ride-operators",
+                                    "label": "Certified Amusement Ride Operators"
+                                },
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/amusement-ride-safety-permits-and-inspections/certified-amusement-ride-inspectors",
+                                    "label": "Certified Amusement Ride Inspectors"
+                                }
+                            ],
+                            "label": "Amusement Ride Safety, Permits & Inspections"
+                        },
+                        {
+                            "route": "/licensing-permits/other-licenses-permits/permits-inspections-folder",
+                            "children": [
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/permits-inspections-folder/construction-cranes",
+                                    "label": "Construction Cranes"
+                                },
+                                {
+                                    "route": "/licensing-permits/other-licenses-permits/permits-inspections-folder/talkie-tooter",
+                                    "label": "Talkie-Tooters (Logging Radios)"
+                                }
+                            ],
+                            "label": "Permits & Inspections"
+                        }
+                    ],
+                    "label": "Other Licenses & Permits"
+                }
+            ],
+            "label": "Licensing & Permits"
+        }
+    ],
+    "breadcrumbTrail": [],
+    "leftNavigation": [],
+    "footer": {
+        "copyright": "© Washington State Dept. of Labor & Industries. Use of this site is subject to the laws of the state of Washington.",
+        "agreement": {
+            "route": "/agency/access-agreement",
+            "label": "Access Agreement"
+        },
+        "social": {
+            "followLabel": "Follow",
+            "links": [
+                {
+                    "route": "https://www.youtube.com/user/LaborandIndustries1",
+                    "name": "YouTube",
+                    "alt": "Join us on YouTube",
+                    "type": "youtube"
+                },
+                {
+                    "route": "https://twitter.com/lniwa",
+                    "name": "Twitter",
+                    "alt": "Join us on twitter",
+                    "type": "twitter"
+                },
+                {
+                    "route": "https://www.facebook.com/laborandindustries",
+                    "name": "Facebook",
+                    "alt": "Join us on facebook",
+                    "type": "facebook2"
+                }
+            ]
+        },
+        "intended": {
+            "route": "/agency/content-policy",
+            "label": "Intended Use/External Content Policy"
+        },
+        "contact": {
+            "switchboard": "Switchboard: 1-800-547-8367",
+            "address": "7273 Linderson Way SW",
+            "officeLabel": "Office Locations",
+            "officeLink": "/agency/office-locations/#office-locations",
+            "heading": "Contact",
+            "address2": "Tumwater, WA 98501-5414",
+            "contactLink": "/agency/office-locations/",
+            "ttyPhone": "TTY*: 1-800-833-6388",
+            "ttyNotice": "*Washington State Relay Service for the hearing impaired",
+            "fax": "Fax: 360-902-5798"
+        },
+        "privacy": {
+            "route": "/agency/privacy-security-statement",
+            "label": "Privacy & Security Statement"
+        },
+        "accessWashington": {
+            "route": "https://access.wa.gov",
+            "label": "Access Washington"
+        },
+        "staff": {
+            "route": "/agency/staff-only",
+            "label": "Staff Only"
+        },
+        "links": [
+            {
+                "route": "/agency",
+                "label": "About L&I"
+            },
+            {
+                "route": "/fraud",
+                "label": "Combating Fraud"
+            },
+            {
+                "route": "/safety-health/preventing-injuries-illnesses/get-started-with-safety-health/",
+                "label": "Get Started With Safety & Health"
+            },
+            {
+                "route": "/rulemaking-activity/",
+                "label": "Rulemaking Activity"
+            },
+            {
+                "route": "/workers-rights/workplace-complaints/safety-complaints",
+                "label": "Report Workplace Hazards or Discrimination"
+            },
+            {
+                "route": "/agency/languages/language-services",
+                "label": "Language Services"
+            }
+        ]
+    }
+}

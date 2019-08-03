@@ -1,4 +1,3 @@
-// vue.config.js
 const path = require('path');
 
 module.exports = {
@@ -11,6 +10,7 @@ module.exports = {
     css: {
         sourceMap: true,
     },
+    pluginOptions: {},
 };
 
 function addStyleResource(rule) {
