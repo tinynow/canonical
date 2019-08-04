@@ -1,7 +1,10 @@
 <template>
-    <component :is="containerElement" class="canon-c-prose">
-        <slot />
-    </component>
+<component
+    :is="containerElement"
+    class="canon-c-prose"
+>
+    <slot />
+</component>
 </template>
 
 <script>

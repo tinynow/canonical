@@ -1,12 +1,12 @@
 <template>
-    <button
-        class="canon-c-mega-menu__toggle"
-        :aria-expanded="ariaExpanded"
-        :aria-controls="ariaControls"
-        @click="$emit('click')"
-    >
-        <slot />
-    </button>
+<button
+    class="canon-c-mega-menu__toggle"
+    :aria-expanded="ariaExpanded"
+    :aria-controls="ariaControls"
+    @click="$emit('click')"
+>
+    <slot />
+</button>
 </template>
 
 <script>

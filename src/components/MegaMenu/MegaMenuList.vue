@@ -1,16 +1,15 @@
 <template>
-    <ul>
-        <canon-mega-menu-list-item
-            v-for="item in items"
-            :key="item.id"
-            v-bind="item"
-            :expanded="openItems.includes(item.id)"
-            :controls="item.id"
-            :open-items="openItems"
-            @click="$emit('click')"
-        >
-        </canon-mega-menu-list-item>
-    </ul>
+<ul>
+    <canon-mega-menu-list-item
+        v-for="item in items"
+        :key="item.id"
+        v-bind="item"
+        :expanded="openItems.includes(item.id)"
+        :controls="item.id"
+        :open-items="openItems"
+        @click="$emit('click')"
+    />
+</ul>
 </template>
 
 <script>

@@ -1,30 +1,34 @@
 <template>
-    <li>
-        <a v-if="!children" class="canon-c-mega-menu__link" :href="route">
+<li>
+    <a
+        v-if="!children"
+        class="canon-c-mega-menu__link"
+        :href="route"
+    >
+        {{ label }}
+    </a>
+    <template v-else>
+        <button
+            class="canon-c-mega-menu__toggle"
+            :aria-expanded="expanded"
+            :aria-controls="controls"
+            @click="$emit('click')"
+        >
             {{ label }}
-        </a>
-        <template v-else>
-            <button
-                class="canon-c-mega-menu__toggle"
-                :aria-expanded="expanded"
-                :aria-controls="controls"
-                @click="$emit('click')"
-            >
-                {{ label }}
-            </button>
-            <div
-                v-show="expanded"
-                :id="controls"
-                class="canon-c-mega-menu__level"
-            >
-                <slot name="level-header" />
-                <canon-mega-menu-list
-                    :items="children"
-                    :open-items="openItems"
-                />
-            </div>
-        </template>
-    </li>
+        </button>
+        <div
+            v-show="expanded"
+            :id="controls"
+            class="canon-c-mega-menu__level"
+        >
+            <slot name="level-header" />
+            <canon-mega-menu-list
+                :items="children"
+                :open-items="openItems"
+            />
+        </div>
+    </template>
+</li>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
-    <div id="app">
-        <canon-mega-menu :items="navigationData.primaryNavigation" />
-    </div>
+<div id="app">
+    <canon-mega-menu :items="navigationData.primaryNavigation" />
+</div>
 </template>
 <script>
 //import CanonProse from './components/Prose';
