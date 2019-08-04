@@ -7,6 +7,7 @@
     :stroke-linejoin="sharp ? 'butt' : 'round'"
     :aria-hidden="!announceName"
     :aria-labelledby="announceName ? iconName : null"
+    :style="cssVars"
 >
     <title
         :id="iconName"
@@ -34,6 +35,14 @@ export default {
             type: String,
             default: 'none',
         },
+        iconWidth: {
+            type: String,
+            default: '24px', //TODO: decide on standard null/empty/false value ie [String, null]
+        },
+        iconHeight: {
+            type: String,
+            default: '24px',
+        },
         announceName: {
             type: Boolean,
             default: false,
@@ -51,6 +60,12 @@ export default {
         icon() {
             return () => import(`./Icons/${this.iconName}`);
         },
+        cssVars() {
+            return {
+                '--width': this.iconWidth,
+                '--height': this.iconHeight,
+            };
+        },
         strokeWidth() {
             return this.fat ? '4' : '2';
         },
@@ -58,4 +73,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+svg {
+    width: var(--width);
+    height: var(--height);
+}
+</style>

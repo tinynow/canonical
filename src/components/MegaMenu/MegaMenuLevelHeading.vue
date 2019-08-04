@@ -8,9 +8,7 @@
         <canon-icon icon-name="arrow-left" />
     </button>
     <div class="canon-c-mega-menu__heading-content flex items-center pl2">
-        <slot>
-            <span aria-hidden="true">{{ label }}</span>
-        </slot>
+        <slot />
     </div>
 </div>
 </template>
@@ -23,10 +21,6 @@ export default {
         CanonIcon,
     },
     props: {
-        label: {
-            type: String,
-            required: true,
-        },
         level: {
             type: Number,
             required: true,

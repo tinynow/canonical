@@ -121,8 +121,14 @@
                                             >
                                                 <div class="flex flex-column">
                                                     <strong>{{ item.label }}</strong>
-                                                    <div class="breadcrumbs">
+                                                    <div class="breadcrumbs flex flex-wrap items-center">
                                                         <span>{{ level2Item.label }}</span>
+                                                        <canon-icon
+                                                            icon-name="caret-right"
+                                                            :width="18"
+                                                            :height="18"
+                                                        />
+                                                        <span>{{ level3Item.label }}</span>
                                                     </div>
                                                 </div>
                                             </canon-mega-menu-level-heading>
@@ -325,7 +331,7 @@ svg {
 }
 .canon-c-mega-menu__back-button {
     width: $space * 3;
-    height: $space * 3;
+    min-height: $space * 2;
     color: var(--headingTextColor);
     background-color: var(--headingBgColor);
     border: none;
