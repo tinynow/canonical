@@ -112,10 +112,6 @@
                                             class="canon-c-mega-menu__level --level4"
                                         >
                                             <canon-mega-menu-level-heading
-                                                :label="
-                                                    `${level2Item.label} 
-                                                        > ${level3Item.label}`
-                                                "
                                                 :level="4"
                                                 @click="goBack(4)"
                                             >
@@ -125,17 +121,23 @@
                                                         <span>{{ level2Item.label }}</span>
                                                         <canon-icon
                                                             icon-name="caret-right"
-                                                            :width="18"
-                                                            :height="18"
+                                                            icon-width="18px"
+                                                            icon-height="18px"
                                                         />
                                                         <span>{{ level3Item.label }}</span>
                                                     </div>
                                                 </div>
                                             </canon-mega-menu-level-heading>
-                                            <a :href="level3Item.route">
-                                                {{ level3Item.label }}
-                                            </a>
+
                                             <ul class="canon-c-mega-menu__list">
+                                                <li>
+                                                    <a
+                                                        class="canon-c-mega-menu__item canon-c-mega-menu__link"
+                                                        :href="level3Item.route"
+                                                    >
+                                                        {{ level3Item.label }}
+                                                    </a>
+                                                </li>
                                                 <li
                                                     v-for="level4Item in level3Item.children"
                                                     :key="level4Item.id"
@@ -275,7 +277,7 @@ svg {
     width: 100%;
     font-size: 24px;
     line-height: 1.25;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     .--currentLevel2 & {
         transform: translateX(-100%);
     }
@@ -325,7 +327,7 @@ svg {
 .canon-c-mega-menu__link {
 }
 .cannon-c-mega-menu__heading {
-    font-size: 14px;
+    font-size: 16px;
     line-height: $space;
     width: 100%;
 }
