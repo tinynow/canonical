@@ -7,7 +7,7 @@
     >
         <canon-icon icon-name="arrow-left" />
     </button>
-    <div class="canon-c-mega-menu__heading-content flex items-center pl2">
+    <div class="canon-c-mega-menu__heading-content flex items-center pl2 pv1">
         <slot />
     </div>
 </div>
