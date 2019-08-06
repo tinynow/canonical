@@ -6,10 +6,11 @@
     <div class="canon-c-mega-menu">
         <ul class="canon-c-mega-menu__level --level1">
             <li
-                v-for="item in itemsWithIds"
+                v-for="item in items "
                 :key="item.id"
             >
                 <button
+                    v-show="currentLevel === 1"
                     :ref="`toggle_${item.id}`"
                     :aria-controls="item.id"
                     :aria-expanded="item.id === level1Open"
@@ -20,10 +21,13 @@
                     <canon-icon icon-name="arrow-right" />
                 </button>
                 <!-- LEVEL 2 START -->
+
                 <div
                     v-show="item.id === level1Open"
                     :id="item.id"
+                    ref="level-container"
                     class="canon-c-mega-menu__level --level2"
+                    @focusout="trapFocus"
                 >
                     <canon-mega-menu-level-heading
                         :level="2"
@@ -44,6 +48,7 @@
                             :key="level2Item.id"
                         >
                             <button
+                                v-show="currentLevel === 2"
                                 :ref="`toggle_${level2Item.id}`"
                                 :key="`toggle_${level2Item.id}`"
                                 class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level2 flex items-center"
@@ -64,6 +69,7 @@
                                 v-show="level2Item.id === level2Open"
                                 :id="level2Item.id"
                                 class="canon-c-mega-menu__level --level3"
+                                @focusout="trapFocus(3)"
                             >
                                 <canon-mega-menu-level-heading
                                     :label="level2Item.label"
@@ -90,6 +96,7 @@
                                         >{{ level3Item.label }}</a>
                                         <button
                                             v-else
+                                            v-show="currentLevel === 3"
                                             :ref="`toggle_${level3Item.id}`"
                                             :key="`toggle_${level3Item.id}`"
                                             class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level3"
@@ -110,6 +117,7 @@
                                             "
                                             :id="level3Item.id"
                                             class="canon-c-mega-menu__level --level4"
+                                            @focusout="trapFocus(4)"
                                         >
                                             <canon-mega-menu-level-heading
                                                 :level="4"
@@ -159,6 +167,7 @@
                         </li>
                     </ul>
                 </div>
+                <!-- LEVEL 2 END -->
             </li>
         </ul>
     </div>
@@ -204,17 +213,21 @@ export default {
         },
     },
     mounted() {
-        const addIds = (items, prevId) => {
-            items.forEach((element, index) => {
-                let thisId = prevId ? `${prevId}-${index}` : `navItem_${index}`;
+        const generateId = (index, prefix) =>
+            prefix ? `${prefix}-${index}` : `navItem_${index}`;
+
+        const walkTree = (items, prevId) => {
+            items.forEach((element, index, list) => {
+                const thisId = generateId(index, prevId);
                 element.id = thisId;
                 if (element.children) {
-                    addIds(element.children, thisId);
+                    walkTree(element.children, thisId);
                 }
             });
             return items;
         };
-        this.itemsWithIds = addIds(this.items);
+        // Add
+        walkTree(this.items);
     },
     methods: {
         setLevelOpenState(level, openState) {
@@ -245,6 +258,14 @@ export default {
             this.$refs[`toggle_${openParentId}`][0].focus();
             this.toggleOpen(openParentId, level - 1);
         },
+
+        trapFocus(event) {
+            console.log(
+                this.$refs['level-container'],
+                event.currentTarget,
+                this.$refs['level-container'].includes(event.currentTarget)
+            );
+        },
     },
 };
 </script>
@@ -271,6 +292,7 @@ svg {
 .canon-c-mega-menu {
     --itemPadding: 8px 0.25em;
     --itemBorder: 1px solid #696969;
+    --hoverBgColor: #696969;
     --headingBgColor: #232323;
     --headingTextColor: white;
     position: absolute;
@@ -338,6 +360,9 @@ svg {
     background-color: var(--headingBgColor);
     border: none;
     margin-right: 2px;
+    &:focus {
+        background-color: var(--hoverBgColor);
+    }
 }
 .canon-c-mega-menu__heading-content {
     width: 100%;
