@@ -9,6 +9,7 @@
 @import '05_utilities/display.scss';
 @import '05_utilities/flex.scss';
 @import '05_utilities/floats.scss';
+@import '05_utilities/width';
 @import '05_utilities/max-width.scss';
 @import '05_utilities/overflow.scss';
 @import '05_utilities/spacing.scss';
@@ -16,3 +17,4 @@
 @import '05_utilities/text-transform.scss';
 @import '05_utilities/white-space.scss';
 @import '05_utilities/type.scss';
+@import './05_utilities/resets.scss';

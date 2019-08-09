@@ -1,69 +1,77 @@
 {
-  "name": "canonical",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
-  },
-  "dependencies": {
-    "core-js": "^2.6.5",
-    "style-resources-loader": "^1.2.1",
-    "vue": "^2.6.6",
-    "vuex": "^3.0.1"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.5.0",
-    "@vue/cli-plugin-eslint": "^3.5.0",
-    "@vue/cli-plugin-unit-jest": "^3.6.0",
-    "@vue/cli-service": "^3.5.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.7.1",
-    "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.5.21"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
+    "name": "canonical",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "test:unit": "vue-cli-service test:unit",
+        "storybook": "start-storybook"
+    },
+    "dependencies": {
+        "core-js": "^2.6.9",
+        "style-resources-loader": "^1.2.1",
+        "vue": "^2.6.6",
+        "vuex": "^3.1.1"
+    },
+    "devDependencies": {
+        "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
+        "@babel/core": "^7.5.5",
+        "@storybook/vue": "^5.1.10",
+        "@vue/cli-plugin-babel": "^3.9.2",
+        "@vue/cli-plugin-eslint": "^3.9.2",
+        "@vue/cli-plugin-unit-jest": "^3.9.0",
+        "@vue/cli-service": "^3.9.3",
+        "@vue/eslint-config-prettier": "^4.0.1",
+        "@vue/test-utils": "1.0.0-beta.29",
+        "babel-core": "7.0.0-bridge.0",
+        "babel-eslint": "^10.0.2",
+        "babel-jest": "^24.8.0",
+        "babel-loader": "^8.0.6",
+        "babel-preset-vue": "^2.0.2",
+        "eslint": "^5.8.0",
+        "eslint-plugin-vue": "^5.2.3",
+        "node-sass": "^4.12.0",
+        "node-sass-yaml-importer": "^4.0.0",
+        "sass-loader": "^7.1.0",
+        "vue-loader": "^15.7.1",
+        "vue-template-compiler": "^2.6.10"
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 8"
+    ],
+    "jest": {
+        "moduleFileExtensions": [
+            "js",
+            "jsx",
+            "json",
+            "vue"
+        ],
+        "transform": {
+            "^.+\\.vue$": "vue-jest",
+            ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+            "^.+\\.jsx?$": "babel-jest"
+        },
+        "transformIgnorePatterns": [
+            "/node_modules/"
+        ],
+        "moduleNameMapper": {
+            "^@/(.*)$": "<rootDir>/src/$1"
+        },
+        "snapshotSerializers": [
+            "jest-serializer-vue"
+        ],
+        "testMatch": [
+            "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+        ],
+        "testURL": "http://localhost/"
     }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      "^.+\\.vue$": "vue-jest",
-      ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "transformIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "snapshotSerializers": [
-      "jest-serializer-vue"
-    ],
-    "testMatch": [
-      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
-    ],
-    "testURL": "http://localhost/"
-  }
 }
