@@ -13,6 +13,7 @@
     </a>
     <template v-else>
         <button
+            v-show="showToggleContent"
             :ref="item.id"
             :class="`--level${item.level}`"
             class="canon-c-mega-menu__toggle canon-c-mega-menu__item flex items"
@@ -41,6 +42,14 @@ export default {
         item: {
             type: Object,
             required: true,
+        },
+        expanded: {
+            type: Boolean,
+            default: true,
+        },
+        showToggleContent: {
+            type: Boolean,
+            default: true,
         },
     },
 };
