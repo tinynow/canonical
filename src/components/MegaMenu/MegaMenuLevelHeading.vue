@@ -1,11 +1,11 @@
 <template>
-<div class="cannon-c-mega-menu__heading flex items-stretch">
+<div class="canon-c-mega-menu__heading flex items-stretch">
     <button
-        :aria-label="`Back to level ${level - 1}`"
+        :aria-label="level === 1 ? 'Close Menu' : `Back to level ${level - 1}`"
         class="canon-c-mega-menu__back-button"
         @click="$emit('click')"
     >
-        <canon-icon icon-name="arrow-left" />
+        <canon-icon :icon-name="level === 1 ? 'x' : 'arrow-left'" />
     </button>
     <div class="canon-c-mega-menu__heading-content flex items-center pl2 pv1">
         <slot />

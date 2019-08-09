@@ -1,6 +1,47 @@
-$base-font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir,
-    'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,
-    sans-serif;
+/* =======================================================================
+     Typography & Spacing
+========================================================================== */
+$base-font-family: -apple-system, BlinkMacSystemFont, 'helvetica neue',
+    helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
 $base-line-height: 1.2;
 
 $space: 1rem * $base-line-height;
+
+$font-sizes: (
+    xxs: 10px,
+    xs: 14px,
+    sm: 20px,
+    md: 24px,
+    lg: 30px,
+    xl: 36px,
+);
+
+/* =======================================================================
+     Colors
+========================================================================== */
+
+/* Provide a subtle tone to blacks and light grays - defaults to blue and pink */
+$darkHue: 225;
+$lightHue: 320;
+
+$colors: (
+    /* Blacks */ black: hsl($darkHue, 100%, 1%),
+    light-black: hsl($darkHue, 21%, 20%),
+    dark-gray: hsl($darkHue, 10%, 30%),
+    medium-gray: hsl($darkHue, 10%, 45%),
+    light-gray: hsl($lightHue, 5%, 65%),
+    very-light-gray: hsl($lightHue, 10%, 85%),
+    white: hsl($lightHue, 40%, 99%),
+    /* Highlight */ orange: hsl(46, 100%, 50%)
+);
+
+html {
+    @each $name, $color in $colors {
+        --#{$name}: #{$color};
+    }
+    @each $name, $size in $font-sizes {
+        --text--#{$name}: #{$size};
+    }
+    --base-font-size: 24px;
+    font-size: var(--base-font-size);
+}
