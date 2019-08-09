@@ -32,13 +32,7 @@
                     @click="goBack(1)"
                 />
                 <ul class="reset-list">
-                    <canon-mega-menu-item
-                        v-for="item in items"
-                        :key="item.id"
-                        :item="item"
-                    >
-
-                    <!-- <li
+                    <li
                         v-for="item in items"
                         :key="item.id"
                     >
@@ -55,158 +49,162 @@
                                 v-show="!isWide"
                                 icon-name="arrow-right" 
                             />
-                        </button> -->
+                        </button>
+
                         <!-- LEVEL 2 START -->
 
-                        <!-- <div
+                        <div
                             v-show="item.id === level1Open"
                             :id="item.id"
                             ref="level-container"
                             class="canon-c-mega-menu__level --level2"
-                        > -->
-                        <canon-mega-menu-level-heading
-                            v-show="!isWide"
-                            :level="2"
-                            @click="goBack(2)"
                         >
-                            <div class="flex flex-column">
-                                <strong>{{ item.label }}</strong>
-                            </div>
-                        </canon-mega-menu-level-heading>
-                        <a
-                            :href="item.children[0].route"
-                            class="canon-c-mega-menu__item canon-c-mega-menu__link"
-                        >{{ item.label }} Top Tasks
-                        </a>
-                        <ul class="reset-list">
-                            <li
-                                v-for="level2Item in item.children.slice(1)"
-                                :key="level2Item.id"
+                            <canon-mega-menu-level-heading
+                                v-show="!isWide"
+                                :level="2"
+                                @click="goBack(2)"
                             >
-                                <button
-                                    v-show="currentLevel === 2 || isWide"
-                                    :ref="`toggle_${level2Item.id}`"
-                                    :key="`toggle_${level2Item.id}`"
-                                    class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level2 flex items-center"
-                                    :aria-expanded="
-                                        level2Item.id === level2Open
-                                    "
-                                    :aria-controls="level2Item.id"
-                                    @click="toggleOpen(level2Item.id, 2)"
-                                >
-                                    <span class="w100">{{ level2Item.label }}</span>
-                                    <canon-icon
-                                        class="mlauto mr0"
-                                        icon-name="arrow-right"
-                                    />
-                                </button>
-                                <!-- LEVEL 3 START -->
-                                <div
-                                    v-show="level2Item.id === level2Open"
-                                    :id="level2Item.id"
-                                    class="canon-c-mega-menu__level --level3"
-                                >
-                                    <canon-mega-menu-level-heading
-                                        v-show="!isWide"
-                                        :label="level2Item.label"
-                                        :level="3"
-                                        @click="goBack(3)"
-                                    >
-                                        <div class="flex flex-column">
-                                            <strong>{{ item.label }}</strong>
-                                            <div class="breadcrumbs">
-                                                <span>{{ level2Item.label }}</span>
-                                            </div>
-                                        </div>
-                                    </canon-mega-menu-level-heading>
-
-                                    <ul class="reset-list">
-                                        <li
-                                            v-for="level3Item in level2Item.children"
-                                            :key="level3Item.id"
-                                        >
-                                            <a
-                                                v-if="!level3Item.children"
-                                                class="canon-c-mega-menu__item canon-c-mega-menu__link"
-                                                :href="level3Item.route"
-                                            >{{ level3Item.label }}</a>
-                                            <button
-                                                v-else
-                                                v-show="currentLevel === 3 || isWide"
-                                                :ref="`toggle_${level3Item.id}`"
-                                                :key="`toggle_${level3Item.id}`"
-                                                class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level3"
-                                                :aria-expanded="
-                                                    level3Item.id === level3Open
-                                                "
-                                                :aria-controls="level3Item.id"
-                                                @click="
-                                                    toggleOpen(level3Item.id, 3)
-                                                "
-                                            >
-                                                {{ level3Item.label }}
-                                            </button>
-                                            <!-- LEVEL 4 START -->
-                                            <div
-                                                v-show="
-                                                    level3Item.id === level3Open
-                                                "
-                                                :id="level3Item.id"
-                                                class="canon-c-mega-menu__level --level4"
-                                                @focusout="trapFocus(4)"
-                                            >
-                                                <canon-mega-menu-level-heading
-                                                    v-show="!isWide"
-                                                    :level="4"
-                                                    @click="goBack(4)"
-                                                >
-                                                    <div class="flex flex-column">
-                                                        <strong>{{ item.label }}</strong>
-                                                        <div class="breadcrumbs flex flex-wrap items-center">
-                                                            <span>{{ level2Item.label }}</span>
-                                                            <canon-icon
-                                                                icon-name="caret-right"
-                                                                icon-width="18px"
-                                                                icon-height="18px"
-                                                            />
-                                                            <span>{{ level3Item.label }}</span>
-                                                        </div>
-                                                    </div>
-                                                </canon-mega-menu-level-heading>
-
-                                                <ul class="reset-list">
-                                                    <li>
-                                                        <a
-                                                            class="canon-c-mega-menu__item canon-c-mega-menu__link"
-                                                            :href="level3Item.route"
-                                                        >
-                                                            {{ level3Item.label }}
-                                                        </a>
-                                                    </li>
-                                                    <li
-                                                        v-for="level4Item in level3Item.children"
-                                                        :key="level4Item.id"
-                                                    >
-                                                        <a
-                                                            class="canon-c-mega-menu__item canon-c-mega-menu__link"
-                                                            :href="
-                                                                level4Item.route
-                                                            "
-                                                        >{{
-                                                            level4Item.label
-                                                        }}</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="flex flex-column">
+                                    <strong>{{ item.label }}</strong>
                                 </div>
-                            </li>
-                        </ul>
-                        <!-- </div> -->
+                            </canon-mega-menu-level-heading>
+                            <a
+                                :href="item.children[0].route"
+                                class="canon-c-mega-menu__item canon-c-mega-menu__link"
+                            >{{ item.label }} Top Tasks
+                            </a>
+                            <ul class="reset-list">
+                                <li
+                                    v-for="level2Item in item.children.slice(1)"
+                                    :key="level2Item.id"
+                                >
+                                    <button
+                                        v-show="currentLevel === 2 || isWide"
+                                        :ref="`toggle_${level2Item.id}`"
+                                        :key="`toggle_${level2Item.id}`"
+                                        class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level2 flex items-center"
+                                        :aria-expanded="
+                                            level2Item.id === level2Open
+                                        "
+                                        :aria-controls="level2Item.id"
+                                        @click="toggleOpen(level2Item.id, 2)"
+                                    >
+                                        <span class="w100">{{ level2Item.label }}</span>
+                                        <canon-icon
+                                            class="mlauto mr0"
+                                            icon-name="arrow-right"
+                                        />
+                                    </button>
+
+                                    <!-- LEVEL 3 START -->
+                                    
+                                    <div
+                                        v-show="level2Item.id === level2Open"
+                                        :id="level2Item.id"
+                                        class="canon-c-mega-menu__level --level3"
+                                    >
+                                        <canon-mega-menu-level-heading
+                                            v-show="!isWide"
+                                            :label="level2Item.label"
+                                            :level="3"
+                                            @click="goBack(3)"
+                                        >
+                                            <div class="flex flex-column">
+                                                <strong>{{ item.label }}</strong>
+                                                <div class="breadcrumbs">
+                                                    <span>{{ level2Item.label }}</span>
+                                                </div>
+                                            </div>
+                                        </canon-mega-menu-level-heading>
+
+                                        <ul class="reset-list">
+                                            <li
+                                                v-for="level3Item in level2Item.children"
+                                                :key="level3Item.id"
+                                            >
+                                                <a
+                                                    v-if="!level3Item.children"
+                                                    class="canon-c-mega-menu__item canon-c-mega-menu__link"
+                                                    :href="level3Item.route"
+                                                >{{ level3Item.label }}</a>
+                                                <button
+                                                    v-else
+                                                    v-show="currentLevel === 3 || isWide"
+                                                    :ref="`toggle_${level3Item.id}`"
+                                                    :key="`toggle_${level3Item.id}`"
+                                                    class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level3"
+                                                    :aria-expanded="
+                                                        level3Item.id === level3Open
+                                                    "
+                                                    :aria-controls="level3Item.id"
+                                                    @click="
+                                                        toggleOpen(level3Item.id, 3)
+                                                    "
+                                                >
+                                                    {{ level3Item.label }}
+                                                </button>
+                                                
+                                                <!-- LEVEL 4 START -->
+                                                
+                                                <div
+                                                    v-show="
+                                                        level3Item.id === level3Open
+                                                    "
+                                                    :id="level3Item.id"
+                                                    class="canon-c-mega-menu__level --level4"
+                                                    @focusout="trapFocus(4)"
+                                                >
+                                                    <canon-mega-menu-level-heading
+                                                        v-show="!isWide"
+                                                        :level="4"
+                                                        @click="goBack(4)"
+                                                    >
+                                                        <div class="flex flex-column">
+                                                            <strong>{{ item.label }}</strong>
+                                                            <div class="breadcrumbs flex flex-wrap items-center">
+                                                                <span>{{ level2Item.label }}</span>
+                                                                <canon-icon
+                                                                    icon-name="caret-right"
+                                                                    icon-width="18px"
+                                                                    icon-height="18px"
+                                                                />
+                                                                <span>{{ level3Item.label }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </canon-mega-menu-level-heading>
+
+                                                    <ul class="reset-list">
+                                                        <li>
+                                                            <a
+                                                                class="canon-c-mega-menu__item canon-c-mega-menu__link"
+                                                                :href="level3Item.route"
+                                                            >
+                                                                {{ level3Item.label }}
+                                                            </a>
+                                                        </li>
+                                                        <li
+                                                            v-for="level4Item in level3Item.children"
+                                                            :key="level4Item.id"
+                                                        >
+                                                            <a
+                                                                class="canon-c-mega-menu__item canon-c-mega-menu__link"
+                                                                :href="
+                                                                    level4Item.route
+                                                                "
+                                                            >{{
+                                                                level4Item.label
+                                                            }}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                         <!-- LEVEL 2 END -->
-                    <!-- </li> -->
-                    </canon-mega-menu-item>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -221,14 +219,12 @@ TODO: Verify that v-show is best choice (vs v-if, check a11y)
 
 */
 import CanonMegaMenuLevelHeading from './MegaMenuLevelHeading';
-import CanonMegaMenuItem from './MegaMenuItem';
 import CanonIcon from '../Icon/Icon';
 
 export default {
     name: 'CanonMegaMenu',
     components: {
         CanonMegaMenuLevelHeading,
-        CanonMegaMenuItem,
         CanonIcon,
     },
     props: {
