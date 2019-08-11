@@ -25,14 +25,15 @@ $darkHue: 225;
 $lightHue: 320;
 
 $colors: (
-    /* Blacks */ black: hsl($darkHue, 100%, 1%),
+    black: hsl($darkHue, 100%, 1%),
     light-black: hsl($darkHue, 21%, 20%),
     dark-gray: hsl($darkHue, 10%, 30%),
     medium-gray: hsl($darkHue, 10%, 45%),
     light-gray: hsl($lightHue, 5%, 65%),
     very-light-gray: hsl($lightHue, 10%, 85%),
     white: hsl($lightHue, 40%, 99%),
-    /* Highlight */ orange: hsl(46, 100%, 50%)
+    blue: hsl(212, 70%, 40%),
+    orange: hsl(46, 100%, 50%),
 );
 
 html {
@@ -43,5 +44,9 @@ html {
         --text--#{$name}: #{$size};
     }
     --base-font-size: 24px;
+    /* Focus Styles */
+    --focusRingColor: var(--orange);
+    --focusRing--internal: inset 0 0 0 3px var(--focusRingColor);
+    --focusRing: 0 0 0 3px var(--focusRingColor);
     font-size: var(--base-font-size);
 }

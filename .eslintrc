@@ -18,6 +18,13 @@
                 "functions": "ignore"
             }
         ],
+        "quotes": [
+            "error",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
         "vue/html-indent": [
             "error",
             4,

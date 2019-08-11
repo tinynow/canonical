@@ -1,3 +1,11 @@
 .canon-o-artful {
     font-family: Aleo, serif;
 }
+html {
+    // Base Theme
+    --textColor: var(--black);
+    --bgColor: var(--white);
+    --textColorInverse: var(--white);
+    --bgColorInverse: var(--black);
+    --linkColor: var(--blue);
+}

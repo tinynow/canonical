@@ -9,8 +9,8 @@
         @click="menuToggleOpen = !menuToggleOpen"
     >
         <canon-icon
-            icon-width="30px"
-            icon-height="30px"
+            icon-width="45px"
+            icon-height="45px"
             icon-name="menu"
             class="db"
         />
@@ -31,9 +31,7 @@
                     :level="1"
                     @click="goBack(1)"
                 />
-                <ul 
-                    class="canon-c-mega-menu__list --level1 reset-list"
-                >
+                <ul class="canon-c-mega-menu__list --level1 reset-list">
                     <li
                         v-for="item in items"
                         :key="item.id"
@@ -47,9 +45,9 @@
                             @click="toggleOpen(item.id, 1)"
                         >
                             <span class="w100">{{ item.label }}</span>
-                            <canon-icon 
+                            <canon-icon
                                 v-show="!isWide"
-                                icon-name="arrow-right" 
+                                icon-name="arrow-right"
                             />
                         </button>
 
@@ -70,7 +68,7 @@
                                     <strong>{{ item.label }}</strong>
                                 </div>
                             </canon-mega-menu-level-heading>
-                            
+
                             <ul class="canon-c-mega-menu__list --level2 reset-list">
                                 <li class="canon-c-mega-menu__list-item --level2">
                                     <a
@@ -103,7 +101,7 @@
                                     </button>
 
                                     <!-- LEVEL 3 START -->
-                                    
+
                                     <div
                                         v-show="level2Item.id === level2Open"
                                         :id="level2Item.id"
@@ -139,7 +137,7 @@
                                                     v-show="currentLevel === 3 || isWide"
                                                     :ref="`toggle_${level3Item.id}`"
                                                     :key="`toggle_${level3Item.id}`"
-                                                    class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level3"
+                                                    class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level3 flex items-center"
                                                     :aria-expanded="
                                                         level3Item.id === level3Open
                                                     "
@@ -148,11 +146,15 @@
                                                         toggleOpen(level3Item.id, 3)
                                                     "
                                                 >
-                                                    {{ level3Item.label }}
+                                                    <span class="w100">{{ level3Item.label }}</span>
+                                                    <canon-icon
+                                                        class="mlauto mr0"
+                                                        icon-name="arrow-right"
+                                                    />
                                                 </button>
-                                                
+
                                                 <!-- LEVEL 4 START -->
-                                                
+
                                                 <div
                                                     v-show="
                                                         level3Item.id === level3Open
@@ -225,6 +227,7 @@
 TODO: Add uid to items in API
 TODO: Verify that v-show is best choice (vs v-if, check a11y)
 TODO: Consider moving all 'isWide' dynamic styles into SCSS/media queries
+TODO: add drop down transition
 NOTE: The desktop dropdown needs a fixed height, because we are absolutely positioning a nested list
 */
 import CanonMegaMenuLevelHeading from './MegaMenuLevelHeading';
@@ -283,7 +286,7 @@ export default {
         const isItWide = window.matchMedia('(min-width: 715px)');
         const setWide = () => {
             this.isWide = isItWide.matches;
-        }
+        };
         isItWide.addListener(setWide);
         setWide(isItWide);
     },
@@ -327,60 +330,43 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../styles/00_settings/defaults.scss';
+@import '../../styles/configuration.scss';
 
-svg {
-    width: 24px;
-    height: 24px;
-}
-.canon-c-icon.--xs {
-    width: 18px;
-    height: 18px;
-}
-
-.slide-from-right-enter-active {
-    transition: all 0.3s ease;
-}
-.slide-from-right-leave-active {
-    transition: all 0.2s var(--quickEase);
-}
-
-.slide-from-right-enter,
-.slide-from-right-leave-to {
-    transform: translateX(100%);
-}
-
-.slide-from-right-enter-to {
-    transform: translateX(0%);
-}
 /* =======================================================================
      MEGA MENU
 ========================================================================== */
+$megaMenuBreakPoint: 715px; //TODO: convert to ems
 
 /*
      Mega Menu Containers
 =================================================== */
-// TODO: remove max-width
 
 .canon-c-mega-menu {
+    --megaMenuBreakPoint: 715px;
     --mainToggleBorderColor: var(--black);
     --mainToggleTextColor: var(--black);
     --mainToggleTextColor--hover: var(--white);
     --mainToggleBgColor: var(--white);
     --mainToggleBgColor--hover: var(--black);
+
     --itemPadding: 8px 0.25em;
     --itemBorder: 1px solid var(--black);
     --itemBgColor: var(--white);
     --hoverBgColor: var(--medium-gray);
     --hoverTextColor: var(--white);
+    --itemExpandedBgColor: var(--black);
     --headingBgColor: var(--black);
     --headingTextColor: var(--white);
-    --focusRingColor: var(--orange);
-    --internalFocusRing: 0 0 0 2px var(--focusRingColor);
-    --quickEase: cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-@media screen and (max-width: 714.99px) {
+    --quickEase: cubic-bezier(0.4, 0, 0.2, 1);
+    --pseudoColumns: linear-gradient(
+        to right,
+        #ffffff 33.33%,
+        var(--very-light-gray) 33.33%,
+        var(--very-light-gray) 66.66%,
+        #ffffff 66.66%
+    );
+}
 
 .canon-c-mega-menu {
     position: absolute;
@@ -388,6 +374,12 @@ svg {
     right: 0;
     width: 100%;
     height: 100%;
+
+    @include min-screen-width($megaMenuBreakPoint) {
+        position: relative;
+        height: auto;
+        font-size: 20px;
+    }
 }
 
 .canon-c-mega-menu__wrapper {
@@ -399,15 +391,38 @@ svg {
     overflow-x: hidden;
     background-color: var(--itemBgColor);
     transition: all 0.3s ease;
+    @include min-screen-width($megaMenuBreakPoint) {
+        position: relative;
+        overflow: visible;
+    }
 }
 
 .canon-c-mega-menu__level {
     position: absolute;
     top: 0;
     width: 100%;
+    background: var(--itemBgColor);
+
     /* Push all the next levels to the right */
     &:not(.--level1) {
         left: 100%;
+    }
+}
+
+.canon-c-mega-menu__list {
+    @include min-screen-width($megaMenuBreakPoint) {
+        height: 100%;
+        padding-top: $space/2;
+        &.--level1 {
+            padding-top: $space;
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            > li {
+                display: flex;
+                margin: 0 5px;
+            }
+        }
     }
 }
 
@@ -415,6 +430,7 @@ svg {
 .canon-c-mega-menu__level.--level1 {
     transition-delay: 0.1s;
     transition: transform 0.3s var(--quickEase);
+
     .--currentLevel2 & {
         transform: translateX(-100%);
     }
@@ -424,151 +440,16 @@ svg {
     .--currentLevel4 & {
         transform: translateX(-300%);
     }
-}
-}
-.canon-c-mega-menu__main-toggle {
-    position: absolute;
-    right: $space/4;
-    top: $space/4;
-    padding: 4px;
-    font-size: var(--text--xxs);
-    line-height: 1;
-    background-color: var(--mainToggleBgColor);
-    border: 2px solid var(--mainToggleBorderColor);
-    border-radius: 4px;
-    &:focus {
-        box-shadow: 0 0 0 2px var(--focusRingColor);
-    }
-    &:hover {
-        color: var(--mainToggleTextColor--hover);
-        background-color: var(--mainToggleBgColor--hover);
-    }
-}
 
-
-/*
-    Mobile only 
-=================================================== */
-
-.canon-c-mega-menu__back-button {
-    width: $space * 3;
-    min-height: $space * 2;
-    color: var(--headingTextColor);
-    background-color: var(--headingBgColor);
-    border: none;
-    margin-right: 2px;
-    &:focus {
-        background-color: var(--hoverBgColor);
-    }
-    &:hover {
-        background-color: var(--hoverBgColor);
-    }
-}
-.canon-c-mega-menu__heading-content {
-    width: 100%;
-    font-size: var(--text--xs);
-    color: var(--headingTextColor);
-    background-color: var(--headingBgColor);
-}
-
-
-/*
-    The Focusable Item
-=================================================== */
-
-
-.canon-c-mega-menu__item {
-    line-height: 1.25;
-    display: block;
-    width: 100%;
-    padding: var(--itemPadding);
-    text-align: left;
-    appearance: none;
-    background: var(--itemBgColor);
-    border: none;
-    border-bottom: var(--itemBorder);
-    transition: all 0.1s ease-in-out;
-    &:focus,
-    &:hover {
-        background-color: var(--hoverBgColor);
-        color: var(--hoverTextColor);
-    }
-    &:focus {
-        outline: none;
-        box-shadow: inset 0 0 0 2px var(--focusRingColor);
-    }
-}
-
-
-
-@media screen and (min-width: 715px) {
-    .canon-c-mega-menu {
+    @include min-screen-width($megaMenuBreakPoint) {
         position: relative;
-        height: auto;
-        font-size: 20px;
-    }
-    .canon-c-mega-menu__level.--level1 {
-        position: relative;
-        border: 1px solid black;
-    }
-
-    .canon-c-mega-menu__list {
-        padding-top: $space;
-        &.--level1 {
-            display: flex;
-            justify-content: space-around;
-            align-items: stretch;
-            padding-top: $space/4;
-            > li {
-                display: flex;
-                margin: 0 5px;
-            }
-        }
-    }
-    .canon-c-mega-menu__item {
-        padding: 12px 8px;
-        border-radius: 8px 0 0 8px;
         border: none;
-        &:hover {
-            background-color: gray;
-        }
-        &:focus {
-            box-shadow: var(--internalFocusRing);
+        .canon-c-mega-menu & {
+            transform: translate(0%);
         }
     }
-    .canon-c-mega-menu__link {
-        border-radius: 8px;
-        width: calc(100% - #{$space/2});
-    }
-
-    .canon-c-mega-menu__item.--level1 {
-        text-align: center;
-        line-height: 1.2;
-        border: 1px solid black;
-        margin-bottom: -1px; // TODO: oh no
-        border-radius: 4px 4px 0 0;
-        &[aria-expanded="true"] {
-            border-bottom-color: white;
-        }
-    }
-    .canon-c-mega-menu__list-item {
-        padding: 0 0 0 $space/2;
-        margin-top: 4px
-    }
-
-    .canon-c-mega-menu__item.--level2[aria-expanded="true"],
-    .canon-c-mega-menu__item.--level3 {
-        background-color: black;
-        color: white;
-        
-    }
-
-    .canon-c-mega-menu__item.--level3[aria-expanded="true"] {
-        background-color: white;
-        color: black;
-    }
-
-    
+}
+@include min-screen-width($megaMenuBreakPoint) {
     .canon-c-mega-menu__level.--level2 {
         position: absolute;
         left: 0;
@@ -576,11 +457,11 @@ svg {
         width: 100%;
         min-height: 600px; //TODO: how do we make this height of absolutely positioned child lists
         overflow: scroll;
-        border-bottom: 1px solid black;
-
+        border: 1px solid black;
+        background: var(--pseudoColumns);
     }
     .canon-c-mega-menu__list.--level2 {
-        width: 33.3%
+        width: 33.3%;
     }
     .canon-c-mega-menu__level.--level3 {
         position: absolute;
@@ -597,6 +478,119 @@ svg {
         top: 0;
         width: 100%;
         min-height: 100%;
+    }
+}
+
+/*
+    Mobile only 
+=================================================== */
+.canon-c-mega-menu__main-toggle {
+    position: absolute;
+    right: $space/4;
+    top: $space/4;
+    padding: 0 4px 2px 4px;
+    font-size: var(--text--xxs);
+    line-height: 1;
+    text-transform: uppercase;
+    background-color: var(--mainToggleBgColor);
+    border: 2px solid var(--mainToggleBorderColor);
+    border-radius: 4px;
+    &:focus {
+        box-shadow: var(--focusRing);
+    }
+    &:hover {
+        color: var(--mainToggleTextColor--hover);
+        background-color: var(--mainToggleBgColor--hover);
+    }
+}
+
+.canon-c-mega-menu__back-button {
+    width: $space * 3;
+    min-height: $space * 2;
+    color: var(--headingTextColor);
+    background-color: var(--headingBgColor);
+    border: none;
+    margin-right: 2px;
+    &:focus {
+        background-color: var(--hoverBgColor);
+    }
+    &:hover {
+        background-color: var(--hoverBgColor);
+    }
+}
+
+.canon-c-mega-menu__heading-content {
+    width: 100%;
+    font-size: var(--text--xs);
+    color: var(--headingTextColor);
+    background-color: var(--headingBgColor);
+}
+
+/*
+    The Focusable Item (link or button
+=================================================== */
+
+.canon-c-mega-menu__item {
+    line-height: 1.25;
+    display: block;
+    width: 100%;
+    padding: var(--itemPadding);
+    text-align: left;
+    appearance: none;
+    background: var(--itemBgColor);
+    border: none;
+    border-bottom: var(--itemBorder);
+    transition: all 0.1s ease-in-out;
+    &:hover {
+        background-color: var(--hoverBgColor);
+        color: var(--hoverTextColor);
+    }
+    &:focus {
+        outline: none;
+        box-shadow: var(--focusRing--internal);
+    }
+    &[aria-expanded='true'] {
+        background-color: var(--itemExpandedBgColor);
+        color: var(--invertTextColor);
+    }
+
+    @include min-screen-width($megaMenuBreakPoint) {
+        padding: 12px 8px;
+        border-radius: 8px 0 0 8px;
+        border: none;
+
+        &.--level1 {
+            text-align: center;
+            line-height: 1.2;
+            border: 1px solid black;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            &[aria-expanded='true'] {
+                border-bottom-color: white;
+            }
+        }
+
+        &.--level2[aria-expanded='true'],
+        &.--level3 {
+            background-color: black;
+            color: white;
+        }
+
+        &.--level3[aria-expanded='true'] {
+            background-color: var(--itemBgColor);
+            color: black;
+        }
+    }
+}
+
+@include min-screen-width($megaMenuBreakPoint) {
+    .canon-c-mega-menu__list-item {
+        padding: 0 0 0 $space/2;
+        margin-top: 4px;
+    }
+    .canon-c-mega-menu__link {
+        border-radius: 8px;
+        width: calc(100% - #{$space/2});
     }
 }
 </style>
