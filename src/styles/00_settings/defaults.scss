@@ -43,10 +43,14 @@ html {
     @each $name, $size in $font-sizes {
         --text--#{$name}: #{$size};
     }
-    --base-font-size: 24px;
+    --baseFontSize: 24px;
     /* Focus Styles */
     --focusRingColor: var(--orange);
-    --focusRing--internal: inset 0 0 0 3px var(--focusRingColor);
-    --focusRing: 0 0 0 3px var(--focusRingColor);
-    font-size: var(--base-font-size);
+
+    --focusRing--invreseInternal: inset 0 0 0 3px white, 0 0 0 1px black,
+        0 0 0 3px var(--focusRingColor);
+    --focusRing--internal: inset 0 0 0 3px white, inset 0 0 0 4px black,
+        0 0 0 2px var(--focusRingColor);
+    --focusRing: 0 0 0 2px var(--focusRingColor);
+    font-size: var(--baseFontSize);
 }

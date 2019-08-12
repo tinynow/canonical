@@ -161,7 +161,6 @@
                                                     "
                                                     :id="level3Item.id"
                                                     class="canon-c-mega-menu__level --level4"
-                                                    @focusout="trapFocus(4)"
                                                 >
                                                     <canon-mega-menu-level-heading
                                                         v-show="!isWide"
@@ -349,12 +348,15 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     --mainToggleBgColor: var(--white);
     --mainToggleBgColor--hover: var(--black);
 
-    --itemPadding: 8px 0.25em;
-    --itemBorder: 1px solid var(--black);
-    --itemBgColor: var(--white);
+    --megaMenuBorderColor: var(--black);
+    --megaMenuItemPadding: 8px 0.25em;
+    --megaMenuItemBorder: 0.5px solid var(--black);
+    --megaMenuItemBgColor: var(--white);
     --hoverBgColor: var(--medium-gray);
     --hoverTextColor: var(--white);
-    --itemExpandedBgColor: var(--black);
+    /* Selected/aria-expanded/children-showing */
+    --megaMenuItemExpandedBgColor: var(--black);
+
     --headingBgColor: var(--black);
     --headingTextColor: var(--white);
 
@@ -389,7 +391,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     top: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: var(--itemBgColor);
+    background-color: var(--megaMenuItemBgColor);
     transition: all 0.3s ease;
     @include min-screen-width($megaMenuBreakPoint) {
         position: relative;
@@ -401,7 +403,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     position: absolute;
     top: 0;
     width: 100%;
-    background: var(--itemBgColor);
+    background: var(--megaMenuItemBgColor);
 
     /* Push all the next levels to the right */
     &:not(.--level1) {
@@ -414,6 +416,8 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         height: 100%;
         padding-top: $space/2;
         &.--level1 {
+            max-width: 1100px;
+            margin: 0 auto;
             padding-top: $space;
             display: flex;
             justify-content: space-around;
@@ -442,7 +446,6 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
 
     @include min-screen-width($megaMenuBreakPoint) {
-        position: relative;
         border: none;
         .canon-c-mega-menu & {
             transform: translate(0%);
@@ -454,13 +457,15 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         position: absolute;
         left: 0;
         top: 100%;
-        width: 100%;
+
+        width: 100vw;
         min-height: 600px; //TODO: how do we make this height of absolutely positioned child lists
-        overflow: scroll;
-        border: 1px solid black;
+        border-top: 8px solid var(--megaMenuBorderColor);
+        border-bottom: 1px solid var(--megaMenuBorderColor);
         background: var(--pseudoColumns);
     }
     .canon-c-mega-menu__list.--level2 {
+        height: 100%;
         width: 33.3%;
     }
     .canon-c-mega-menu__level.--level3 {
@@ -534,24 +539,25 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     line-height: 1.25;
     display: block;
     width: 100%;
-    padding: var(--itemPadding);
+    padding: var(--megaMenuItemPadding);
     text-align: left;
     appearance: none;
-    background: var(--itemBgColor);
+    background: var(--megaMenuItemBgColor);
     border: none;
-    border-bottom: var(--itemBorder);
-    transition: all 0.1s ease-in-out;
-    &:hover {
-        background-color: var(--hoverBgColor);
-        color: var(--hoverTextColor);
+    border-bottom: var(--megaMenuItemBorder);
+    transition: all 0.2s ease-in-out;
+
+    &[aria-expanded='true'] {
+        background-color: var(--megaMenuItemExpandedBgColor);
+        color: var(--textColor--inverse);
     }
     &:focus {
         outline: none;
         box-shadow: var(--focusRing--internal);
     }
-    &[aria-expanded='true'] {
-        background-color: var(--itemExpandedBgColor);
-        color: var(--textColorInverse);
+    &:hover {
+        background-color: var(--hoverBgColor);
+        color: var(--hoverTextColor);
     }
 
     @include min-screen-width($megaMenuBreakPoint) {
@@ -565,20 +571,28 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
             border: 1px solid black;
             border-bottom: none;
             border-radius: 4px 4px 0 0;
+            &:focus {
+                box-shadow: var(--focusRing--internal);
+            }
             &[aria-expanded='true'] {
                 border-bottom-color: white;
             }
         }
-
-        &.--level2[aria-expanded='true'],
+        &.--level2:focus {
+            box-shadow: var(--focusRing--internal);
+        }
         &.--level3 {
-            background-color: black;
-            color: white;
+            background-color: var(--bgColor--inverse);
+            color: var(--textColor--inverse);
         }
 
         &.--level3[aria-expanded='true'] {
-            background-color: var(--itemBgColor);
+            background-color: var(--megaMenuItemBgColor);
             color: black;
+            &:hover {
+                background-color: var(--hoverBgColor);
+                color: var(--hoverTextColor);
+            }
         }
     }
 }
