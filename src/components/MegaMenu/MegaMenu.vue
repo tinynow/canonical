@@ -551,7 +551,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
     &[aria-expanded='true'] {
         background-color: var(--itemExpandedBgColor);
-        color: var(--invertTextColor);
+        color: var(--textColorInverse);
     }
 
     @include min-screen-width($megaMenuBreakPoint) {
