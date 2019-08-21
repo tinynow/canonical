@@ -47,10 +47,10 @@ html {
     /* Focus Styles */
     --focusRingColor: var(--orange);
 
-    --focusRing--invreseInternal: inset 0 0 0 3px white, 0 0 0 1px black,
-        0 0 0 3px var(--focusRingColor);
-    --focusRing--internal: inset 0 0 0 3px white, inset 0 0 0 4px black,
-        0 0 0 2px var(--focusRingColor);
-    --focusRing: 0 0 0 2px var(--focusRingColor);
+    --focusRing--internal: inset 0 0 0 1px var(--white),
+        inset 0 0 0 3px var(--black);
+    --focusRing--inverseInternal: inset 0 0 0 1px var(--black),
+        inset 0 0 0 3px var(--white);
+    --focusRing: 0 0 0 3px var(--focusRingColor);
     font-size: var(--baseFontSize);
 }

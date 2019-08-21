@@ -457,7 +457,6 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         position: absolute;
         left: 0;
         top: 100%;
-
         width: 100vw;
         min-height: 600px; //TODO: how do we make this height of absolutely positioned child lists
         border-top: 8px solid var(--megaMenuBorderColor);
@@ -545,12 +544,16 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     background: var(--megaMenuItemBgColor);
     border: none;
     border-bottom: var(--megaMenuItemBorder);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     &[aria-expanded='true'] {
         background-color: var(--megaMenuItemExpandedBgColor);
         color: var(--textColor--inverse);
+        &:focus {
+            box-shadow: var(--focusRing--inverseInternal);
+        }
     }
+
     &:focus {
         outline: none;
         box-shadow: var(--focusRing--internal);
@@ -568,18 +571,9 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         &.--level1 {
             text-align: center;
             line-height: 1.2;
-            border: 1px solid black;
+            border: 1px solid var(--megaMenuItemBorder);
             border-bottom: none;
             border-radius: 4px 4px 0 0;
-            &:focus {
-                box-shadow: var(--focusRing--internal);
-            }
-            &[aria-expanded='true'] {
-                border-bottom-color: white;
-            }
-        }
-        &.--level2:focus {
-            box-shadow: var(--focusRing--internal);
         }
         &.--level3 {
             background-color: var(--bgColor--inverse);
@@ -589,10 +583,9 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         &.--level3[aria-expanded='true'] {
             background-color: var(--megaMenuItemBgColor);
             color: black;
-            &:hover {
-                background-color: var(--hoverBgColor);
-                color: var(--hoverTextColor);
-            }
+        }
+        &.--level3:focus {
+            box-shadow: var(--focusRing--internal);
         }
     }
 }
