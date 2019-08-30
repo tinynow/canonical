@@ -31,6 +31,7 @@ $colors: (
     medium-gray: hsl($darkHue, 10%, 45%),
     light-gray: hsl($lightHue, 5%, 65%),
     very-light-gray: hsl($lightHue, 10%, 85%),
+    very-very-light-gray: hsl($lightHue, 10%, 95%),
     white: hsl($lightHue, 40%, 99%),
     blue: hsl(212, 70%, 40%),
     orange: hsl(46, 100%, 50%),
@@ -43,10 +44,14 @@ html {
     @each $name, $size in $font-sizes {
         --text--#{$name}: #{$size};
     }
-    --base-font-size: 24px;
+    --baseFontSize: 24px;
     /* Focus Styles */
     --focusRingColor: var(--orange);
-    --focusRing--internal: inset 0 0 0 3px var(--focusRingColor);
+
+    --focusRing--internal: inset 0 0 0 1px var(--white),
+        inset 0 0 0 3px var(--black);
+    --focusRing--inverseInternal: inset 0 0 0 1px var(--black),
+        inset 0 0 0 3px var(--white);
     --focusRing: 0 0 0 3px var(--focusRingColor);
-    font-size: var(--base-font-size);
+    font-size: var(--baseFontSize);
 }

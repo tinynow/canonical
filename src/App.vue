@@ -1,5 +1,11 @@
 <template>
 <div id="app">
+    <header>
+        <router-link to="/docs">
+            Documentation
+        </router-link>
+    </header>
+    <router-view />
     <canon-mega-menu :items="navigationData.primaryNavigation" />
 </div>
 </template>
@@ -7,6 +13,7 @@
 //import CanonProse from './components/Prose';
 import navigationData from './data/menu.json';
 import CanonMegaMenu from './components/MegaMenu';
+
 export default {
     name: 'App',
     components: {
@@ -17,6 +24,9 @@ export default {
             navigationData,
         };
     },
+    // computed: {
+    //     route
+    // },
 };
 </script>
 <style lang="scss">
