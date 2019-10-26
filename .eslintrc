@@ -3,7 +3,10 @@
     "env": {
         "node": true
     },
-    "extends": ["plugin:vue/recommended"],
+    "extends": [
+        "plugin:vue/recommended",
+        "airbnb"
+    ],
     "parserOptions": {
         "parser": "babel-eslint"
     },
