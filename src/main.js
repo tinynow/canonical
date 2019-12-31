@@ -3,7 +3,6 @@ import App from './App.vue';
 import Home from './pages/Home.vue';
 import Docs from './pages/Docs.vue';
 import MegaMenu from './components/MegaMenu';
-import Palette from './components/docs/Palette.vue';
 import store from './store';
 import Router from 'vue-router';
 
@@ -17,7 +16,6 @@ const routes = [
         component: Docs,
         children: [
             {path: 'mega-menu', component: MegaMenu},
-            {path: 'colors', component: Palette},
         ],
     },
 ];

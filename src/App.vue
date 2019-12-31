@@ -1,23 +1,25 @@
 <template>
 <div id="app">
+    <canon-palette />
     <header>
         <router-link to="/docs">
             Documentation
+            Palette
         </router-link>
     </header>
     <router-view />
-    <canon-mega-menu :items="navigationData.primaryNavigation" />
 </div>
 </template>
 <script>
+import CanonPalette from './components/Palette';
 //import CanonProse from './components/Prose';
 import navigationData from './data/menu.json';
-import CanonMegaMenu from './components/MegaMenu';
+
 
 export default {
     name: 'App',
     components: {
-        CanonMegaMenu,
+        CanonPalette,
     },
     data() {
         return {

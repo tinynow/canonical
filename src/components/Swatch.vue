@@ -1,34 +1,58 @@
 <template>
-<div class="canon-swatch" :style="cssVars">
-    <h2 :aria-level="level ? level : null">{{ label }}</h2>
-    <div class="canon-swatch__text">
-        <div class="canon-swatch__bg--dark">
-            {{ contrastLevel(ratioAgainstDark) }}
-            <p v-if="levelAgainstDark === 3">Use {{ label }} against {{ darkColor }} anytime.</p>
-            <p v-if="levelAgainstDark === 2">For AAA, use {{ label }} ONLY against {{ darkColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.</p>
-            <p v-if="levelAgainstDark === 1"></p>
-            <p v-if="levelAgainstDark === 0">DO NOT use against {{ darkColor }}</p>
+<div
+    class="canon-swatch flex items-start mt4"
+    :style="cssVars"
+>
+    <div class="flex">
+        <div class="canon-swatch__bg--light pa3">
+            <div class="canon-swatch__bg pa2" />
         </div>
-        <div class="canon-swatch-bg--light">
-
-            <p>DO use {{ label }} against {{ lightColor }} anytime.</p>
-            <p>Use {{ label }} ONLY against {{ lightColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.</p>
-            <p>DO NOT use against {{ lightColor }}</p>
+        <div class="canon-swatch__bg--dark pa3">
+            <div class="canon-swatch__bg pa2" />
         </div>
-    </div> 
-    <div class="canon-swatch__bg">
-    </div> 
+    </div>
+    <div class="ph3">
+        <h2 :aria-level="level ? level : null">
+            {{ label }}
+        </h2>
+        <div class="canon-swatch__text">
+            <p v-if="levelAgainstDark === 3">
+                Use {{ label }} against {{ darkColor }} anytime.
+            </p>
+            <p v-if="levelAgainstDark === 2">
+                For AAA, use {{ label }} ONLY against {{ darkColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
+            </p>
+            <p v-if="levelAgainstDark === 1">
+                For AA, ONLY use {{ label }} against {{ darkColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
+            </p>
+            <p v-if="levelAgainstDark === 0">
+                DO NOT use against {{ darkColor }}
+            </p>
+            <p v-if="levelAgainstLight === 3">
+                Use {{ label }} against {{ lightColor }} anytime.
+            </p>
+            <p v-if="levelAgainstLight === 2">
+                For AAA, ONLY use {{ label }} against {{ lightColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
+            </p>
+            <p v-if="levelAgainstLight === 1">
+                For AA, ONLY use {{ label }} against {{ lightColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
+            </p>
+            <p v-if="levelAgainstLight === 0">
+                DO NOT use against {{ lightColor }}
+            </p>
+        </div>
+    </div>
 </div>
 </template>
 
 <script>
 // import CanonTag from './Tag';
 
-import {isHex, isHsl, isRgb} from '../functions/color/detectSyntax';
-import hexToRgb from '../functions/color/hexToRgb';
-import hslToRgb from '../functions/color/hslToRgb';
-import getContrast from '../functions/color/getWcagContrast';
-import rgbToObject from '../functions/color/rgbToObject';
+import {isHex, isHsl, isRgb} from '../utilities/color/detectSyntax';
+import hexToRgb from '../utilities/color/hexToRgb';
+import hslToRgb from '../utilities/color/hslToRgb';
+import getContrast from '../utilities/color/getWcagContrast';
+import rgbToObject from '../utilities/color/rgbToObject';
 
 export default {
     name: 'CanonSwatch',
@@ -66,7 +90,7 @@ export default {
         level: {
             type: Number,
             default: 0,
-        }
+        },
     },
     data() {
         return {
@@ -85,7 +109,7 @@ export default {
                 '--bg--light': this.theme.colors.base.light,
                 '--swatch-color': this.color,
                 '--wcag-large': `${this.wcagFontSize.large}px`,
-                '--wcag-small': `${this.wcagFontSize.small}px`
+                '--wcag-small': `${this.wcagFontSize.small}px`,
             };
         },
         ratioAgainstLight() {
