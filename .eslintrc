@@ -4,8 +4,7 @@
         "node": true
     },
     "extends": [
-        "plugin:vue/recommended",
-        "airbnb"
+        "plugin:vue/recommended"
     ],
     "parserOptions": {
         "parser": "babel-eslint"
