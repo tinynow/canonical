@@ -1,26 +1,21 @@
 <template>
 <div id="app">
-    <canon-palette />
     <header>
-        <router-link to="/docs">
+        <span>Canonical</span>
+        <!-- <router-link to="/docs">
             Documentation
-            Palette
-        </router-link>
+        </router-link> -->
     </header>
     <router-view />
 </div>
 </template>
 <script>
-import CanonPalette from './components/Palette';
 //import CanonProse from './components/Prose';
 import navigationData from './data/menu.json';
 
 
 export default {
     name: 'App',
-    components: {
-        CanonPalette,
-    },
     data() {
         return {
             navigationData,

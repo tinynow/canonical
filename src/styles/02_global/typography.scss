@@ -2,3 +2,10 @@ body {
     font-family: $base-font-family;
     line-height: $base-line-height;
 }
+
+/* 1. Align left edge of list item text */
+ul {
+    list-style-position: inside; /* 1 */
+    margin-left: 1.1em; /* 1 */
+    text-indent: -1.1em; /* 1 */
+}

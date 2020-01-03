@@ -1,0 +1,28 @@
+/* *
+* For radios and checkboxes - the pseudo-checkbox hack
+* 1. Align left edge of wrapped text with right edge of control
+* 
+*/
+
+@mixin binary-control($size: 1.125em) {
+    display: inline-block;
+    margin-left: calc(#{$size} + 8px); /* 1 */
+    text-indent: calc(-#{$size} - 8px); /* 1 */
+    /* hide the real input */
+    input {
+        position: absolute;
+        left: -999em;
+        cursor: pointer;
+    }
+    label {
+        display: block;
+        cursor: pointer;
+    }
+    label:before {
+        content: '\a0'; // simulates a non-breaking space: http://stackoverflow.com/questions/190396/adding-html-entities-using-css-content
+        display: inline-block;
+        height: $size;
+        width: $size;
+        margin: 4px;
+    }
+}

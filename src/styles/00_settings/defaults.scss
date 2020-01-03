@@ -25,13 +25,13 @@ $darkHue: 225;
 $lightHue: 320;
 
 $colors: (
-    "black": hsl($darkHue, 100%, 1%),
-    light-black: hsl($darkHue, 21%, 20%),
-    dark-gray: hsl($darkHue, 10%, 30%),
-    medium-gray: hsl($darkHue, 10%, 45%),
-    light-gray: hsl($lightHue, 5%, 65%),
-    very-light-gray: hsl($lightHue, 10%, 85%),
-    very-very-light-gray: hsl($lightHue, 10%, 95%),
+    gray--6: hsl($darkHue, 100%, 1%),
+    gray--5: hsl($darkHue, 21%, 20%),
+    gray--4: hsl($darkHue, 10%, 30%),
+    gray--3: hsl($darkHue, 10%, 45%),
+    gray--2: hsl($lightHue, 5%, 65%),
+    gray--1: hsl($lightHue, 10%, 85%),
+    gray--0: hsl($lightHue, 10%, 95%),
     "white": hsl($lightHue, 40%, 99%),
     blue: hsl(212, 70%, 40%),
     orange: hsl(46, 100%, 50%),

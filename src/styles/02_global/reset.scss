@@ -235,18 +235,3 @@ template {
 [hidden] {
     display: none;
 }
-/**
- * 1. Sensible box model 
- * 2. Finer control of margins and padding
- */
-html {
-    box-sizing: border-box; /* 1 */
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: inherit; /* 1 */
-    margin: 0; /* 2 */
-    padding: 0; /* 2 */
-}

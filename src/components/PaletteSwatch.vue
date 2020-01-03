@@ -1,45 +1,62 @@
 <template>
 <div
-    class="canon-swatch flex items-start mt4"
+    class="canon-swatch canon-swatch__bg flex items-center"
     :style="cssVars"
 >
-    <div class="flex">
-        <div class="canon-swatch__bg--light pa3">
-            <div class="canon-swatch__bg pa2" />
-        </div>
-        <div class="canon-swatch__bg--dark pa3">
-            <div class="canon-swatch__bg pa2" />
-        </div>
-    </div>
-    <div class="ph3">
-        <h2 :aria-level="level ? level : null">
-            {{ label }}
+    <div class="canon-swatch__content canon-swatch__bg--light pa2 mv3 mh3">
+        <h2 
+            :aria-level="level ? level : null"
+        >
+            {{ name }}
         </h2>
-        <div class="canon-swatch__text">
-            <p v-if="levelAgainstDark === 3">
-                Use {{ label }} against {{ darkColor }} anytime.
-            </p>
-            <p v-if="levelAgainstDark === 2">
-                For AAA, use {{ label }} ONLY against {{ darkColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
-            </p>
-            <p v-if="levelAgainstDark === 1">
-                For AA, ONLY use {{ label }} against {{ darkColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
-            </p>
-            <p v-if="levelAgainstDark === 0">
-                DO NOT use against {{ darkColor }}
-            </p>
-            <p v-if="levelAgainstLight === 3">
-                Use {{ label }} against {{ lightColor }} anytime.
-            </p>
-            <p v-if="levelAgainstLight === 2">
-                For AAA, ONLY use {{ label }} against {{ lightColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
-            </p>
-            <p v-if="levelAgainstLight === 1">
-                For AA, ONLY use {{ label }} against {{ lightColor }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
-            </p>
-            <p v-if="levelAgainstLight === 0">
-                DO NOT use against {{ lightColor }}
-            </p>
+        <ul class="">
+            <li v-if="levelAgainstDark === 3">
+                Use {{ name }} with {{ Object.keys( darkColor)[0] }} anytime.
+            </li>
+            <li v-if="levelAgainstDark === 2">
+                For AAA, use {{ name }} ONLY with {{ Object.keys( darkColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
+            </li>
+            <li v-if="levelAgainstDark === 1">
+                For AA, ONLY use {{ name }} with {{ Object.keys( darkColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
+            </li>
+            <li v-if="levelAgainstDark === 0">
+                <canon-icon
+                    icon-name="x"
+                    icon-height="0.875rem"
+                    icon-width="0.875rem"
+                    fat="true"
+                /><span> DO NOT use with {{ Object.keys( darkColor)[0] }}</span>
+            </li>
+            <li v-if="levelAgainstLight === 3">
+                Use {{ name }} with {{ Object.keys(lightColor)[0] }} anytime.
+            </li>
+            <li v-if="levelAgainstLight === 2">
+                For AAA, ONLY use {{ name }} with {{ Object.keys(lightColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
+            </li>
+            <li v-if="levelAgainstLight === 1">
+                For AA, ONLY use {{ name }} with {{ Object.keys(lightColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
+            </li>
+            <li v-if="levelAgainstLight === 0">
+                DO NOT use with {{ Object.keys(lightColor)[0] }}
+            </li>
+        </ul>
+    </div>
+    <div class="canon-swatch__contrast-examples mr3 mlauto">
+        <div class="flex">
+            <div class="canon-swatch__bg pl2 pt2 pr4 pb3">
+                <div class="canon-swatch__bg--light pa1" />
+            </div>
+            <div class="canon-swatch__bg  pl2 pt2 pr4 pb3">
+                <div class="canon-swatch__bg--dark pa1" />
+            </div>
+        </div>
+        <div class="flex">
+            <div class="canon-swatch__bg--light pl2 pt2 pr4 pb3">
+                <div class="canon-swatch__bg pa1" />
+            </div>
+            <div class="canon-swatch__bg--dark  pl2 pt2 pr4 pb3">
+                <div class="canon-swatch__bg pa1" />
+            </div>
         </div>
     </div>
 </div>
@@ -47,7 +64,7 @@
 
 <script>
 // import CanonTag from './Tag';
-
+import CanonIcon from './Icon/Icon';
 import {isHex, isHsl, isRgb} from '../utilities/color/detectSyntax';
 import hexToRgb from '../utilities/color/hexToRgb';
 import hslToRgb from '../utilities/color/hslToRgb';
@@ -56,9 +73,9 @@ import rgbToObject from '../utilities/color/rgbToObject';
 
 export default {
     name: 'CanonSwatch',
-    // components: {
-    //     CanonTag,
-    // },
+    components: {
+        CanonIcon,
+    },
     props: {
         theme: {
             type: Object,
@@ -72,18 +89,21 @@ export default {
             }),
         },
         darkColor: {
-            type: String,
-            default: '#222',
+            type: Object,
+            default: () => ({
+                name: 'Base Dark',
+                value: '#222',
+            }),
         },
         lightColor: {
-            type: String,
-            default: '#efefef',
+            type: Object,
+             default: () => ({ 'Base Light': '#efefe'}),
         },
         color: {
             type: String,
             required: true,
         },
-        label: {
+        name: {
             type: String,
             default: () => this.color,
         },
@@ -172,6 +192,16 @@ export default {
 </script>
 
 <style>
+.canon-swatch {
+    min-height: 25vh;
+}
+.canon-swatch__swatch {
+    min-width: 50px;
+}
+.canon-swatch__content {
+    width: 40%;
+    min-width: 15em;
+}
 .canon-swatch__bg {
     background-color: var(--swatch-color);
 }
@@ -190,7 +220,6 @@ export default {
 .canon-swatch__text--light {
     color: var(--text--light);
 }
-
 .wcag-large-text {
     font-size: var(--wcag-large);
 }
