@@ -5,7 +5,7 @@
             v-for="(value, name) in colors"
             :key="name"
             :color="value"
-            class="canon-palette__key db pv3 flex-grow-1"
+            class="canon-palette__key pv3 flex-grow-1"
             :style="{ 'backgroundColor': value }"
         >
             <span class="visually-hidden">{{ name }}</span>

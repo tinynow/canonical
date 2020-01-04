@@ -1,5 +1,7 @@
 @each $sizeName, $size in $type-scale {
-    .type--#{$sizeName} {
+    .canon-u-type--#{$sizeName} {
         @include type-setting($sizeName);
     }
 }
+
+// TODO: export these and see if we can put the description right here
