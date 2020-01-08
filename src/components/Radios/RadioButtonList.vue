@@ -1,6 +1,6 @@
 <template>
 <fieldset class="canon-c-fieldset--control-group">
-    <legend>{{ question }}</legend>
+    <legend>{{ label }}</legend>
     <canon-radio-button
         v-for="(option) in options"
         :id="id + option.label"
@@ -8,7 +8,8 @@
         :label="option.label"
         :name="id"
         :value="option.value"
-        @change="updateAnswer(option)"
+        :model-value="value"
+        @change="onChange($event)"
     />
 </fieldset>
 </template>
@@ -21,6 +22,10 @@ export default {
     components: {
         CanonRadioButton,
     },
+    model: {
+        prop: 'value',
+        event: 'change',
+    },
     props: {
         options: {
             type: Array,
@@ -30,10 +35,23 @@ export default {
             type: String,
             required: true,
         },
+        label: {
+            type: String,
+            required: true,
+        },
+        value: {
+            type: String,
+            default: '',
+        },
+    },
+    data() {
+        return {
+            selected: this.value,
+        };
     },
     methods: {
-        updateAnswer(option) {
-            this.$emit('change', option);
+        onChange(optionValue) {
+            this.selected = optionValue;           this.$emit('change', this.selected);
         },
     },
 };

@@ -1,5 +1,7 @@
 <template>
-<div id="app">
+<div
+    id="app"
+>
     <header>
         <span class="canon-logo canon db pa1">canonical</span>
         <nav class="canon-c-site-nav--simple">

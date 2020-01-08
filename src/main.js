@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import Home from './pages/Home.vue';
 import Docs from './pages/Docs.vue';
-import Palette from './pages/Docs.vue';
+import Palette from './pages/Palette.vue';
 import MegaMenu from './components/MegaMenu';
 import store from './store';
 import Router from 'vue-router';

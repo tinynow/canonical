@@ -1,9 +1,11 @@
 /**
  * 1. Sensible box model 
  * 2. Finer control of margins and padding
+ * 3. Prevent adjustments of font size after orientation changes in iOS.
  */
 html {
     box-sizing: border-box; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 3 */
 }
 *,
 *:before,
@@ -12,12 +14,7 @@ html {
     margin: 0; /* 2 */
     padding: 0; /* 2 */
 }
-/**
- * Prevent adjustments of font size after orientation changes in iOS.
- */
-html {
-    -webkit-text-size-adjust: 100%;
-}
+
 /* Create one directional margins */
 * {
     margin-bottom: 0;
@@ -154,7 +151,7 @@ button:-moz-focusring,
  * Correct the padding in Firefox.
  */
 fieldset {
-    padding: 0.35em 0.75em 0.625em;
+    border: none; /* opinion - whitespace can work just as well as a border */
 }
 /**
  * 1. Correct the text wrapping in Edge and IE.

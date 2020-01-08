@@ -11,12 +11,7 @@
 </template>
 
 <script>
-import CanonPalette from '../components/Palette';
-
 export default {
     name: 'HomePage',
-    components: {
-        CanonPalette,
-    },
 };
 </script>

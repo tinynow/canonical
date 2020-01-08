@@ -1,81 +1,59 @@
 <template>
-<div
-    class="canon-swatch canon-swatch__bg flex items-center"
+<tr
+    class="canon-swatch"
     :style="cssVars"
 >
-    <div class="canon-swatch__content canon-swatch__bg--light pa2 mv3 mh3">
-        <h2 
-            :aria-level="level ? level : null"
-        >
-            {{ name }}
-        </h2>
-        <ul class="">
-            <li v-if="levelAgainstDark === 3">
-                Use {{ name }} with {{ Object.keys( darkColor)[0] }} anytime.
-            </li>
-            <li v-if="levelAgainstDark === 2">
-                For AAA, use {{ name }} ONLY with {{ Object.keys( darkColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
-            </li>
-            <li v-if="levelAgainstDark === 1">
-                For AA, ONLY use {{ name }} with {{ Object.keys( darkColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
-            </li>
-            <li v-if="levelAgainstDark === 0">
-                <canon-icon
-                    icon-name="x"
-                    icon-height="0.875rem"
-                    icon-width="0.875rem"
-                    fat="true"
-                /><span> DO NOT use with {{ Object.keys( darkColor)[0] }}</span>
-            </li>
-            <li v-if="levelAgainstLight === 3">
-                Use {{ name }} with {{ Object.keys(lightColor)[0] }} anytime.
-            </li>
-            <li v-if="levelAgainstLight === 2">
-                For AAA, ONLY use {{ name }} with {{ Object.keys(lightColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>. Use for AA anytime.
-            </li>
-            <li v-if="levelAgainstLight === 1">
-                For AA, ONLY use {{ name }} with {{ Object.keys(lightColor)[0] }}  for <span class="wcag-large-text">large</span> or <b>bold</b>.
-            </li>
-            <li v-if="levelAgainstLight === 0">
-                DO NOT use with {{ Object.keys(lightColor)[0] }}
-            </li>
-        </ul>
-    </div>
-    <div class="canon-swatch__contrast-examples mr3 mlauto">
-        <div class="flex">
-            <div class="canon-swatch__bg pl2 pt2 pr4 pb3">
-                <div class="canon-swatch__bg--light pa1" />
+    <th
+        scope="row"
+        class="canon-swatch__name canon-swatch__bg--light"
+    >
+        {{ name }}
+    </th>
+    <td class="canon-swatch__contrast-vs-light">
+        {{ scoreToEnglish(levelAgainstLight, 'aaa') }}
+    </td>
+    <td class="canon-swatch__contrast-vs-dark">
+        {{ scoreToEnglish(levelAgainstDark, 'aaa') }}
+    </td>
+    <div class="canon-swatch__content canon-swatch__bg--light">
+        <div class="canon-swatch__contrast-examples">
+            <div class="canon-swatch__bg">
+                <div class="canon-swatch__bg--light" />
             </div>
-            <div class="canon-swatch__bg  pl2 pt2 pr4 pb3">
-                <div class="canon-swatch__bg--dark pa1" />
+            <div class="canon-swatch__bg">
+                <div class="canon-swatch__bg--dark" />
             </div>
-        </div>
-        <div class="flex">
-            <div class="canon-swatch__bg--light pl2 pt2 pr4 pb3">
-                <div class="canon-swatch__bg pa1" />
+     
+            <div class="canon-swatch__bg--light">
+                <div class="canon-swatch__bg" />
             </div>
-            <div class="canon-swatch__bg--dark  pl2 pt2 pr4 pb3">
-                <div class="canon-swatch__bg pa1" />
+            <div class="canon-swatch__bg--dark">
+                <div class="canon-swatch__bg" />
             </div>
         </div>
     </div>
-</div>
+</tr>
 </template>
 
 <script>
 // import CanonTag from './Tag';
-import CanonIcon from './Icon/Icon';
 import {isHex, isHsl, isRgb} from '../utilities/color/detectSyntax';
 import hexToRgb from '../utilities/color/hexToRgb';
 import hslToRgb from '../utilities/color/hslToRgb';
 import getContrast from '../utilities/color/getWcagContrast';
 import rgbToObject from '../utilities/color/rgbToObject';
 
+const plainEnglish = [
+    'worse',
+    'bad',
+    'ok sometimes*',
+    'good',
+    'very good',
+];
+
+
 export default {
     name: 'CanonSwatch',
-    components: {
-        CanonIcon,
-    },
     props: {
         theme: {
             type: Object,
@@ -118,6 +96,7 @@ export default {
                 'small': 18.5,
                 'large': 24,
             },
+
         };
     },
     computed: {
@@ -144,7 +123,6 @@ export default {
         levelAgainstDark() {
             return this.contrastLevel(this.ratioAgainstDark);
         },
-
     },
     methods: {
         convertToRgbObject(color) {
@@ -171,13 +149,7 @@ export default {
             );
         },
         contrastLevel(contrast) {
-            // const ratioDefs = [
-            //     [1/3, 'ONLY passes AA large or bold text, and non-text.'],
-            //     [1/4.5, 'ONLY pass AA, AAA large or bold, and non-text'],
-            //     [1/7, 'Passes everything']
-            // ];
 
-            // const ratioMap = new Map(ratioDefs);
             const ratios =  [
                 1/7, //safe - passes AAA
                 1/4.5,//ok - passes AA, AAA large or bold
@@ -186,13 +158,22 @@ export default {
 
             return ratios.filter((ratio) => contrast < ratio).length;
         },
+        scoreToEnglish(score, level)  {
+            if ( level === 'aaa') {
+                return plainEnglish[score];
+            } else if ( level === 'aa' ) {
+                return plainEnglish[score + 1];
+            }
+        },
     },
     
 };
 </script>
 
-<style>
+<style lang="scss">
+
 .canon-swatch {
+    border: 5px solid map-get($colors,blue );
     min-height: 25vh;
 }
 .canon-swatch__swatch {

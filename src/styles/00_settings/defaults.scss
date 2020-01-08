@@ -4,8 +4,10 @@
 $base-font-family: -apple-system, BlinkMacSystemFont, 'helvetica neue',
     helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
 $base-line-height: 1.2;
+$base-font-size: 1.2rem;
 
-$space: 1rem * $base-line-height;
+$space: $base-font-size * $base-line-height;
+$reading-line-width: 65rem;
 
 $font-sizes: (
     xxs: 12px,

@@ -1,0 +1,24 @@
+.canon-layout {
+    &.--tube {
+        padding-left: $space;
+        padding-right: $space;
+
+        @include min-screen-width(sm) {
+            padding-left: $space;
+            padding-right: $space;
+        }
+    }
+    &.--readable {
+        max-width: $reading-line-width;
+    }
+    &.--centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &.--spacious {
+        margin-top: $space;
+        > * + * {
+            margin-top: $space;
+        }
+    }
+}

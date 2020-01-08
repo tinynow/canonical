@@ -2,13 +2,17 @@
 <div class="canon-c-radio">
     <input
         :id="id"
+        class="canon-c-radio__input"
         :value="value"
         :name="name"
         :checked="shouldBeChecked"
         type="radio"
-        @change="updateInput"
+        @change="onChange"
     >
-    <label :for="id">{{ label }}</label>
+    <label 
+        :for="id"
+        class="canon-c-radio__label"
+    >{{ label }}</label>
 </div>
 </template>
 
@@ -41,11 +45,6 @@ export default {
             type: String,
             required: true,
         },
-        checked: {
-            type: Boolean,
-            required: false,
-            default: false,
-        },
     },
     computed: {
         shouldBeChecked() {
@@ -53,9 +52,14 @@ export default {
         },
     },
     methods: {
-        updateInput() {
+        onChange() {
             this.$emit('change', this.value);
         },
     },
 };
 </script>
+<style lang="scss">
+.canon-c-radio {
+    @include binary-control();
+}
+</style>

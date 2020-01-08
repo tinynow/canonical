@@ -4,10 +4,9 @@
 * 
 */
 
-@mixin binary-control($size: 1.125em) {
-    display: inline-block;
-    margin-left: calc(#{$size} + 8px); /* 1 */
-    text-indent: calc(-#{$size} - 8px); /* 1 */
+@mixin binary-control($checkbox: false, $size: 1.2em, $color: currentColor,$focusColor: blue) {
+    margin-left: calc(#{$size}); /* 1 */
+    text-indent: calc(-#{$size}); /* 1 */
     /* hide the real input */
     input {
         position: absolute;
@@ -20,9 +19,24 @@
     }
     label:before {
         content: '\a0'; // simulates a non-breaking space: http://stackoverflow.com/questions/190396/adding-html-entities-using-css-content
-        display: inline-block;
-        height: $size;
-        width: $size;
-        margin: 4px;
+        display: inline-block; // keep structure but stay inline with label
+        position: relative;
+        top: 4px;
+        height: calc(#{$size} - 4px);
+        width: calc(#{$size} - 4px);
+        margin-right: 4px; // separate from label
+        border: 2px solid $color;
+        @if $checkbox {
+            border-radius: 3px;
+        } @else {
+            border-radius: $size/2;
+        }
+    }
+    input:checked ~ label:before {
+        background-color: $color;
+        box-shadow: inset 0 0 0 3px white; 
+    }
+    input:focus ~ label:before {
+        box-shadow: inset 0 0 0 3px white, 0 0 0 2px $focusColor;
     }
 }

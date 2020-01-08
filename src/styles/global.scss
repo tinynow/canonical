@@ -5,6 +5,8 @@
 @import '02_global/responsive.scss';
 @import '02_global/typography.scss';
 
+@import './03_contexts/layout.scss';
+
 /* utility classes via tacyhons: https://github.com/tinynow/tachyons with slight modification */
 @import '05_utilities/display.scss';
 @import '05_utilities/flex.scss';
