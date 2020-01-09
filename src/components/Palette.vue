@@ -30,14 +30,29 @@
             <span class="visually-hidden">{{ name }}</span>
         </li>
     </ul>
-    <canon-swatch
-        v-for="(value, name) in colors"
-        :id="name"
-        :key="name"
-        :color="value"
-        :name="name"
-        :a11y-level="a11yLevel"
-    />
+    <table class="mw-100">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Color
+                </th>
+                <th scope="col">
+                    Use with light
+                </th>
+                <th scope="col">
+                    Use with dark
+                </th>
+            </tr>
+        </thead>
+        <canon-swatch
+            v-for="(value, name) in colors"
+            :id="name"
+            :key="name"
+            :color="value"
+            :name="name"
+            :a11y-level="a11yLevel"
+        />
+    </table>
 </div>
 </template>
 
@@ -80,4 +95,9 @@ export default {
 </script>
 
 <style  scoped>
+table {
+    outline: 1px solid;
+    table-layout: fixed;
+    width: 100%;
+}
 </style>

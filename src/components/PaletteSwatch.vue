@@ -15,7 +15,8 @@
     <td class="canon-swatch__contrast-vs-dark">
         {{ scoreToEnglish(levelAgainstDark, 'aaa') }}
     </td>
-    <div class="canon-swatch__content canon-swatch__bg--light">
+
+    <td class="canon-swatch__content canon-swatch__bg--light">
         <div class="canon-swatch__contrast-examples">
             <div class="canon-swatch__bg">
                 <div class="canon-swatch__bg--light" />
@@ -31,7 +32,7 @@
                 <div class="canon-swatch__bg" />
             </div>
         </div>
-    </div>
+    </td>
 </tr>
 </template>
 
@@ -85,7 +86,7 @@ export default {
             type: String,
             default: () => this.color,
         },
-        level: {
+        a11yLevel: {
             type: Number,
             default: 0,
         },
@@ -96,7 +97,6 @@ export default {
                 'small': 18.5,
                 'large': 24,
             },
-
         };
     },
     computed: {
@@ -158,10 +158,10 @@ export default {
 
             return ratios.filter((ratio) => contrast < ratio).length;
         },
-        scoreToEnglish(score, level)  {
-            if ( level === 'aaa') {
+        scoreToEnglish(score)  {
+            if ( this.a11yLevel === 'aaa') {
                 return plainEnglish[score];
-            } else if ( level === 'aa' ) {
+            } else if ( this.a11yLevel === 'aa' ) {
                 return plainEnglish[score + 1];
             }
         },
@@ -172,17 +172,6 @@ export default {
 
 <style lang="scss">
 
-.canon-swatch {
-    border: 5px solid map-get($colors,blue );
-    min-height: 25vh;
-}
-.canon-swatch__swatch {
-    min-width: 50px;
-}
-.canon-swatch__content {
-    width: 40%;
-    min-width: 15em;
-}
 .canon-swatch__bg {
     background-color: var(--swatch-color);
 }
