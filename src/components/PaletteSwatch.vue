@@ -11,6 +11,12 @@
     </th>
     <td class="canon-swatch__contrast-vs-light">
         {{ scoreToEnglish(levelAgainstLight, 'aaa') }}
+        <div class="canon-swatch__bg">
+            <span class="canon-swatch__bg--light">As Background</span>
+        </div>
+        <div class="canon-swatch__bg--light">
+            <span class="canon-swatch__bg">As text</span>
+        </div>
     </td>
     <td class="canon-swatch__contrast-vs-dark">
         {{ scoreToEnglish(levelAgainstDark, 'aaa') }}
@@ -18,9 +24,6 @@
 
     <td class="canon-swatch__content canon-swatch__bg--light">
         <div class="canon-swatch__contrast-examples">
-            <div class="canon-swatch__bg">
-                <div class="canon-swatch__bg--light" />
-            </div>
             <div class="canon-swatch__bg">
                 <div class="canon-swatch__bg--dark" />
             </div>
