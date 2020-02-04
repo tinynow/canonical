@@ -1,7 +1,6 @@
 <template>
 <tr
     class="canon-swatch"
-    :style="cssVars"
 >
     <th
         scope="row"
@@ -12,7 +11,10 @@
     <td class="canon-swatch__contrast-vs-light">
         {{ scoreToEnglish(levelAgainstLight, 'aaa') }}
         <div class="canon-swatch__bg">
-            <span class="canon-swatch__bg--light">As Background</span>
+            <span 
+                class="canon-swatch__bg--light" 
+                contenteditable="true"
+            >As Background</span>
         </div>
         <div class="canon-swatch__bg--light">
             <span class="canon-swatch__bg">As text</span>
@@ -48,11 +50,11 @@ import getContrast from '../utilities/color/getWcagContrast';
 import rgbToObject from '../utilities/color/rgbToObject';
 
 const plainEnglish = [
-    'worse',
-    'bad',
-    'ok sometimes*',
-    'good',
-    'very good',
+    'No',
+    'No',
+    'Sometimes*',
+    'Yes',
+    'Yes',
 ];
 
 
@@ -90,8 +92,8 @@ export default {
             default: () => this.color,
         },
         a11yLevel: {
-            type: Number,
-            default: 0,
+            type: String,
+            default: 'aaa',
         },
     },
     data() {
@@ -105,13 +107,7 @@ export default {
     computed: {
         cssVars() {
             return {
-                '--text--dark': this.theme.colors.base.dark,
-                '--text--light': this.theme.colors.base.light,
-                '--bg--dark': this.theme.colors.base.dark,
-                '--bg--light': this.theme.colors.base.light,
                 '--swatch-color': this.color,
-                '--wcag-large': `${this.wcagFontSize.large}px`,
-                '--wcag-small': `${this.wcagFontSize.small}px`,
             };
         },
         ratioAgainstLight() {
@@ -128,6 +124,7 @@ export default {
         },
     },
     methods: {
+        // TODO: abstract all the logic
         convertToRgbObject(color) {
             
             if (isRgb(color)) {

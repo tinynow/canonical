@@ -1,0 +1,18 @@
+.canon-o-artful {
+    font-family: Aleo, serif;
+}
+
+// background-image: radial-gradient(49% 96%, #B67800 15%, #B67800 30%, #966101 97%);
+$gold-2: hsl(40, 100%, 36%);
+$gold-3: hsl(40, 99%, 30%);
+$gold-1: hsl(40, 100%, 56%);
+
+
+html {
+    // Base Theme
+    --textColor: var(--black);
+    --bgColor: var(--white);
+    --textColor--inverse: var(--white);
+    --bgColor--inverse: var(--black);
+    --linkColor: var(--blue);
+}

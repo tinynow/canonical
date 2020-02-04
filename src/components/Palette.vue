@@ -1,5 +1,5 @@
 <template>
-<div>
+<div :style="cssVars">
     <div 
         class="canon-palette__controls canon-layout --tube --readable --centered --spacious"
     >
@@ -78,18 +78,22 @@ export default {
         CanonSwatch,
         CanonRadioButtonList,
     },
-    // props: {
-    //     colors: {
-    //         type: Object,
-    //         required: true,
-    //     },
-    // },
     data() {
         return {
             colors: colors,
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aaa',
         }
+    },
+    computed: {
+        cssVars() {
+            return {
+                '--text--dark': 'var(--textColor)',
+                '--text--light': 'var(--textColor--inverse)',
+                '--bg--dark': 'var(--bgColor--inverse)',
+                '--bg--light': 'var(--bgColor)',
+            }
+        },
     },
 };
 </script>
