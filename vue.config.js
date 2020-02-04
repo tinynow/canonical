@@ -10,7 +10,7 @@ module.exports = {
     css: {
         sourceMap: true,
         loaderOptions: {
-            sass: {
+            scss: {
                 prependData: `@import "@/styles/configuration.scss";`,
             },
         },
@@ -25,6 +25,7 @@ function addStyleResource(rule) {
             preProcessor: 'scss',
             patterns: [
                 path.resolve(__dirname, './src/styles/configuration.scss'),
+                path.resolve(__dirname, './src/styles/global.scss'),
             ],
         });
 }
