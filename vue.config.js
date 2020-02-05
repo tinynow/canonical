@@ -22,9 +22,7 @@ function addStyleResource(rule) {
     rule.use('style-resource')
         .loader('style-resources-loader')
         .options({
-            preProcessor: 'scss',
             patterns: [
-                path.resolve(__dirname, './src/styles/configuration.scss'),
                 path.resolve(__dirname, './src/styles/global.scss'),
             ],
         });
