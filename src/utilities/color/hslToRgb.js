@@ -37,6 +37,6 @@ export default (h, s, l) => {
     return { 
         r: Math.round(r * 255),
         g: Math.round(g * 255),
-        b: Math.round(b * 255)
+        b: Math.round(b * 255),
     };
 };

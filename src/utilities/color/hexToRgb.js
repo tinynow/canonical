@@ -13,7 +13,7 @@ export default (hex) => {
     return rgbArray ? {
         r: parseInt(rgbArray[1], 16),
         g: parseInt(rgbArray[2], 16),
-        b: parseInt(rgbArray[3], 16)
+        b: parseInt(rgbArray[3], 16),
     } : null;
 };
 
