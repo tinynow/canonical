@@ -1,3 +1,5 @@
+@import "./functions.scss";
+
 /* =======================================================================
      Typography & Spacing
 ========================================================================== */
@@ -22,36 +24,48 @@ $font-sizes: (
      Colors
 ========================================================================== */
 
-/* Provide a subtle tone to blacks and light grays - defaults to blue and pink */
-$darkHue: 225;
-$lightHue: 320;
+/* Provide a subtle tone to dark and light grays - defaults to blue and pink */
+$darkHue: 225; //hsl(225,50%, 50%)
+$lightHue: 320;//hsl(320,50%, 50%)
 
-$colors: (
-    gray--6: hsl($darkHue, 100%, 1%),
-    gray--5: hsl($darkHue, 21%, 20%),
-    gray--4: hsl($darkHue, 10%, 30%),
-    gray--3: hsl($darkHue, 10%, 45%),
-    gray--2: hsl($lightHue, 5%, 65%),
-    gray--1: hsl($lightHue, 10%, 85%),
-    gray--0: hsl($lightHue, 10%, 95%),
-    "white": hsl($lightHue, 40%, 99%),
-    blue: hsl(212, 70%, 40%),
-    orange: hsl(46, 100%, 50%),
+$colorOptions: (
+    "gray--6": hsl($darkHue, 100%, 1%),
+    "gray--5": hsl($darkHue, 21%, 20%),
+    "gray--4": hsl($darkHue, 10%, 30%),
+    "gray--3": hsl($darkHue, 10%, 45%),
+    "gray--2": hsl($lightHue, 5%, 65%),
+    "gray--1": hsl($lightHue, 10%, 85%),
+    "gray--0": hsl($lightHue, 10%, 95%),
+    "white": hsl($lightHue, 40%, 99%), // the export doesn't work as well
+    "blue": hsl(212, 70%, 40%),
+    "orange": hsl(46, 100%, 50%),
 );
 
+$defaultThemeColors: (
+    // "dark--base": map-get($colorOptions, "gray--5"),
+    // "light--base": map-get($colorOptions, "white"),
+    "dark--base": "#123",
+    "light--base": white,
+);
+$colors: (
+    "options": $colorOptions,
+    "defaults": $defaultThemeColors
+);
 
-@function color($name) {
-    @return map-get($colors, $name)
-}
+@function color($color) {
+    @return deep-map-get($colors, $color);
+};
+$test: color("gray--2");
 
 :export{
-    @each $color, $value in $colors {
+    @each $color, $value in map-get($colors, options) {
         #{$color}: $value;
     }
 }
 
 html {
-    @each $name, $color in $colors {
+    background: $test;
+    @each $name, $color in map-get($colors, options)  {
         --#{$name}: #{$color};
     }
     @each $name, $size in $font-sizes {
