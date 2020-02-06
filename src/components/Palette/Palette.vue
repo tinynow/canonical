@@ -1,7 +1,7 @@
 <template>
 <div :style="cssVars">
     <div 
-        class="canon-palette__controls canon-layout --tube --readable --centered --spacious"
+        class="canon-palette__controls canon-layout --tube --readable  --spacious"
     >
         <h2>
             To what standard will you hold?
@@ -30,9 +30,9 @@
             <span class="visually-hidden">{{ name }}</span>
         </li>
     </ul>
-    <table class="mw-100">
+    <table class="mw-100 w-100">
         <thead>
-            <tr>
+            <tr class="tc">
                 <th scope="col">
                     Color
                 </th>
@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import colors from '../styles/00_settings/defaults.scss';
+import colors from '../../styles/00_settings/defaults.scss';
 import CanonSwatch from './PaletteSwatch';
-import CanonRadioButtonList from './Radios/RadioButtonList';
+import CanonRadioButtonList from '../Radios/RadioButtonList';
 
 const a11yLevelOptions = [
     {
@@ -97,11 +97,8 @@ export default {
     },
 };
 </script>
-
-<style  scoped>
-table {
-    outline: 1px solid;
-    table-layout: fixed;
-    width: 100%;
+<style lang="scss">
+th, td {
+    border: 1px solid var(--gray--1);
 }
 </style>

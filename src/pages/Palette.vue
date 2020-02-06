@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CanonPalette from '../components/Palette';
+import CanonPalette from '../components/Palette/Palette';
 export default {
     name: 'PalettePage',
     components: {

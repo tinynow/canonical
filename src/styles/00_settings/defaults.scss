@@ -42,11 +42,13 @@ $colorOptions: (
 );
 
 $defaultThemeColors: (
-    // "dark--base": map-get($colorOptions, "gray--5"),
-    // "light--base": map-get($colorOptions, "white"),
-    "dark--base": "#123",
-    "light--base": white,
+    "text--dark": map-get($colorOptions, "gray--5"),
+    "text--light": map-get($colorOptions, "white"),
+    "bg--dark": map-get($colorOptions, "gray--5"),
+    "bg--light": map-get($colorOptions, "white"),
 );
+
+
 $colors: (
     "options": $colorOptions,
     "defaults": $defaultThemeColors
@@ -55,7 +57,6 @@ $colors: (
 @function color($color) {
     @return deep-map-get($colors, $color);
 };
-$test: color("gray--2");
 
 :export{
     @each $color, $value in map-get($colors, options) {
@@ -64,7 +65,6 @@ $test: color("gray--2");
 }
 
 html {
-    background: $test;
     @each $name, $color in map-get($colors, options)  {
         --#{$name}: #{$color};
     }

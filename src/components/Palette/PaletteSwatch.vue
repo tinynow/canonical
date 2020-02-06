@@ -4,37 +4,47 @@
 >
     <th
         scope="row"
-        class="canon-swatch__name canon-swatch__bg--light"
+        class="pv3"
     >
         {{ name }}
     </th>
-    <td class="canon-swatch__contrast-vs-light">
-        {{ scoreToEnglish(levelAgainstLight, 'aaa') }}
-        <div class="canon-swatch__bg">
-            <span 
-                class="canon-swatch__bg--light" 
-                contenteditable="true"
-            >As Background</span>
-        </div>
-        <div class="canon-swatch__bg--light">
-            <span class="canon-swatch__bg">As text</span>
+    <td class="tc">
+        <span class="pv2 db">{{ scoreToEnglish(levelAgainstLight) }}</span>
+        <div
+            v-if="scoreToEnglish(levelAgainstLight) != 'No'"
+            class="flex flex-wrap"
+        >
+            <div
+                class="bg--light pa3 flex-grow-1"
+                :style="{ 'color': color }"
+            >
+                <span>{{ name ? name : color }}</span>
+            </div>
+            <div
+                class="text--light pa3 flex-grow-1"
+                :style="{ 'backgroundColor': color}"
+            >
+                <span>{{ name ? name : color }}</span>
+            </div>
         </div>
     </td>
-    <td class="canon-swatch__contrast-vs-dark">
-        {{ scoreToEnglish(levelAgainstDark, 'aaa') }}
-    </td>
-
-    <td class="canon-swatch__content canon-swatch__bg--light">
-        <div class="canon-swatch__contrast-examples">
-            <div class="canon-swatch__bg">
-                <div class="canon-swatch__bg--dark" />
+    <td class="tc">
+        <span class="pv2 db">{{ scoreToEnglish(levelAgainstDark) }}</span>
+        <div
+            v-if="scoreToEnglish(levelAgainstDark) != 'No'"
+            class="flex flex-wrap"
+        >
+            <div
+                class="bg--dark pa3 flex-grow-1"
+                :style="{ 'color': color }"
+            >
+                <span>{{ name ? name : color }}</span>
             </div>
-     
-            <div class="canon-swatch__bg--light">
-                <div class="canon-swatch__bg" />
-            </div>
-            <div class="canon-swatch__bg--dark">
-                <div class="canon-swatch__bg" />
+            <div
+                class="text--dark pa3 flex-grow-1"
+                :style="{ 'backgroundColor': color}"
+            >
+                <span>{{ name ? name : color }}</span>
             </div>
         </div>
     </td>
@@ -43,11 +53,11 @@
 
 <script>
 // import CanonTag from './Tag';
-import {isHex, isHsl, isRgb} from '../utilities/color/detectSyntax';
-import hexToRgb from '../utilities/color/hexToRgb';
-import hslToRgb from '../utilities/color/hslToRgb';
-import getContrast from '../utilities/color/getWcagContrast';
-import rgbToObject from '../utilities/color/rgbToObject';
+import {isHex, isHsl, isRgb} from '../../utilities/color/detectSyntax';
+import hexToRgb from '../../utilities/color/hexToRgb';
+import hslToRgb from '../../utilities/color/hslToRgb';
+import getContrast from '../../utilities/color/getWcagContrast';
+import rgbToObject from '../../utilities/color/rgbToObject';
 
 const plainEnglish = [
     'No',
@@ -172,28 +182,4 @@ export default {
 
 <style lang="scss">
 
-.canon-swatch__bg {
-    background-color: var(--swatch-color);
-}
-.canon-swatch__text {
-    color: var(--swatch-color);
-}
-.canon-swatch__bg--dark {
-    background-color: var(--bg--dark);
-}
-.canon-swatch__bg--light {
-    background-color: var(--bg--light);
-}
-.canon-swatch__text--dark {
-    color: var(--text--dark);
-}
-.canon-swatch__text--light {
-    color: var(--text--light);
-}
-.wcag-large-text {
-    font-size: var(--wcag-large);
-}
-.wcag-regular-text {
-    font-size: var(--wcag-small)
-}
 </style>
