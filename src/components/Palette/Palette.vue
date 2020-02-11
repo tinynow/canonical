@@ -17,7 +17,13 @@
         <h2>
             Choose base dark and light colors - usually very close to pure black and pure white.
         </h2>
-        <input type="color">
+        <canon-input-base />
+        <canon-input-base />
+        <canon-input-base />
+        <canon-input-base />
+        <label for="">Enter your CSS colors <span>RGB, HSL or HEX are fine</span></label>
+        
+        <textarea id="multiple-color-input" />
     </div>
     <ul class="reset-list flex content-stretch">
         <li
@@ -33,7 +39,10 @@
     <table class="mw-100 w-100">
         <thead>
             <tr class="tc">
-                <th scope="col">
+                <th
+                    scope="col"
+                    class="pv3 ph2"
+                >
                     Color
                 </th>
                 <th scope="col">
@@ -60,7 +69,7 @@
 import colors from '../../styles/00_settings/defaults.scss';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
-
+import CanonInputBase from '../InputText/InputBase';
 const a11yLevelOptions = [
     {
         label: 'WCAG AAA',
@@ -77,6 +86,7 @@ export default {
     components: {
         CanonSwatch,
         CanonRadioButtonList,
+        CanonInputBase,
     },
     data() {
         return {

@@ -10,54 +10,31 @@
     </th>
     <td class="tc">
         <span class="pv2 db">{{ scoreToEnglish(levelAgainstLight) }}</span>
-        <div
+        <canon-type-specimen
             v-if="scoreToEnglish(levelAgainstLight) != 'No'"
-            class="flex flex-wrap"
-        >
-            <div
-                class="bg--light pa3 flex-grow-1"
-                :style="{ 'color': color }"
-            >
-                <span>{{ name ? name : color }}</span>
-            </div>
-            <div
-                class="text--light pa3 flex-grow-1"
-                :style="{ 'backgroundColor': color}"
-            >
-                <span>{{ name ? name : color }}</span>
-            </div>
-        </div>
+            :color="color"
+            base-color="light"
+        />
     </td>
     <td class="tc">
         <span class="pv2 db">{{ scoreToEnglish(levelAgainstDark) }}</span>
-        <div
+        <canon-type-specimen
             v-if="scoreToEnglish(levelAgainstDark) != 'No'"
-            class="flex flex-wrap"
-        >
-            <div
-                class="bg--dark pa3 flex-grow-1"
-                :style="{ 'color': color }"
-            >
-                <span>{{ name ? name : color }}</span>
-            </div>
-            <div
-                class="text--dark pa3 flex-grow-1"
-                :style="{ 'backgroundColor': color}"
-            >
-                <span>{{ name ? name : color }}</span>
-            </div>
-        </div>
+            :color="color"
+            base-color="dark"
+        />
     </td>
 </tr>
 </template>
 
 <script>
 // import CanonTag from './Tag';
-import {isHex, isHsl, isRgb} from '../../utilities/color/detectSyntax';
-import hexToRgb from '../../utilities/color/hexToRgb';
-import hslToRgb from '../../utilities/color/hslToRgb';
-import getContrast from '../../utilities/color/getWcagContrast';
-import rgbToObject from '../../utilities/color/rgbToObject';
+import {isHex, isHsl, isRgb} from '../../functions/color/detectSyntax';
+import hexToRgb from '../../functions/color/hexToRgb';
+import hslToRgb from '../../functions/color/hslToRgb';
+import getContrast from '../../functions/color/getWcagContrast';
+import rgbToObject from '../../functions/color/rgbToObject';
+import CanonTypeSpecimen from './TypeSpecimen';
 
 const plainEnglish = [
     'No',
@@ -70,6 +47,9 @@ const plainEnglish = [
 
 export default {
     name: 'CanonSwatch',
+    components: {
+        CanonTypeSpecimen,
+    },
     props: {
         theme: {
             type: Object,
@@ -152,12 +132,12 @@ export default {
             }
         },
         getContrast(color1, color2) {
-            
             return getContrast(
                 this.convertToRgbObject(color1),
                 this.convertToRgbObject(color2)
             );
         },
+        // There are only 3 ratios that WCAG uses as of 2.1
         contrastLevel(contrast) {
 
             const ratios =  [
@@ -167,6 +147,13 @@ export default {
             ];
 
             return ratios.filter((ratio) => contrast < ratio).length;
+        },
+        score(contrastLevel, conformanceLevel) {
+            if ( conformanceLevel === 'aaa') {
+                return contrastLevel;
+            } else if ( conformanceLevel === 'aa' ) {
+                return contrastLevel + 1;
+            }
         },
         scoreToEnglish(score)  {
             if ( this.a11yLevel === 'aaa') {
