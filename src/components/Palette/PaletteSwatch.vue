@@ -5,10 +5,30 @@
     <th
         scope="row"
         class="pv3"
+        :style="{ backgroundColor: color }"
     >
-        {{ name }}
+        <span class="bg--light pa1">
+            {{ name }} -
+            {{ color }} 
+        </span>
     </th>
-    <td class="tc">
+    <td
+        v-for="(value, colorName) in colors"
+        :key="colorName"
+        class="tc"
+    >
+        <div v-if="contrastFromStrings(value, color) < 3">
+            Fails: {{ contrastFromStrings(value, color).toFixed(2) }}
+        </div>
+        <div
+            v-else
+            :style="{ backgroundColor: value, color: color }"
+            class="h100 flex items-center justify-center"
+        >
+            <span>{{ contrastFromStrings(value, color).toFixed(2) }}</span>
+        </div>
+    </td>
+    <!-- <td class="tc">
         <span class="pv2 db">{{ scoreToEnglish(levelAgainstLight) }}</span>
         <canon-type-specimen
             v-if="scoreToEnglish(levelAgainstLight) != 'No'"
@@ -23,7 +43,7 @@
             :color="color"
             base-color="dark"
         />
-    </td>
+    </td> -->
 </tr>
 </template>
 
@@ -34,7 +54,7 @@ import hexToRgb from '../../functions/color/hexToRgb';
 import hslToRgb from '../../functions/color/hslToRgb';
 import getContrast from '../../functions/color/getWcagContrast';
 import rgbToObject from '../../functions/color/rgbToObject';
-import CanonTypeSpecimen from './TypeSpecimen';
+// import CanonTypeSpecimen from './TypeSpecimen';
 
 const plainEnglish = [
     'No',
@@ -48,7 +68,7 @@ const plainEnglish = [
 export default {
     name: 'CanonSwatch',
     components: {
-        CanonTypeSpecimen,
+        // CanonTypeSpecimen,
     },
     props: {
         theme: {
@@ -77,6 +97,10 @@ export default {
             type: String,
             required: true,
         },
+        colors: {
+            type: Array,
+            required: true,
+        },
         name: {
             type: String,
             default: () => this.color,
@@ -101,10 +125,10 @@ export default {
             };
         },
         ratioAgainstLight() {
-            return this.getContrast(this.color, this.theme.colors.base.light).toFixed(3);
+            return this.contrastFromStrings(this.color, '#FFFFFF');
         },
         ratioAgainstDark() {
-            return this.getContrast(this.color, this.theme.colors.base.dark).toFixed(3);
+            return this.contrastFromStrings(this.color, this.theme.colors.base.dark);
         },
         levelAgainstLight() {
             return this.contrastLevel(this.ratioAgainstLight);
@@ -126,12 +150,13 @@ export default {
             } else if (color === 'black') {
                 return {r:0,g:0,b:0};
             } else if (color === 'white') {
-                return {r:256,g:256,b:256};
+                return {r:255,g:255,b:255};
             } else {
                 console.error(`Color format must be rgb, hex, hsl format or the named color values "black" or "white". Value provided was ${color}`);
             }
         },
-        getContrast(color1, color2) {
+        contrastFromStrings(color1, color2) {
+            console.log(this.convertToRgbObject(color1))
             return getContrast(
                 this.convertToRgbObject(color1),
                 this.convertToRgbObject(color2)
@@ -141,12 +166,12 @@ export default {
         contrastLevel(contrast) {
 
             const ratios =  [
-                1/7, //safe - passes AAA
-                1/4.5,//ok - passes AA, AAA large or bold
-                1/3, //warning - passes AA large or bold, and non-text
+                3, //warning - passes AA large or bold, and non-text
+                4.5,//ok - passes AA, AAA large or bold
+                7, //safe - passes AAA
             ];
 
-            return ratios.filter((ratio) => contrast < ratio).length;
+            return ratios.filter((ratio) => contrast > ratio).length;
         },
         score(contrastLevel, conformanceLevel) {
             if ( conformanceLevel === 'aaa') {
@@ -166,7 +191,3 @@ export default {
     
 };
 </script>
-
-<style lang="scss">
-
-</style>

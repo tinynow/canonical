@@ -7,7 +7,7 @@ export default (hex) => {
     const fullHex = hex.replace(shorthandRegex, function (m, r, g, b) {
         return r + r + g + g + b + b;
     });
-
+    
     const rgbArray = fullRegex.exec(fullHex);
 
     return rgbArray ? {

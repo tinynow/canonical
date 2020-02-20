@@ -22,7 +22,7 @@ const hue2rgb = (p, q, t) => {
 };
 
 export default (h, s, l) => {
-    var r, g, b;
+    let r, g, b;
 
     if (s == 0) {
         r = g = b = l; // achromatic
@@ -34,9 +34,10 @@ export default (h, s, l) => {
         b = hue2rgb(p, q, h - 1 / 3);
     }
 
-    return { 
+    const color = { 
         r: Math.round(r * 255),
         g: Math.round(g * 255),
         b: Math.round(b * 255),
     };
+    console.log(color);
 };

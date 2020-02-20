@@ -1,0 +1,29 @@
+.canon-field {
+
+}
+.canon-field__input-wrapper {
+    @include border-radius(1);
+    @include neu-shadow();
+    border:  1px solid var(--border__control);
+    &:focus-within {
+        outline: 2px solid var(--outline__focus);
+    }
+}
+
+.canon-field__input { 
+    width: 100%;
+    padding: 4px 8px;
+    border: none;
+    background: transparent;
+    appearance: none;
+    outline: none;
+    &:-moz-ui-invalid {
+        box-shadow: none;
+    }
+    &:focus {
+
+    }
+}
+.canon-field__prefix {
+    padding-left: 8px;
+}

@@ -5,8 +5,8 @@
 ========================================================================== */
 $base-font-family: -apple-system, BlinkMacSystemFont, 'helvetica neue',
     helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
-$base-line-height: 1.2;
-$base-font-size: 1.2rem;
+$base-line-height: 1.5;
+$base-font-size: 1.5rem;
 
 $space: $base-font-size * $base-line-height;
 $reading-line-width: 65rem;
@@ -29,16 +29,27 @@ $darkHue: 225; //hsl(225,50%, 50%)
 $lightHue: 320;//hsl(320,50%, 50%)
 
 $colorOptions: (
-    "gray--6": hsl($darkHue, 100%, 1%),
-    "gray--5": hsl($darkHue, 21%, 20%),
-    "gray--4": hsl($darkHue, 10%, 30%),
-    "gray--3": hsl($darkHue, 10%, 45%),
-    "gray--2": hsl($lightHue, 5%, 65%),
-    "gray--1": hsl($lightHue, 10%, 85%),
     "gray--0": hsl($lightHue, 10%, 95%),
-    "white": hsl($lightHue, 40%, 99%), // the export doesn't work as well
-    "blue": hsl(212, 70%, 40%),
-    "orange": hsl(46, 100%, 50%),
+    "gray--1": hsl($lightHue, 10%, 85%),
+    "gray--2": hsl($lightHue, 5%, 65%),
+    "gray--3": hsl($darkHue, 10%, 45%),
+    "gray--4": hsl($darkHue, 10%, 30%),
+    "gray--5": hsl($darkHue, 21%, 20%),
+    "gray--6": hsl($darkHue, 100%, 1%),
+    "white": hsl($lightHue, 100%, 100%),
+    "orange--0": hsl(46, 100%, 60%),
+    "orange--1": hsl(46, 100%, 50%),
+    "orange--2": hsl(46, 100%, 45%),
+    "orange--3": hsl(46, 100%, 35%),
+    "red--0": hsl(1, 81%, 70%),
+    "red--1": hsl(1, 61%, 55%),
+    "red--2": hsl(1, 51%, 35%),
+    "red--3": hsl(1, 51%, 25%),
+    "teal--0": hsl(156, 59%, 80%),
+    "teal--1": hsl(156, 79%, 70%),
+    "teal--2": hsl(156, 89%, 48%),
+    "teal--3": hsl(156, 99%, 38%),
+    "teal--4": hsl(156, 99%, 20%),
 );
 
 $defaultThemeColors: (
@@ -46,6 +57,8 @@ $defaultThemeColors: (
     "text--light": map-get($colorOptions, "white"),
     "bg--dark": map-get($colorOptions, "gray--5"),
     "bg--light": map-get($colorOptions, "white"),
+    "border__control": map-get($colorOptions, "gray--3"),
+    "outline__focus": map-get($colorOptions, "orange" ),
 );
 
 
@@ -65,13 +78,17 @@ $colors: (
 }
 
 html {
+    //TODO: remove this and only expose functional color varsw
     @each $name, $color in map-get($colors, options)  {
+        --#{$name}: #{$color};
+    }
+    @each $name, $color in map-get($colors, defaults)  {
         --#{$name}: #{$color};
     }
     @each $name, $size in $font-sizes {
         --text--#{$name}: #{$size};
     }
-    --baseFontSize: 1rem;
+    --baseFontSize: $base-font-size;
     /* Focus Styles */
     --focusRingColor: var(--orange);
 
@@ -80,5 +97,7 @@ html {
     --focusRing--inverseInternal: inset 0 0 0 1px var(--black),
         inset 0 0 0 3px var(--white);
     --focusRing: 0 0 0 3px var(--focusRingColor);
+ 
+    /* Base Typographical Settings */
     font-size: var(--baseFontSize);
 }
