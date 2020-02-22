@@ -9,6 +9,7 @@
     .--hasFocusWithin {
         outline: 3px double var(--outline__focus);
         outline-offset: 2px;
+        -moz-outline-radius: 4px;
     }
 }
 
