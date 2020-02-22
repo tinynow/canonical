@@ -1,12 +1,18 @@
 <template>
-<div class="canon-field">
-    {{ focusWithinDetected }}
+<div
+    class="canon-field"
+    @focus="onWrapperFocus"
+    @blur="onWrapperBlur"
+>
     <label
         class="canon-field__label"
+        :class="wrapperClasses"
         :for="uid"
     >
         <span class="canon-field__label-text"><slot name="label" /></span>
-        <span class="canon-field__label-supplement"><slot name="label-supplement" />{{ errorMessage }}</span>
+        <span class="canon-field__label-supplement">
+            <slot name="label-supplement" />{{ nativeValidity }}{{ errorMessage }}
+        </span>
     </label>
     <div class="canon-field__input-wrapper flex items-center">
         <div
@@ -18,6 +24,7 @@
         <input
             :id="uid"
             ref="input"
+            :key="id"
             class="canon-field__input"
             :type="type"
             :value="value"
@@ -70,6 +77,14 @@ export default {
             default: '',
         },
     },
+    data() {
+        return {
+            hasFocus: false,
+            wrapperClasses: {
+                '--hasFocusWithin': this.hasFocus,
+            },
+        };
+    },
     computed: {
         listeners() {
             const { input, ...listeners } = this.$listeners;
@@ -78,8 +93,8 @@ export default {
         uid() {
             return this.id ? this.id : uniqueId('uid_')
         },
-        validity() {
-            return this.$refs.input.validity;
+        nativeValidity() {
+            return this.$refs.input ? this.$refs.validity : {};
         },
         errorMessage() {
             const input = this.$refs.input;
@@ -97,6 +112,16 @@ export default {
     methods: {
         input(event) {
             this.$emit('input', event.target.value);
+        },
+        onWrapperFocus() {
+            if ( this.focusWithinDetected ) {
+                this.hasFocus = true;
+            }
+        },
+        onWrapperBlur() {
+            if ( this.focusWithinDetected ) {
+                this.hasFocus = false;
+            }
         },
     },
 }

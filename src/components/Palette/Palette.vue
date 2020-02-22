@@ -1,8 +1,17 @@
 <template>
 <div :style="cssVars">
+    {{ colors }}
     <div 
         class="canon-palette__controls canon-layout --tube --readable  --spacious"
     >
+        <p>There are many jobs that need  colors in web development.</p>
+        <ul>
+            <li>Design of "green field"</li>
+            <li>Accessibility </li>
+            <li>Developer remediating legacy</li>
+            <li>Design system team</li>
+            <li>Desperate bleeding heart in a sea of uncaring corporate sharks</li>
+        </ul>
         <h2>
             To what standard will you hold?
         </h2>
@@ -20,9 +29,9 @@
         <canon-input-base
             required
             minlength="4"
+            pattern="\d{3}[\-]\d{3}[\-]\d{4}"
         >
             <span slot="label">Color Value</span>
-            <span slot="prefix">Hi</span>
         </canon-input-base>
         <canon-input-base><span slot="label">Color Name</span></canon-input-base>    
     </div>

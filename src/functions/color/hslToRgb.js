@@ -39,5 +39,4 @@ export default (h, s, l) => {
         g: Math.round(g * 255),
         b: Math.round(b * 255),
     };
-    console.log(color);
 };

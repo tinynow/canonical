@@ -98,7 +98,7 @@ export default {
             required: true,
         },
         colors: {
-            type: Array,
+            type: Object,
             required: true,
         },
         name: {
@@ -156,7 +156,6 @@ export default {
             }
         },
         contrastFromStrings(color1, color2) {
-            console.log(this.convertToRgbObject(color1))
             return getContrast(
                 this.convertToRgbObject(color1),
                 this.convertToRgbObject(color2)
