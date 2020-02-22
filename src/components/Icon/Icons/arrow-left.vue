@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: 'CanonIconCaretRight',
+    name: 'CanonIconArrowLeft',
     render(createElement) {
         return createElement('path', {
             attrs: {
