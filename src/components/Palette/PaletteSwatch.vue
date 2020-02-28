@@ -49,11 +49,11 @@
 
 <script>
 // import CanonTag from './Tag';
-import {isHex, isHsl, isRgb} from '../../functions/color/detectSyntax';
-import hexToRgb from '../../functions/color/hexToRgb';
-import hslToRgb from '../../functions/color/hslToRgb';
-import getContrast from '../../functions/color/getWcagContrast';
-import rgbToObject from '../../functions/color/rgbToObject';
+import {isHex, isHsl, isRgb} from '../../utils/color/detectSyntax';
+import hexToRgb from '../../utils/color/hexToRgb';
+import hslToRgb from '../../utils/color/hslToRgb';
+import getContrast from '../../utils/color/getWcagContrast';
+import rgbToObject from '../../utils/color/rgbToObject';
 // import CanonTypeSpecimen from './TypeSpecimen';
 
 const plainEnglish = [

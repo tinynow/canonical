@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import uniqueId from '../../functions/utilities/uniqueId'
+import uniqueId from '../../utils/uniqueId'
 export default {
     name: 'CanonInputBase',
     inheritAttrs: false,
