@@ -1,17 +1,23 @@
 <template>
 <div
     class="canon-field"
+    :class="wrapperClasses"
     @focus="onWrapperFocus"
     @blur="onWrapperBlur"
 >
     <label
         class="canon-field__label"
-        :class="wrapperClasses"
         :for="uid"
     >
-        <span class="canon-field__label-text"><slot name="label" /></span>
-        <span class="canon-field__label-supplement">
-            <slot name="label-supplement" />{{ nativeValidity }}{{ errorMessage }}
+        <span class="canon-field__label-slot">
+            <slot name="label">
+                {{ label }}
+            </slot>
+        </span>
+        <span class="canon-field__after-label-slot">
+            <slot
+                name="after-label"
+            />Please include a special character (#$%^&*!@), a number, and an uppercase letter.
         </span>
     </label>
     <div class="canon-field__input-wrapper flex items-center">
@@ -76,6 +82,10 @@ export default {
             type: String,
             default: '',
         },
+        label: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
@@ -83,6 +93,7 @@ export default {
             wrapperClasses: {
                 '--hasFocusWithin': this.hasFocus,
             },
+            validity: null,
         };
     },
     computed: {
@@ -93,13 +104,6 @@ export default {
         uid() {
             return this.id ? this.id : uniqueId('uid_')
         },
-        nativeValidity() {
-            return this.$refs.input ? this.$refs.validity : {};
-        },
-        errorMessage() {
-            const input = this.$refs.input;
-            return input ? input.validationMessage : '';
-        },
         focusWithinDetected() {
             try {
                 document.querySelector(':focus-within')
@@ -109,19 +113,35 @@ export default {
             return true;
         },
     },
+    mounted() {
+        this.copyNativeValidity();
+    },
     methods: {
         input(event) {
+            this.copyNativeValidity();
             this.$emit('input', event.target.value);
         },
+        /* Toggles .--focus-within class to replace :focus-within */
         onWrapperFocus() {
             if ( this.focusWithinDetected ) {
                 this.hasFocus = true;
             }
         },
+        /* Toggles .--focus-within class to replace :focus-within */
         onWrapperBlur() {
             if ( this.focusWithinDetected ) {
                 this.hasFocus = false;
             }
+        },
+        /* Converts ValidityState to a plain object and updates data */
+        copyNativeValidity() {
+            const validityState = this.$refs.input.validity;
+            const errorTypes = [ 'valueMissing', 'typeMismatch', 'patternMismatch', 'tooLong', 'tooShort', 'rangeUnderflow','errorTypes', 'rangeOverflow', 'stepMismatch', 'badInput', 'customError' ];
+            const validity = {}
+            errorTypes.forEach(type => {
+                validity[type] = validityState[type]
+            });
+            this.validity = validity;
         },
     },
 }

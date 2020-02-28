@@ -1,6 +1,5 @@
 <template>
 <div :style="cssVars">
-    {{ colors }}
     <div 
         class="canon-palette__controls canon-layout --tube --readable  --spacious"
     >
@@ -31,7 +30,9 @@
             minlength="4"
             pattern="\d{3}[\-]\d{3}[\-]\d{4}"
         >
-            <span slot="label">Color Value</span>
+            <template v-slot:label>
+                A very long label account number id
+            </template>
         </canon-input-base>
         <canon-input-base><span slot="label">Color Name</span></canon-input-base>    
     </div>
@@ -46,7 +47,7 @@
             <span class="visually-hidden">{{ name }}</span>
         </li>
     </ul> -->
-    <table class="mw-100 w-100">
+    <table class="mt5 mw-100 w-100">
         <thead>
             <tr class="tc">
                 <th

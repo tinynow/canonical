@@ -16,9 +16,8 @@
         margin-right: auto;
     }
     &.--spacious {
-        margin-top: $space;
         > * + * {
-            margin-top: $space;
+            margin-top: $space*1.5;
         }
     }
 }

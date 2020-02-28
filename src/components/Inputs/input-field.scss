@@ -1,5 +1,5 @@
 .canon-field {
-
+    position: relative;
 }
 .canon-field__input-wrapper {
     @include border-radius(1);
@@ -11,6 +11,15 @@
         outline-offset: 2px;
         -moz-outline-radius: 4px;
     }
+}
+.canon-field__label-slot {
+    font-size: type-scale(3);
+}
+.canon-field__after-label-slot {
+    display: block;
+    font-size: 16px;
+    line-height: 20px;
+    color: #0050c780;
 }
 
 .canon-field__input { 
