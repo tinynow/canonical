@@ -10,16 +10,22 @@
         :for="uid"
     >
         <span class="canon-field__label-slot">
-            <slot name="label">
-                {{ label }}
-            </slot>
+            <slot name="label" />
         </span>
-        <span class="canon-field__after-label-slot">
-            <slot
-                name="after-label"
-            />Please include a special character (#$%^&*!@), a number, and an uppercase letter.
+        <span
+            v-if="$slots.hint"
+            class="canon-field__hint-slot"
+        >
+            <slot name="hint" />
+        </span>
+        <span
+            v-show="this.$slots.error"
+            class="canon-field__label-error-slot"
+        >
+            <slot name="error" />
         </span>
     </label>
+        
     <div class="canon-field__input-wrapper flex items-center">
         <div
             v-if="$slots.prefix"
@@ -30,7 +36,7 @@
         <input
             :id="uid"
             ref="input"
-            :key="id"
+            :key="uid"
             class="canon-field__input"
             :type="type"
             :value="value"
@@ -38,20 +44,30 @@
             @input="input"
             v-on="listeners"
         >
-        <div class="canon-field__suffix">
+        <div
+            v-if="$slots.suffix"
+            class="canon-field__suffix"
+        >
             <slot name="suffix" />
         </div>
     </div>
-    <div class="canon-field__after">
+    <div 
+        v-if="$slots.after"
+        class="canon-field__after"
+    >
         <slot name="after" />
     </div>
 </div>
 </template>
 
 <script>
-import uniqueId from '../../utils/uniqueId'
+import uniqueId from '../../utils/uniqueId';
+import requireSlots from '../../mixins/requireSlots';
 export default {
-    name: 'CanonInputBase',
+    name: 'CanonField',
+    mixins: [
+        requireSlots,
+    ],
     inheritAttrs: false,
     model: {
         prop: 'value',
@@ -68,21 +84,19 @@ export default {
             validator(val) {
                 const valid = [
                     'text',
-                    'number',
                     'tel',
                     'email',
                     'password',
                     'search',
                     'url',
                 ]
+                if (!valid.includes(val)) {
+                    console.error('CanonField only supports the following types: ', valid );
+                }
                 return valid.includes(val);
             },
         },
         value: {
-            type: String,
-            default: '',
-        },
-        label: {
             type: String,
             default: '',
         },
@@ -94,6 +108,9 @@ export default {
                 '--hasFocusWithin': this.hasFocus,
             },
             validity: null,
+            requiredSlots: [
+                'label',
+            ],
         };
     },
     computed: {

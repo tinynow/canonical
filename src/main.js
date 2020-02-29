@@ -6,8 +6,10 @@ import Palette from './pages/Palette.vue';
 import MegaMenu from './components/MegaMenu';
 import store from './store';
 import Router from 'vue-router';
+import VueCompositionApi from '@vue/composition-api';
 
 Vue.use(Router);
+Vue.use(VueCompositionApi);
 Vue.config.productionTip = false;
 
 const routes = [

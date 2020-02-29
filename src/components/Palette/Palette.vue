@@ -25,16 +25,21 @@
         <h2>
             Choose base dark and light colors - usually very close to pure black and pure white.
         </h2>
-        <canon-input-base
+        <canon-field
             required
             minlength="4"
             pattern="\d{3}[\-]\d{3}[\-]\d{4}"
+            type="number"
         >
             <template v-slot:label>
                 A very long label account number id
             </template>
-        </canon-input-base>
-        <canon-input-base><span slot="label">Color Name</span></canon-input-base>    
+        </canon-field>
+        <canon-field>
+            <template v-slot:label>
+                Another label of some sort
+            </template>
+        </canon-field>    
     </div>
     <!-- <ul class="reset-list flex content-stretch">
         <li
@@ -80,7 +85,7 @@
 import colors from '../../styles/00_settings/defaults.scss';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
-import CanonInputBase from '../Inputs/InputField';
+import CanonField from '../Inputs/InputField';
 const a11yLevelOptions = [
     {
         label: 'WCAG AAA',
@@ -97,7 +102,7 @@ export default {
     components: {
         CanonSwatch,
         CanonRadioButtonList,
-        CanonInputBase,
+        CanonField,
     },
     data() {
         return {
