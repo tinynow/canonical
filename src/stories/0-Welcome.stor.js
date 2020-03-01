@@ -10,7 +10,7 @@ export default {
 export const ToStorybook = () => ({
   components: { Welcome },
   template: '<welcome :showApp="action" />',
-  methods: { action: linkTo('Button') },
+  methods: { action: linkTo('Field') },
 });
 
 ToStorybook.story = {
