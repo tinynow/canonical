@@ -163,6 +163,11 @@ export default {
     },
 }
 </script>
+
 <style lang="scss">
-@import './input-field.scss';
+.test {
+    color: blue;
+}
+@import "./input-field.scss";
+
 </style>
