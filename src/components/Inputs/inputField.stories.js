@@ -1,8 +1,5 @@
-import Vue from 'vue';
-import CanonField from './InputField.vue';
 export default { 
     title: 'Form/Field',
-    component: CanonField,
 };
 
 export const base = () => ({

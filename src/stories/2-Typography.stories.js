@@ -4,7 +4,4 @@ export default {
     title: 'Typography',
     component: CanonTypography,
 }
-export const intro = () => ({
-    components: {CanonTypography},
-    template: '<canon-typography/>',
-});
+export const intro = () => '<canon-typography/>';
