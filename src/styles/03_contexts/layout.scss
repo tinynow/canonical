@@ -1,9 +1,13 @@
 .canon-layout {
     &.--tube {
-        padding-left: $space;
-        padding-right: $space;
+        padding-left: $space/4;
+        padding-right: $space/4;
 
         @include min-screen-width(sm) {
+            padding-left: $space/2;
+            padding-right: $space/2;
+        }
+        @include min-screen-width(md) {
             padding-left: $space;
             padding-right: $space;
         }
@@ -15,9 +19,9 @@
         margin-left: auto;
         margin-right: auto;
     }
-    &.--spacious {
+    &.--auto-flow {
         > * + * {
-            margin-top: $space*1.5;
+            margin-top: $space;
         }
     }
 }

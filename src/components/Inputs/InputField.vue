@@ -64,7 +64,7 @@
 import uniqueId from '../../utils/uniqueId';
 import requireSlots from '../../mixins/requireSlots';
 export default {
-    name: 'CanonField',
+    name: 'CanonInputField',
     mixins: [
         requireSlots,
     ],

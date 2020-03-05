@@ -4,4 +4,5 @@ export default {
     title: 'Typography',
     component: CanonTypography,
 }
-export const intro = () => '<canon-typography/>';
+export const defaultElements = () => '<canon-typography/>';
+export const kitchenSinkAutoFlow = () => '<canon-typography class="canon-layout --auto-flow"/>';
