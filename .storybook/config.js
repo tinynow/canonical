@@ -1,7 +1,5 @@
-import { configure } from '@storybook/vue';
 import Vue from 'vue';
 import { addDecorator } from '@storybook/vue';
-import { withInfo } from 'storybook-addon-vue-info';
 const requireComponent = require.context('../src', true, /.vue$/);
 
 requireComponent.keys().forEach(filename => {
@@ -16,4 +14,3 @@ const decoratorVueTemplate = () => {
     }
 };
 addDecorator(decoratorVueTemplate);
-addDecorator(withInfo);

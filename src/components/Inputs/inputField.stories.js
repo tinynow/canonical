@@ -1,5 +1,8 @@
+import CanonInputField from './InputField.vue';
+import { Props } from '@storybook/addon-docs/blocks';
 export default { 
     title: 'Form/Field',
+    component: CanonInputField,
 };
 
 export const base = () => ({
