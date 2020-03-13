@@ -68,15 +68,17 @@
                 />
             </tr>
         </thead>
-        <canon-swatch
-            v-for="(value, name) in colors"
-            :id="name"
-            :key="name"
-            :color="value"
-            :colors="colors"
-            :name="name"
-            :a11y-level="a11yLevel"
-        />
+        <tbody>
+            <canon-swatch
+                v-for="(value, name) in colors"
+                :id="name"
+                :key="name"
+                :color="value"
+                :colors="colors"
+                :name="name"
+                :a11y-level="a11yLevel"
+            />
+        </tbody>
     </table>
 </div>
 </template>
