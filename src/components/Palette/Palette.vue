@@ -22,24 +22,21 @@
             :value="a11yLevel"
             @change="e => a11yLevel = e"
         />
+        <h3>Requirements for {{ conformanceLevel }}</h3>
+        <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
+        <ul v-if="a11yLevel === 'aa'">
+            <li>Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
+            <li>Text that is smaller than 24px: <strong>4.5:1</strong>.</li>
+            <li>Interactive UI components and essential graphical elements: <strong>3:1</strong>.</li>
+        </ul>
+        <ul v-if="a11yLevel === 'aaa'">
+            <li>Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.</li>
+            <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
+            <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
+        </ul>
         <h2>
             Choose base dark and light colors - usually very close to pure black and pure white.
         </h2>
-        <canon-field
-            required
-            minlength="4"
-            pattern="\d{3}[\-]\d{3}[\-]\d{4}"
-            type="number"
-        >
-            <template v-slot:label>
-                A very long label account number id
-            </template>
-        </canon-field>
-        <canon-field>
-            <template v-slot:label>
-                Another label of some sort
-            </template>
-        </canon-field>    
     </div>
     <!-- <ul class="reset-list flex content-stretch">
         <li
@@ -87,7 +84,7 @@
 import colors from '../../styles/00_settings/defaults.scss';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
-import CanonField from '../Inputs/InputField';
+
 const a11yLevelOptions = [
     {
         label: 'WCAG AAA',
@@ -104,7 +101,6 @@ export default {
     components: {
         CanonSwatch,
         CanonRadioButtonList,
-        CanonField,
     },
     data() {
         return {
@@ -121,6 +117,9 @@ export default {
                 '--bg--dark': 'var(--bgColor--inverse)',
                 '--bg--light': 'var(--bgColor)',
             }
+        },
+        conformanceLevel() {
+            return this.a11yLevel.toUpperCase();
         },
     },
 };

@@ -4,12 +4,14 @@
 >
     <th
         scope="row"
-        class="pv3"
-        :style="{ backgroundColor: color }"
+        class="flex"
     >
-        <span class="bg--light pa1">
-            {{ name }} -
-            {{ color }} 
+        <span
+            class="pa1"
+            :style="{ backgroundColor: color }"
+        />
+        <span class="canon-swatch__color-label bg--light pa1">
+            {{ name }} - {{ color }} 
         </span>
     </th>
     <td
@@ -17,7 +19,7 @@
         :key="colorName"
         class="tc"
     >
-        <div v-if="contrastFromStrings(value, color) < 3">
+        <div v-if="score(contrastFromStrings(value, color), a11yLevel) < 3">
             Fails: {{ contrastFromStrings(value, color).toFixed(2) }}
         </div>
         <div
@@ -108,6 +110,10 @@ export default {
         a11yLevel: {
             type: String,
             default: 'aaa',
+        },
+        colorFormat: {
+            type: String,
+            default: 'hsl',
         },
     },
     data() {
