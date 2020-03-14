@@ -12,7 +12,7 @@
     <label 
         :for="id"
         class="canon-c-radio__label"
-    >{{ label }}</label>
+    ><span class="canon-c-radio__label-text">{{ label }}</span></label>
 </div>
 </template>
 

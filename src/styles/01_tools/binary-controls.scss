@@ -3,10 +3,11 @@
 * 1. Align left edge of wrapped text with right edge of control
 * 
 */
+// TODO: account for inline and long, wrapping labels
+@mixin binary-control($checkbox: false, $size: 1rem, $color: currentColor,$focusColor: blue) {
+    // margin-left: calc(#{$size}); /* 1 */
+    // text-indent: calc(-#{$size}); /* 1 */
 
-@mixin binary-control($checkbox: false, $size: 1.2em, $color: currentColor,$focusColor: blue) {
-    margin-left: calc(#{$size}); /* 1 */
-    text-indent: calc(-#{$size}); /* 1 */
     /* hide the real input */
     input {
         position: absolute;
@@ -14,23 +15,29 @@
         cursor: pointer;
     }
     label {
-        display: block;
+        display: flex;
+        align-items: center;
         cursor: pointer;
     }
+    /* the fake input control */
     label:before {
         content: '\a0'; // simulates a non-breaking space: http://stackoverflow.com/questions/190396/adding-html-entities-using-css-content
-        display: inline-block; // keep structure but stay inline with label
-        position: relative;
-        top: 4px;
-        height: calc(#{$size} - 4px);
-        width: calc(#{$size} - 4px);
-        margin-right: 4px; // separate from label
+        display: block; // keep structure but stay inline with label
+        flex-shrink: 0;
+        height: $size;
+        width: $size;
+        margin-right: $space/4;
         border: 2px solid $color;
+
         @if $checkbox {
             border-radius: 3px;
         } @else {
             border-radius: $size/2;
         }
+    }
+    /* the actual label text */
+    [class*="__label-text"] {
+        display: block;
     }
     input:checked ~ label:before {
         background-color: $color;
