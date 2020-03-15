@@ -3,26 +3,7 @@
     <div 
         class="canon-palette__controls canon-layout --tube --readable  --spacious"
     >
-        <p>There are many jobs that need  colors in web development.</p>
-        <ul>
-            <li>Design of "green field"</li>
-            <li>Accessibility </li>
-            <li>Developer remediating legacy</li>
-            <li>Design system team</li>
-            <li>Desperate bleeding heart in a sea of uncaring corporate sharks</li>
-        </ul>
-        <h2>
-            To what standard will you hold?
-        </h2>
-        <canon-radio-button-list
-            id="howAccessible"
-            label="Accessiblity Level"
-            :options="a11yLevelOptions"
-            name="level"
-            :value="a11yLevel"
-            @change="e => a11yLevel = e"
-        />
-        <h3>Requirements for {{ conformanceLevel }}</h3>
+        <h2>Requirements for {{ conformanceLevel }}</h2>
         <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
         <ul v-if="a11yLevel === 'aa'">
             <li>Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
@@ -38,7 +19,7 @@
             Choose base dark and light colors - usually very close to pure black and pure white.
         </h2>
     </div>
-    <!-- <ul class="reset-list flex content-stretch">
+    <ul class="reset-list flex content-stretch">
         <li
             v-for="(value, name) in colors"
             :key="name"
@@ -48,35 +29,44 @@
         >
             <span class="visually-hidden">{{ name }}</span>
         </li>
-    </ul> -->
-    <table class="mt5 mw-100 w-100">
-        <thead>
-            <tr class="tc">
-                <th
-                    scope="col"
-                    class="pv3 ph2"
-                >
-                    Color
-                </th>
-                <th
-                    v-for="color in colors"
-                    :key="color"
-                    :style="{backgroundColor: color}"
+    </ul>
+    <canon-radio-button-list
+        id="howAccessible"
+        label="Accessiblity Level"
+        :options="a11yLevelOptions"
+        name="level"
+        :value="a11yLevel"
+        @change="e => a11yLevel = e"
+    />
+    <div class="canon-c-color-matrix overflow-x-scroll">
+        <table class="mw-100 w-100">
+            <thead>
+                <tr class="tc">
+                    <th
+                        scope="col"
+                    >
+                        Color
+                    </th>
+                    <th
+                        v-for="color in colors"
+                        :key="color"
+                        :style="{backgroundColor: color}"
+                    />
+                </tr>
+            </thead>
+            <tbody>
+                <canon-swatch
+                    v-for="(value, name) in colors"
+                    :id="name"
+                    :key="name"
+                    :color="value"
+                    :colors="colors"
+                    :name="name"
+                    :a11y-level="a11yLevel"
                 />
-            </tr>
-        </thead>
-        <tbody>
-            <canon-swatch
-                v-for="(value, name) in colors"
-                :id="name"
-                :key="name"
-                :color="value"
-                :colors="colors"
-                :name="name"
-                :a11y-level="a11yLevel"
-            />
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 </template>
 

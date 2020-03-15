@@ -60,6 +60,6 @@ export default {
 </script>
 <style lang="scss">
 .canon-c-radio {
-    @include binary-control();
+    @include binary-control($size: 1rem);
 }
 </style>

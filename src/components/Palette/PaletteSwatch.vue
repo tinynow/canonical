@@ -6,46 +6,88 @@
         scope="row"
         class="flex"
     >
+        <span class="canon-swatch__color-label db normal bg--light pa1 flex-grow-1">
+            {{ name }}
+        </span>
         <span
-            class="pa1"
+            class="pl2"
             :style="{ backgroundColor: color }"
         />
-        <span class="canon-swatch__color-label bg--light pa1">
-            {{ name }} - {{ color }} 
-        </span>
     </th>
     <td
         v-for="(value, colorName) in colors"
         :key="colorName"
-        class="tc"
     >
-        <div v-if="score(contrastFromStrings(value, color), a11yLevel) < 3">
-            Fails: {{ contrastFromStrings(value, color).toFixed(2) }}
+        <!-- Under 3 not good for anything -->
+        <div
+            v-if="getContrast(color,value) < 3"
+            class="flex flex-column items-center justify-center pa1"
+            hidden
+        > 
+            <canon-icon
+                
+                icon-name="do-not"
+                icon-width="30px"
+                icon-height="30px"
+                icon-stroke="currentColor"
+            />
+            <span>{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
+        <!-- over 3 -->
         <div
             v-else
             :style="{ backgroundColor: value, color: color }"
-            class="h100 flex items-center justify-center"
+            class="flex flex-column items-center justify-center  pa1"
         >
-            <span>{{ contrastFromStrings(value, color).toFixed(2) }}</span>
+            <div class="flex">
+                <template v-if="getContrast(color,value) < 4.5">
+                    <!-- Under 4.5 ok for UI -->
+                    <canon-icon
+                        icon-name="interactive"
+                        icon-width="30px"
+                        icon-height="30px"
+                        icon-stroke="currentColor"
+                        :icon-fill="value"
+                    />
+                    <!-- Under 4.5 AND aa ok for large and bold -->
+                    <canon-icon
+                        v-if="a11yLevel === 'aa'"
+                        icon-name="large-bold-text"
+                        icon-width="30px"
+                        icon-height="30px"
+                        icon-fill="currentColor"
+                        stroke-width="0"
+                    />
+                </template>
+                <template v-else-if="getContrast(color,value) < 7 && a11yLevel === 'aaa'">
+                    <canon-icon
+                        icon-name="interactive"
+                        icon-width="30px"
+                        icon-height="30px"
+                        icon-stroke="currentColor"
+                        :icon-fill="value"
+                    />
+                    <canon-icon
+                        icon-name="large-bold-text"
+                        icon-width="30px"
+                        icon-height="30px"
+                        icon-fill="currentColor"
+                        stroke-width="0"
+                    />
+                </template>
+                <!-- over 7 everyones happy -->
+                <template v-else>
+                    <canon-icon
+                        icon-name="smile"
+                        icon-width="30px"
+                        icon-height="30px"
+                    />
+                </template>
+            </div>
+            
+            <span>{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
     </td>
-    <!-- <td class="tc">
-        <span class="pv2 db">{{ scoreToEnglish(levelAgainstLight) }}</span>
-        <canon-type-specimen
-            v-if="scoreToEnglish(levelAgainstLight) != 'No'"
-            :color="color"
-            base-color="light"
-        />
-    </td>
-    <td class="tc">
-        <span class="pv2 db">{{ scoreToEnglish(levelAgainstDark) }}</span>
-        <canon-type-specimen
-            v-if="scoreToEnglish(levelAgainstDark) != 'No'"
-            :color="color"
-            base-color="dark"
-        />
-    </td> -->
 </tr>
 </template>
 
@@ -56,21 +98,16 @@ import hexToRgb from '../../utils/color/hexToRgb';
 import hslToRgb from '../../utils/color/hslToRgb';
 import getContrast from '../../utils/color/getWcagContrast';
 import rgbToObject from '../../utils/color/rgbToObject';
+import CanonIcon from './../Icon/Icon';
 // import CanonTypeSpecimen from './TypeSpecimen';
 
-const plainEnglish = [
-    'No',
-    'No',
-    'Sometimes*',
-    'Yes',
-    'Yes',
-];
 
 
 export default {
     name: 'CanonSwatch',
     components: {
         // CanonTypeSpecimen,
+        CanonIcon,
     },
     props: {
         theme: {
@@ -130,18 +167,6 @@ export default {
                 '--swatch-color': this.color,
             };
         },
-        ratioAgainstLight() {
-            return this.contrastFromStrings(this.color, '#FFFFFF');
-        },
-        ratioAgainstDark() {
-            return this.contrastFromStrings(this.color, this.theme.colors.base.dark);
-        },
-        levelAgainstLight() {
-            return this.contrastLevel(this.ratioAgainstLight);
-        },
-        levelAgainstDark() {
-            return this.contrastLevel(this.ratioAgainstDark);
-        },
     },
     methods: {
         // TODO: abstract all the logic
@@ -161,36 +186,11 @@ export default {
                 console.error(`Color format must be rgb, hex, hsl format or the named color values "black" or "white". Value provided was ${color}`);
             }
         },
-        contrastFromStrings(color1, color2) {
+        getContrast(color1, color2) {
             return getContrast(
                 this.convertToRgbObject(color1),
                 this.convertToRgbObject(color2)
             );
-        },
-        // There are only 3 ratios that WCAG uses as of 2.1
-        contrastLevel(contrast) {
-
-            const ratios =  [
-                3, //warning - passes AA large or bold, and non-text
-                4.5,//ok - passes AA, AAA large or bold
-                7, //safe - passes AAA
-            ];
-
-            return ratios.filter((ratio) => contrast > ratio).length;
-        },
-        score(contrastLevel, conformanceLevel) {
-            if ( conformanceLevel === 'aaa') {
-                return contrastLevel;
-            } else if ( conformanceLevel === 'aa' ) {
-                return contrastLevel + 1;
-            }
-        },
-        scoreToEnglish(score)  {
-            if ( this.a11yLevel === 'aaa') {
-                return plainEnglish[score];
-            } else if ( this.a11yLevel === 'aa' ) {
-                return plainEnglish[score + 1];
-            }
         },
     },
     
