@@ -6,7 +6,7 @@
         scope="row"
         class="flex"
     >
-        <span class="canon-swatch__color-label db normal bg--light pa1 flex-grow-1">
+        <span class="canon-swatch__color-label db normal bg--light flex-grow-1">
             {{ name }}
         </span>
         <span
@@ -18,14 +18,12 @@
         v-for="(value, colorName) in colors"
         :key="colorName"
     >
-        <!-- Under 3 not good for anything -->
         <div
-            v-if="getContrast(color,value) < 3"
+            v-show="isNotSafe(getContrast(color,value))"
             class="flex flex-column items-center justify-center pa1"
-            hidden
-        > 
+        >
+            <!-- Under 3 not good for anything -- using default safe colors-->
             <canon-icon
-                
                 icon-name="do-not"
                 icon-width="30px"
                 icon-height="30px"
@@ -33,56 +31,40 @@
             />
             <span>{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
-        <!-- over 3 -->
+        
         <div
-            v-else
+            v-show="!isNotSafe(getContrast(color,value))"
             :style="{ backgroundColor: value, color: color }"
             class="flex flex-column items-center justify-center  pa1"
         >
+            <!-- over 3 - use color scheme colors -->
             <div class="flex">
-                <template v-if="getContrast(color,value) < 4.5">
-                    <!-- Under 4.5 ok for UI -->
-                    <canon-icon
-                        icon-name="interactive"
-                        icon-width="30px"
-                        icon-height="30px"
-                        icon-stroke="currentColor"
-                        :icon-fill="value"
-                    />
-                    <!-- Under 4.5 AND aa ok for large and bold -->
-                    <canon-icon
-                        v-if="a11yLevel === 'aa'"
-                        icon-name="large-bold-text"
-                        icon-width="30px"
-                        icon-height="30px"
-                        icon-fill="currentColor"
-                        stroke-width="0"
-                    />
-                </template>
-                <template v-else-if="getContrast(color,value) < 7 && a11yLevel === 'aaa'">
-                    <canon-icon
-                        icon-name="interactive"
-                        icon-width="30px"
-                        icon-height="30px"
-                        icon-stroke="currentColor"
-                        :icon-fill="value"
-                    />
-                    <canon-icon
-                        icon-name="large-bold-text"
-                        icon-width="30px"
-                        icon-height="30px"
-                        icon-fill="currentColor"
-                        stroke-width="0"
-                    />
-                </template>
+                <canon-icon
+                    v-show="showInteractive(getContrast(color,value))"
+                    icon-name="interactive"
+                    icon-width="30px"
+                    icon-height="30px"
+                    icon-stroke="currentColor"
+                    :icon-fill="value"
+                />
+
+                <canon-icon
+                    v-if="showLarge(getContrast(color,value))"
+                    icon-name="large-bold-text"
+                    icon-width="30px"
+                    icon-height="30px"
+                    icon-fill="currentColor"
+                    stroke-width="0"
+                />
+
                 <!-- over 7 everyones happy -->
-                <template v-else>
-                    <canon-icon
-                        icon-name="smile"
-                        icon-width="30px"
-                        icon-height="30px"
-                    />
-                </template>
+
+                <canon-icon
+                    v-if="isSafe(getContrast(color,value))"
+                    icon-name="smile"
+                    icon-width="30px"
+                    icon-height="30px"
+                />
             </div>
             
             <span>{{ getContrast(color,value).toFixed(2) }}</span>
@@ -191,6 +173,24 @@ export default {
                 this.convertToRgbObject(color1),
                 this.convertToRgbObject(color2)
             );
+        },
+        isSafe(contrast) {
+            return contrast >= 4.5 && this.a11yLevel === 'aa' || contrast >= 7; 
+        },
+        isSafeForUI(contrast) {
+            return contrast >= 3;
+        },
+        isSafeForLarge(contrast) {
+            return  contrast >= 3 && this.a11yLevel === 'aa' || contrast >= 4.5;
+        },
+        isNotSafe(contrast) {
+            return contrast < 3;
+        },
+        showInteractive(contrast) {
+            return this.isSafeForUI(contrast) && !this.isSafe(contrast);
+        },
+        showLarge(contrast) {
+            return this.isSafeForLarge(contrast) && !this.isSafe(contrast);
         },
     },
     

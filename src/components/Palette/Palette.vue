@@ -1,5 +1,5 @@
 <template>
-<div :style="cssVars">
+<div>
     <div 
         class="canon-palette__controls canon-layout --tube --readable  --spacious"
     >
@@ -15,29 +15,17 @@
             <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
             <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
         </ul>
-        <h2>
-            Choose base dark and light colors - usually very close to pure black and pure white.
-        </h2>
     </div>
-    <ul class="reset-list flex content-stretch">
-        <li
-            v-for="(value, name) in colors"
-            :key="name"
-            :color="value"
-            class="canon-palette__key pv3 flex-grow-1"
-            :style="{ 'backgroundColor': value }"
-        >
-            <span class="visually-hidden">{{ name }}</span>
-        </li>
-    </ul>
-    <canon-radio-button-list
-        id="howAccessible"
-        label="Accessiblity Level"
-        :options="a11yLevelOptions"
-        name="level"
-        :value="a11yLevel"
-        @change="e => a11yLevel = e"
-    />
+    <form novalidate>
+        <canon-radio-button-list
+            id="howAccessible"
+            label="Accessiblity Level"
+            :options="a11yLevelOptions"
+            name="level"
+            :value="a11yLevel"
+            @change="e => a11yLevel = e"
+        />
+    </form>
     <div class="canon-c-color-matrix overflow-x-scroll">
         <table class="mw-100 w-100">
             <thead>
@@ -48,10 +36,19 @@
                         Color
                     </th>
                     <th
-                        v-for="color in colors"
-                        :key="color"
-                        :style="{backgroundColor: color}"
-                    />
+                        v-for="(value, name) in colors"
+                        :key="value"
+                        class="normal"
+                        scope="col"
+                    >
+                        <div class="h100 flex flex-column">
+                            <span class="canon-color-matrix__col-header flex-grow-1 pv2">{{ name }}</span>
+                            <span
+                                :style="{backgroundColor: value}"
+                                class="pb2 mb0"
+                            />
+                        </div>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -100,14 +97,6 @@ export default {
         }
     },
     computed: {
-        cssVars() {
-            return {
-                '--text--dark': 'var(--textColor)',
-                '--text--light': 'var(--textColor--inverse)',
-                '--bg--dark': 'var(--bgColor--inverse)',
-                '--bg--light': 'var(--bgColor)',
-            }
-        },
         conformanceLevel() {
             return this.a11yLevel.toUpperCase();
         },
@@ -120,7 +109,12 @@ table {
     height: 100%;
 }
 th, td {
+    position: relative;
     height: 100%;
     border: 1px solid var(--gray--1);
+}
+.canon-color-matrix__col-header {
+    margin-top: 1em;
+    transform: rotateZ(-90deg);
 }
 </style>
