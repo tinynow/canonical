@@ -25,6 +25,13 @@
             :value="a11yLevel"
             @change="e => a11yLevel = e"
         />
+        <!-- <canon-checkbox
+            id="showFailures"
+            label="Show contrast levels"
+            name="show-failures"
+            :value="showFailures"
+            @change="e => showFailures = e"
+        /> -->
     </form>
     <div class="canon-c-color-matrix overflow-x-scroll">
         <table class="mw-100 w-100">
@@ -38,15 +45,14 @@
                     <th
                         v-for="(value, name) in colors"
                         :key="value"
-                        class="normal"
+                        class="canon-color-matrix__col-header"
+                        :style="{borderBottomColor: value}"
                         scope="col"
                     >
-                        <div class="h100 flex flex-column">
-                            <span class="canon-color-matrix__col-header flex-grow-1 pv2">{{ name }}</span>
-                            <span
-                                :style="{backgroundColor: value}"
-                                class="pb2 mb0"
-                            />
+                        <div
+                            class="canon-color-matrix__col-header-text"
+                        >
+                            <span>{{ name }}</span>
                         </div>
                     </th>
                 </tr>
@@ -71,7 +77,7 @@
 import colors from '../../styles/00_settings/defaults.scss';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
-
+// import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
         label: 'WCAG AAA',
@@ -93,7 +99,8 @@ export default {
         return {
             colors: colors,
             a11yLevelOptions: a11yLevelOptions,
-            a11yLevel: 'aaa',
+            a11yLevel: 'aa',
+            showFailures: true,
         }
     },
     computed: {
@@ -113,8 +120,18 @@ th, td {
     height: 100%;
     border: 1px solid var(--gray--1);
 }
+.canon-c-color-matrix table {
+    border-collapse: separate;
+}
 .canon-color-matrix__col-header {
-    margin-top: 1em;
+    height: $space*5;
+    max-width: 4rem;
+    text-align: left;
+    border-bottom-style: solid;
+    border-bottom-width: $space/2;
+}
+.canon-color-matrix__col-header-text {
+    transform-origin: 50% 50%;
     transform: rotateZ(-90deg);
 }
 </style>

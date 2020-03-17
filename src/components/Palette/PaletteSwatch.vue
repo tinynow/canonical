@@ -6,7 +6,7 @@
         scope="row"
         class="flex"
     >
-        <span class="canon-swatch__color-label db normal bg--light flex-grow-1">
+        <span class="canon-swatch__color-label db normal flex-grow-1">
             {{ name }}
         </span>
         <span
@@ -29,7 +29,7 @@
                 icon-height="30px"
                 icon-stroke="currentColor"
             />
-            <span>{{ getContrast(color,value).toFixed(2) }}</span>
+            <span v-if="showContrast">{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
         
         <div
@@ -49,7 +49,7 @@
                 />
 
                 <canon-icon
-                    v-if="showLarge(getContrast(color,value))"
+                    v-show="showLarge(getContrast(color,value))"
                     icon-name="large-bold-text"
                     icon-width="30px"
                     icon-height="30px"
@@ -60,14 +60,14 @@
                 <!-- over 7 everyones happy -->
 
                 <canon-icon
-                    v-if="isSafe(getContrast(color,value))"
+                    v-show="isSafe(getContrast(color,value))"
                     icon-name="smile"
                     icon-width="30px"
                     icon-height="30px"
                 />
             </div>
             
-            <span>{{ getContrast(color,value).toFixed(2) }}</span>
+            <span v-if="showContrast">{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
     </td>
 </tr>
@@ -174,6 +174,9 @@ export default {
                 this.convertToRgbObject(color2)
             );
         },
+        isNotSafe(contrast) {
+            return contrast < 3;
+        },
         isSafe(contrast) {
             return contrast >= 4.5 && this.a11yLevel === 'aa' || contrast >= 7; 
         },
@@ -182,9 +185,6 @@ export default {
         },
         isSafeForLarge(contrast) {
             return  contrast >= 3 && this.a11yLevel === 'aa' || contrast >= 4.5;
-        },
-        isNotSafe(contrast) {
-            return contrast < 3;
         },
         showInteractive(contrast) {
             return this.isSafeForUI(contrast) && !this.isSafe(contrast);
