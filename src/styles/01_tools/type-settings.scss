@@ -7,6 +7,7 @@
 
 /* Keep size of fonts consistent */
 $type-scale: (
+    7s: 0.7rem,
     7: 0.75rem,
     6: 0.875rem,
     5: 1rem,
@@ -33,6 +34,7 @@ allows you to create a perfect vertical rhythm, if you feel like it.
 If you do nothing, it should look pretty good anyway.
 */
 $line-heights: (
+    7s: 1,
     7: $space * 0.75,
     6: $space,
     5: $space,
@@ -45,8 +47,14 @@ $line-heights: (
 @function line-height($level) {
     @return map-get($line-heights, $level);
 }
-
+@function compact-line-height($level) {
+    @return map-get($line-heights, $level);
+}
 @mixin type-setting($level: 0) {
     font-size: type-scale($level);
     line-height: line-height($level);
+}
+@mixin compact-type-setting($level: 0) {
+    font-size: type-scale($level);
+    line-height: compact-line-height($level);
 }

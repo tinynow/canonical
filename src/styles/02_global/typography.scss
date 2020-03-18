@@ -1,4 +1,6 @@
 @use '../00_settings/defaults.scss';
+// TODO: normalize and centralize type settings
+// TODO: font-weight utilities should inherit values from default or theme config
 /**
 * Generate consistent font sizes and line heights
 * @require $space
@@ -8,7 +10,7 @@ $font-weight-bold: 800;
 $font-weight-light: 200;
 
 $type-scale: (
-    -1: .8rem, //16px
+    sm: .8rem, //16px
     0: 1rem, //20px
     1: 1.25rem, //25px
     2: 1.5rem, //30px
@@ -26,7 +28,7 @@ $type-scale: (
 * Vertical rhythm
 */
 $line-heights: (
-    -1: $space * 0.7,
+    sm: $space * 0.7,
     0: $space,
     1: $space,
     2: $space,
@@ -36,7 +38,7 @@ $line-heights: (
     6: $space * 3,
 );
 $compact-line-heights: (
-    -1: $space * 0.7,
+    sm: $space * 0.5,
     0: $space * 0.5,
     1: $space,
     2: $space,
@@ -48,6 +50,9 @@ $compact-line-heights: (
 
 @function line-height($level) {
     @return map-get($line-heights, $level);
+}
+@function compact-line-height($level) {
+    @return map-get($compact-line-heights, $level);
 }
 
 @mixin type-setting($level: 0) {

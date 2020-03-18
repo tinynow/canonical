@@ -29,13 +29,16 @@
                 icon-height="30px"
                 icon-stroke="currentColor"
             />
+            <span class="canon-u-compact--sm tc">
+                {{ message(getContrast(color,value)) }}
+            </span>
             <span v-if="showContrast">{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
         
         <div
             v-show="!isNotSafe(getContrast(color,value))"
             :style="{ backgroundColor: value, color: color }"
-            class="flex flex-column items-center justify-center  pa1"
+            class="h100 flex flex-column items-center justify-center pa1"
         >
             <!-- over 3 - use color scheme colors -->
             <div class="flex">
@@ -66,7 +69,9 @@
                     icon-height="30px"
                 />
             </div>
-            
+            <span class="canon-u-compact--sm tc">
+                {{ message(getContrast(color,value)) }}
+            </span>
             <span v-if="showContrast">{{ getContrast(color,value).toFixed(2) }}</span>
         </div>
     </td>
@@ -141,6 +146,12 @@ export default {
                 'small': 18.5,
                 'large': 24,
             },
+            messages: {
+                ok: 'Use for anything.',
+                uiOnly: 'Use for interface elements only',
+                largeText: 'Use for large text or interface elements only.',
+                fail: 'Do not use at all.',
+            },
         };
     },
     computed: {
@@ -191,6 +202,17 @@ export default {
         },
         showLarge(contrast) {
             return this.isSafeForLarge(contrast) && !this.isSafe(contrast);
+        },
+        message(contrast) {
+            if (this.isSafe(contrast)) {
+                return this.messages.ok;
+            } else if (this.isSafeForLarge(contrast)) {
+                return this.messages.largeText;
+            } else if (this.isSafeForUI(contrast)) {
+                return this.messages.uiOnly
+            } else {
+                return this.messages.fail;
+            }
         },
     },
     

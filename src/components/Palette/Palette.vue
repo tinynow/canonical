@@ -15,16 +15,16 @@
             <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
             <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
         </ul>
-    </div>
-    <form novalidate>
-        <canon-radio-button-list
-            id="howAccessible"
-            label="Accessiblity Level"
-            :options="a11yLevelOptions"
-            name="level"
-            :value="a11yLevel"
-            @change="e => a11yLevel = e"
-        />
+ 
+        <form novalidate>
+            <canon-radio-button-list
+                id="howAccessible"
+                label="Accessiblity Level"
+                :options="a11yLevelOptions"
+                name="level"
+                :value="a11yLevel"
+                @change="e => a11yLevel = e"
+            />
         <!-- <canon-checkbox
             id="showFailures"
             label="Show contrast levels"
@@ -32,7 +32,8 @@
             :value="showFailures"
             @change="e => showFailures = e"
         /> -->
-    </form>
+        </form>
+    </div>
     <div class="canon-c-color-matrix overflow-x-scroll">
         <table class="mw-100 w-100">
             <thead>
@@ -77,6 +78,7 @@
 import colors from '../../styles/00_settings/defaults.scss';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
+import CanonIcon from '../Icon/Icon';
 // import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
