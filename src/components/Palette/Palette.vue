@@ -59,24 +59,30 @@
                 </tr>
             </thead>
             <tbody>
-                <canon-swatch
-                    v-for="(value, name) in colors"
-                    :id="name"
-                    :key="name"
-                    :color="value"
-                    :colors="colors"
-                    :name="name"
+                <!-- <canon-swatch
+                    v-for="item in colorMatrix"
+                    :id="item.name"
+                    :key="item.name"
+                    :color="item.value"
+                    :rgb-color="item.rgb"
+                    :colors="colorMatrix"
+                    :name="item.name"
                     :a11y-level="a11yLevel"
-                />
+                /> -->
             </tbody>
         </table>
     </div>
+    <pre>{{ colorMatrix }}
+    </pre>
 </div>
 </template>
 
 <script>
 import colors from '../../styles/00_settings/defaults.scss';
-import CanonSwatch from './PaletteSwatch';
+import convertToRgb from './../../utils/color/convertToRgb';
+import getWcagContrast from './../../utils/color/getWcagContrast';
+
+// import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
 // import CanonCheckbox from '../'
@@ -94,12 +100,13 @@ const a11yLevelOptions = [
 export default {
     name: 'CanonPalette',
     components: {
-        CanonSwatch,
+        // CanonSwatch,
         CanonRadioButtonList,
     },
     data() {
         return {
             colors: colors,
+            colorMatrix: [],
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
             showFailures: true,
@@ -108,6 +115,28 @@ export default {
     computed: {
         conformanceLevel() {
             return this.a11yLevel.toUpperCase();
+        },
+    },
+    mounted() {
+        this.colorMatrix = this.setColorMatrix();
+    },
+    methods: {
+        setColorMatrix() {
+            const computeSwatchData = ([ name, value ]) => ({
+                name,
+                value,
+                rgb: convertToRgb(value),
+            });
+            const computeSwatchContrasts = swatch => {
+                swatch.contrasts = [];
+                swatches.forEach(otherSwatch => {
+                    const contrast = getWcagContrast(swatch.rgb, otherSwatch.rgb);
+                    swatch.contrasts.push(contrast);
+                });
+                return swatch;
+            };
+            const swatches = Object.entries(this.colors).map(computeSwatchData);
+            return swatches.map(computeSwatchContrasts);
         },
     },
 };

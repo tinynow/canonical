@@ -15,11 +15,11 @@
         />
     </th>
     <td
-        v-for="(value, colorName) in colors"
-        :key="colorName"
+        v-for="item in colors"
+        :key="item.name"
     >
         <div
-            v-show="isNotSafe(getContrast(color,value))"
+            v-show="isNotSafe(getContrast(color,item.value))"
             class="flex flex-column items-center justify-center pa1"
         >
             <!-- Under 3 not good for anything -- using default safe colors-->
@@ -30,29 +30,30 @@
                 icon-stroke="currentColor"
             />
             <span class="canon-u-compact--sm tc">
-                {{ message(getContrast(color,value)) }}
+                {{ message(getContrast(color,item.value)) }}
             </span>
-            <span v-if="showContrast">{{ getContrast(color,value).toFixed(2) }}</span>
+            <span v-if="showContrast">{{ getContrast(color,item.value).toFixed(2) }}</span>
         </div>
         
         <div
-            v-show="!isNotSafe(getContrast(color,value))"
-            :style="{ backgroundColor: value, color: color }"
+            v-show="!isNotSafe(getContrast(color,item.value))"
+            :style="{ backgroundColor: item.value, color: color }"
+            
             class="h100 flex flex-column items-center justify-center pa1"
         >
             <!-- over 3 - use color scheme colors -->
             <div class="flex">
                 <canon-icon
-                    v-show="showInteractive(getContrast(color,value))"
+                    v-show="showInteractive(getContrast(color,item.value))"
                     icon-name="interactive"
                     icon-width="30px"
                     icon-height="30px"
                     icon-stroke="currentColor"
-                    :icon-fill="value"
+                    :icon-fill="item.value"
                 />
 
                 <canon-icon
-                    v-show="showLarge(getContrast(color,value))"
+                    v-show="showLarge(getContrast(color,item.value))"
                     icon-name="large-bold-text"
                     icon-width="30px"
                     icon-height="30px"
@@ -63,16 +64,19 @@
                 <!-- over 7 everyones happy -->
 
                 <canon-icon
-                    v-show="isSafe(getContrast(color,value))"
+                    v-show="isSafe(getContrast(color,item.value))"
                     icon-name="smile"
                     icon-width="30px"
                     icon-height="30px"
                 />
             </div>
-            <span class="canon-u-compact--sm tc">
-                {{ message(getContrast(color,value)) }}
+            <span
+                class="canon-u-compact--0 tc"
+                :class="{'canon-u-compact--1': showLarge(getContrast(color,item.value))}"
+            >
+                {{ message(getContrast(color,item.value)) }}
             </span>
-            <span v-if="showContrast">{{ getContrast(color,value).toFixed(2) }}</span>
+            <span v-if="showContrast">{{ getContrast(color,item.value).toFixed(2) }}</span>
         </div>
     </td>
 </tr>
@@ -87,7 +91,7 @@ import getContrast from '../../utils/color/getWcagContrast';
 import rgbToObject from '../../utils/color/rgbToObject';
 import CanonIcon from './../Icon/Icon';
 // import CanonTypeSpecimen from './TypeSpecimen';
-
+import convertToRgb from './../../utils/color/convertToRgb';
 
 
 export default {
@@ -124,7 +128,7 @@ export default {
             required: true,
         },
         colors: {
-            type: Object,
+            type: Array,
             required: true,
         },
         name: {
@@ -148,10 +152,11 @@ export default {
             },
             messages: {
                 ok: 'Use for anything.',
-                uiOnly: 'Use for interface elements only',
-                largeText: 'Use for large text or interface elements only.',
+                uiOnly: 'Use for interface elements only.',
+                largeText: 'Use for large or bold text or interface elements only.',
                 fail: 'Do not use at all.',
             },
+            showContrast: true,
         };
     },
     computed: {
@@ -164,25 +169,12 @@ export default {
     methods: {
         // TODO: abstract all the logic
         convertToRgbObject(color) {
-            
-            if (isRgb(color)) {
-                return rgbToObject(color);
-            } else if (isHex(color)) {
-                return hexToRgb(color);
-            } else if (isHsl(color)) {
-                return hslToRgb(color);
-            } else if (color === 'black') {
-                return {r:0,g:0,b:0};
-            } else if (color === 'white') {
-                return {r:255,g:255,b:255};
-            } else {
-                console.error(`Color format must be rgb, hex, hsl format or the named color values "black" or "white". Value provided was ${color}`);
-            }
+            return convertToRgb(color);
         },
         getContrast(color1, color2) {
             return getContrast(
-                this.convertToRgbObject(color1),
-                this.convertToRgbObject(color2)
+                color1,
+                color2,
             );
         },
         isNotSafe(contrast) {
