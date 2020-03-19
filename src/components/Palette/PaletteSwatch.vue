@@ -29,7 +29,7 @@
                 icon-height="30px"
                 icon-stroke="currentColor"
             />
-            <span class="canon-u-compact--sm tc">
+            <span class="canon-u-compact--0 tc">
                 {{ message(contrast) }}
             </span>
             <span v-if="showContrast">{{ contrast.toFixed(2) }}</span>

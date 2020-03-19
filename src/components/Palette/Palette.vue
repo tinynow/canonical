@@ -72,8 +72,7 @@
             </tbody>
         </table>
     </div>
-    <pre>{{ colorMatrix }}
-    </pre>
+    <pre />
 </div>
 </template>
 
