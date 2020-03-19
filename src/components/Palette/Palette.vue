@@ -25,13 +25,12 @@
                 :value="a11yLevel"
                 @change="e => a11yLevel = e"
             />
-        <!-- <canon-checkbox
-            id="showFailures"
-            label="Show contrast levels"
-            name="show-failures"
-            :value="showFailures"
-            @change="e => showFailures = e"
-        /> -->
+            <button
+                class="shame-button"
+                @click="showText = !showText"
+            >
+                Hide Text
+            </button>
         </form>
     </div>
     <div class="canon-c-color-matrix overflow-x-scroll">
@@ -86,7 +85,7 @@ import getWcagContrast from './../../utils/color/getWcagContrast';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
-// import CanonCheckbox from '../'
+//import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
         label: 'WCAG AAA',
@@ -111,7 +110,8 @@ export default {
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
             showFailures: true,
-        }
+            showText: true,
+        };
     },
     computed: {
         conformanceLevel() {
