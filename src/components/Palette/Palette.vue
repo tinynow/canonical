@@ -59,16 +59,17 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <canon-swatch
+                <canon-swatch
                     v-for="item in colorMatrix"
                     :id="item.name"
                     :key="item.name"
                     :color="item.value"
                     :rgb-color="item.rgb"
+                    :contrasts="item.contrasts"
                     :colors="colorMatrix"
                     :name="item.name"
                     :a11y-level="a11yLevel"
-                /> -->
+                />
             </tbody>
         </table>
     </div>
@@ -82,7 +83,7 @@ import colors from '../../styles/00_settings/defaults.scss';
 import convertToRgb from './../../utils/color/convertToRgb';
 import getWcagContrast from './../../utils/color/getWcagContrast';
 
-// import CanonSwatch from './PaletteSwatch';
+import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
 // import CanonCheckbox from '../'
@@ -100,7 +101,7 @@ const a11yLevelOptions = [
 export default {
     name: 'CanonPalette',
     components: {
-        // CanonSwatch,
+        CanonSwatch,
         CanonRadioButtonList,
     },
     data() {

@@ -15,11 +15,11 @@
         />
     </th>
     <td
-        v-for="item in colors"
-        :key="item.name"
+        v-for="(contrast, index) in contrasts"
+        :key="colors[index].name"
     >
         <div
-            v-show="isNotSafe(getContrast(color,item.value))"
+            v-show="isNotSafe(contrast)"
             class="flex flex-column items-center justify-center pa1"
         >
             <!-- Under 3 not good for anything -- using default safe colors-->
@@ -30,30 +30,30 @@
                 icon-stroke="currentColor"
             />
             <span class="canon-u-compact--sm tc">
-                {{ message(getContrast(color,item.value)) }}
+                {{ message(contrast) }}
             </span>
-            <span v-if="showContrast">{{ getContrast(color,item.value).toFixed(2) }}</span>
+            <span v-if="showContrast">{{ contrast.toFixed(2) }}</span>
         </div>
         
         <div
-            v-show="!isNotSafe(getContrast(color,item.value))"
-            :style="{ backgroundColor: item.value, color: color }"
+            v-show="!isNotSafe(contrast)"
+            :style="{ backgroundColor: colors[index].value, color: color }"
             
             class="h100 flex flex-column items-center justify-center pa1"
         >
             <!-- over 3 - use color scheme colors -->
             <div class="flex">
                 <canon-icon
-                    v-show="showInteractive(getContrast(color,item.value))"
+                    v-show="showInteractive(contrast)"
                     icon-name="interactive"
                     icon-width="30px"
                     icon-height="30px"
                     icon-stroke="currentColor"
-                    :icon-fill="item.value"
+                    :icon-fill="colors[index].value"
                 />
 
                 <canon-icon
-                    v-show="showLarge(getContrast(color,item.value))"
+                    v-show="showLarge(contrast)"
                     icon-name="large-bold-text"
                     icon-width="30px"
                     icon-height="30px"
@@ -64,7 +64,7 @@
                 <!-- over 7 everyones happy -->
 
                 <canon-icon
-                    v-show="isSafe(getContrast(color,item.value))"
+                    v-show="isSafe(contrast)"
                     icon-name="smile"
                     icon-width="30px"
                     icon-height="30px"
@@ -72,11 +72,11 @@
             </div>
             <span
                 class="canon-u-compact--0 tc"
-                :class="{'canon-u-compact--1': showLarge(getContrast(color,item.value))}"
+                :class="{'canon-u-compact--1': showLarge(contrast)}"
             >
-                {{ message(getContrast(color,item.value)) }}
+                {{ message(contrast) }}
             </span>
-            <span v-if="showContrast">{{ getContrast(color,item.value).toFixed(2) }}</span>
+            <span v-if="showContrast">{{ contrast.toFixed(2) }}</span>
         </div>
     </td>
 </tr>
@@ -101,33 +101,15 @@ export default {
         CanonIcon,
     },
     props: {
-        theme: {
-            type: Object,
-            default: () => ({
-                colors: {
-                    base: {
-                        dark: '#111',
-                        light: '#efefef',
-                    },
-                },
-            }),
-        },
-        darkColor: {
-            type: Object,
-            default: () => ({
-                name: 'Base Dark',
-                value: '#222',
-            }),
-        },
-        lightColor: {
-            type: Object,
-             default: () => ({ 'Base Light': '#efefe'}),
-        },
         color: {
             type: String,
             required: true,
         },
         colors: {
+            type: Array,
+            required: true,
+        },
+        contrasts: {
             type: Array,
             required: true,
         },
@@ -167,10 +149,7 @@ export default {
         },
     },
     methods: {
-        // TODO: abstract all the logic
-        convertToRgbObject(color) {
-            return convertToRgb(color);
-        },
+
         getContrast(color1, color2) {
             return getContrast(
                 color1,
