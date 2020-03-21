@@ -1,21 +1,25 @@
 <template>
 <div>
-    <div 
-        class="canon-palette__controls canon-layout --tube --readable  --spacious"
+    <canon-button
+        class="canon-palett__settings-toggle"
+        aria-controls="palette-settings"
     >
-        <h2>Requirements for {{ conformanceLevel }}</h2>
-        <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
-        <ul v-if="a11yLevel === 'aa'">
-            <li>Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
-            <li>Text that is smaller than 24px: <strong>4.5:1</strong>.</li>
-            <li>Interactive UI components and essential graphical elements: <strong>3:1</strong>.</li>
-        </ul>
-        <ul v-if="a11yLevel === 'aaa'">
-            <li>Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.</li>
-            <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
-            <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
-        </ul>
- 
+        <canon-icon
+            icon-name="settings"
+            alt="Settings"
+        />
+    </canon-button>
+            
+    <div
+        v-show="showSettings"
+        id="palette-settings"
+        class="canon-palette__settings"
+    >
+        tes
+    </div>
+    <div 
+        class="canon-palette__controls canon-layout --tube --readable"
+    >
         <form novalidate>
             <canon-radio-button-list
                 id="howAccessible"
@@ -39,6 +43,7 @@
                 <tr class="tc">
                     <th
                         scope="col"
+                        class="reset-border"
                     >
                         Color
                     </th>
@@ -71,8 +76,21 @@
                 />
             </tbody>
         </table>
+        <div class="canon-layout --tube --spacious --readable">
+            <h2>Requirements for {{ conformanceLevel }}</h2>
+            <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
+            <ul v-if="a11yLevel === 'aa'">
+                <li>Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
+                <li>Text that is smaller than 24px: <strong>4.5:1</strong>.</li>
+                <li>Interactive UI components and essential graphical elements: <strong>3:1</strong>.</li>
+            </ul>
+            <ul v-if="a11yLevel === 'aaa'">
+                <li>Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.</li>
+                <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
+                <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
+            </ul>
+        </div>
     </div>
-    <pre />
 </div>
 </template>
 
@@ -84,6 +102,7 @@ import getWcagContrast from './../../utils/color/getWcagContrast';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
+import CanonButton from '../Button/Button';
 //import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
@@ -101,6 +120,8 @@ export default {
     components: {
         CanonSwatch,
         CanonRadioButtonList,
+        CanonIcon,
+        CanonButton,
     },
     data() {
         return {
@@ -152,14 +173,17 @@ th, td {
     border: 1px solid var(--gray--1);
 }
 .canon-c-color-matrix table {
-    border-collapse: separate;
+    border-collapse: separate
 }
 .canon-color-matrix__col-header {
-    height: $space*5;
-    max-width: 4rem;
-    text-align: left;
-    border-bottom-style: solid;
-    border-bottom-width: $space/2;
+    border: none;
+    &[scope="col"] {
+        height: $space*5;
+        text-align: left;
+        border-bottom-style: solid;
+        border-bottom-width: $space/2;
+        box-shadow: inset 0 -3px 1px -3px #777;
+    }
 }
 .canon-color-matrix__col-header-text {
     transform-origin: 50% 50%;

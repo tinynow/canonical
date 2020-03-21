@@ -4,7 +4,7 @@
 >
     <th
         scope="row"
-        class="flex"
+        class="flex canon-color-matrix__col-header  "
     >
         <span class="canon-swatch__color-label db normal flex-grow-1">
             {{ name }}

@@ -1,0 +1,10 @@
+$button__bg: none;
+$button__border-width: 0;
+
+.canon-button {
+    background: $button__bg;
+    padding: $space/2 $space;
+    border-width: $button__border-width;
+    border-style: solid;
+    appearance: none;
+}
