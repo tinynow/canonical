@@ -1,42 +1,43 @@
 <template>
 <div>
-    <canon-button
-        class="canon-palett__settings-toggle"
-        aria-controls="palette-settings"
-    >
-        <canon-icon
-            icon-name="settings"
-            alt="Settings"
-        />
-    </canon-button>
-            
-    <div
-        v-show="showSettings"
-        id="palette-settings"
-        class="canon-palette__settings"
-    >
-        tes
+    <div class="canon-palette__settings-container">
+        <canon-button
+            class="canon-palett__settings-toggle"
+            aria-controls="palette-settings"
+            :aria-expanded="showSettings.toString()"
+            @click="showSettings = !showSettings"
+        >
+            <canon-icon
+                icon-name="settings"
+                alt="Settings"
+            />
+        </canon-button>
+        <canon-revealer>
+            <div
+                v-show="showSettings"
+                id="palette-settings"
+                class="canon-palette__settings canon-layout --tube --readable"
+            >
+                <canon-radio-button-list
+                    id="howAccessible"
+                    label="Accessiblity Level"
+                    :options="a11yLevelOptions"
+                    name="level"
+                    :value="a11yLevel"
+                    @change="e => a11yLevel = e"
+                />
+                <canon-checkbox
+                    id="showText"
+                    label="Show text labels"
+                    :value="showText"
+                />
+            </div>
+        </canon-revealer>    
+        {{ showText ? 'true' : 'false' }}
     </div>
     <div 
         class="canon-palette__controls canon-layout --tube --readable"
-    >
-        <form novalidate>
-            <canon-radio-button-list
-                id="howAccessible"
-                label="Accessiblity Level"
-                :options="a11yLevelOptions"
-                name="level"
-                :value="a11yLevel"
-                @change="e => a11yLevel = e"
-            />
-            <button
-                class="shame-button"
-                @click="showText = !showText"
-            >
-                Hide Text
-            </button>
-        </form>
-    </div>
+    />
     <div class="canon-c-color-matrix overflow-x-scroll">
         <table class="mw-100 w-100">
             <thead>
@@ -79,12 +80,12 @@
         <div class="canon-layout --tube --spacious --readable">
             <h2>Requirements for {{ conformanceLevel }}</h2>
             <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
-            <ul v-if="a11yLevel === 'aa'">
-                <li>Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
+            <ul v-show="a11yLevel === 'aa'">
+                <li><canon-icon icon-name="large-bold-text" />Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
                 <li>Text that is smaller than 24px: <strong>4.5:1</strong>.</li>
                 <li>Interactive UI components and essential graphical elements: <strong>3:1</strong>.</li>
             </ul>
-            <ul v-if="a11yLevel === 'aaa'">
+            <ul v-show="a11yLevel === 'aaa'">
                 <li>Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.</li>
                 <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
                 <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
@@ -102,6 +103,7 @@ import getWcagContrast from './../../utils/color/getWcagContrast';
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
+import CanonCheckbox from '../Checkbox/Checkbox';
 import CanonButton from '../Button/Button';
 //import CanonCheckbox from '../'
 const a11yLevelOptions = [
@@ -122,6 +124,7 @@ export default {
         CanonRadioButtonList,
         CanonIcon,
         CanonButton,
+        CanonCheckbox,
     },
     data() {
         return {
@@ -131,6 +134,7 @@ export default {
             a11yLevel: 'aa',
             showFailures: true,
             showText: true,
+            showSettings: false,
         };
     },
     computed: {
