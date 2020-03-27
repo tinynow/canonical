@@ -1,7 +1,7 @@
 <template>
 <div
     class="canon-field"
-    :class="wrapperClasses"
+    :class="rootClasses"
     @focus="onWrapperFocus"
     @blur="onWrapperBlur"
 >
@@ -61,12 +61,13 @@
 </template>
 
 <script>
-import uniqueId from '../../utils/uniqueId';
+import uniqueId from '../../mixins/uniqueId';
 import requireSlots from '../../mixins/requireSlots';
 export default {
     name: 'CanonInputField',
     mixins: [
         requireSlots,
+        uniqueId,
     ],
     inheritAttrs: false,
     model: {
@@ -104,7 +105,7 @@ export default {
     data() {
         return {
             hasFocus: false,
-            wrapperClasses: {
+            rootClasses: {
                 '--hasFocusWithin': this.hasFocus,
             },
             validity: null,
@@ -117,9 +118,6 @@ export default {
         listeners() {
             const { input, ...listeners } = this.$listeners;
             return listeners;
-        },
-        uid() {
-            return this.id ? this.id : uniqueId('uid_')
         },
         focusWithinDetected() {
             try {

@@ -1,16 +1,11 @@
 <template>
 <div class="canon-c-radio">
     <input
-        :id="id"
+        :id="uid"
         class="canon-c-radio__input"
-        :value="value"
-        :name="name"
-        :checked="shouldBeChecked"
-        type="radio"
-        @change="onChange"
     >
     <label 
-        :for="id"
+        :for="uid"
         class="canon-c-radio__label"
     ><span class="canon-c-radio__label-text">{{ label }}</span></label>
 </div>
@@ -29,19 +24,6 @@ export default {
             required: true,
         },
         id: {
-            type: String,
-            required: true,
-        },
-        value: {
-            type: [String, Boolean],
-            required: false,
-            default: null,
-        },
-        modelValue: {
-            type: String,
-            default: '',
-        },
-        label: {
             type: String,
             required: true,
         },

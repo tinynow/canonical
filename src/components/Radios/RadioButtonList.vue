@@ -51,7 +51,8 @@ export default {
     },
     methods: {
         onChange(optionValue) {
-            this.selected = optionValue;           this.$emit('change', this.selected);
+            this.selected = optionValue;
+            this.$emit('change', this.selected);
         },
     },
 };
