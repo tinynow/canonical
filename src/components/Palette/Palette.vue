@@ -108,8 +108,9 @@ import CanonButton from '../Button/Button';
 //import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
-        label: 'WCAG AAA',
+        label: '<b>WCAG AAA</b>',
         value: 'aaa',
+        html: '<b>WCAG AAA</b>',
     },
     {
         label: 'WCAG AA',

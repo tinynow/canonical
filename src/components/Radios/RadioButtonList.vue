@@ -6,6 +6,7 @@
         :id="id + option.label"
         :key="option.value"
         :label="option.label"
+        :html="option.html"
         :name="id"
         :value="option.value"
         :model-value="value"

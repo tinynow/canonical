@@ -19,7 +19,7 @@
             <slot name="hint" />
         </span>
         <span
-            v-show="this.$slots.error"
+            v-show="$slots.error"
             class="canon-field__label-error-slot"
         >
             <slot name="error" />
@@ -63,6 +63,7 @@
 <script>
 import uniqueId from '../../mixins/uniqueId';
 import requireSlots from '../../mixins/requireSlots';
+
 export default {
     name: 'CanonInputField',
     mixins: [

@@ -3,15 +3,32 @@
     <input
         :id="uid"
         class="canon-c-radio__input"
+        :value="value"
+        :name="name"
+        :checked="shouldBeChecked"
+        type="radio"
+        @change="onChange"
     >
     <label 
         :for="uid"
         class="canon-c-radio__label"
-    ><span class="canon-c-radio__label-text">{{ label }}</span></label>
+    >
+        <span
+            class="canon-c-radio__label-text"
+        >{{ label }}</span>
+        <span
+            v-if="html"
+            class="canon-c-radio__label-text"
+            v-html="html"
+        />
+
+    </label>
 </div>
 </template>
 
 <script>
+import uniqueId from '../../mixins/uniqueId';
+
 export default {
     name: 'CanonRadioButton',
     model: {
@@ -25,7 +42,24 @@ export default {
         },
         id: {
             type: String,
-            required: true,
+            default: '',
+        },
+        value: {
+            type: [String, Boolean],
+            required: false,
+            default: null,
+        },
+        modelValue: {
+            type: String,
+            default: '',
+        },
+        label: {
+            type: String,
+            default: '',
+        },
+        html: {
+            type: String,
+            default: '',
         },
     },
     computed: {

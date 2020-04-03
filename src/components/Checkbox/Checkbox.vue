@@ -18,8 +18,15 @@
 </template>
 
 <script>
+import uniqueId from '../../mixins/uniqueId';
+import requireSlots from '../../mixins/requireSlots';
+
 export default {
     name: 'CanonCheckbox',
+    mixins: [
+        requireSlots,
+        uniqueId,
+    ],
     model: {
         prop: 'modelValue',
         event: 'change',
