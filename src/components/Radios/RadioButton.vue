@@ -19,7 +19,6 @@
         <span
             v-if="html"
             class="canon-c-radio__label-text"
-            v-html="html"
         />
 
     </label>

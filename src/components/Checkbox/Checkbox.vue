@@ -9,7 +9,6 @@
         @change="onChange"
     >
     <label 
-
         :for="uid"
         class="canon-c-checkbox__label"
     ><span class="canon-c-checkbox__label-text">{{ label }}</span></label>
@@ -49,18 +48,34 @@ export default {
             type: String,
             required: true,
         },
+        trueValue: {
+            type: [Boolean, String],
+            default: true,
+        },
+        falseValue: {
+            type: [Boolean, String],
+            default: false,
+        },
     },
     computed: {
         shouldBeChecked() {
-            if (typeof this.value === Boolean) {
-                return this.value;
+            if (this.modelValue instanceof Array) {
+                return this.modelValue.includes(this.value);
             }
-            return this.modelValue === this.value;
+            return this.modelValue === this.trueValue;
         },
     },
     methods: {
-        onChange() {
-            this.$emit('change', this.value);
+        onChange(event) {
+            if (this.modelValue instanceof Array) {
+                const newValue = [...this.modelValue];
+                if  (event.target.checked) {
+                    newValue.push(this.value);
+                } else {
+                    newValue.splice(newValue.indexOf(this.value), 1);
+                }
+                this.$emit('change', newValue);
+            }
         },
     },
 };
