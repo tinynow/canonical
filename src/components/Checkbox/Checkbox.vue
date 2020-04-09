@@ -11,8 +11,9 @@
     <label 
         :for="uid"
         class="canon-c-checkbox__label"
-    ><span class="canon-c-checkbox__label-text">{{ label }}</span></label>
-    {{ shouldBeChecked }}
+    >
+        <span class="canon-c-checkbox__label-text">{{ label }}</span>
+    </label>
 </div>
 </template>
 
@@ -31,17 +32,13 @@ export default {
         event: 'change',
     },
     props: {
-        id: {
-            type: String,
-            required: true,
-        },
         value: {
             type: [String, Boolean],
             required: false,
             default: null,
         },
         modelValue: {
-            type: String,
+            type: [String, Boolean],
             default: '',
         },
         label: {
@@ -75,6 +72,8 @@ export default {
                     newValue.splice(newValue.indexOf(this.value), 1);
                 }
                 this.$emit('change', newValue);
+            } else {
+                this.$emit('change', event.target.checked ? this.trueValue : this.falseValue);
             }
         },
     },

@@ -4,7 +4,7 @@
 >
     <th
         scope="row"
-        class="flex canon-color-matrix__col-header  "
+        class="flex canon-color-matrix__col-header"
     >
         <span class="canon-swatch__color-label db normal flex-grow-1">
             {{ name }}
@@ -19,7 +19,7 @@
         :key="colors[index].name"
     >
         <div
-            v-show="isNotSafe(contrast)"
+            v-show="isNotSafe(contrast) && showFailures"
             class="flex flex-column items-center justify-center pa1"
         >
             <!-- Under 3 not good for anything -- using default safe colors-->
@@ -29,10 +29,13 @@
                 icon-height="30px"
                 icon-stroke="currentColor"
             />
-            <span class="canon-u-compact--0 tc">
+            <span
+                class="canon-u-compact--0 tc"
+                :class="showText ? null : 'visually-hidden'"
+            >
                 {{ message(contrast) }}
             </span>
-            <span v-if="showContrast">{{ contrast.toFixed(2) }}</span>
+            <span v-if="showContrastRatio">{{ contrast.toFixed(2) }}</span>
         </div>
         
         <div
@@ -72,11 +75,14 @@
             </div>
             <span
                 class="canon-u-compact--0 tc"
-                :class="{'canon-u-compact--1': showLarge(contrast)}"
+                :class="{
+                    'canon-u-compact--1': showLarge(contrast),
+                    'visually-hidden': !showText,
+                }"
             >
                 {{ message(contrast) }}
             </span>
-            <span v-if="showContrast">{{ contrast.toFixed(2) }}</span>
+            <span v-if="showContrastRatio">{{ contrast.toFixed(2) }}</span>
         </div>
     </td>
 </tr>
@@ -125,6 +131,18 @@ export default {
             type: String,
             default: 'hsl',
         },
+        showText: {
+            type: Boolean,
+            default: true,
+        },
+        showContrastRatio: {
+            type: Boolean,
+            default: true,
+        },
+        showFailures: {
+            type: Boolean,
+            default: true,
+        },
     },
     data() {
         return {
@@ -138,7 +156,6 @@ export default {
                 largeText: 'Use for large or bold text or interface elements only.',
                 fail: 'Do not use at all.',
             },
-            showContrast: true,
         };
     },
     computed: {

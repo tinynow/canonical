@@ -19,6 +19,7 @@
         <span
             v-if="html"
             class="canon-c-radio__label-text"
+            v-html="html"
         />
 
     </label>
@@ -30,6 +31,9 @@ import uniqueId from '../../mixins/uniqueId';
 
 export default {
     name: 'CanonRadioButton',
+    mixins: [
+        uniqueId,
+    ],
     model: {
         prop: 'modelValue',
         event: 'change',

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="canon-palette__settings-container">
+    <form class="canon-palette__settings-container">
         <canon-button
             class="canon-palett__settings-toggle"
             aria-controls="palette-settings"
@@ -13,7 +13,7 @@
             />
         </canon-button>
         <canon-revealer>
-            <div
+            <form
                 v-show="showSettings"
                 id="palette-settings"
                 class="canon-palette__settings canon-layout --tube --readable"
@@ -27,14 +27,20 @@
                     @change="e => a11yLevel = e"
                 />
                 <canon-checkbox
-                    id="showText"
+                    v-model="showText"
                     label="Show text labels"
-                    :value="showText"
                 />
-            </div>
-        </canon-revealer>    
-        {{ showText ? 'true' : 'false' }}
-    </div>
+                <canon-checkbox
+                    v-model="showFailures"
+                    label="Show non-passing combinations"
+                />
+                <canon-checkbox
+                    v-model="showContrastRatio"
+                    label="Show contrast ratios"
+                />
+            </form>
+        </canon-revealer>
+    </form>
     <div 
         class="canon-palette__controls canon-layout --tube --readable"
     />
@@ -73,6 +79,9 @@
                     :contrasts="item.contrasts"
                     :colors="colorMatrix"
                     :name="item.name"
+                    :show-text="showText"
+                    :show-failures="showFailures"
+                    :show-contrast-ratio="showContrastRatio"
                     :a11y-level="a11yLevel"
                 />
             </tbody>
@@ -108,7 +117,6 @@ import CanonButton from '../Button/Button';
 //import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
-        label: '<b>WCAG AAA</b>',
         value: 'aaa',
         html: '<b>WCAG AAA</b>',
     },
@@ -135,6 +143,7 @@ export default {
             a11yLevel: 'aa',
             showFailures: true,
             showText: true,
+            showContrastRatio: true,
             showSettings: false,
         };
     },
