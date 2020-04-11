@@ -16,7 +16,7 @@
             <form
                 v-show="showSettings"
                 id="palette-settings"
-                class="canon-palette__settings canon-layout --tube --readable"
+                class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact"
             >
                 <canon-radio-button-list
                     id="howAccessible"
@@ -90,14 +90,44 @@
             <h2>Requirements for {{ conformanceLevel }}</h2>
             <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
             <ul v-show="a11yLevel === 'aa'">
-                <li><canon-icon icon-name="large-bold-text" />Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.</li>
-                <li>Text that is smaller than 24px: <strong>4.5:1</strong>.</li>
-                <li>Interactive UI components and essential graphical elements: <strong>3:1</strong>.</li>
+                <li>
+                    <canon-icon
+                        icon-name="large-bold-text"
+                        class="pr1"
+                    />Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.
+                </li>
+                <li>
+                    <canon-icon
+                        icon-name="smile"
+                        class="pr1"
+                    />Text that is smaller than 24px: <strong>4.5:1</strong>.
+                </li>
+                <li>
+                    <canon-icon
+                        icon-name="interactive"
+                        class="pr1"
+                    />Interactive UI components and essential graphical elements: <strong>3:1</strong>.
+                </li>
             </ul>
             <ul v-show="a11yLevel === 'aaa'">
-                <li>Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.</li>
-                <li>Text that is smaller than 24px: <strong>7:1</strong>.</li>
-                <li>Interactive UI components and essential graphical elements: <strong>3:1</strong> </li>
+                <li>
+                    <canon-icon
+                        icon-name="large-bold-text"
+                        class="pr1"
+                    />Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.
+                </li>
+                <li>
+                    <canon-icon
+                        icon-name="smile"
+                        class="pr1"
+                    />Text that is smaller than 24px: <strong>7:1</strong>.
+                </li>
+                <li>
+                    <canon-icon
+                        icon-name="interactive"
+                        class="pr1"
+                    />Interactive UI components and essential graphical elements: <strong>3:1</strong>
+                </li>
             </ul>
         </div>
     </div>
@@ -114,16 +144,16 @@ import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
 import CanonCheckbox from '../Checkbox/Checkbox';
 import CanonButton from '../Button/Button';
+import CanonForm from '../Form/Form';
 //import CanonCheckbox from '../'
 const a11yLevelOptions = [
     {
+        label: 'WCAG AAA',
         value: 'aaa',
-        html: '<b>WCAG AAA</b>',
     },
     {
         label: 'WCAG AA',
         value: 'aa',
-
     },
 ];
 export default {

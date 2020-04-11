@@ -24,4 +24,9 @@
             margin-top: $space;
         }
     }
+    &.--auto-flow-compact {
+        > * + * {
+            margin-top: $space/2;
+        }
+    }
 }

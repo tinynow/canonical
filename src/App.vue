@@ -2,9 +2,9 @@
 <div
     id="app"
 >
-    <header>
+    <header class="flex flex-wrap">
         <span class="canon-logo canon db pa1">canonical</span>
-        <nav class="canon-c-site-nav--simple">
+        <nav class="canon-c-site-nav--simple mr0 mlauto flex items-center pa1">
             <router-link to="/">
                 Home
             </router-link>
@@ -62,10 +62,6 @@ $brand--primary: color(gray--5);
 }
 
 .canon-c-site-nav--simple {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    padding: $space/4 5% $space/4 $space/4;
     background: color(gray--1);
 }
 
