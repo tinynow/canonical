@@ -33,7 +33,19 @@
         >
             <slot name="prefix" />
         </div>
+        <textarea
+            v-if="type === 'textarea'"
+            :id="uid"
+            ref="input"
+            :key="uid"
+            class="canon-field__input"
+            :value="value"
+            v-bind="$attrs"
+            @input="input"
+            v-on="listeners"
+        />
         <input
+            v-else
             :id="uid"
             ref="input"
             :key="uid"
@@ -86,6 +98,7 @@ export default {
             validator(val) {
                 const valid = [
                     'text',
+                    'textarea',
                     'tel',
                     'email',
                     'password',

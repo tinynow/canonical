@@ -53,16 +53,11 @@ $brand--primary: color(gray--5);
     box-shadow: 1px 4px 8px -3px hsla(0, 0, 0, 0.5);
 }
 .canon-logo {
-    padding: $space/4 $space*3;
-    background: $brand--primary;
-    color: color(gray--1);
+    padding: $space/2;
     letter-spacing: 2px;
     font-weight: 600;
     @include type-setting(2);
 }
 
-.canon-c-site-nav--simple {
-    background: color(gray--1);
-}
 
 </style>

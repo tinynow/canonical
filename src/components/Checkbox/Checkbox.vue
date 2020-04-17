@@ -12,7 +12,9 @@
         :for="uid"
         class="canon-c-checkbox__label"
     >
-        <span class="canon-c-checkbox__label-text">{{ label }}</span>
+        <span class="canon-c-checkbox__label-text">
+            <slot name="label">{{ label }}</slot>
+        </span>
     </label>
 </div>
 </template>

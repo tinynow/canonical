@@ -25,6 +25,7 @@
         }
     }
     &.--auto-flow-compact {
+        line-height: 1.25;
         > * + * {
             margin-top: $space/2;
         }

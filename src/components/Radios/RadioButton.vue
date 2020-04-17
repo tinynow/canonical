@@ -10,6 +10,7 @@
         @change="onChange"
     >
     <label 
+        v-if="label"
         :for="uid"
         class="canon-c-radio__label"
     >

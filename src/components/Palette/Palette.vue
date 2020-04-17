@@ -1,49 +1,62 @@
 <template>
 <div>
-    <form class="canon-palette__settings-container">
-        <canon-button
-            class="canon-palett__settings-toggle"
-            aria-controls="palette-settings"
-            :aria-expanded="showSettings.toString()"
-            @click="showSettings = !showSettings"
-        >
-            <canon-icon
-                icon-name="settings"
-                alt="Settings"
-            />
-        </canon-button>
-        <canon-revealer>
-            <form
-                v-show="showSettings"
-                id="palette-settings"
-                class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact"
+    <div class="flex canon-layout --tube">
+        <div class="pt3">
+            <canon-field
+                type="textarea"
+                @input="onPasteInput"
             >
-                <canon-radio-button-list
-                    id="howAccessible"
-                    label="Accessiblity Level"
-                    :options="a11yLevelOptions"
-                    name="level"
-                    :value="a11yLevel"
-                    @change="e => a11yLevel = e"
-                />
-                <canon-checkbox
-                    v-model="showText"
-                    label="Show text labels"
-                />
-                <canon-checkbox
-                    v-model="showFailures"
-                    label="Show non-passing combinations"
-                />
-                <canon-checkbox
-                    v-model="showContrastRatio"
-                    label="Show contrast ratios"
-                />
-            </form>
-        </canon-revealer>
-    </form>
-    <div 
-        class="canon-palette__controls canon-layout --tube --readable"
-    />
+                <span slot="label">Paste your colors</span>
+                <p slot="after">
+                    Paste a JSON object with keys as color names and values as CSS colors.
+                </p>
+            </canon-field>
+        </div>
+
+        <div class="mr0 mlauto tr overflow-hidden">
+            <canon-button
+                class="canon-palette__settings-toggle inline-flex items-center"
+                aria-controls="palette-settings"
+                :aria-expanded="showSettings.toString()"
+                @click="showSettings = !showSettings"
+            >
+                <canon-icon
+                    icon-name="settings"
+                    class="mr1"
+                />Settings
+            </canon-button>
+            <transition name="slide-from-right">
+                <form
+                    v-show="showSettings"
+                    id="palette-settings"
+                    class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact tl"
+                >
+                    <canon-radio-button-list
+                        id="howAccessible"
+                        label="Accessiblity Level"
+                        :options="a11yLevelOptions"
+                        name="level"
+                        :value="a11yLevel"
+                        @change="e => a11yLevel = e"
+                    />
+                    <canon-checkbox
+                        v-model="showText"
+                        label="Show text labels"
+                    />
+                    <canon-checkbox
+                        v-model="showFailures"
+                        label="Show non-passing combinations"
+                    />
+                    <canon-checkbox
+                        v-model="showContrastRatio"
+                        label="Show contrast ratios"
+                    />
+                </form>
+            </transition>
+        </div>
+    </div>
+
+
     <div class="canon-c-color-matrix overflow-x-scroll">
         <table class="mw-100 w-100">
             <thead>
@@ -51,9 +64,7 @@
                     <th
                         scope="col"
                         class="reset-border"
-                    >
-                        Color
-                    </th>
+                    />
                     <th
                         v-for="(value, name) in colors"
                         :key="value"
@@ -145,7 +156,8 @@ import CanonIcon from '../Icon/Icon';
 import CanonCheckbox from '../Checkbox/Checkbox';
 import CanonButton from '../Button/Button';
 import CanonForm from '../Form/Form';
-//import CanonCheckbox from '../'
+import CanonField from '../Inputs/InputField';
+
 const a11yLevelOptions = [
     {
         label: 'WCAG AAA',
@@ -164,11 +176,11 @@ export default {
         CanonIcon,
         CanonButton,
         CanonCheckbox,
+        CanonField,
     },
     data() {
         return {
             colors: colors,
-            colorMatrix: [],
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
             showFailures: true,
@@ -181,12 +193,7 @@ export default {
         conformanceLevel() {
             return this.a11yLevel.toUpperCase();
         },
-    },
-    mounted() {
-        this.colorMatrix = this.setColorMatrix();
-    },
-    methods: {
-        setColorMatrix() {
+        colorMatrix() {
             const computeSwatchData = ([ name, value ]) => ({
                 name,
                 value,
@@ -202,6 +209,16 @@ export default {
             };
             const swatches = Object.entries(this.colors).map(computeSwatchData);
             return swatches.map(computeSwatchContrasts);
+        },
+    },
+    methods: {
+        onPasteInput(event) {
+            try {
+                this.colors = JSON.parse(event.target.value.trim());
+            } catch (e) {
+                this.showBadPasteError = true;
+            }
+            
         },
     },
 };
@@ -233,4 +250,15 @@ th, td {
     transform-origin: 50% 50%;
     transform: rotateZ(-90deg);
 }
+
+.canon-palette__settings-toggle {
+    svg {
+        transition: transform .2s ease;
+        transform: rotateZ(-1turn);
+    }
+    &[aria-expanded="true"] svg {
+        transform: rotateZ(0);
+    }
+}
+
 </style>
