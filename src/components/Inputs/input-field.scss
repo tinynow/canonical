@@ -9,8 +9,8 @@
     .--hasFocusWithin {
         outline: 3px double var(--outline__focus);
         outline-offset: 2px;
-        outline-radius: 4px; //TODO: does autoprefixer handle this?
-        -moz-outline-radius: 4px;
+        outline-radius: 6px; //TODO: does autoprefixer handle this?
+        -moz-outline-radius: 6px;
     }
 }
 .canon-field__label-slot {

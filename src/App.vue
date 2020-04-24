@@ -2,24 +2,18 @@
 <div
     id="app"
 >
-    <header class="flex flex-wrap">
-        <span class="canon-logo canon db pa1">canonical</span>
-        <nav class="canon-c-site-nav--simple mr0 mlauto flex items-center pa1">
+    <header class="canon-site-header flex flex-wrap canon-layout --tube">
+        <span class="canon-logo canon db pv1">
             <router-link to="/">
-                Home
+                canonical
             </router-link>
+        </span>
+        <nav class="canon-c-site-nav--simple mr0 mlauto flex items-center pa1">
             <router-link 
                 to="/palette"
                 class="ml2"
             >
-                Palette
-            </router-link>
-
-            <router-link
-                to="/docs"
-                class="ml2"
-            >
-                Documentation
+                Color Palette Contrast Tool
             </router-link>
         </nav>
     </header>
@@ -51,6 +45,14 @@ $brand--primary: color(gray--5);
 
 .canonical-card {
     box-shadow: 1px 4px 8px -3px hsla(0, 0, 0, 0.5);
+}
+
+.canon-site-header {
+    background-color: color(gray--5);
+    a {
+        color: color(yellow--3);
+        text-decoration: none;
+    }
 }
 .canon-logo {
     padding: $space/2;

@@ -1,6 +1,7 @@
 <template>
 <div>
     <div class="flex canon-layout --tube">
+        {{ colors }}
         <div class="pt3">
             <canon-field
                 type="textarea"
@@ -8,11 +9,10 @@
             >
                 <span slot="label">Paste your colors</span>
                 <p slot="after">
-                    Paste a JSON object with keys as color names and values as CSS colors.
+                    Paste your colors.
                 </p>
             </canon-field>
         </div>
-
         <div class="mr0 mlauto tr overflow-hidden">
             <canon-button
                 class="canon-palette__settings-toggle inline-flex items-center"
@@ -57,9 +57,9 @@
     </div>
 
 
-    <div class="canon-c-color-matrix overflow-x-scroll">
+    <div class="canon-c-color-matrix">
         <table class="mw-100 w-100">
-            <thead>
+            <!-- <thead>
                 <tr class="tc">
                     <th
                         scope="col"
@@ -79,7 +79,7 @@
                         </div>
                     </th>
                 </tr>
-            </thead>
+            </thead>     -->
             <tbody>
                 <canon-swatch
                     v-for="item in colorMatrix"
@@ -146,7 +146,8 @@
 </template>
 
 <script>
-import colors from '../../styles/00_settings/defaults.scss';
+// import colors from '../../styles/00_settings/defaults.scss';
+import themeColors from '../../styles/00_settings/theme.scss';
 import convertToRgb from './../../utils/color/convertToRgb';
 import getWcagContrast from './../../utils/color/getWcagContrast';
 
@@ -180,7 +181,7 @@ export default {
     },
     data() {
         return {
-            colors: colors,
+            colors: themeColors,
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
             showFailures: true,
@@ -214,7 +215,15 @@ export default {
     methods: {
         onPasteInput(event) {
             try {
-                this.colors = JSON.parse(event.target.value.trim());
+                const parsed = JSON.parse(event.target.value.trim());
+                if (Array.isArray(parsed)) {
+                    this.colors = parsed.reduce((result, item) => {
+                        result.item = item;
+                    }, {});
+                } else if (typeof parsed === 'object') {
+                    this.colors = parsed;
+                }
+
             } catch (e) {
                 this.showBadPasteError = true;
             }

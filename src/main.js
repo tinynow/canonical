@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Home from './pages/Home.vue';
-import Docs from './pages/Docs.vue';
+// import Docs from './pages/Docs.vue';
 import PaletteDemo from './pages/PaletteDemo.vue';
-import MegaMenu from './components/MegaMenu';
+// import MegaMenu from './components/MegaMenu';
 import store from './store';
 import Router from 'vue-router';
 import VueCompositionApi from '@vue/composition-api';
@@ -16,13 +16,6 @@ Vue.config.productionTip = false;
 
 const routes = [
     { path: '/', component: Home},
-    {
-        path: '/docs',
-        component: Docs,
-        children: [
-            {path: 'mega-menu', component: MegaMenu},
-        ],
-    },
     { path: '/palette', component: PaletteDemo},
 ];
 const router = new Router({

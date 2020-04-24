@@ -69,11 +69,11 @@ $colors: (
     @return deep-map-get($colors, $color);
 };
 
-:export{
-    @each $color, $value in map-get($colors, options) {
-        #{$color}: $value;
-    }
-}
+// :export{
+//     @each $color, $value in map-get($colors, options) {
+//         #{$color}: $value;
+//     }
+// }
 
 html {
     //TODO: remove this and only expose functional color vars
