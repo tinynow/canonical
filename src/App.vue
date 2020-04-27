@@ -17,7 +17,7 @@
             </router-link>
         </nav>
     </header>
-    <main>
+    <main class="mw-100">
         <router-view />
     </main>
 </div>

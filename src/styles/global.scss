@@ -7,7 +7,7 @@
 
 @import './03_contexts/layout.scss';
 
-/* utility classes via tacyhons: https://github.com/tinynow/tachyons with slight modification */
+/* utility classes via tachyons: https://github.com/tinynow/tachyons with slight modification */
 @import '05_utilities/display.scss';
 @import '05_utilities/flex.scss';
 @import '05_utilities/floats.scss';
@@ -26,6 +26,8 @@
 @import './05_utilities/border-radius.scss';
 @import './05_utilities/height.scss';
 @import './05_utilities/font-weight.scss';
+@import './05_utilities/debug.scss';
+@import './05_utilities/box-shadows.scss';
 
 
 @import './04_components/transitions.scss';

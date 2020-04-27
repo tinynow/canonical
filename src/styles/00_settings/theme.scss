@@ -29,7 +29,9 @@ $birdRegionColors: (
     'southern-evergreen': hsl(16, 50%, 50%),
     'mexican-pine-and-pine-oak': hsl(342, 30%, 58%),
     'tropical-areas-combined': hsl(226, 29%, 37%),
-    'montane-woodland': hsl(50, 21%, 21%)
+    'montane-woodland': hsl(50, 21%, 21%),
+    'gray--5': map-get($map: $colorOptions, $key: gray--5 ),
+    'white': white,
 );
 
 :export{

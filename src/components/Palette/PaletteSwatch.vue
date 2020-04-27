@@ -1,88 +1,96 @@
 <template>
 <tr
-    class="canon-swatch"
+    class="canon-swatch h100"
 >
     <th
         scope="row"
-        class="flex canon-color-matrix__col-header"
+        class="canon-color-matrix__col-header canon-color-matrix__cell flex flex-column h100 tl"
+        :style="{ backgroundColor: color }"
     >
-        <span class="canon-swatch__color-label db normal flex-grow-1">
-            {{ name }}
-        </span>
-        <span
-            class="pl2"
-            :style="{ backgroundColor: color }"
-        />
+        <div class="canon-swatch__color-label normal ma1 ph1 shadow-1">
+            <span class="db canon-u-compact--1">{{ name }}</span>
+            <span class="canon-u-type--0">{{ color }}</span>
+        </div>
     </th>
     <td
         v-for="(contrast, index) in contrasts"
         :key="colors[index].name"
+        class="canon-color-matrix__cell"
+        :class="isNotSafe(contrast) && !showFailures ? 'dn' : null"
     >
         <div
-            v-show="isNotSafe(contrast) && showFailures"
-            class="flex flex-column items-center justify-center pa1"
-        >
-            <!-- Under 3 not good for anything -- using default safe colors-->
-            <canon-icon
-                icon-name="do-not"
-                icon-width="30px"
-                icon-height="30px"
-                icon-stroke="currentColor"
-            />
-            <span
-                class="canon-u-compact--0 tc"
-                :class="showText ? null : 'visually-hidden'"
-            >
-                {{ message(contrast) }}
-            </span>
-            <span v-if="showContrastRatio">{{ contrast.toFixed(2) }}</span>
-        </div>
-        
-        <div
-            v-show="!isNotSafe(contrast)"
-            :style="{ backgroundColor: colors[index].value, color: color }"
             
-            class="h100 flex flex-column items-center justify-center pa1"
+            class="flex flex-column pa2 h100"
+            :style="isNotSafe(contrast) ? null : { backgroundColor: colors[index].value, color: color}"
         >
-            <!-- over 3 - use color scheme colors -->
-            <div class="flex">
+            <template v-if="isNotSafe(contrast) && showFailures">
+                <!-- Under 3 not good for anything -- using default safe colors-->
                 <canon-icon
-                    v-show="showInteractive(contrast)"
-                    icon-name="interactive"
+                    icon-name="do-not"
                     icon-width="30px"
                     icon-height="30px"
                     icon-stroke="currentColor"
-                    :icon-fill="colors[index].value"
                 />
-
-                <canon-icon
-                    v-show="showLarge(contrast)"
-                    icon-name="large-bold-text"
-                    icon-width="30px"
-                    icon-height="30px"
-                    icon-fill="currentColor"
-                    stroke-width="0"
-                />
-
-                <!-- over 7 everyones happy -->
-
-                <canon-icon
-                    v-show="isSafe(contrast)"
-                    icon-name="smile"
-                    icon-width="30px"
-                    icon-height="30px"
-                />
-            </div>
-            <span
-                class="canon-u-compact--0 tc"
-                :class="{
-                    'canon-u-compact--1': showLarge(contrast),
-                    'visually-hidden': !showText,
-                }"
+                <span
+                    class="canon-u-compact--0"
+                    :class="showText ? null : 'visually-hidden'"
+                >
+                    {{ message(contrast) }}
+                </span>
+                <span v-if="showContrastRatio">{{ contrast.toFixed(2) }}</span>
+            </template>
+        
+            <template
+                v-if="!isNotSafe(contrast)"
             >
-                {{ message(contrast) }}
-            </span>
-            <span v-if="showContrastRatio">{{ contrast.toFixed(2) }}</span>
+                <!-- over 3 - use color scheme colors -->
+                <div class="flex">
+                    <canon-icon
+                        v-if="showInteractive(contrast)"
+                        key="interactiveIcon"
+                        icon-name="interactive"
+                        icon-width="30px"
+                        icon-height="30px"
+                        icon-stroke="currentColor"
+                        :icon-fill="colors[index].value"
+                    />
+
+                    <canon-icon
+                        v-if="showLarge(contrast)"
+                        key="largeBoldIcon"
+                        icon-name="large-bold-text"
+                        icon-width="30px"
+                        icon-height="30px"
+                        icon-fill="currentColor"
+                        stroke-width="0"
+                    />
+
+                    <!-- over 7 everyones happy -->
+
+                    <canon-icon
+                        v-if="isSafe(contrast)"
+                        key="smileIcon"
+                        icon-name="smile"
+                        icon-width="30px"
+                        icon-height="30px"
+                    />
+                </div>
+                <span
+                    class="canon-u-compact--0"
+                    :class="{
+                        'canon-u-compact--1': showLarge(contrast) || showInteractive(contrast),
+                        'visually-hidden': !showText,
+                    }"
+                >
+                    {{ message(contrast) }}
+                </span>
+                <div class="mtauto mb0 pt2">
+                    <span class="canon-u-compact--0 db">{{ colors[index].name }}</span>
+                    <span
+                        v-if="showContrastRatio"
+                    >{{ contrast.toFixed(2) }}</span>
+                </div>
+            </template>
         </div>
     </td>
 </tr>
@@ -151,9 +159,9 @@ export default {
                 'large': 24,
             },
             messages: {
-                ok: 'Use for anything.',
-                uiOnly: 'Use for interface elements only.',
-                largeText: 'Use for large or bold text or interface elements only.',
+                ok: 'Anything.',
+                uiOnly: 'Interface elements.',
+                largeText: 'Large, bold text, interface elements.',
                 fail: 'Do not use at all.',
             },
         };

@@ -1,65 +1,76 @@
 <template>
-<div>
-    <div class="flex canon-layout --tube">
-        {{ colors }}
-        <div class="pt3">
-            <canon-field
-                type="textarea"
-                @input="onPasteInput"
+<div class="canon-layout --tube">
+    <div>
+        <h1>You can use</h1>
+        <div>
+            <div
+                class=" overflow-visible"
             >
-                <span slot="label">Paste your colors</span>
-                <p slot="after">
-                    Paste your colors.
-                </p>
-            </canon-field>
-        </div>
-        <div class="mr0 mlauto tr overflow-hidden">
-            <canon-button
-                class="canon-palette__settings-toggle inline-flex items-center"
-                aria-controls="palette-settings"
-                :aria-expanded="showSettings.toString()"
-                @click="showSettings = !showSettings"
-            >
-                <canon-icon
-                    icon-name="settings"
-                    class="mr1"
-                />Settings
-            </canon-button>
-            <transition name="slide-from-right">
-                <form
-                    v-show="showSettings"
-                    id="palette-settings"
-                    class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact tl"
+                <canon-button
+                    class="canon-palette__settings-toggle inline-flex items-center pv2 ph0"
+                    aria-controls="palette-settings"
+                    :aria-expanded="showSettings.toString()"
+                    @click="showSettings = !showSettings"
                 >
-                    <canon-radio-button-list
-                        id="howAccessible"
-                        label="Accessiblity Level"
-                        :options="a11yLevelOptions"
-                        name="level"
-                        :value="a11yLevel"
-                        @change="e => a11yLevel = e"
-                    />
-                    <canon-checkbox
-                        v-model="showText"
-                        label="Show text labels"
-                    />
-                    <canon-checkbox
-                        v-model="showFailures"
-                        label="Show non-passing combinations"
-                    />
-                    <canon-checkbox
-                        v-model="showContrastRatio"
-                        label="Show contrast ratios"
-                    />
-                </form>
-            </transition>
+                    <canon-icon
+                        icon-name="settings"
+                        class="mr1"
+                    />Settings
+                </canon-button>
+                <transition name="slide-from-left">
+                    <form
+                        v-show="showSettings"
+                        id="palette-settings"
+                        class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact tl pb4 shadow-1"
+                    >
+                        <div class="pt3 canon-layout --readable">
+                            <canon-field
+                                type="textarea"
+                                :value="JSON.stringify(colors)"
+                                @input="onPasteInput"
+                            >
+                                <span slot="label">Paste your colors</span>
+                                <div slot="after">
+                                    <p>Paste a valid JSON array of colors, or an object with color names as keys.</p>
+                                    <p>Example: <code><pre>{ "red": "#F11", "white": "hsl(0,100%,100%)"}</pre></code></p>
+                                    {{ showBadPasteError ? '' : null }}
+                                </div>
+                            </canon-field>
+                        </div>
+                        <canon-radio-button-list
+                            id="howAccessible"
+                            label="Accessiblity Level"
+                            :options="a11yLevelOptions"
+                            name="level"
+                            :value="a11yLevel"
+                            @change="e => a11yLevel = e"
+                        />
+                        <canon-checkbox
+                            v-model="showText"
+                            label="Show text labels"
+                        />
+                        <canon-checkbox
+                            v-model="showFailures"
+                            label="Show non-passing combinations"
+                        />
+                        <canon-checkbox
+                            v-model="showContrastRatio"
+                            label="Show contrast ratios"
+                        />
+                    </form>
+                </transition>
+            </div>
         </div>
     </div>
 
 
-    <div class="canon-c-color-matrix">
-        <table class="mw-100 w-100">
-            <!-- <thead>
+    <div
+        class="canon-color-matrix mw-100 overflow-x-auto"
+    >
+        <table class="canon-color-matrix__table h100">
+            <thead 
+                :class="showFailures ? null : 'visually-hidden'"
+            >
                 <tr class="tc">
                     <th
                         scope="col"
@@ -79,8 +90,8 @@
                         </div>
                     </th>
                 </tr>
-            </thead>     -->
-            <tbody>
+            </thead>
+            <tbody class="h100">
                 <canon-swatch
                     v-for="item in colorMatrix"
                     :id="item.name"
@@ -97,50 +108,50 @@
                 />
             </tbody>
         </table>
-        <div class="canon-layout --tube --spacious --readable">
-            <h2>Requirements for {{ conformanceLevel }}</h2>
-            <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
-            <ul v-show="a11yLevel === 'aa'">
-                <li>
-                    <canon-icon
-                        icon-name="large-bold-text"
-                        class="pr1"
-                    />Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.
-                </li>
-                <li>
-                    <canon-icon
-                        icon-name="smile"
-                        class="pr1"
-                    />Text that is smaller than 24px: <strong>4.5:1</strong>.
-                </li>
-                <li>
-                    <canon-icon
-                        icon-name="interactive"
-                        class="pr1"
-                    />Interactive UI components and essential graphical elements: <strong>3:1</strong>.
-                </li>
-            </ul>
-            <ul v-show="a11yLevel === 'aaa'">
-                <li>
-                    <canon-icon
-                        icon-name="large-bold-text"
-                        class="pr1"
-                    />Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.
-                </li>
-                <li>
-                    <canon-icon
-                        icon-name="smile"
-                        class="pr1"
-                    />Text that is smaller than 24px: <strong>7:1</strong>.
-                </li>
-                <li>
-                    <canon-icon
-                        icon-name="interactive"
-                        class="pr1"
-                    />Interactive UI components and essential graphical elements: <strong>3:1</strong>
-                </li>
-            </ul>
-        </div>
+    </div>
+    <div class="canon-layout --tube --spacious --readable">
+        <h2>Requirements for {{ conformanceLevel }}</h2>
+        <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
+        <ul v-show="a11yLevel === 'aa'">
+            <li>
+                <canon-icon
+                    icon-name="large-bold-text"
+                    class="pr1"
+                />Text that is 24px and larger, or 19px and larger if bold: <strong>3:1</strong>.
+            </li>
+            <li>
+                <canon-icon
+                    icon-name="smile"
+                    class="pr1"
+                />Text that is smaller than 24px: <strong>4.5:1</strong>.
+            </li>
+            <li>
+                <canon-icon
+                    icon-name="interactive"
+                    class="pr1"
+                />Interactive UI components and essential graphical elements: <strong>3:1</strong>.
+            </li>
+        </ul>
+        <ul v-show="a11yLevel === 'aaa'">
+            <li>
+                <canon-icon
+                    icon-name="large-bold-text"
+                    class="pr1"
+                />Text that is 24px and larger, or 19px and larger if bold: <strong>4.5:1</strong>.
+            </li>
+            <li>
+                <canon-icon
+                    icon-name="smile"
+                    class="pr1"
+                />Text that is smaller than 24px: <strong>7:1</strong>.
+            </li>
+            <li>
+                <canon-icon
+                    icon-name="interactive"
+                    class="pr1"
+                />Interactive UI components and essential graphical elements: <strong>3:1</strong>
+            </li>
+        </ul>
     </div>
 </div>
 </template>
@@ -184,10 +195,11 @@ export default {
             colors: themeColors,
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
-            showFailures: true,
+            showFailures: false,
             showText: true,
             showContrastRatio: true,
             showSettings: false,
+            showBadPasteError: false,
         };
     },
     computed: {
@@ -213,16 +225,22 @@ export default {
         },
     },
     methods: {
-        onPasteInput(event) {
+        onPasteInput(value) {
             try {
-                const parsed = JSON.parse(event.target.value.trim());
+                const parsed = JSON.parse(value.trim());
+                console.log(parsed)
                 if (Array.isArray(parsed)) {
-                    this.colors = parsed.reduce((result, item) => {
-                        result.item = item;
+                    const colorObject = parsed.reduce((result, item) => {
+                        result[item] = item;
+                        return result;
                     }, {});
+                    console.log(colorObject);
+
+                    this.colors = colorObject;
                 } else if (typeof parsed === 'object') {
                     this.colors = parsed;
                 }
+                this.showBadPasteError = false;
 
             } catch (e) {
                 this.showBadPasteError = true;
@@ -234,19 +252,11 @@ export default {
 </script>
 <style lang="scss">
 //TODO: don't forget to normalize/abstract/organize styles
-table {
-    height: 100%;
-}
-th, td {
-    position: relative;
-    height: 100%;
-    border: 1px solid var(--gray--1);
-}
-.canon-c-color-matrix table {
-    border-collapse: separate
-}
 .canon-color-matrix__col-header {
     border: none;
+    &[scope="row"] {
+        min-width: 8rem;
+    }
     &[scope="col"] {
         height: $space*5;
         text-align: left;
@@ -259,7 +269,13 @@ th, td {
     transform-origin: 50% 50%;
     transform: rotateZ(-90deg);
 }
-
+.canon-swatch__color-label {
+    background-color: white;
+}
+.canon-palette__settings {
+    position: absolute;
+    background-color: white;
+}
 .canon-palette__settings-toggle {
     svg {
         transition: transform .2s ease;
