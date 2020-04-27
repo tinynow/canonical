@@ -5,6 +5,8 @@
     @include border-radius(1);
     @include neu-shadow();
     border:  1px solid var(--border__control);
+    margin-top: 5px;//room for focus ring
+
     &:focus-within,
     .--hasFocusWithin {
         outline: 3px double var(--outline__focus);
@@ -13,6 +15,7 @@
         -moz-outline-radius: 6px;
     }
 }
+
 .canon-field__label-slot {
     font-size: type-scale(2);
 }
@@ -30,7 +33,7 @@
     appearance: none;
     outline: none;
     &:-moz-ui-invalid {
-        box-shadow: none;
+        box-shadow: none; //hide default invalid red border
     }
     &:focus {
 
@@ -38,4 +41,7 @@
 }
 .canon-field__prefix {
     padding-left: 8px;
+}
+.canon-field__after {
+    margin-top: 5px;
 }
