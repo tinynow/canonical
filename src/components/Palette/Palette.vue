@@ -1,65 +1,63 @@
 <template>
 <div class="canon-layout --tube">
-    <div>
+    <div class="flex">
         <h1>You can use</h1>
-        <div>
-            <div
-                class=" overflow-visible"
+        <div class="mr0 mlauto">
+            <canon-button
+                class="canon-palette__settings-toggle inline-flex items-center pv2 ph0"
+                aria-controls="palette-settings"
+                :aria-expanded="showSettings.toString()"
+                @click="showSettings = !showSettings"
             >
-                <canon-button
-                    class="canon-palette__settings-toggle inline-flex items-center pv2 ph0"
-                    aria-controls="palette-settings"
-                    :aria-expanded="showSettings.toString()"
-                    @click="showSettings = !showSettings"
+                <canon-icon
+                    icon-name="settings"
+                    class="mr1"
+                />Settings
+            </canon-button>
+            <transition name="slide-from-right">
+                <form
+                    v-show="showSettings"
+                    id="palette-settings"
+                    class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact tl pb4 shadow-1"
                 >
-                    <canon-icon
-                        icon-name="settings"
-                        class="mr1"
-                    />Settings
-                </canon-button>
-                <transition name="slide-from-left">
-                    <form
-                        v-show="showSettings"
-                        id="palette-settings"
-                        class="canon-palette__settings canon-layout --tube --readable --auto-flow-compact tl pb4 shadow-1"
-                    >
-                        <div class="pt3 canon-layout --readable">
-                            <canon-field
-                                type="textarea"
-                                :value="JSON.stringify(colors)"
-                                @input="onPasteInput"
-                            >
-                                <span slot="label">Paste your colors</span>
-                                <div slot="after">
-                                    <p>Paste a valid JSON array of colors, or an object with color names as keys.</p>
-                                    <p>Example: <code><pre>{ "red": "#F11", "white": "hsl(0,100%,100%)"}</pre></code></p>
-                                    {{ showBadPasteError ? '' : null }}
-                                </div>
-                            </canon-field>
-                        </div>
-                        <canon-radio-button-list
-                            id="howAccessible"
-                            label="Accessiblity Level"
-                            :options="a11yLevelOptions"
-                            name="level"
-                            :value="a11yLevel"
-                            @change="e => a11yLevel = e"
-                        />
-                        <canon-checkbox
-                            v-model="showText"
-                            label="Show text labels"
-                        />
-                        <canon-checkbox
-                            v-model="showFailures"
-                            label="Show non-passing combinations"
-                        />
-                        <canon-checkbox
-                            v-model="showContrastRatio"
-                            label="Show contrast ratios"
-                        />
-                    </form>
-                </transition>
-            </div>
+                    <div class="pt3 canon-layout --readable">
+                        <canon-field
+                            type="textarea"
+                            :value="JSON.stringify(colors)"
+                            @input="onPasteInput"
+                        >
+                            <span slot="label">Paste your colors</span>
+                            <div slot="after">
+                                <p>Paste a valid JSON array of colors, or an object with color names as keys.</p>
+                                <p class="mt1">
+                                    Example: <code><pre>{ "red": "#F11", "white": "hsl(0,100%,100%)"}</pre></code>
+                                </p>
+                                {{ showBadPasteError ? '' : null }}
+                            </div>
+                        </canon-field>
+                    </div>
+                    <canon-radio-button-list
+                        id="howAccessible"
+                        label="Accessiblity Level"
+                        :options="a11yLevelOptions"
+                        name="level"
+                        :value="a11yLevel"
+                        @change="e => a11yLevel = e"
+                    />
+                    <canon-checkbox
+                        v-model="showText"
+                        label="Show text labels"
+                    />
+                    <canon-checkbox
+                        v-model="showFailures"
+                        label="Show non-passing combinations"
+                    />
+                    <canon-checkbox
+                        v-model="showContrastRatio"
+                        label="Show contrast ratios"
+                    />
+                </form>
+            </transition>
         </div>
     </div>
 
@@ -71,7 +69,7 @@
             <thead 
                 :class="showFailures ? null : 'visually-hidden'"
             >
-                <tr class="tc">
+                <tr class="canon-color-matrix__tr">
                     <th
                         scope="col"
                         class="reset-border"
@@ -269,11 +267,20 @@ export default {
     transform-origin: 50% 50%;
     transform: rotateZ(-90deg);
 }
+.canon-color-matrix__tr {
+    border-bottom: 1px solid #ddd;
+}
+
+
 .canon-swatch__color-label {
     background-color: white;
+    color: initial;
 }
 .canon-palette__settings {
+    width: $space*12;
+    right: 0;
     position: absolute;
+    z-index: 1;
     background-color: white;
 }
 .canon-palette__settings-toggle {

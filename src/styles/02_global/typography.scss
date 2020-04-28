@@ -10,6 +10,7 @@ $font-weight-bold: 800;
 $font-weight-light: 200;
 
 $type-scale: (
+    xs: .75rem,
     sm: .8rem, //16px
     0: 1rem, //20px
     1: 1.25rem, //25px
@@ -28,6 +29,7 @@ $type-scale: (
 * Vertical rhythm
 */
 $line-heights: (
+    xs: 1.2,
     sm: $space * 0.7,
     0: $space,
     1: $space,
@@ -38,10 +40,11 @@ $line-heights: (
     6: $space * 3,
 );
 $compact-line-heights: (
+    xs: 1.2,
     sm: $space * 0.5,
-    0: $space * 0.5,
+    0: 1.2,
     1: 1,
-    2: $space,
+    2: 1,
     3: $space * 1.5,
     4: $space * 2.25,
     5: $space * 2.25,
