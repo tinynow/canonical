@@ -3,11 +3,16 @@
     id="app"
 >
     <header class="canon-site-header flex flex-wrap canon-layout --tube">
-        <span class="canon-logo canon db pv1">
-            <router-link to="/">
-                canonical
+        <div class="canon-logo pv1">
+            <router-link
+                to="/"
+            >
+                <span>matt kreiling</span>
             </router-link>
-        </span>
+            <p class="canon-u-type--1">
+                Principled design and development.
+            </p>
+        </div>
         <nav class="canon-c-site-nav--simple mr0 mlauto flex items-center pa1">
             <router-link 
                 to="/palette"
@@ -57,8 +62,14 @@ $brand--primary: color(gray--5);
 .canon-logo {
     padding: $space/2;
     letter-spacing: 2px;
+    color: var(--gray--1);
+   a {
     font-weight: 600;
     @include type-setting(2);
+   }
+   *::selection {
+       background-color: #111;
+   }
 }
 
 

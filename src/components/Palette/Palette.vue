@@ -28,7 +28,7 @@
                         >
                             <span slot="label">Paste your colors</span>
                             <div slot="after">
-                                <p>Paste a valid JSON array of colors, or an object with color names as keys.</p>
+                                <p>Paste a valid JSON array of colors, or an object with color names as keys. Colors must be hex,rgb, or hsl format.</p>
                                 <p class="mt1">
                                     Example: <code><pre>{ "red": "#F11", "white": "hsl(0,100%,100%)"}</pre></code>
                                 </p>
@@ -60,10 +60,14 @@
             </transition>
         </div>
     </div>
+    <div class="canon-layout --auto-flow --readable">
+        <p>Give me set of CSS colors, what WCAG level of conformance you adhere to, and I will let you know which colors you can use and when. Open settings to begin.</p>
+    </div>
+
 
 
     <div
-        class="canon-color-matrix mw-100 overflow-x-auto"
+        class="canon-color-matrix mw-100 overflow-x-auto mt3"
     >
         <table class="canon-color-matrix__table h100">
             <thead 
