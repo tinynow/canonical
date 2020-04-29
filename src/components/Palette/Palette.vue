@@ -1,5 +1,5 @@
 <template>
-<div class="canon-layout --tube">
+<div class="canon-layout --tube mt3">
     <div class="flex">
         <h1>You can use</h1>
         <div class="mr0 mlauto">
@@ -60,7 +60,7 @@
             </transition>
         </div>
     </div>
-    <div class="canon-layout --auto-flow --readable">
+    <div class="canon-layout --auto-flow --readable mt3">
         <p>Give me set of CSS colors, what WCAG level of conformance you adhere to, and I will let you know which colors you can use and when. Open settings to begin.</p>
     </div>
 

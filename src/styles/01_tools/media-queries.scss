@@ -16,7 +16,7 @@
             @content;
         }
     } @else if $size == md {
-        @media screen and (min-width: 56.25) {
+        @media screen and (min-width: 56.25rem) {
             @content;
         }
     } @else if $size == lg {

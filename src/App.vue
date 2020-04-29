@@ -22,7 +22,7 @@
             </router-link>
         </nav>
     </header>
-    <main class="mw-100">
+    <main class="mw-100 pt3">
         <router-view />
     </main>
 </div>
@@ -60,7 +60,7 @@ $brand--primary: color(gray--5);
     }
 }
 .canon-logo {
-    padding: $space/2;
+    padding: $space/2 0;
     letter-spacing: 2px;
     color: var(--gray--1);
    a {
