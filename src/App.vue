@@ -60,7 +60,7 @@
                 </p>
             </div>
         </div>
-        <nav class="canon-c-site-nav--simple mr0 mlauto flex items-center pa1">
+        <nav class="mr0 mlauto flex items-end self-end">
             <router-link 
                 to="/palette"
                 class="ml2"
