@@ -3,15 +3,62 @@
     id="app"
 >
     <header class="canon-site-header flex flex-wrap canon-layout --tube">
-        <div class="canon-logo pv1">
-            <router-link
-                to="/"
+        <div class="flex items-center">
+            <svg
+                class="canon-logo mr1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="75"
+                height="75"
             >
-                <span>matt kreiling</span>
-            </router-link>
-            <p class="canon-u-type--1">
-                Principled design and development.
-            </p>
+                <g
+                    fill="none"
+                    fill-rule="evenodd"
+                    class="canon-logo__can-and-cloud"
+                >
+                    <path
+                        class="canon-logo__can-body"
+                        fill="#000"
+                        stroke="#FFF"
+                        stroke-linejoin="round"
+                        d="M3 2h10v11.1c-.14 1.06-2.32 1.9-5 1.9-2.76 0-5-.9-5-2h0V2z"
+                    />
+                    <ellipse
+                        class="canon-logo__can-top"
+                        cx="8"
+                        cy="2"
+                        fill="#fff"
+                        stroke="#fff"
+                        rx="5"
+                        ry="1"
+                    />
+                    <g class="canon-logo__cloud">
+                        <path
+                            fill="currentColor"
+                            stroke="#979797"
+                            stroke-linejoin="round"
+                            d="M8.5 5c1.93 0 3.5.9 3.5 2a2 2 0 11-1.55 3.26c-.7.44-1.98.74-3.45.74-2.2 0-4-.67-4-1.5 0-.23.14-.45.4-.65.17-.14.42-.27.7-.39-.98.02-1.94-.08-2.1-.96C1.85 6.67 3.57 6 5.5 6h-.03c.6-.6 1.73-1 3.03-1z"
+                        />
+                        <path
+                            stroke="#979797"
+                            stroke-linecap="round"
+                            d="M8 7c2.43-.58 2.43 1 2.43 1"
+                        />
+                    </g>
+                </g>
+            </svg>
+            <div>
+                <router-link
+                    to="/"
+                    class="canon-site-header__title"
+                >
+                    <span>matt kreiling</span>
+                </router-link>
+                <p class="canon-site-header__subtitle">
+                    Principled design and development.
+                </p>
+            </div>
         </div>
         <nav class="canon-c-site-nav--simple mr0 mlauto flex items-center pa1">
             <router-link 
@@ -53,24 +100,39 @@ $brand--primary: color(gray--5);
 }
 
 .canon-site-header {
-    background-color: color(gray--5);
+    padding: $space/2 $space/4;
+    background-color: color(gray--4);
     a {
         color: color(yellow--3);
         text-decoration: none;
     }
+    *::selection {
+       background-color: #111;
+    }
 }
 .canon-logo {
-    padding: $space/2 0;
-    letter-spacing: 2px;
-    color: var(--gray--1);
-   a {
-    font-weight: 600;
+    color: var(--yellow--3);
+
+}
+.canon-logo__can-top {
+    box-shadow: 0 -5px 1px #000;
+}
+.canon-site-header__title {
     @include type-setting(2);
-   }
-   *::selection {
-       background-color: #111;
-   }
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
+.canon-site-header__subtitle {
+    @include type-setting(1);
+    color: color(gray--1);
+}
+.canon-logo__cloud {
+    transition: transform .2s linear;
+}
+
+.canon-site-header:hover .canon-logo__cloud {
+    animation: scroll-right-from-middle 4s linear infinite;
+}
 
 </style>
