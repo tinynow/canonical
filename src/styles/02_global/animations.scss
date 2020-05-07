@@ -22,11 +22,20 @@
     0% {
         transform: translateX(0%);
     }
-    50% {
-        transform: translateX(100%)
+    70% {
+        opacity: 1;
     }
-    50.1% {
+    60% {
+        transform: translateX(10vw) scale(2.5) rotateZ(.05turn) scaleX(.8);
+        stroke-width: 3px;
+        stroke-opacity: 0;
+        opacity: 0;
+    }
+    60.1% {
         transform: translateX(-100%);
+    }
+    90% {
+        opacity: 1;
     }
     100% {
         transform: translateX(0%);

@@ -8,7 +8,7 @@
                 class="canon-logo mr1"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
+                viewBox="-1 -1 18 18"
                 width="75"
                 height="75"
             >
@@ -69,7 +69,7 @@
             </router-link>
         </nav>
     </header>
-    <main class="mw-100 pt3">
+    <main class="mw-100 pt0 pb5 canon-layout --tube">
         <router-view />
     </main>
 </div>
@@ -101,7 +101,9 @@ $brand--primary: color(gray--5);
 
 .canon-site-header {
     padding: $space/2 $space/4;
+    overflow: hidden;
     background-color: color(gray--4);
+    border-top: 1px solid color(yellow--3);
     a {
         color: color(yellow--3);
         text-decoration: none;
@@ -112,7 +114,8 @@ $brand--primary: color(gray--5);
 }
 .canon-logo {
     color: var(--yellow--3);
-
+    overflow: visible;
+    z-index: 1;
 }
 .canon-logo__can-top {
     box-shadow: 0 -5px 1px #000;
@@ -128,11 +131,25 @@ $brand--primary: color(gray--5);
     color: color(gray--1);
 }
 .canon-logo__cloud {
-    transition: transform .2s linear;
+    transform-origin: 50% 50%;
+    transition: all 1s ease;
+    transform: translateX(0);
+    animation: scroll-right-from-middle 4s ease;
+
 }
 
-.canon-site-header:hover .canon-logo__cloud {
-    animation: scroll-right-from-middle 4s linear infinite;
+.canon-site-header:hover {
+    .canon-logo__cloud {
+        transition: all 1s ease;
+        animation: scroll-right-from-middle 4s ease infinite;
+        filter: drop-shadow( 0px 1px 0.5px rgba(0, 0, 0, .5));
+    }
+ 
+        text-shadow: 0px 1px 0.5px rgba(0, 0, 0, .7);
+    
+}
+.canon-logo__can-and-cloud {
+    filter: drop-shadow( 0px 1px 0.5px rgba(0, 0, 0, .7));
 }
 
 </style>

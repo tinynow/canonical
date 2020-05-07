@@ -159,8 +159,8 @@
 </template>
 
 <script>
-// import colors from '../../styles/00_settings/defaults.scss';
-import themeColors from '../../styles/00_settings/theme.scss';
+import colors from '../../styles/00_settings/defaults.scss';
+//import themeColors from '../../styles/00_settings/theme.scss';
 import convertToRgb from './../../utils/color/convertToRgb';
 import getWcagContrast from './../../utils/color/getWcagContrast';
 
@@ -194,7 +194,7 @@ export default {
     },
     data() {
         return {
-            colors: themeColors,
+            colors: colors,
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
             showFailures: false,
