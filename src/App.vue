@@ -104,6 +104,7 @@ $brand--primary: color(gray--5);
     overflow: hidden;
     background-color: color(gray--4);
     border-top: 1px solid color(yellow--3);
+
     a {
         color: color(yellow--3);
         text-decoration: none;
@@ -139,13 +140,16 @@ $brand--primary: color(gray--5);
 }
 
 .canon-site-header:hover {
+    text-shadow: 0px 1px 0.5px rgba(0, 0, 0, .7);
+    .canon-site-header__title {
+        position: relative;
+       z-index: 2;
+    }
     .canon-logo__cloud {
         transition: all 1s ease;
         animation: scroll-right-from-middle 4s ease infinite;
         filter: drop-shadow( 0px 1px 0.5px rgba(0, 0, 0, .5));
     }
- 
-        text-shadow: 0px 1px 0.5px rgba(0, 0, 0, .7);
     
 }
 .canon-logo__can-and-cloud {
