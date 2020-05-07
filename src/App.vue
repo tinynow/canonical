@@ -123,6 +123,9 @@ $brand--primary: color(gray--5);
 }
 .canon-site-header__title {
     @include type-setting(2);
+    display: block;
+    transform-origin: 0% 100%;  
+    transition: all .3s ease;
     font-weight: 600;
     letter-spacing: 2px;
 }
@@ -130,6 +133,9 @@ $brand--primary: color(gray--5);
 .canon-site-header__subtitle {
     @include type-setting(1);
     color: color(gray--1);
+    display: block;
+    transform-origin: 0% 0%;  
+    transition: all .3s ease;
 }
 .canon-logo__cloud {
     transform-origin: 50% 50%;
@@ -141,13 +147,16 @@ $brand--primary: color(gray--5);
 
 .canon-site-header:hover {
     text-shadow: 0px 1px 0.5px rgba(0, 0, 0, .7);
+    .canon-site-header__subtitle {
+        z-index: 2;
+        transform: scale(1.1);
+    }
     .canon-site-header__title {
-        position: relative;
-       z-index: 2;
+        transform: scale(.8);
     }
     .canon-logo__cloud {
         transition: all 1s ease;
-        animation: scroll-right-from-middle 4s ease infinite;
+        animation: scroll-right-from-middle 3s ease infinite;
         filter: drop-shadow( 0px 1px 0.5px rgba(0, 0, 0, .5));
     }
     
