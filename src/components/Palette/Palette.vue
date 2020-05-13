@@ -69,47 +69,20 @@
     <div
         class="canon-color-matrix mw-100 overflow-x-auto mt3"
     >
-        <table class="canon-color-matrix__table h100">
-            <thead 
-                :class="showFailures ? null : 'visually-hidden'"
-            >
-                <tr class="canon-color-matrix__tr">
-                    <th
-                        scope="col"
-                        class="reset-border"
-                    />
-                    <th
-                        v-for="(value, name) in colors"
-                        :key="value"
-                        class="canon-color-matrix__col-header"
-                        :style="{borderBottomColor: value}"
-                        scope="col"
-                    >
-                        <div
-                            class="canon-color-matrix__col-header-text"
-                        >
-                            <span>{{ name }}</span>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="h100">
-                <canon-swatch
-                    v-for="item in colorMatrix"
-                    :id="item.name"
-                    :key="item.name"
-                    :color="item.value"
-                    :rgb-color="item.rgb"
-                    :contrasts="item.contrasts"
-                    :colors="colorMatrix"
-                    :name="item.name"
-                    :show-text="showText"
-                    :show-failures="showFailures"
-                    :show-contrast-ratio="showContrastRatio"
-                    :a11y-level="a11yLevel"
-                />
-            </tbody>
-        </table>
+        <canon-swatch
+            v-for="item in colorMatrix"
+            :id="item.name"
+            :key="item.name"
+            :color="item.value"
+            :rgb-color="item.rgb"
+            :contrasts="item.contrasts"
+            :colors="colorMatrix"
+            :name="item.name"
+            :show-text="showText"
+            :show-failures="showFailures"
+            :show-contrast-ratio="showContrastRatio"
+            :a11y-level="a11yLevel"
+        />
     </div>
     <div class="canon-layout --tube --spacious --readable">
         <h2>Requirements for {{ conformanceLevel }}</h2>
