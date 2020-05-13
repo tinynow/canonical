@@ -66,24 +66,27 @@
 
 
 
-    <div
-        class="canon-color-matrix mw-100 overflow-x-auto mt3"
+    <ul
+        class="canon-color-matrix mt3"
     >
-        <canon-swatch
+        <li 
             v-for="item in colorMatrix"
-            :id="item.name"
             :key="item.name"
-            :color="item.value"
-            :rgb-color="item.rgb"
-            :contrasts="item.contrasts"
-            :colors="colorMatrix"
-            :name="item.name"
-            :show-text="showText"
-            :show-failures="showFailures"
-            :show-contrast-ratio="showContrastRatio"
-            :a11y-level="a11yLevel"
-        />
-    </div>
+        >
+            <canon-swatch
+                :id="item.name"
+                :color="item.value"
+                :rgb-color="item.rgb"
+                :contrasts="item.contrasts"
+                :colors="colorMatrix"
+                :name="item.name"
+                :show-text="showText"
+                :show-failures="showFailures"
+                :show-contrast-ratio="showContrastRatio"
+                :a11y-level="a11yLevel"
+            />
+        </li>
+    </ul>
     <div class="canon-layout --tube --spacious --readable">
         <h2>Requirements for {{ conformanceLevel }}</h2>
         <p>The following elements need minimum color contrast ratios against their background (or adjacent colors).</p>
