@@ -1,102 +1,62 @@
 <template>
-<tr
-    class="canon-color-matrix__tr canon-swatch h100"
->
-    <th
-        scope="row"
-        class="canon-color-matrix__col-header canon-color-matrix__cell flex flex-column h100 tl pa2"
-        :style="{ backgroundColor: color }"
-    >
-        <div class="canon-swatch__color-label normal pa1 shadow-1">
-            <h2 class="canon-u-compact--0">
-                You can use
-            </h2>
-            <span class="canon-u-compact--sm">{{ color }}</span>
-            <span class="dib canon-u-compact--1">"{{ name }}"</span>
-        </div>
-    </th>
-    <td
+<div>
+    <h3 class="ffheading canon-u-type--2">
+        <span class="db">{{ name }}</span>
+        <span>{{ color }}</span>
+    </h3>
+
+
+    <!-- <td
         v-for="(contrast, index) in contrasts"
         :key="colors[index].name"
         class="canon-color-matrix__cell"
         :class="isNotSafe(contrast) && !showFailures ? 'dn' : null"
-    >
-        <div
-            class="flex flex-column justify-between pa2 h100"
-            :style="isNotSafe(contrast) ? null : { backgroundColor: colors[index].value, color: color}"
-        >
-            <div class="canon-swatch__color-label ph1 shadow-1">
-                <span class="cannon-u-compact--xs">...with </span>
-                <span class="dib canon-u-compact--0">{{ colors[index].value }} </span>
-                <span class="canon-u-compact--1 dib">"{{ colors[index].name }}"</span>
-                <span class="cannon-u-compact--xs db">for... </span>
-            </div>
-            <span
-                class="canon-u-compact--0 mt2"
-                :class="{
-                    'canon-u-compact--1': showLarge(contrast) || showInteractive(contrast),
-                    'visually-hidden': !showText,
-                }"
-            >
-                {{ message(contrast) }}
-            </span>
-            <div class="mt3 mb0 flex items-end">
-                <template v-if="isNotSafe(contrast) && showFailures">
-                    <!-- Under 3 not good for anything -- using default safe colors-->
-                    <canon-icon
-                        icon-name="do-not"
-                        icon-width="30px"
-                        icon-height="30px"
-                        icon-stroke="currentColor"
-                    />
-                </template>
+    > -->
+    <template v-if="isNotSafe(contrast) && showFailures">
+        <!-- Under 3 not good for anything -- using default safe colors-->
+        <canon-icon
+            icon-name="do-not"
+            icon-width="30px"
+            icon-height="30px"
+            icon-stroke="currentColor"
+        />
+    </template>
           
-                <template
-                    v-if="!isNotSafe(contrast)"
-                >
-                    <!-- over 3 - use color scheme colors -->
-                    <div class="flex">
-                        <canon-icon
-                            v-if="showInteractive(contrast)"
-                            key="interactiveIcon"
-                            icon-name="interactive"
-                            icon-width="30px"
-                            icon-height="30px"
-                            icon-stroke="currentColor"
-                            :icon-fill="colors[index].value"
-                        />
+    <template v-if="!isNotSafe(contrast)">
+        <!-- over 3 - use color scheme colors -->
+        <div class="flex">
+            <canon-icon
+                v-if="showInteractive(contrast)"
+                key="interactiveIcon"
+                icon-name="interactive"
+                icon-width="30px"
+                icon-height="30px"
+                icon-stroke="currentColor"
+                :icon-fill="colors[index].value"
+            />
 
-                        <canon-icon
-                            v-if="showLarge(contrast)"
-                            key="largeBoldIcon"
-                            icon-name="large-bold-text"
-                            icon-width="30px"
-                            icon-height="30px"
-                            icon-fill="currentColor"
-                            stroke-width="0"
-                        />
+            <canon-icon
+                v-if="showLarge(contrast)"
+                key="largeBoldIcon"
+                icon-name="large-bold-text"
+                icon-width="30px"
+                icon-height="30px"
+                icon-fill="currentColor"
+                stroke-width="0"
+            />
 
-                        <!-- over 7 everyones happy -->
+            <!-- over 7 everyones happy -->
 
-                        <canon-icon
-                            v-if="isSafe(contrast)"
-                            key="smileIcon"
-                            icon-name="smile"
-                            icon-width="30px"
-                            icon-height="30px"
-                        />
-                    </div>
-                </template>
-                <div class="mr0 mlauto">
-                    <span
-                        v-if="showContrastRatio"
-                        class="dib"
-                    >{{ contrast.toFixed(2) }}</span>
-                </div>
-            </div>
+            <canon-icon
+                v-if="isSafe(contrast)"
+                key="smileIcon"
+                icon-name="smile"
+                icon-width="30px"
+                icon-height="30px"
+            />
         </div>
-    </td>
-</tr>
+    </template>
+</div>
 </template>
 
 <script>
@@ -175,6 +135,7 @@ export default {
                 '--swatch-color': this.color,
             };
         },
+
     },
     methods: {
 
