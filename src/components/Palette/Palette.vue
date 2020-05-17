@@ -27,12 +27,15 @@
                             @input="onPasteInput"
                         >
                             <span slot="label">Paste your colors</span>
+                            <span
+                                slot="error"
+                                class="db"
+                            >{{ showBadPasteError ? 'Sorry, I can\'t understand that.' : null }}</span>
                             <div slot="after">
-                                <p>Paste a valid JSON array of colors, or an object with color names as keys. Colors must be hex,rgb, or hsl format.</p>
+                                <p>Paste a valid JSON array of colors, or an object with color labels as keys. Colors must be hex,rgb, or hsl format.</p>
                                 <p class="mt1">
                                     Example: <code><pre>{ "red": "#F11", "white": "hsl(0,100%,100%)"}</pre></code>
                                 </p>
-                                {{ showBadPasteError ? '' : null }}
                             </div>
                         </canon-field>
                     </div>
@@ -135,10 +138,8 @@
 </template>
 
 <script>
-import colors from '../../styles/00_settings/defaults.scss';
-//import themeColors from '../../styles/00_settings/theme.scss';
-import convertToRgb from './../../utils/color/convertToRgb';
-import getWcagContrast from './../../utils/color/getWcagContrast';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('colorTool');
 
 import CanonSwatch from './PaletteSwatch';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
@@ -170,53 +171,48 @@ export default {
     },
     data() {
         return {
-            colors: colors,
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
-            showFailures: false,
-            showText: true,
-            showContrastRatio: true,
-            showSettings: false,
             showBadPasteError: false,
         };
     },
     computed: {
+        ...mapState([
+            'colors',
+            'showFailures',
+            'showText',
+            'showContrastRatio',
+            'showSettings',
+        ]),
+        ...mapGetters([
+            'colorMatrix',
+        ]),
         conformanceLevel() {
             return this.a11yLevel.toUpperCase();
-        },
-        colorMatrix() {
-            const computeSwatchData = ([ name, value ]) => ({
-                name,
-                value,
-                rgb: convertToRgb(value),
-            });
-            const computeSwatchContrasts = swatch => {
-                swatch.contrasts = [];
-                swatches.forEach(otherSwatch => {
-                    const contrast = getWcagContrast(swatch.rgb, otherSwatch.rgb);
-                    swatch.contrasts.push(contrast);
-                });
-                return swatch;
-            };
-            const swatches = Object.entries(this.colors).map(computeSwatchData);
-            return swatches.map(computeSwatchContrasts);
         },
     },
     methods: {
         onPasteInput(value) {
+            /**
+             * Takes an array, returns a simple object, with keys and values that are equivalent to the corresponding array value
+             * Example: ["a","foo",5] => { "a": "a", "foo":"foo", 5:5}
+             **/
+            const mapValsToObject = array => array.reduce((result, item) => {
+                result[item] = item;
+                return result;
+            }, {});
+
             try {
                 const parsed = JSON.parse(value.trim());
-                console.log(parsed)
+                
                 if (Array.isArray(parsed)) {
-                    const colorObject = parsed.reduce((result, item) => {
-                        result[item] = item;
-                        return result;
-                    }, {});
-                    console.log(colorObject);
+                    /* example ["#000", "#444", "#FEE"] */
+                    const colorDictionary = mapValsToObject(parsed);
+                    this.$store.commit('colorTool/SET_COLORS', colorDictionary);
 
-                    this.colors = colorObject;
                 } else if (typeof parsed === 'object') {
-                    this.colors = parsed;
+                    this.$store.commit('colorTool/SET_COLORS', parsed);
+                    
                 }
                 this.showBadPasteError = false;
 

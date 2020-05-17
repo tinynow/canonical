@@ -12,50 +12,53 @@
         class="canon-color-matrix__cell"
         :class="isNotSafe(contrast) && !showFailures ? 'dn' : null"
     > -->
-    <template v-if="isNotSafe(contrast) && showFailures">
-        <!-- Under 3 not good for anything -- using default safe colors-->
-        <canon-icon
-            icon-name="do-not"
-            icon-width="30px"
-            icon-height="30px"
-            icon-stroke="currentColor"
-        />
-    </template>
-          
-    <template v-if="!isNotSafe(contrast)">
-        <!-- over 3 - use color scheme colors -->
-        <div class="flex">
+    <div v-if="false">
+        <template v-if="isNotSafe(contrast) && showFailures">
+            <!-- Under 3 not good for anything -- using default safe colors-->
             <canon-icon
-                v-if="showInteractive(contrast)"
-                key="interactiveIcon"
-                icon-name="interactive"
+                icon-name="do-not"
                 icon-width="30px"
                 icon-height="30px"
                 icon-stroke="currentColor"
-                :icon-fill="colors[index].value"
             />
+        </template>
+          
+        <template v-if="!isNotSafe(contrast)">
+            <!-- over 3 - use color scheme colors -->
+            <div class="flex">
+                <canon-icon
+                    v-if="showInteractive(contrast)"
+                    key="interactiveIcon"
+                    icon-name="interactive"
+                    icon-width="30px"
+                    icon-height="30px"
+                    icon-stroke="currentColor"
+                    :icon-fill="colors[index].value"
+                />
 
-            <canon-icon
-                v-if="showLarge(contrast)"
-                key="largeBoldIcon"
-                icon-name="large-bold-text"
-                icon-width="30px"
-                icon-height="30px"
-                icon-fill="currentColor"
-                stroke-width="0"
-            />
+                <canon-icon
+                    v-if="showLarge(contrast)"
+                    key="largeBoldIcon"
+                    icon-name="large-bold-text"
+                    icon-width="30px"
+                    icon-height="30px"
+                    icon-fill="currentColor"
+                    stroke-width="0"
+                />
 
-            <!-- over 7 everyones happy -->
+                <!-- over 7 everyones happy -->
 
-            <canon-icon
-                v-if="isSafe(contrast)"
-                key="smileIcon"
-                icon-name="smile"
-                icon-width="30px"
-                icon-height="30px"
-            />
-        </div>
-    </template>
+                <canon-icon
+                    v-if="isSafe(contrast)"
+                    key="smileIcon"
+                    icon-name="smile"
+                    icon-width="30px"
+                    icon-height="30px"
+                />
+            </div>
+        </template>
+    </div>
+    {{ $store.state.colorTool }}
 </div>
 </template>
 
