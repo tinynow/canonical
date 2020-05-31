@@ -1,7 +1,9 @@
 <template>
 <div class="canon-layout --tube mt3">
     <div class="flex">
-        <h1>You can use</h1>
+        <h1 class="ffheading">
+            You can use
+        </h1>
         <div class="mr0 mlauto">
             <canon-button
                 class="canon-palette__settings-toggle inline-flex items-center pv2 ph0"
@@ -67,28 +69,23 @@
         <p>Give me set of CSS colors, what WCAG level of conformance you adhere to, and I will let you know which colors you can use and when. Open settings to begin.</p>
     </div>
 
-
-
     <ul
-        class="canon-color-matrix mt3"
+        class="canon-color-matrix mt3 reset-list"
+        role="list"
     >
-        <li 
+        <canon-color-card
             v-for="item in colorMatrix"
+            :id="item.name"
             :key="item.name"
-        >
-            <canon-swatch
-                :id="item.name"
-                :color="item.value"
-                :rgb-color="item.rgb"
-                :contrasts="item.contrasts"
-                :colors="colorMatrix"
-                :name="item.name"
-                :show-text="showText"
-                :show-failures="showFailures"
-                :show-contrast-ratio="showContrastRatio"
-                :a11y-level="a11yLevel"
-            />
-        </li>
+            :color="item.value"
+            :rgb-color="item.rgb"
+            :contrasts="item.contrasts"
+            :name="item.name"
+            :show-text="showText"
+            :show-failures="showFailures"
+            :show-contrast-ratio="showContrastRatio"
+            :a11y-level="a11yLevel"
+        />
     </ul>
     <div class="canon-layout --tube --spacious --readable">
         <h2>Requirements for {{ conformanceLevel }}</h2>
@@ -141,7 +138,7 @@
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('colorTool');
 
-import CanonSwatch from './PaletteSwatch';
+import CanonColorCard from './ColorCard';
 import CanonRadioButtonList from '../Radios/RadioButtonList';
 import CanonIcon from '../Icon/Icon';
 import CanonCheckbox from '../Checkbox/Checkbox';
@@ -162,7 +159,7 @@ const a11yLevelOptions = [
 export default {
     name: 'CanonPalette',
     components: {
-        CanonSwatch,
+        CanonColorCard,
         CanonRadioButtonList,
         CanonIcon,
         CanonButton,
@@ -173,23 +170,21 @@ export default {
         return {
             a11yLevelOptions: a11yLevelOptions,
             a11yLevel: 'aa',
+            showSettings: false,
+            showFailures: false,
+            showText: true,
+            showContrastRatio: true,
             showBadPasteError: false,
         };
     },
     computed: {
         ...mapState([
             'colors',
-            'showFailures',
-            'showText',
-            'showContrastRatio',
-            'showSettings',
+            'conformanceLevel',
         ]),
         ...mapGetters([
             'colorMatrix',
         ]),
-        conformanceLevel() {
-            return this.a11yLevel.toUpperCase();
-        },
     },
     methods: {
         onPasteInput(value) {
@@ -247,11 +242,6 @@ export default {
     border-bottom: 1px solid #ddd;
 }
 
-
-.canon-swatch__color-label {
-    background-color: white;
-    color: initial;
-}
 .canon-palette__settings {
     width: $space*12;
     right: 0;

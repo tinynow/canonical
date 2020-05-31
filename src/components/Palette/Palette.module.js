@@ -8,19 +8,17 @@ const colorTool = {
     state: {
         colors: colors,
         conformanceLevel: 'AAA',
-        showFailures: false,
-        showText: true,
-        showContrastRatio: true,
-        showSettings: false,
-        showBadPasteError: false,
     },
     getters: {
         colorMatrix(state) {
             const addContrasts = (swatch, index, swatches) => {
                 swatch.contrasts = [];
-                swatches.forEach(otherSwatch => {
+                swatches.forEach((otherSwatch, index) => {
                     const contrast = getWcagContrast(swatch.rgb, otherSwatch.rgb);
-                    swatch.contrasts.push(contrast);
+                    swatch.contrasts.push({
+                        index,
+                        contrast, 
+                    });
                 });
                 return swatch;
             };

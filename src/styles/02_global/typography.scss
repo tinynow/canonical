@@ -64,7 +64,10 @@ $compact-line-heights: (
     
 }
 html {
-    font-size: $base-font-size;
+    font-size: $base-font-size * .75;
+    @include min-screen-width(sm) {
+        font-size: $base-font-size;
+    }
 }
 body {
     @include type-setting(0);
