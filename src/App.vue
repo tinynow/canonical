@@ -2,7 +2,7 @@
 <div
     id="app"
 >
-    <header class="canon-site-header flex flex-wrap">
+    <header class="canon-site-header flex flex-wrap canon-layout --tube">
         <div class="flex items-center">
             <svg
                 class="canon-logo mr1"
@@ -96,7 +96,6 @@ export default {
 
 .canon-site-header {
     padding: $space/2 $space/4;
-    overflow: hidden;
     background-color: color(gray--4);
     border-top: 1px solid color(yellow--3);
 
@@ -110,7 +109,6 @@ export default {
 }
 .canon-logo {
     color: var(--yellow--3);
-
 }
 .canon-logo__can-top {
     box-shadow: 0 -5px 1px #000;
@@ -127,10 +125,7 @@ export default {
 .canon-logo__cloud {
     transition: all 3s ease;
     transform-origin: 50% 50%;
-    // transition: all 1s ease;
     transform: translateX(0);
-    animation: scroll-right-from-middle 4s linear;
-
 }
 
 .canon-site-header:hover {
@@ -140,7 +135,7 @@ export default {
     }
 
     .canon-logo__cloud {
-        animation: scroll-right-from-middle 9s linear infinite;
+        animation: scroll-right-from-middle 8s linear infinite;
         filter: drop-shadow( 0px 1px 0.5px rgba(0, 0, 0, .5));
     }
     

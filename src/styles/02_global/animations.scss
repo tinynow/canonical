@@ -20,16 +20,16 @@
 
 @keyframes scroll-right-from-middle {
     0% {
-        transform: translateX(0%);
+        transform: translateX(0);
     }
-    50% {
+    58% {
         transform: translateX(100%);
     }
-    50.1% {
+    58.1% {
         transform: translateX(-100%);
     }
     100% {
-        transform: translateX(0%);
+        transform: translateX(0);
     }
 }
 
