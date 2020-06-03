@@ -55,9 +55,6 @@
                 >
                     <span>matt kreiling</span>
                 </router-link>
-                <p class="canon-site-header__subtitle">
-                    Principled design and development.
-                </p>
             </div>
         </div>
         <nav class="mr0 mlauto flex items-end self-end">
