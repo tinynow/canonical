@@ -8,6 +8,7 @@ const colorTool = {
     state: {
         colors: colors,
         conformanceLevel: 'AAA',
+        showContrasts: false,
     },
     getters: {
         colorMatrix(state) {
@@ -31,6 +32,9 @@ const colorTool = {
     mutations: {
         SET_COLORS(state, payload) {
             state.colors = payload;
+        },
+        TOGGLE_CONTRASTS(state) {
+            state.showContrasts = !state.showContrasts;
         },
     },
     actions: {

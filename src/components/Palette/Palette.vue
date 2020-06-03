@@ -58,8 +58,9 @@
                         label="Show non-passing combinations"
                     />
                     <canon-checkbox
-                        v-model="showContrastRatio"
+                        :value="showContrasts"
                         label="Show contrast ratios"
+                        @change="TOGGLE_CONTRASTS"
                     />
                 </form>
             </transition>
@@ -81,9 +82,6 @@
             :rgb-color="item.rgb"
             :contrasts="item.contrasts"
             :name="item.name"
-            :show-text="showText"
-            :show-failures="showFailures"
-            :show-contrast-ratio="showContrastRatio"
             :a11y-level="a11yLevel"
         />
     </ul>
@@ -173,7 +171,6 @@ export default {
             showSettings: false,
             showFailures: false,
             showText: true,
-            showContrastRatio: true,
             showBadPasteError: false,
         };
     },
@@ -181,12 +178,14 @@ export default {
         ...mapState([
             'colors',
             'conformanceLevel',
+            'showContrasts',
         ]),
         ...mapGetters([
             'colorMatrix',
         ]),
     },
     methods: {
+        ...mapMutations(['TOGGLE_CONTRASTS']),
         onPasteInput(value) {
             /**
              * Takes an array, returns a simple object, with keys and values that are equivalent to the corresponding array value

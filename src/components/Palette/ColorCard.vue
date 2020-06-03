@@ -1,16 +1,16 @@
 <template>
 <li class="pt3 canon-color-card">
     <div class="flex items-stretch">
-        <div
-            class="canon-swatch shadow-1"
-            :style="{ backgroundColor: color }"
-        />
-        <div class="ml2">
-            <h3 class="ffheading canon-u-compact--3">
+        <div>
+            <h3 class="ffheading canon-u-compact--4">
                 {{ name }}
             </h3>
             <span class="ffbase canon-u-compact--0 ml1">{{ color }}</span>
         </div>
+        <div
+            class="canon-swatch shadow-1 ml2"
+            :style="{ backgroundColor: color }"
+        />
     </div>
     <div class="flex flex-wrap justify-between items-stretch">
         <div
@@ -28,7 +28,7 @@
 
         <div
             v-if="safeFor.uiOnly.length"
-            class="pt3 w-100"
+            class="pt4 w-100"
         >
             <h4 class="ffheading canon-u-type--2">
                 Use {{ name }} with these colors for interface controls.
@@ -40,7 +40,7 @@
         </div>
         <div
             v-if="safeFor.largeOnly.length"
-            class="pt3 w-100"
+            class="pt4 w-100"
         >
             <h4 class="ffheading canon-u-type--2">
                 Use {{ name }} with these colors for large or bold text only.
@@ -53,7 +53,7 @@
 
         <div
             v-if="safeFor.uiOrLarge.length"
-            class="pt3 w-100"
+            class="pt4 w-100"
         >
             <h4 class="ffheading canon-u-type--2">
                 Use {{ name }} with these colors for large text, bold text, or interface elements.
