@@ -55,9 +55,6 @@
                 >
                     <span>matt kreiling</span>
                 </router-link>
-                <p class="canon-site-header__subtitle">
-                    Principled design and development.
-                </p>
             </div>
         </div>
         <nav class="mr0 mlauto flex items-end self-end">
@@ -92,8 +89,6 @@ export default {
 };
 </script>
 <style lang="scss">
-@import './styles/global.scss';
-$brand--primary: color(gray--5);
 
 .canonical-card {
     box-shadow: 1px 4px 8px -3px hsla(0, 0, 0, 0.5);
@@ -101,7 +96,6 @@ $brand--primary: color(gray--5);
 
 .canon-site-header {
     padding: $space/2 $space/4;
-    overflow: hidden;
     background-color: color(gray--4);
     border-top: 1px solid color(yellow--3);
 
@@ -115,8 +109,6 @@ $brand--primary: color(gray--5);
 }
 .canon-logo {
     color: var(--yellow--3);
-    overflow: visible;
-    z-index: 1;
 }
 .canon-logo__can-top {
     box-shadow: 0 -5px 1px #000;
@@ -130,33 +122,20 @@ $brand--primary: color(gray--5);
     letter-spacing: 2px;
 }
 
-.canon-site-header__subtitle {
-    @include type-setting(1);
-    color: color(gray--1);
-    display: block;
-    transform-origin: 0% 0%;  
-    transition: all .3s ease;
-}
 .canon-logo__cloud {
+    transition: all 3s ease;
     transform-origin: 50% 50%;
-    transition: all 1s ease;
     transform: translateX(0);
-    animation: scroll-right-from-middle 4s ease;
-
 }
 
 .canon-site-header:hover {
-    text-shadow: 0px 1px 0.5px rgba(0, 0, 0, .7);
-    .canon-site-header__subtitle {
-        z-index: 2;
-        transform: scale(1.1);
-    }
     .canon-site-header__title {
-        transform: scale(.8);
+        z-index: 2;
+        text-shadow: 0px 1px 0.5px rgba(0, 0, 0, .7);
     }
+
     .canon-logo__cloud {
-        transition: all 1s ease;
-        animation: scroll-right-from-middle 3s ease infinite;
+        animation: scroll-right-from-middle 8s linear infinite;
         filter: drop-shadow( 0px 1px 0.5px rgba(0, 0, 0, .5));
     }
     
