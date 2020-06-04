@@ -35,6 +35,7 @@
                 Contrast ratio:
             </dt>
             <dd
+                v-if="showContrasts"
                 class="canon-u-type--sm"
             >
                 ~{{ contrast.toFixed(3) }}
@@ -59,9 +60,6 @@ export default {
             type: String,
             required: true,
         },
-    },
-    stored: {
-        
     },
     computed: {
         ...mapState([
