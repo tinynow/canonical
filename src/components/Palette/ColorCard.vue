@@ -8,7 +8,7 @@
             <span class="ffbase canon-u-compact--0 ml1">{{ color }}</span>
         </div>
         <div
-            class="canon-swatch shadow-1 ml2"
+            class="shadow-1 ml2 flex-grow-1"
             :style="{ backgroundColor: color }"
         />
     </div>
@@ -25,19 +25,6 @@
                 :color="color"
             />
         </div>
-
-        <div
-            v-if="safeFor.uiOnly.length"
-            class="pt4 w-100"
-        >
-            <h4 class="ffheading canon-u-type--2">
-                Use {{ name }} with these colors for interface controls.
-            </h4>
-            <canon-color-card-combos
-                :combos="safeFor.uiOnly"
-                :color="color"
-            />
-        </div>
         <div
             v-if="safeFor.largeOnly.length"
             class="pt4 w-100"
@@ -50,6 +37,19 @@
                 :color="color"
             />
         </div>
+        <div
+            v-if="safeFor.uiOnly.length"
+            class="pt4 w-100"
+        >
+            <h4 class="ffheading canon-u-type--2">
+                Use {{ name }} with these colors for interface controls.
+            </h4>
+            <canon-color-card-combos
+                :combos="safeFor.uiOnly"
+                :color="color"
+            />
+        </div>
+
 
         <div
             v-if="safeFor.uiOrLarge.length"

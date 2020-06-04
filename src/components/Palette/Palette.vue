@@ -6,7 +6,7 @@
         </h1>
         <div class="mr0 mlauto">
             <canon-button
-                class="canon-palette__settings-toggle inline-flex items-center pv2 ph0"
+                class="canon-palette__settings-toggle inline-flex items-center pv2 ph1"
                 aria-controls="palette-settings"
                 :aria-expanded="showSettings.toString()"
                 @click="showSettings = !showSettings"
