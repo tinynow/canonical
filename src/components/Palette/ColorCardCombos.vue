@@ -3,10 +3,10 @@
     <li
         v-for="{ index, contrast } in combos"
         :key="index"
-        class="flex canon-u-type--2 pt2"
+        class="flex pt2"
     >
         <div
-            class="pa2 flex  shadow-1"
+            class="pa2 shadow-1"
             :style="{ backgroundColor: colorMatrix[index].value }"
         >
             <div
@@ -14,12 +14,11 @@
                 :style="{ backgroundColor: color }"
             />
         </div>
-                    
-        <dl class="pl2">
+        <dl class="mh3">
             <dt class="visually-hidden">
                 Name:
             </dt>
-            <dd class="db ffheading">
+            <dd class="db ffheading canon-u-type--2">
                 {{ colorMatrix[index].name }}
             </dd>
             <dt class="visually-hidden">
