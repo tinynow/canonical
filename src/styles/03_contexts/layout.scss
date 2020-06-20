@@ -1,4 +1,5 @@
 .canon-layout {
+    /* A tube of content that with reasonable left and right margins */
     &.--tube {
         max-width: 100%;
         padding-left: $space/4;
@@ -11,6 +12,10 @@
         @include min-screen-width(md) {
             padding-left: $space;
             padding-right: $space;
+        }
+        @include min-screen-width(lg) {
+            padding-left: $space*2;
+            padding-right: $space*2;
         }
     }
     &.--readable {
