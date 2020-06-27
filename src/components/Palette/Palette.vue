@@ -71,7 +71,7 @@
     </div>
 
     <ul
-        class="canon-color-matrix mt3 reset-list"
+        class="canon-color-matrix mt5 reset-list"
         role="list"
     >
         <canon-color-card
@@ -83,6 +83,7 @@
             :contrasts="item.contrasts"
             :name="item.name"
             :a11y-level="a11yLevel"
+            class="mt3"
         />
     </ul>
     <div class="canon-layout --tube --spacious --readable">

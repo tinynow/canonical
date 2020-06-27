@@ -1,5 +1,8 @@
 <template>
-<li class="pt3 canon-color-card">
+<li
+    class="mt3 pl2 canon-color-card"
+    :style="{ borderLeftColor: color }"
+>
     <div class="flex items-stretch">
         <div>
             <h3 class="ffheading canon-u-compact--4">
@@ -262,21 +265,20 @@ export default {
 };
 </script>
 <style lang="scss">
-/* Displays information about a single color */
-.canon-color-card {
-    + * {
-        margin-top: 100px;
-    }
-}
-
-
 .canon-swatch {
-    width: 4em;
-    height: 4em;
+    
+    // width: $space*1.666;
+    // height: $space*4;
     &.--small {
         width: 1.5em;
         height: 1.5em;
     }
+}
+.canon-color-card  {
+    border-style: solid;
+    border-width: 0;
+    border-left-width: $space;
+
 }
 
 </style>

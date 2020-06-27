@@ -34,8 +34,8 @@ $birdRegionColors: (
     'white': white,
 );
 
-// :export{
-//     @each $color, $value in $birdRegionColors {
-//         #{$color}: $value;
-//     }
-// }
+:export{
+    @each $color, $value in $birdRegionColors {
+        #{$color}: $value;
+    }
+}

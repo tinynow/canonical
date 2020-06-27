@@ -20,6 +20,7 @@ const routes = [
     { path: '/documentation', component: Docs},
 ];
 const router = new Router({
+    mode: 'history',
     routes,
 });
 

@@ -3,10 +3,10 @@
     <li
         v-for="{ index, contrast } in combos"
         :key="index"
-        class="flex pt2"
+        class="flex items-start pt2"
     >
         <div
-            class="pa2 shadow-1"
+            class="pa1 shadow-1 canon-swatch flex-shrink-0"
             :style="{ backgroundColor: colorMatrix[index].value }"
         >
             <div
@@ -14,7 +14,7 @@
                 :style="{ backgroundColor: color }"
             />
         </div>
-        <dl class="mh3">
+        <dl class="ml1 mr3">
             <dt class="visually-hidden">
                 Name:
             </dt>
