@@ -1,6 +1,6 @@
 <template>
 <div class="canon-layout --auto-flow --tube --readable">
-    <h1 class="mv2">
+    <h1>
         Typography and Layout
     </h1>
     <p>Canonical is a typography first framework. Layout and whitespace measurements are derived from typographical choices. In particular, the computed height of a line of default body text forms the base unit for a modular scale. For this and other reasons, it's best to think about spacing, layout as interrelated parts of the same system.</p>
@@ -10,7 +10,15 @@
         Contexts
         <canon-anchor-link id="contexts" />
     </h2>
-    <p>Contexts are classes that when applied to a containing element take advantage of the cascade in CSS to apply harmonious styles to the elements within. They are a way to "set it and forget it" and not worry about twiddling. Contexts </p>
+    <p>Contexts are classes that when applied to a containing element take advantage of the cascade in CSS to apply harmonious styles to the elements within. They are a way to "set it and forget it" and not worry about twiddling. Contexts handle common layout and typography needs.</p>
+    <p>The following classes are what determine the layout and type styles of this page:</p>
+    
+    <pre><canon-code-snippet>
+    <div class="canon-layout --auto-flow --tube --readable">
+        /* content */
+    </div>
+    </canon-code-snippet></pre>
+
 
     <h2>
         Tuning typography settings
@@ -22,10 +30,12 @@
 
 <script>
 import CanonAnchorLink from '../components/AnchorLink';
+import CanonCodeSnippet from '../components/CodeSnippet';
 export default {
     name: 'DocsPage',
     components: {
         CanonAnchorLink,
+        CanonCodeSnippet,
     },
 };
 </script>
