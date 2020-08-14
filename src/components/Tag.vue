@@ -1,5 +1,5 @@
 <template>
-<span class="canon-c-tag"><slot /></span>
+<span class="canon-tag"><slot /></span>
 </template>
 <script>
 export default {

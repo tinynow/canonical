@@ -15,14 +15,17 @@
     </h2>
     <p>Contexts are classes that when applied to a containing element take advantage of the cascade in CSS to apply harmonious styles to the elements within. They are a way to "set it and forget it" and not worry about twiddling. Contexts handle common layout and typography needs.</p>
     <p>For example the classes <code>canon-layout --auto-flow --tube --readable</code> determine the layout and type styles of this page.</p>
-    <form>
+    <form class="canon-form">
         <canon-checkbox-list
             id="changeLayout"
-            label="Change Layout Context"
             :options="options"
-        />
-        {{ classes }}
-    </form>
+        >
+            <span slot="legend">Toggle the layout contexts applied to this page</span>
+            <p slot="hint">
+                Be aware that the page will jump.
+            </p>
+        </canon-checkbox-list>
+    </form>  
 
 
 

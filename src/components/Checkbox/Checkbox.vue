@@ -1,8 +1,8 @@
 <template>
-<div class="canon-c-checkbox">
+<div class="canon-checkbox">
     <input
         :id="uid"
-        class="canon-c-checkbox__input"
+        class="canon-checkbox__input"
         :value="value"
         :checked="checked"
         type="checkbox"
@@ -10,9 +10,9 @@
     >
     <label 
         :for="uid"
-        class="canon-c-checkbox__label"
+        class="canon-checkbox__label"
     >
-        <span class="canon-c-checkbox__label-text">
+        <span class="canon-checkbox__label-text">
             <slot name="label">{{ label }}</slot>
         </span>
     </label>
@@ -66,7 +66,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.canon-c-checkbox {
+.canon-checkbox {
     @include binary-control($size: 1.125rem, $checkbox: true );
 }
 </style>

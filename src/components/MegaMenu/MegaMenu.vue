@@ -1,8 +1,8 @@
 <template>
-<nav class="canon-c-mega-menu">
+<nav class="canon-mega-menu">
     <button
         v-show="!isWide"
-        class="canon-c-mega-menu__main-toggle"
+        class="canon-mega-menu__main-toggle"
         aria-label="Main Menu"
         aria-controls="canon-mega-menu"
         aria-expanded="menuOpen"
@@ -19,19 +19,19 @@
     <transition name="slide-from-right">
         <div
             v-show="menuOpen"
-            class="canon-c-mega-menu__wrapper"
+            class="canon-mega-menu__wrapper"
             :class="`--currentLevel${currentLevel}`"
         >
             <div
                 id="canon-mega-menu"
-                class="canon-c-mega-menu__level --level1"
+                class="canon-mega-menu__level --level1"
             >
                 <canon-mega-menu-level-heading
                     v-show="!isWide"
                     :level="1"
                     @click="goBack(1)"
                 />
-                <ul class="canon-c-mega-menu__list --level1 reset-list">
+                <ul class="canon-mega-menu__list --level1 reset-list">
                     <li
                         v-for="item in items"
                         :key="item.id"
@@ -41,7 +41,7 @@
                             :ref="`toggle_${item.id}`"
                             :aria-controls="item.id"
                             :aria-expanded="item.id === level1Open"
-                            class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level1 flex items-center"
+                            class="canon-mega-menu__item canon-mega-menu__toggle --level1 flex items-center"
                             @click="toggleOpen(item.id, 1)"
                         >
                             <span class="w100">{{ item.label }}</span>
@@ -57,7 +57,7 @@
                                 v-show="item.id === level1Open"
                                 :id="item.id"
                                 ref="level-container"
-                                class="canon-c-mega-menu__level --level2"
+                                class="canon-mega-menu__level --level2"
                             >
                                 <canon-mega-menu-level-heading
                                     v-show="!isWide"
@@ -69,24 +69,24 @@
                                     </div>
                                 </canon-mega-menu-level-heading>
 
-                                <ul class="canon-c-mega-menu__list --level2 reset-list">
-                                    <li class="canon-c-mega-menu__list-item --level2">
+                                <ul class="canon-mega-menu__list --level2 reset-list">
+                                    <li class="canon-mega-menu__list-item --level2">
                                         <a
                                             :href="item.children[0].route"
-                                            class="canon-c-mega-menu__item canon-c-mega-menu__link --level2"
+                                            class="canon-mega-menu__item canon-mega-menu__link --level2"
                                         >{{ item.label }} Top Tasks
                                         </a>
                                     </li>
                                     <li
                                         v-for="level2Item in item.children.slice(1)"
                                         :key="level2Item.id"
-                                        class="canon-c-mega-menu__list-item --level2"
+                                        class="canon-mega-menu__list-item --level2"
                                     >
                                         <button
                                             v-show="currentLevel === 2 || isWide"
                                             :ref="`toggle_${level2Item.id}`"
                                             :key="`toggle_${level2Item.id}`"
-                                            class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level2 flex items-center"
+                                            class="canon-mega-menu__item canon-mega-menu__toggle --level2 flex items-center"
                                             :aria-expanded="
                                                 level2Item.id === level2Open
                                             "
@@ -105,7 +105,7 @@
                                             <div
                                                 v-show="level2Item.id === level2Open"
                                                 :id="level2Item.id"
-                                                class="canon-c-mega-menu__level --level3"
+                                                class="canon-mega-menu__level --level3"
                                             >
                                                 <canon-mega-menu-level-heading
                                                     v-show="!isWide"
@@ -121,15 +121,15 @@
                                                     </div>
                                                 </canon-mega-menu-level-heading>
 
-                                                <ul class="reset-list canon-c-mega-menu__list --level3">
+                                                <ul class="reset-list canon-mega-menu__list --level3">
                                                     <li
                                                         v-for="level3Item in level2Item.children"
                                                         :key="level3Item.id"
-                                                        class="canon-c-mega-menu__list-item --level3"
+                                                        class="canon-mega-menu__list-item --level3"
                                                     >
                                                         <a
                                                             v-if="!level3Item.children"
-                                                            class="canon-c-mega-menu__item canon-c-mega-menu__link --level3"
+                                                            class="canon-mega-menu__item canon-mega-menu__link --level3"
                                                             :href="level3Item.route"
                                                         >{{ level3Item.label }}</a>
                                                         <button
@@ -137,7 +137,7 @@
                                                             v-show="currentLevel === 3 || isWide"
                                                             :ref="`toggle_${level3Item.id}`"
                                                             :key="`toggle_${level3Item.id}`"
-                                                            class="canon-c-mega-menu__item canon-c-mega-menu__toggle --level3 flex items-center"
+                                                            class="canon-mega-menu__item canon-mega-menu__toggle --level3 flex items-center"
                                                             :aria-expanded="
                                                                 level3Item.id === level3Open
                                                             "
@@ -160,7 +160,7 @@
                                                                     level3Item.id === level3Open
                                                                 "
                                                                 :id="level3Item.id"
-                                                                class="canon-c-mega-menu__level --level4"
+                                                                class="canon-mega-menu__level --level4"
                                                             >
                                                                 <canon-mega-menu-level-heading
                                                                     v-show="!isWide"
@@ -181,10 +181,10 @@
                                                                     </div>
                                                                 </canon-mega-menu-level-heading>
 
-                                                                <ul class="canon-c-mega-menu__list --level4 reset-list">
-                                                                    <li class="canon-c-mega-menu__list-item --level4">
+                                                                <ul class="canon-mega-menu__list --level4 reset-list">
+                                                                    <li class="canon-mega-menu__list-item --level4">
                                                                         <a
-                                                                            class="canon-c-mega-menu__item --level4 canon-c-mega-menu__link"
+                                                                            class="canon-mega-menu__item --level4 canon-mega-menu__link"
                                                                             :href="level3Item.route"
                                                                         >
                                                                             {{ level3Item.label }}
@@ -193,10 +193,10 @@
                                                                     <li
                                                                         v-for="level4Item in level3Item.children"
                                                                         :key="level4Item.id"
-                                                                        class="canon-c-mega-menu__list-item --level4"
+                                                                        class="canon-mega-menu__list-item --level4"
                                                                     >
                                                                         <a
-                                                                            class="canon-c-mega-menu__item --level4 canon-c-mega-menu__link"
+                                                                            class="canon-mega-menu__item --level4 canon-mega-menu__link"
                                                                             :href="
                                                                                 level4Item.route
                                                                             "
@@ -347,7 +347,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
      Mega Menu Containers
 =================================================== */
 
-.canon-c-mega-menu {
+.canon-mega-menu {
     --megaMenuBreakPoint: 715px;
     --mainToggleBorderColor: var(--black);
     --mainToggleTextColor: var(--black);
@@ -377,7 +377,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     );
 }
 
-.canon-c-mega-menu {
+.canon-mega-menu {
     position: absolute;
     top: 0;
     right: 0;
@@ -391,7 +391,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
 }
 
-.canon-c-mega-menu__wrapper {
+.canon-mega-menu__wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -406,7 +406,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
 }
 
-.canon-c-mega-menu__level {
+.canon-mega-menu__level {
     position: absolute;
     top: 0;
     width: 100%;
@@ -418,7 +418,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
 }
 
-.canon-c-mega-menu__list {
+.canon-mega-menu__list {
     @include min-screen-width($megaMenuBreakPoint) {
         height: 100%;
         padding-top: $space/2;
@@ -439,7 +439,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
 }
 
 /* Wraps all the levels */
-.canon-c-mega-menu__level.--level1 {
+.canon-mega-menu__level.--level1 {
     transition-delay: 0.1s;
     transition: transform 0.3s var(--quickEase);
     background-color: transparent;
@@ -455,16 +455,16 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
 
     @include min-screen-width($megaMenuBreakPoint) {
         border: none;
-        .canon-c-mega-menu & {
+        .canon-mega-menu & {
             transform: translate(0%);
         }
     }
 }
 @include min-screen-width($megaMenuBreakPoint) {
-    .canon-c-mega-menu__level.--level1 {
+    .canon-mega-menu__level.--level1 {
         border-bottom: 2px solid var(--black);
     }
-    .canon-c-mega-menu__level.--level2 {
+    .canon-mega-menu__level.--level2 {
         left: 0;
         top: calc(100% + 2px);
         z-index: 1;
@@ -473,13 +473,13 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         border-bottom: 1px solid var(--black);
         min-height: 500px; //hack
     }
-    .canon-c-mega-menu__list.--level2 {
+    .canon-mega-menu__list.--level2 {
         height: 100%;
         width: 33.3%;
         padding: $space/2 0 $space 0;
         background: white;
     }
-    .canon-c-mega-menu__level.--level3 {
+    .canon-mega-menu__level.--level3 {
         z-index: -1;
         top: 0;
         left: 33.3%;
@@ -488,12 +488,12 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
         background-color: black;
         color: white;
     }
-    .canon-c-mega-menu__list.--level3 {
+    .canon-mega-menu__list.--level3 {
         background-color: black;
         outline: 2px yellowgreen solid;
         min-height: 100%;
     }
-    .canon-c-mega-menu__level.--level4 {
+    .canon-mega-menu__level.--level4 {
         position: absolute;
         z-index: -1;
         left: 100%;
@@ -507,7 +507,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
 /*
     Mobile only 
 =================================================== */
-.canon-c-mega-menu__main-toggle {
+.canon-mega-menu__main-toggle {
     position: absolute;
     right: $space/4;
     top: $space/4;
@@ -527,7 +527,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
 }
 
-.canon-c-mega-menu__back-button {
+.canon-mega-menu__back-button {
     width: $space * 3;
     min-height: $space * 2;
     color: var(--headingTextColor);
@@ -542,7 +542,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     }
 }
 
-.canon-c-mega-menu__heading-content {
+.canon-mega-menu__heading-content {
     width: 100%;
     font-size: var(--text--xs);
     color: var(--headingTextColor);
@@ -553,7 +553,7 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
     The Focusable Item (link or button)
 =================================================== */
 
-.canon-c-mega-menu__item {
+.canon-mega-menu__item {
     line-height: 1.25;
     display: block;
     width: 100%;
@@ -612,11 +612,11 @@ $megaMenuBreakPoint: 715px; //TODO: convert to ems
 }
 
 @include min-screen-width($megaMenuBreakPoint) {
-    .canon-c-mega-menu__list-item {
+    .canon-mega-menu__list-item {
         padding: 0 0 0 $space/2;
         margin-top: 4px;
     }
-    .canon-c-mega-menu__link {
+    .canon-mega-menu__link {
         border-radius: 8px;
         width: calc(100% - #{$space/2});
     }
