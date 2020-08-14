@@ -1,5 +1,8 @@
 <template>
-<div class="canon-layout --auto-flow --tube --readable">
+<div
+    class="canon-layout"
+    :class="classes"
+>
     <h1>
         Typography and Layout
     </h1>
@@ -11,13 +14,16 @@
         <canon-anchor-link id="contexts" />
     </h2>
     <p>Contexts are classes that when applied to a containing element take advantage of the cascade in CSS to apply harmonious styles to the elements within. They are a way to "set it and forget it" and not worry about twiddling. Contexts handle common layout and typography needs.</p>
-    <p>The following classes are what determine the layout and type styles of this page:</p>
-    
-    <pre><canon-code-snippet>
-    <div class="canon-layout --auto-flow --tube --readable">
-        /* content */
-    </div>
-    </canon-code-snippet></pre>
+    <p>For example the classes <code>canon-layout --auto-flow --tube --readable</code> determine the layout and type styles of this page.</p>
+    <form>
+        <canon-checkbox-list
+            id="changeLayout"
+            label="Change Layout Context"
+            :options="options"
+        />
+        {{ classes }}
+    </form>
+
 
 
     <h2>
@@ -30,12 +36,46 @@
 
 <script>
 import CanonAnchorLink from '../components/AnchorLink';
-import CanonCodeSnippet from '../components/CodeSnippet';
+// import CanonCodeSnippet from '../components/CodeSnippet';
+import CanonCheckboxList from '../components/Checkbox/CheckboxList';
 export default {
     name: 'DocsPage',
     components: {
         CanonAnchorLink,
-        CanonCodeSnippet,
+        // CanonCodeSnippet,
+        CanonCheckboxList,
+    },
+    data() {
+        return {
+            options: [
+                {
+                    value: '--auto-flow',
+                    label: '--auto-flow',
+                    checked: true,
+                },
+                {
+                    value: '--tube',
+                    label: '--tube',
+                    checked: true,
+                },
+                {
+                    value: '--readable',
+                    label: '--readable',
+                    checked: true,
+                },
+
+            ],
+        }
+    },
+    computed: {
+        classes() {
+            return this.options.filter(opt => opt.checked).map(opt => opt.value);
+        },
+    },
+    methods: {
+        log(e) {
+            console.log(e);
+        },
     },
 };
 </script>

@@ -4,7 +4,7 @@
         :id="uid"
         class="canon-c-checkbox__input"
         :value="value"
-        :checked="shouldBeChecked"
+        :checked="checked"
         type="checkbox"
         @change="onChange"
     >
@@ -21,27 +21,29 @@
 
 <script>
 import uniqueId from '../../mixins/uniqueId';
-import requireSlots from '../../mixins/requireSlots';
 
 export default {
     name: 'CanonCheckbox',
     mixins: [
-        requireSlots,
         uniqueId,
     ],
     model: {
-        prop: 'modelValue',
+        prop: 'checked',
         event: 'change',
     },
     props: {
+        id: {
+            type: String,
+            default: '',
+        },
         value: {
             type: [String, Boolean],
             required: false,
-            default: null,
-        },
-        modelValue: {
-            type: [String, Boolean],
             default: '',
+        },
+        checked: {
+            type: Boolean,
+            default: false,
         },
         label: {
             type: String,
@@ -56,33 +58,15 @@ export default {
             default: false,
         },
     },
-    computed: {
-        shouldBeChecked() {
-            if (this.modelValue instanceof Array) {
-                return this.modelValue.includes(this.value);
-            }
-            return this.modelValue === this.trueValue;
-        },
-    },
     methods: {
         onChange(event) {
-            if (this.modelValue instanceof Array) {
-                const newValue = [...this.modelValue];
-                if  (event.target.checked) {
-                    newValue.push(this.value);
-                } else {
-                    newValue.splice(newValue.indexOf(this.value), 1);
-                }
-                this.$emit('change', newValue);
-            } else {
-                this.$emit('change', event.target.checked ? this.trueValue : this.falseValue);
-            }
+            this.$emit('change', event.target.checked ? this.trueValue : this.falseValue); 
         },
     },
 };
 </script>
 <style lang="scss">
 .canon-c-checkbox {
-    @include binary-control($size: 1rem, $checkbox: true );
+    @include binary-control($size: 1.125rem, $checkbox: true );
 }
 </style>
