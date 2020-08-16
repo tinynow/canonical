@@ -3,5 +3,8 @@
     label {
         @include compact-type-setting(2);
     }
+    .canon-checkbox-list label {
+        @include compact-type-setting(1);
+    }
     
 }

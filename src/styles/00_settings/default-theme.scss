@@ -43,7 +43,7 @@ $defaultThemeColors: (
     "bg--dark": map-get($colorOptions, "gray--5"),
     "bg--light": map-get($colorOptions, "white"),
     "border__control--light": map-get($colorOptions, "gray--3"),
-    "outline__focus--light": map-get($colorOptions, "orange--2" ),
+    "focus-outline--light": map-get($colorOptions, "orange--2" ),
 );
 
 

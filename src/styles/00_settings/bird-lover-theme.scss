@@ -21,6 +21,9 @@ $birdRegionColors: (
     'gray--5': map-get($map: $colorOptions, $key: gray--5 ),
     'white': white,
 );
+html {
+    --focus-outline--light: map-get($birdRegionColors, chaparral-oak-woodland);
+}
 
 :export{
     @each $color, $value in $birdRegionColors {

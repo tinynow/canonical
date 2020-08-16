@@ -8,7 +8,6 @@
     input {
         position: absolute;
         left: -999em;
-        cursor: pointer;
     }
     label {
         display: flex;
@@ -49,10 +48,10 @@
     }
     input:focus ~ label:before {
 
-        box-shadow: inset 0 0 0 3px white, 0 0 0 2px $focusColor;
+        box-shadow: inset 0 0 0 3px white, 0 0 0 2px var(--focus-outline--light);
 
         @if $checkbox {
-            box-shadow: 0 0 0 3px $focusColor;
+            outline: 2px dotted var(--focus-outline--light);
         }
     }
 }
