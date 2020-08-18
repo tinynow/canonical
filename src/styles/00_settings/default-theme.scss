@@ -59,7 +59,10 @@ $colors: (
 
 html {
     //TODO: remove this and only expose functional color vars
-    @each $name, $color in map-get($defaultThemeColors, options)  {
+    @each $name, $color in $colorOptions  {
+        --#{$name}: #{$color};
+    }
+    @each $name, $color in $defaultThemeColors  {
         --#{$name}: #{$color};
     }
 }
