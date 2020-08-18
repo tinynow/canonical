@@ -73,7 +73,7 @@
                 Try this Color Combinations tool
             </router-link>. More to come.
         </p>
-        {{ colorValues }}
+        {{ colorStops }}
     </main>
 </div>
 </template>
