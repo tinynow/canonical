@@ -1,7 +1,7 @@
 <template>
 <component
     :is="containerElement"
-    class="canon-c-prose"
+    class="canon-prose"
 >
     <slot />
 </component>
@@ -23,6 +23,6 @@ export default {
 </script>
 
 <style lang="scss">
-.canon-c-prose {
+.canon-prose {
 }
 </style>

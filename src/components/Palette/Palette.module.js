@@ -1,7 +1,6 @@
 import convertToRgb from '../../utils/color/convertToRgb';
 import getWcagContrast from '../../utils/color/getWcagContrast';
-import colors from '../../styles/00_settings/defaults.scss';
-//import themeColors from '../../styles/00_settings/theme.scss';
+import colors from '../../styles/00_settings/bird-lover-theme.scss';
 
 const colorTool = {
     namespaced: true,

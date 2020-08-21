@@ -1,4 +1,4 @@
-@import "./functions.scss";
+@import "../01_tools/functions.scss";
 
 /* =======================================================================
      Typography & Spacing
@@ -6,7 +6,8 @@
 $base-font-family: -apple-system, BlinkMacSystemFont, 'helvetica neue',
     helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
 $heading-font-family: 'Baloo 2', $base-font-family;
-$base-line-height: 1.3333;
+$monospace-font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$base-line-height: 1.5;
 $base-font-size: 125%;
 $space: $base-font-size/100% * $base-line-height * 1rem;
 $reading-line-width: 35rem;
@@ -15,19 +16,15 @@ $reading-line-width: 35rem;
      Colors
 ========================================================================== */
 
-/* Provide a subtle tone to dark and light grays - defaults to blue and pink */
-$darkHue: 225; //hsl(225,50%, 50%)
-$lightHue: 320;//hsl(320,50%, 50%)
-
 $colorOptions: (
-    "gray--0": hsl($lightHue, 10%, 95%),
-    "gray--1": hsl($lightHue, 10%, 85%),
-    "gray--2": hsl($lightHue, 5%, 65%),
-    "gray--3": hsl($darkHue, 10%, 45%),
-    "gray--4": hsl($darkHue, 10%, 30%),
-    "gray--5": hsl($darkHue, 21%, 20%),
-    "gray--6": hsl($darkHue, 100%, 1%),
-    "white": hsl($lightHue, 100%, 100%),
+    "white": hsl(320, 100%, 100%),
+    "gray--0": hsl(320, 10%, 95%),
+    "gray--1": hsl(320, 10%, 85%),
+    "gray--2": hsl(320, 5%, 65%),
+    "gray--3": hsl(320, 10%, 45%),
+    "gray--4": hsl(320, 10%, 30%),
+    "gray--5": hsl(320, 21%, 20%),
+    "gray--6": hsl(320, 100%, 1%),
     "yellow--3": hsl(48, 100%, 50%),
     "orange--0": hsl(25, 100%, 70%),
     "orange--1": hsl(25, 90%, 50%),
@@ -38,17 +35,6 @@ $colorOptions: (
     "red--2": hsl(1, 51%, 35%),
     "red--3": hsl(1, 51%, 25%),
     "red-alt--3": hsl(0, 66%, 35%),
-    "teal--0": hsl(156, 59%, 80%),
-    "teal--1": hsl(156, 79%, 70%),
-    "teal--2": hsl(156, 89%, 48%),
-    "teal--3": hsl(156, 99%, 38%),
-    "teal--4": hsl(156, 99%, 20%),
-    "green--4": hsl(61, 100%, 27%),
-    "blue-0": hsl(200, 89%, 80%),
-    "blue-1": hsl(200, 89%, 60%),
-    "blue-2": hsl(200, 99%, 45%),
-    "blue-3": hsl(200, 89%, 40%),
-    "blue-4": hsl(200, 89%, 20%),
 );
 
 $defaultThemeColors: (
@@ -56,8 +42,8 @@ $defaultThemeColors: (
     "text--light": map-get($colorOptions, "white"),
     "bg--dark": map-get($colorOptions, "gray--5"),
     "bg--light": map-get($colorOptions, "white"),
-    "border__control": map-get($colorOptions, "gray--3"),
-    "outline__focus": map-get($colorOptions, "orange--2" ),
+    "border__control--light": map-get($colorOptions, "gray--3"),
+    "focus-outline--light": map-get($colorOptions, "orange--2" ),
 );
 
 
@@ -70,27 +56,13 @@ $colors: (
     @return deep-map-get($colors, $color);
 };
 
-:export{
-    @each $color, $value in map-get($colors, options) {
-        #{$color}: $value;
-    }
-}
 
 html {
     //TODO: remove this and only expose functional color vars
-    @each $name, $color in map-get($colors, options)  {
+    @each $name, $color in $colorOptions  {
         --#{$name}: #{$color};
     }
-    @each $name, $color in map-get($colors, defaults)  {
+    @each $name, $color in $defaultThemeColors  {
         --#{$name}: #{$color};
     }
-
-    /* Focus Styles */
-    --focusRingColor: var(--orange);
-
-    --focusRing--internal: inset 0 0 0 1px var(--white),
-        inset 0 0 0 3px var(--black);
-    --focusRing--inverseInternal: inset 0 0 0 1px var(--black),
-        inset 0 0 0 3px var(--white);
-    --focusRing: 0 0 0 3px var(--focusRingColor);
 }

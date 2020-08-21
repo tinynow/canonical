@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Home from './pages/Home.vue';
-// import Docs from './pages/Docs.vue';
+import Docs from './pages/Docs.vue';
 import PaletteDemo from './pages/PaletteDemo.vue';
 // import MegaMenu from './components/MegaMenu';
 import store from './store';
@@ -17,8 +17,10 @@ Vue.config.productionTip = false;
 const routes = [
     { path: '/', component: Home},
     { path: '/palette', component: PaletteDemo},
+    { path: '/documentation', component: Docs},
 ];
 const router = new Router({
+    mode: 'history',
     routes,
 });
 

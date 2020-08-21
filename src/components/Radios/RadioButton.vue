@@ -1,8 +1,8 @@
 <template>
-<div class="canon-c-radio">
+<div class="canon-radio">
     <input
         :id="uid"
-        class="canon-c-radio__input"
+        class="canon-radio__input"
         :value="value"
         :name="name"
         :checked="shouldBeChecked"
@@ -12,14 +12,14 @@
     <label 
         v-if="label"
         :for="uid"
-        class="canon-c-radio__label"
+        class="canon-radio__label"
     >
         <span
-            class="canon-c-radio__label-text"
+            class="canon-radio__label-text"
         >{{ label }}</span>
         <span
             v-if="html"
-            class="canon-c-radio__label-text"
+            class="canon-radio__label-text"
             v-html="html"
         />
 
@@ -79,7 +79,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.canon-c-radio {
+.canon-radio {
     @include binary-control($size: 1rem);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-<fieldset class="canon-c-fieldset--control-group">
+<fieldset class="canon-fieldset--control-group">
     <legend>{{ label }}</legend>
     <canon-radio-button
         v-for="(option) in options"
