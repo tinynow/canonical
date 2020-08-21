@@ -1,5 +1,8 @@
 <template>
-<div>
+<div
+    class="canon-home-page"
+    :style="styleVals"
+>
     <header class="canon-site-header flex flex-wrap canon-layout --tube">
         <div class="flex items-center">
             <svg
@@ -64,7 +67,9 @@
             </router-link>
         </nav>
     </header>
-    <main class="canon-layout --auto-flow --readable --tube">
+    <main
+        class="canon-layout --auto-flow --readable --tube"
+    >
         <h1>A playground for serious play</h1>
     
         <p>I am a multi-disciplinary person who works full time for a large state agency. There, I do web development and design with a focus on accessibility, design systems, and content strategy. Here, I am free to sweat the small stuff and revel in the green fields.</p>
@@ -73,7 +78,6 @@
                 Try this Color Combinations tool
             </router-link>. More to come.
         </p>
-        {{ colorStops }}
     </main>
 </div>
 </template>
@@ -85,37 +89,101 @@ export default {
     data() {
         return {
             colors: colors,
-            primes: [ 1,3,5,7,13,17,26 ],
+            primes: [ 1,2,3,5,7,9,13,17,19,26,37,41,43,47,53 ],
         };
     },
     computed: {
-        colorValues() {``
+        colorValues() {
             return Object.values(this.colors);
         },
         colorStops() {
-            return colorValues.map((color, index, colors) => `${color} ${this.rando(index)}px`).join(', ');
+            const colors = [...this.shuffle(this.colorValues), ...this.shuffle(this.colorValues)] ;
+            let colorStops = [];
+            let startSize = 0;
+            let endSize = this.rando();
+            
+            for(let i = 0; i < colors.length; i++) {
+                endSize = colors[i] !== 'white' ? this.rando() + startSize : 2;
+                const ring = `${colors[i]} ${startSize}px, ${colors[i]} ${endSize}px`;
+                colorStops.push(ring);
+                startSize = endSize;
+            }
+            return colorStops.join(', ');
+
         },
+        gradient() {
+            return `repeating-radial-gradient(circle at 100%, ${this.colorStops})`;
+        },
+        styleVals() {
+            return {
+                'background-image': this.gradient,
+            };
+        },
+    },
+    mounted() {
+        // trigger a re-compute
+        setInterval(() => this.colors = {...this.colors}, 4000);
+    },
+    beforeMount() {
+        document.documentElement.style.setProperty('--page-bg', this.gradient)
     },
     methods: {
         rando() {
-            return Math.floor(Math.random() * Math.floor(this.primes.length));
+            return this.primes[Math.floor(Math.random() * Math.floor(this.primes.length))] * 1;
+        },
+        shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                //pick a random index (of the remaining set of options)
+                const j = Math.floor(Math.random() * (i + 1));
+                //ref current item of the array
+                const temp = array[i];
+                //overwrite the first item of the array with the random
+                array[i] = array[j];
+                //overwrite the random with the current
+                array[j] = temp;
+            }
+            return array;
         },
     },
 };
 </script>
 <style lang="scss">
+.canon-home-page {
+    min-height: 100vh;
+    outline: 2px solid honeydew;
+    color: var(--white);
+
+    h1 {
+        text-shadow: 1px 1px 1px black;
+    }
+
+    p {
+        display: block;
+        background-color: var(--tropical-areas-combined);
+        margin-left: -$space/4;
+        margin-right: -$space/4;
+        margin-inline: -$space/4;
+        padding-left: $space/4;
+        padding-right: $space/4;
+
+        // padding-inline: $space/4;
+        border-radius: 4px;
+        box-shadow: 2px 2px 0 0 var(--white);
+    }
+    transition: all 2s ease;
+}
 html {
     // @include radial-gradient($birdRegionColors);
-    background-image: radial-gradient(circle at 80%, 
-    #84a25d 0%, #84a25d 20px, 
-    #686641 20px,  #686641 28px, 
-    #308cab 28px, #308cab 33px, 
-    #3b9141 33px, #3b9141 44px, 
-    #e5c552 44px, #e5c552 125px,
-    #a28c44 125px, #a28c44 150px, 
-    #e29c78 150px, #e29c78 170px, 
-    #00abf5 170px,  #00abf5 190px, 
-    #e36745 190px, #e36745 195px, 
-    #bf6240 195px, #bf6240 220px,);
+    // background-image: radial-gradient(circle at 80%, 
+    // #84a25d 0%, #84a25d 20px, 
+    // #686641 20px,  #686641 28px, 
+    // #308cab 28px, #308cab 33px, 
+    // #3b9141 33px, #3b9141 44px, 
+    // #e5c552 44px, #e5c552 125px,
+    // #a28c44 125px, #a28c44 150px, 
+    // #e29c78 150px, #e29c78 170px, 
+    // #00abf5 170px,  #00abf5 190px, 
+    // #e36745 190px, #e36745 195px, 
+    // #bf6240 195px, #bf6240 220px,);
 }
 </style>
