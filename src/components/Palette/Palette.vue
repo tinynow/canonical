@@ -144,7 +144,7 @@ import CanonIcon from '../Icon/Icon';
 import CanonCheckbox from '../Checkbox/Checkbox';
 import CanonButton from '../Button/Button';
 import CanonForm from '../Form/Form';
-import CanonField from '../InputField';
+import CanonField from '../InputField/InputField';
 
 const a11yLevelOptions = [
     {
