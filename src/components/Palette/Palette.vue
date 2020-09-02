@@ -80,6 +80,7 @@
             :key="item.name"
             :color="item.value"
             :rgb-color="item.rgb"
+            :show-failures="showFailures"
             :contrasts="item.contrasts"
             :name="item.name"
             :a11y-level="a11yLevel"
@@ -143,7 +144,7 @@ import CanonIcon from '../Icon/Icon';
 import CanonCheckbox from '../Checkbox/Checkbox';
 import CanonButton from '../Button/Button';
 import CanonForm from '../Form/Form';
-import CanonField from '../Inputs/InputField';
+import CanonField from '../InputField';
 
 const a11yLevelOptions = [
     {

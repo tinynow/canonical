@@ -1,11 +1,11 @@
 <template>
 <li
-    class="mt3 pl2 canon-color-card"
+    class="mt3 canon-color-card"
     :style="{ borderLeftColor: color }"
 >
     <div class="flex items-stretch">
         <div>
-            <h3 class="ffheading canon-u-compact--4">
+            <h3 class="ffheading canon-u-compact--3">
                 {{ name }}
             </h3>
             <span class="ffbase canon-u-compact--0 ml1">{{ color }}</span>
@@ -20,9 +20,16 @@
             v-if="safeFor.anything.length"
             class="pt3 w-100"
         >
-            <h4 class="ffheading canon-u-type--2">
-                Use {{ name }} with these colors for anything.
-            </h4>
+            <div class="flex">
+                <canon-icon
+                    icon-name="smile"
+                    icon-size="40px"
+                    class="pr1"
+                />
+                <h4 class="canon-u-type--2">
+                    Use {{ name }} with these colors for anything.
+                </h4>
+            </div>
             <canon-color-card-combos
                 :combos="safeFor.anything"
                 :color="color"
@@ -32,9 +39,16 @@
             v-if="safeFor.largeOnly.length"
             class="pt4 w-100"
         >
-            <h4 class="ffheading canon-u-type--2">
-                Use {{ name }} with these colors for large or bold text only.
-            </h4>
+            <div class="flex">
+                <canon-icon
+                    icon-name="large-bold-text"
+                    icon-size="32px"
+                    class="pr1"
+                />
+                <h4 class="canon-u-type--2">
+                    Use {{ name }} with these colors for large or bold text.
+                </h4>
+            </div>
             <canon-color-card-combos
                 :combos="safeFor.largeOnly"
                 :color="color"
@@ -44,9 +58,16 @@
             v-if="safeFor.uiOnly.length"
             class="pt4 w-100"
         >
-            <h4 class="ffheading canon-u-type--2">
-                Use {{ name }} with these colors for interface controls.
-            </h4>
+            <div class="flex">
+                <canon-icon
+                    icon-name="interactive"
+                    icon-size="40px"
+                    class="pr1"
+                />
+                <h4 class="canon-u-type--2">
+                    Use {{ name }} with these colors for interface controls.
+                </h4>
+            </div>
             <canon-color-card-combos
                 :combos="safeFor.uiOnly"
                 :color="color"
@@ -58,26 +79,53 @@
             v-if="safeFor.uiOrLarge.length"
             class="pt4 w-100"
         >
-            <h4 class="ffheading canon-u-type--2">
-                Use {{ name }} with these colors for large text, bold text, or interface elements.
-            </h4>
+            <div class="flex">
+                <canon-icon
+                    icon-name="interactive"
+                    icon-size="40px"
+                    class="pr1"
+                />
+                <canon-icon
+                    icon-name="large-bold-text"
+                    icon-size="40px"
+                    class="pr1"
+                />
+                
+                <h4 class="canon-u-type--2">
+                    Use {{ name }} with these colors for large text, bold text, or interface elements.
+                </h4>
+            </div>
             <canon-color-card-combos
                 :combos="safeFor.uiOrLarge"
                 :color="color"
             />
         </div>
+
+        <div
+            v-if="safeFor.nothing.length && showFailures"
+            class="pt4 w-100"
+        >
+            <div class="flex">
+                <canon-icon
+                    icon-name="do-not"
+                    icon-size="40px"
+                    class="pr1"
+                />
+                <h4 class="canon-u-type--2">
+                    Do not use {{ name }} with these colors.
+                </h4>
+            </div>
+            <canon-color-card-combos
+                :combos="safeFor.nothing"
+                :color="color"
+            />
+        </div>
     </div>
-    
 
 
 
 
-    <!-- <td
-        v-for="(contrast, index) in contrasts"
-        :key="colorMatrix[index].name"
-        class="canon-color-matrix__cell"
-        :class="isNotSafe(contrast) && !showFailures ? 'dn' : null"
-    > -->
+
     <div v-if="false">
         <template v-if="isNotSafe(contrast) && showFailures">
             <!-- Under 3 not good for anything -- using default safe colors-->
@@ -275,9 +323,7 @@ export default {
     }
 }
 .canon-color-card  {
-    border-style: solid;
-    border-width: 0;
-    border-left-width: $space;
+
 
 }
 

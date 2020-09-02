@@ -18,7 +18,7 @@
             <dt class="visually-hidden">
                 Name:
             </dt>
-            <dd class="db ffheading canon-u-type--2">
+            <dd class="db">
                 {{ colorMatrix[index].name }}
             </dd>
             <dt class="visually-hidden">

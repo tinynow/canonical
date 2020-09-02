@@ -35,11 +35,7 @@ export default {
             type: String,
             default: 'none',
         },
-        iconWidth: {
-            type: String,
-            default: '24px', //TODO: decide on standard null/empty/false value ie [String, null]
-        },
-        iconHeight: {
+        iconSize : {
             type: String,
             default: '24px',
         },
@@ -62,8 +58,8 @@ export default {
         },
         cssVars() {
             return {
-                '--width': this.iconWidth,
-                '--height': this.iconHeight,
+                '--width': this.iconSize,
+                '--height': this.iconSize,
             };
         },
         strokeWidth() {

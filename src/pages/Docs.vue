@@ -6,7 +6,7 @@
     <h1>
         Typography and Layout
     </h1>
-    <p>Canonical is a typography first framework. Layout and whitespace measurements are derived from typographical choices. In particular, the computed height of a line of default body text forms the base unit for a modular scale. For this and other reasons, it's best to think about spacing, layout as interrelated parts of the same system.</p>
+    <p>Layout and typography affect each other in too many ways to be decided about separately. Layout and whitespace measurements are derived from typographical choices. In particular, the computed height of a line of default body text forms the base unit for a modular scale. For this and other reasons, it's best to think about spacing, layout as interrelated parts of the same system.</p>
     <p>To provide a balance between smart defaults and flexibility, developers can change the appearance, spacing, and behavior of text and layout through several features &mdash; <a href="#contexts">contexts</a>, <a href="#utilities">utilities</a>, and <a href="settings">settings</a>.</p>
     
     <h2>
