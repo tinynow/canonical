@@ -180,7 +180,6 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('colorTool');
 
 
-// import CanonTag from './Tag';
 import {isHex, isHsl, isRgb} from '../../utils/color/detectSyntax';
 import hexToRgb from '../../utils/color/hexToRgb';
 import hslToRgb from '../../utils/color/hslToRgb';
@@ -188,7 +187,6 @@ import getContrast from '../../utils/color/getWcagContrast';
 import rgbToObject from '../../utils/color/rgbToObject';
 import CanonColorCardCombos from './ColorCardCombos'
 import CanonIcon from './../Icon/Icon';
-// import CanonTypeSpecimen from './TypeSpecimen';
 import convertToRgb from './../../utils/color/convertToRgb';
 
 
