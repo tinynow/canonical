@@ -7,12 +7,10 @@ import KitchenSink from './pages/KitchenSink.vue';
 // import MegaMenu from './components/MegaMenu';
 import store from './store';
 import Router from 'vue-router';
-import VueCompositionApi from '@vue/composition-api';
 import CanonRevealer from 'canon-revealer';
 
 Vue.use(Router);
 Vue.use(CanonRevealer);
-Vue.use(VueCompositionApi);
 Vue.config.productionTip = false;
 
 const routes = [
