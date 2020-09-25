@@ -4,7 +4,7 @@
 .canon-field__input-wrapper {
     @include border-radius(1);
     @include neu-shadow();
-    border:  1px solid var(--border__control);
+    border:  1px solid var(--border__control--light);
     margin-top: 5px;//room for focus ring
 
     &:focus-within,

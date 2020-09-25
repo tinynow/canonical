@@ -77,7 +77,7 @@ import uniqueId from '../../mixins/uniqueId';
 import requireSlots from '../../mixins/requireSlots';
 
 export default {
-    name: 'CanonInputField',
+    name: 'CanonField',
     mixins: [
         requireSlots,
         uniqueId,
@@ -177,9 +177,6 @@ export default {
 </script>
 
 <style lang="scss">
-.test {
-    color: blue;
-}
-@import "./input-field.scss";
+@import "./field.scss";
 
 </style>
