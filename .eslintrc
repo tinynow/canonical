@@ -33,6 +33,14 @@
             {
                 "baseIndent": 0
             }
+        ],
+        "vue/html-self-closing": [
+            "error",
+            {
+                "html": {
+                    "normal": "any"
+                }
+            }
         ]
     }
 }
