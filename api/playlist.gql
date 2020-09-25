@@ -1,0 +1,13 @@
+type Track @collection(name: "tracks") {
+    title: String!
+    playlist: Playlist
+}
+
+type Playlist @collection(name: "playlists") {
+    title: String!
+    tracks: [Track] @relation
+}
+
+type Query {
+    allPlaylists: [Playlist!]!
+}
