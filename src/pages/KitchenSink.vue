@@ -1,14 +1,15 @@
 <template>
-<div>
+<div class="canon-layout --tube ph1">
     <h1>Kitchen Sink</h1>
     <canon-repeater
-        v-slot="{add, index, remove, update}"
-        v-model="vals"
+        v-slot="{add, index, remove }"
+        @added="added"
+        @removed="removed"
     >
         <canon-field
             :id="`color_${index}`"
             type="text"
-            @input="update(index, $event)"
+            :value="vals[index]"
         >
             <template slot="label">
                 Color {{ index }}
@@ -54,8 +55,11 @@ export default {
         };
     },
     methods: {
-        removeData(index) {
+        removed(index) {
             this.vals.splice(index, 1);
+        },
+        added(index) {
+            this.vals.splice(index, 0, {color:'', label: ''});
         },
     },
 }

@@ -1,23 +1,7 @@
-<template>
-<div class="canon-repeater__container">
-    <div
-        v-for="(item, index) in contents"
-        :key="index"
-        class="canon-repeater__item"
-    >
-        <slot v-bind="{ add, remove, index, update }" />
-    </div>
-</div>
-</template>
-
 <script>
     let original = null;
     export default {
         name: 'CanonRepeater',
-        model: {
-            prop: 'dataModel',
-            event: 'input',
-        },
         props: {
             dataModel: {
                 type: Array,
@@ -28,30 +12,32 @@
             return {
                 contents: [],
                 original: null,
+                count: 1,
             };
         },
-        count: 0,
-        mounted() {
-            original = this.$scopedSlots.default()
-            this.contents.push(original);
-        },
         methods: {
-            add(index, addAction) {
+            add(index) {
                 const clone = [...original];
                 this.contents.splice(index, 0, clone);
-                this.dataModel.splice(index, 0, clone);
-                addAction ? addAction(index) : null;
+                this.$emit('added', index);
             },
-            remove(index, removeAction) {
-                console.log(index);
+            remove(index) {
+                console.log(arguments);
                 this.contents.splice(index, 1);
-                this.dataModel.splice(index, 1);
-                removeAction ? removeAction(index) : null;
+                this.$emit('removed', index);
             },
-            update(index, payload) {
-                this.dataModel[index] = payload;
-                this.$emit('input');
-            },
+        },
+        render(createElement) {
+            this.original = [...this.$scopedSlots.default()]
+            console.log(this.$scopedSlots.default())
+            return createElement('div', 
+                Array.apply(null, {length: 1}).map( (item, index) => {
+                    return createElement('div', {attrs: { id: this.count}, scopedSlots: {
+                        default: () => createElement('div',{add: this.add }, this.original),
+                     }});
+                })
+            );
+
         },
     }
 </script>
