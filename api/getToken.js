@@ -6,7 +6,7 @@ const encodeToB64 = string => {
 
 const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET } = process.env;
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
-const PLAYLIST_ENDPOINT = 'https://api.spotify.com/v1/users/tinynow/playlists';
+const PLAYLIST_ENDPOINT = 'https://api.spotify.com/v1/playlists/0hqMZ0dfGKiaq37NSmM1Oq';
 
 const credentials = `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`;
 const basicAuth = `Basic ${encodeToB64(credentials)}`
@@ -24,10 +24,14 @@ const tokenRequestOptions = {
     redirect: 'follow',
 };
 
+// let cachedAuth;
+// let cacheTime;
+// const now = Date.now();
 
 const fetchDataFromSpotify = async result => { 
     // "access_token": "BQDPYwJsh..GMEdA", "token_type": "Bearer", "expires_in": 3600
     const { access_token, token_type } = JSON.parse(result);
+    
     const auth = `${token_type} ${access_token}`
     const headers = {
        'Authorization': auth,
@@ -41,9 +45,14 @@ const fetchDataFromSpotify = async result => {
         .then(response => response.text());
 }
 
-exports.handler = async (event, context) => {
+const getToken = () => {
     return fetch(TOKEN_ENDPOINT, tokenRequestOptions)
         .then(response => response.text())
+}
+
+
+exports.handler = async (event, context) => {
+    return getToken()
         .then(result => fetchDataFromSpotify(result))
         .then(result => ({
             statusCode: 200,
