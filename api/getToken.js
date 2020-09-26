@@ -10,9 +10,10 @@ const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 
 const credentials = `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`;
 const basicAuth = `Basic ${encodeToB64(credentials)}`
-const headers = new Headers();
-headers.append('Authorization', basicAuth);
-headers.append('Content-Type', 'application/x-www-form-urlencoded');
+const headers = {
+    'Authorization': basicAuth,
+    'Content-Type': 'application/x-www-form-urlencoded',
+}
 
 const urlencoded = new URLSearchParams();
 urlencoded.append('grant_type', 'client_credentials');
