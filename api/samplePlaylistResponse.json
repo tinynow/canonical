@@ -1,0 +1,52 @@
+{
+    "href": "https://api.spotify.com/v1/playlists/2zPO3MFajDs1u1mEbP7WKl/tracks?offset=0&limit=100",
+    items(added_by,track(name,href,duration_ms,external_urls,id,preview_url,uri,album(external_urls,href,id,images,releaseDate,uri),artists(external_urls,href,id,name,uri)))
+
+            "track": {
+   
+                "artists": [
+                    {
+                        "external_urls": {
+                            "spotify": "https://open.spotify.com/artist/4hfcSstwnyuBoek1dQwLkG"
+                        },
+                        "href": "https://api.spotify.com/v1/artists/4hfcSstwnyuBoek1dQwLkG",
+                        "id": "4hfcSstwnyuBoek1dQwLkG",
+                        "name": "Cymande",
+                        "type": "artist",
+                        "uri": "spotify:artist:4hfcSstwnyuBoek1dQwLkG"
+                    }
+                ],
+                "duration_ms": 210600,
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/track/0vGjEmKzJMnMh6YXSV6W7A"
+                },
+                "href": "https://api.spotify.com/v1/tracks/0vGjEmKzJMnMh6YXSV6W7A",
+                "id": "0vGjEmKzJMnMh6YXSV6W7A",
+                "name": "Zion I",
+                "preview_url": "https://p.scdn.co/mp3-preview/1f91789974a84c0c88ec1f92fda389f29506e2e0?cid=987be83d743645e9bada6075bac52a08",
+                "uri": "spotify:track:0vGjEmKzJMnMh6YXSV6W7A"
+            }
+        }
+    ],
+    "limit": 100,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 28
+}
+
+results 
+    items
+    total
+
+item
+    added_at
+    added_by
+    track
+
+track
+    album
+
+album
+    external_urls
+    href

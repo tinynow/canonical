@@ -3,9 +3,14 @@ const getToken = require('./getToken');
 
 /* Endpoint */
 const SPOTIFY_ROOT_URI = 'https://api.spotify.com/v1/';
+const params = new URLSearchParams();
+const fields = 'items(added_by.id,track(name,href,duration_ms,external_urls,id,preview_url,uri,album(external_urls,href,id,images,releaseDate,uri),artists(external_urls,href,id,name,uri)))';
+params.append('fields', fields);
 
-const getPlaylist = ({ access_token, token_type }, playlistId) => {
-    const playlistUri = `${SPOTIFY_ROOT_URI}playlists/${playlistId}/tracks`;
+const getPlaylist = async ({ access_token, token_type }, playlistId) => {
+    const playlistUri = `${SPOTIFY_ROOT_URI}playlists/${playlistId}`;
+    const playlistTracksUri = `${playlistUri}/tracks?${params}`;
+    console.log(playlistTracksUri);
     const auth = `${token_type} ${access_token}`
     const headers = {
         'Authorization': auth,
@@ -14,9 +19,13 @@ const getPlaylist = ({ access_token, token_type }, playlistId) => {
         method: 'GET',
         headers: headers,
     };
-    return fetch(playlistUri, requestOptions)
-        .then(response => response.text());
+    const playlist = await fetch(playlistUri, requestOptions)
+        .then(response => response.json());
 
+    const { items } = await fetch(playlistTracksUri, requestOptions)
+        .then(response => response.json());
+    
+    return { ...playlist , items};
 }
 
 exports.handler = async (event, context) => {
@@ -25,7 +34,7 @@ exports.handler = async (event, context) => {
         .then(result => getPlaylist(result, playlistId))
         .then(result => ({
             statusCode: 200,
-            body: result,
+            body: JSON.stringify(result),
         }))
         .catch(error => ({ statusCode: 422, body: String(error) }));
 };

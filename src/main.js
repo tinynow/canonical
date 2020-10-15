@@ -4,6 +4,7 @@ import Home from './pages/Home.vue';
 import Docs from './pages/Docs.vue';
 import PaletteDemo from './pages/PaletteDemo.vue';
 import KitchenSink from './pages/KitchenSink.vue';
+import Playlists from './pages/Playlists.vue';
 // import MegaMenu from './components/MegaMenu';
 import store from './store';
 import Router from 'vue-router';
@@ -18,6 +19,7 @@ const routes = [
     { path: '/palette', component: PaletteDemo},
     { path: '/documentation', component: Docs},
     { path: '/kitchen-sink', component: KitchenSink},
+    { path: '/playlists', component: Playlists },
 ];
 const router = new Router({
     mode: 'history',
