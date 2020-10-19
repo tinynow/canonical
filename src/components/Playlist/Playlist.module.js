@@ -4,11 +4,18 @@ const INITIAL_STATE = {
 export default {
     namespaced: true,
     state: {
-        done: [],
+        user: null,
+        playlists: null,
     },
     mutations: {
-        EMPTY_STATE(state) {
-            this.replaceState()
+        SET(state, {key, value}) {
+            state[key] = value;
+        },
+    },
+    actions: {
+        parseSpotifyPlaylist(context, payload) {
+            const tracks = payload;
+
         },
     },
 }

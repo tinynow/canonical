@@ -13,29 +13,52 @@
         </canon-button>
     </div>
     <div v-if="rawResponse">
-        <h2>{{ playlistName() }}</h2>
-        <p>
-            created by <a href="rawResponse.owner.external_urls.spotify">{{ rawResponse.owner.display_name }}</a>   
-            {{ rawResponse.collaborative ? 'with others' : '' }}
-        </p>
-
-        <ul class="canon-track-list reset-list">
+        <div class="playlist-header w-100 bg--dark text--light flex">
+            <img
+                :src="rawResponse.images[1].url"
+                alt=""
+            >
+            <div>
+                <h2><a :href="rawResponse.external_urls.spotify">{{ rawResponse.name }}</a></h2>
+                <p>
+                    created by <a :href="rawResponse.owner.external_urls.spotify">{{ rawResponse.owner.display_name }}</a>   
+                    {{ rawResponse.collaborative ? 'with others' : '' }}
+                </p>
+            </div>
+        </div>
+        <ol class="canon-track-list reset-list">
             <li
-                v-for="track in rawResponse.tracks.items"
+                v-for="(track, index) in rawResponse.tracks.items"
                 :key="track.track.name"
                 class="canon-track"
             >
-                <h3 class="canon-u-type--1 dib">
-                    {{ track.track.name }}
-                </h3>
-                <p
-                    v-for="artist in track.track.artists"
-                    :key="artist.id"
-                    class="dib pl1"
-                >
-                    {{ artist.name }}
-                </p>
+                <div class="flex items-center pt1">
+                    <span class="pr3 pv2 canon-u-type--sm">{{ index + 1 }}</span>
+               
+                    <img
+                        class="flex-shrink-0 show-at-md"
+                        :src="track.track.album.images[2].url"
+                        :width="track.track.album.images[2].width"
+                        :height="track.track.album.images[2].height"
+                    > 
+                    <div class="pl1">
+                        <h3 class="canon-u-type--1">
+                            {{ track.track.name }}
+                        </h3>
+                        <a
+                            v-for="artist in track.track.artists"
+                            :key="artist.id"
+                            :href="artist.external_urls.spotify"
+                            class="pr1"
+                        >
+                            {{ artist.name }}
+                        </a>
+                    </div>
+            
+                    <span class="mlauto mr0">{{ milliToSeconds(track.track.duration_ms) }}</span>
+                </div>
                 <button
+                    v-if="showPreviews"
                     class="canon-track__preview-toggle reset-button pl1 link-style"
                     :aria-expanded="track.previewExpanded"
                     @click="togglePlayer(track.track.id)"
@@ -43,6 +66,7 @@
                     Preview
                 </button>
                 <audio
+                    v-if="showPreviews"
                     :ref="track.track.id"
                     class="db w-100"
                     controls
@@ -51,16 +75,19 @@
                     Your browser does not support the
                     <code>audio</code> element.
                 </audio>
+                <div class="canon-track-notes">
+                </div>
             </li>
-        </ul>
+        </ol>
         <pre>
-            {{ rawResponse.tracks.items[0] }}
+            {{ rawResponse }}
         </pre>
     </div>
 </div>
 </template>
 
 <script>
+
 import CanonField from '../Field/Field';
 import CanonButton from '../Button/Button';
 import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
@@ -68,7 +95,6 @@ const PLAYLIST_ENDPOINT = '.netlify/functions/getPlaylist';
 const PLAYLIST_REQUEST_OPTIONS = {
     method: 'GET',
 };
-
 export default {
     name: 'CanonPlaylist',
     components: {
@@ -80,6 +106,7 @@ export default {
             playlistInputVal: '',
             playlist: [],
             rawResponse: null,
+            showPreviews: false,
         };
     },
     computed: {
@@ -128,6 +155,13 @@ export default {
             } else {
                 player.pause();
             }
+        },
+        // with gratitude: https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
+        milliToSeconds(milliseconds) {  
+            const minutes = Math.floor(milliseconds / 60000);
+            const seconds = ((milliseconds % 60000) / 1000).toFixed(0);
+            return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
         },
 
     },
