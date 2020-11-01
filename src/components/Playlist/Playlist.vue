@@ -13,6 +13,21 @@
         </canon-button>
     </div>
     <div v-if="rawResponse">
+        <pre>
+playlist: {{ Object.keys(rawResponse) }}
+playlist.tracks: {{ Object.keys(rawResponse.tracks) }}
+playlist.tracks.items[index]: {{ Object.keys(rawResponse.tracks.items[0]) }}
+playlist.tracks.items[index].track: {{ Object.keys(rawResponse.tracks.items[0].track) }}
+playlist.tracks.items[index].track.artists[index]: {{ Object.keys(rawResponse.tracks.items[0].track.artists[0]) }}
+playlist.tracks.items[index].track.external_urls: {{ Object.keys(rawResponse.tracks.items[0].track.external_urls) }}
+playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.items[0].track.album) }}
+playlist.tracks.items[index].track.album.images: {{ Object.keys(rawResponse.tracks.items[0].track.album.images) }}
+playlist.tracks.items[index].track.album.images[0]: {{ Object.keys(rawResponse.tracks.items[0].track.album.images[0]) }}
+playlist.tracks.items[index].track.external_ids: {{ Object.keys(rawResponse.tracks.items[0].track.external_ids) }}
+playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.items[0].track.album) }}
+
+
+        </pre>
         <div class="playlist-header w-100 bg--dark text--light flex">
             <img
                 :src="rawResponse.images[1].url"
@@ -43,7 +58,7 @@
                     > 
                     <div class="pl1">
                         <h3 class="canon-u-type--1">
-                            {{ track.track.name }}
+                            {{ track.track.name }} {{ track.track.external_ids }}
                         </h3>
                         <a
                             v-for="artist in track.track.artists"
@@ -80,7 +95,7 @@
             </li>
         </ol>
         <pre>
-            {{ rawResponse }}
+            {{ savedTrack }}
         </pre>
     </div>
 </div>
@@ -91,7 +106,7 @@
 import CanonField from '../Field/Field';
 import CanonButton from '../Button/Button';
 import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
-const PLAYLIST_ENDPOINT = '.netlify/functions/getPlaylist';
+const PLAYLIST_ENDPOINT = '../.netlify/functions/getPlaylist';
 const PLAYLIST_REQUEST_OPTIONS = {
     method: 'GET',
 };
@@ -105,14 +120,16 @@ export default {
         return {
             playlistInputVal: '',
             playlist: [],
-            rawResponse: null,
+            rawResponse: fakeResponse,
             showPreviews: false,
+            savedTrack: null,
         };
     },
     computed: {
         playlistId() {
             // 7vdEZv4c4MG391dfTFqN95
             // spotify:playlist:7vdEZv4c4MG391dfTFqN95
+            // 
             if (this.playlistInputVal.startsWith('spotify:playlist:')) {
                 return this.playlistInputVal.substring(17);
             } else {
@@ -124,23 +141,44 @@ export default {
     },
     methods: {
         fetchPlaylist(playlistId) {
-            // if (playlistId === this.playlistId) {
-            //     return;
-            // }
-            // const params = new URLSearchParams();
-            // params.append('playlistId', this.playlistId);
-            // const uri = `${PLAYLIST_ENDPOINT}?${params}`;
-            // return fetch(uri)
-            // .then(response => response.text())
+            if (playlistId === this.playlistId) {
+                return;
+            }
+            const params = new URLSearchParams();
+            params.append('playlistId', this.playlistId);
+            const uri = `${PLAYLIST_ENDPOINT}?${params}`;
+            // return fetch(uri, PLAYLIST_REQUEST_OPTIONS )
+            // .then(response => response.json())
             // .then(result => {
-            //     this.rawResponse = JSON.parse(result);
-            //     console.log(JSON.parse(result));
+            //     this.rawResponse = result;
             // });
             this.rawResponse = fakeResponse;
+            this.savePlaylist()
         },
+
+        savePlaylist() {
+            this.createTracks(this.rawResponse.tracks.items).then(response => {
+                console.log(response);
+                // this.createPlaylist();
+            });
+        },
+        createPlaylist() {
+
+        },
+        createTracks(data) {
+            return fetch('/.netlify/functions/tracksCreate', {
+                body: JSON.stringify(data),
+                method: 'POST',
+            }).then(response => {
+                return response.json()
+            });
+        },
+        
+
         playlistName() {
             return this.rawResponse.name;
         },
+    
         togglePlayer(id) {
             const player = this.$refs[id][0];
             console.log(player)

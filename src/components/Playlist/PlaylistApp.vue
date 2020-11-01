@@ -5,7 +5,28 @@
 </template>
 
 <script>
-    export default {
-        name: 'CanonPlaylistApp',
-    }
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions } = createNamespacedHelpers('songNotes');
+
+export default {
+    name: 'CanonPlaylistApp',
+    computed: {
+        ...mapState({
+            user: state => state.user,
+            playlists: state => state.playlists,
+            ui: state => state.ui,
+        }),
+    },
+    created() {
+        // this.fetchNewPlaylist();
+    },
+    methods: {
+        ...mapActions([
+            'fetchNewPlaylist',
+            'changeUi',
+        ]),
+
+    },
+
+}
 </script>

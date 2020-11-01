@@ -24,7 +24,7 @@ const routes = [
     { path: '/kitchen-sink', component: KitchenSink},
     { path: '/songnotes', component: PlaylistApp, children: [
         {
-            path: 'hello',
+            path: '/',
             component: PlaylistSelect,
         },
         {

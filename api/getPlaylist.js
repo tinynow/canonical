@@ -11,8 +11,7 @@ params.append('fields', fields);
 
 const getPlaylist = async ({ access_token, token_type }, playlistId) => {
     const playlistUri = `${SPOTIFY_ROOT_URI}playlists/${playlistId}?market=US`;
-    const playlistTracksUri = `${playlistUri}/tracks?${params}`;
-    console.log(playlistTracksUri);
+    // const playlistTracksUri = `${playlistUri}/tracks?${params}`;
     const auth = `${token_type} ${access_token}`
     const headers = {
         'Authorization': auth,
@@ -25,20 +24,19 @@ const getPlaylist = async ({ access_token, token_type }, playlistId) => {
     };
     const playlist = await fetch(playlistUri, requestOptions)
         .then(response => response.json());
-
     // const { items } = await fetch(playlistTracksUri, requestOptions)
     //     .then(response => response.json());
     
     return playlist;
 }
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
     const { playlistId } = event.queryStringParameters;
     return getToken()
         .then(result => getPlaylist(result, playlistId))
-        .then(result => ({
+        .then(data => ({
             statusCode: 200,
-            body: JSON.stringify(result),
+            body: JSON.stringify(data),
         }))
         .catch(error => ({ statusCode: 422, body: String(error) }));
 };
