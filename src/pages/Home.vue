@@ -63,7 +63,13 @@
                 to="/palette"
                 class="ml2"
             >
-                Color Palette Contrast Tool
+                Color Palette Contrasts
+            </router-link>
+            <router-link 
+                to="/songnotes"
+                class="ml2"
+            >
+                songnotes
             </router-link>
         </nav>
     </header>
