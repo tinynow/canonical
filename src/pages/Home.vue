@@ -90,6 +90,8 @@
 
 <script>
 import colors from '../styles/00_settings/bird-lover-theme.scss';
+const netlifyIdentity = require('netlify-identity-widget');
+
 export default {
     name: 'HomePage',
     data() {
@@ -131,6 +133,7 @@ export default {
         setInterval(() => this.colors = {...this.colors}, 4000);
     },
     beforeMount() {
+        const netlifyIdentity = require('netlify-identity-widget');
         document.documentElement.style.setProperty('--page-bg', this.gradient)
     },
     methods: {
