@@ -1,3 +1,6 @@
+
+const netlifyIdentity = require('netlify-identity-widget');
+
 // with gratitude: https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
 const milliToSeconds = milliseconds => {
     const minutes = Math.floor(milliseconds / 60000);
@@ -69,6 +72,11 @@ export default {
                 method: 'POST',
             });
             return response.json();
+        },
+        identify() {
+            netlifyIdentity.init();
+            netlifyIdentity.open();
+            (console.log(netlifyIdentity.currentUser()))
         },
         
     },

@@ -1,5 +1,5 @@
 <template>
-<div class="canon-layout --tube --auto-flow">
+<div>
     <router-view />
 </div>
 </template>
@@ -18,12 +18,13 @@ export default {
         }),
     },
     created() {
-        // this.fetchNewPlaylist();
+        this.identify();
     },
     methods: {
         ...mapActions([
             'fetchNewPlaylist',
             'changeUi',
+            'identify',
         ]),
 
     },
