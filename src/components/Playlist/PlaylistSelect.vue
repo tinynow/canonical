@@ -1,17 +1,8 @@
 <template>
 <div>
-    {{ this.$store.state }}
     <div
-        v-if="!user.loggedIn"
-        class="canon-layout --auto-flow-compact"
+        class="canon-layout --auto-flow-compact --readable"
     >
-        <p>
-            Your music has a story. Share it.
-            Liner love notes.
-            Mixtape liner notes of the future.
-            Playlists personalized.
-            Annotate tracks.
-        </p>
         <div class="canon-playlist__selector canon-layout --auto-flow-compact">
             <canon-field
                 v-model="playlistInputVal"
@@ -24,13 +15,6 @@
             <canon-button @click="fetchPlaylist">
                 Get Playlist {{ playlistId }}
             </canon-button>
-        </div>
-    </div>
-    <div v-else>
-        <div
-            v-if="!user.hasPlaylists"
-        >
-            Here are your playlists.
         </div>
     </div>
 </div>
@@ -62,7 +46,7 @@ export default {
     },
     computed: {
         user() {
-            return { loggedIn: false}
+            return { loggedIn: false }
         },
         playlistId() {
             // 7vdEZv4c4MG391dfTFqN95
