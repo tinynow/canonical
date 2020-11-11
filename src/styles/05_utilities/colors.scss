@@ -10,3 +10,6 @@
 .bg--light {
     background-color: color('bg--light');
 }
+.invert {
+    filter: invert(100%);
+}

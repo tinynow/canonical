@@ -1,5 +1,8 @@
 <template>
 <div>
+    <header class="pa1 bg--dark text--light">
+        <p>songnotes</p>
+    </header>
     <router-view />
 </div>
 </template>

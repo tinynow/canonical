@@ -5,8 +5,7 @@ import Docs from './pages/Docs.vue';
 import PaletteDemo from './pages/PaletteDemo.vue';
 import KitchenSink from './pages/KitchenSink.vue';
 import PlaylistApp from './components/Playlist/PlaylistApp.vue';
-import PlaylistSelect from './components/Playlist/PlaylistSelect.vue';
-import Playlist from './components/Playlist/Playlist.vue';
+import SongNoteRoutes from './components/Playlist/routes';
 // import MegaMenu from './components/MegaMenu';
 import store from './store';
 import Router from 'vue-router';
@@ -22,16 +21,7 @@ const routes = [
     { path: '/palette', component: PaletteDemo},
     { path: '/documentation', component: Docs},
     { path: '/kitchen-sink', component: KitchenSink},
-    { path: '/songnotes', component: PlaylistApp, children: [
-        {
-            path: '/',
-            component: PlaylistSelect,
-        },
-        {
-            path: 'playlist',
-            component: Playlist,
-        },
-    ] },
+    { path: '/songnotes', component: PlaylistApp, children: SongNoteRoutes },
 ];
 const router = new Router({
     mode: 'history',
