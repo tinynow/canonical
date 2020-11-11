@@ -1,9 +1,11 @@
 <template>
 <div
     class="canon-home-page"
-    :style="styleVals"
 >
-    <header class="canon-site-header flex flex-wrap canon-layout --tube">
+    <header
+        :style="styleVals"
+        class="canon-site-header flex flex-wrap canon-layout --tube"
+    >
         <div class="flex items-center">
             <svg
                 class="canon-logo mr1"
@@ -80,9 +82,9 @@
     
         <p>I am a multi-disciplinary person who works full time for a large state agency. There, I do web development and design with a focus on accessibility, design systems, and content strategy. Here, I am free to sweat the small stuff and revel in the green fields.</p>
         <p>
-            This site will change frequently until it doesn't. For now,  <router-link to="/palette">
-                Try this Color Combinations tool
-            </router-link>. More to come.
+            <router-link to="/palette">
+                Try this not quite finished Color Combinations tool
+            </router-link>. Given a set of colors, it lets you know which combinations have accessible contrast ratios.
         </p>
     </main>
 </div>
@@ -90,7 +92,6 @@
 
 <script>
 import colors from '../styles/00_settings/bird-lover-theme.scss';
-const netlifyIdentity = require('netlify-identity-widget');
 
 export default {
     name: 'HomePage',
@@ -125,7 +126,7 @@ export default {
         styleVals() {
             return {
                 'background-image': this.gradient,
-            };
+                };
         },
     },
     mounted() {
@@ -133,12 +134,11 @@ export default {
         setInterval(() => this.colors = {...this.colors}, 4000);
     },
     beforeMount() {
-        const netlifyIdentity = require('netlify-identity-widget');
         document.documentElement.style.setProperty('--page-bg', this.gradient)
     },
     methods: {
         rando() {
-            return this.primes[Math.floor(Math.random() * Math.floor(this.primes.length))] * 1;
+            return this.primes[Math.floor(Math.random() * Math.floor(this.primes.length))] * 2;
         },
         shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -160,14 +160,14 @@ export default {
 .canon-home-page {
     min-height: 100vh;
     outline: 2px solid honeydew;
-    color: var(--white);
 
     h1 {
-        text-shadow: 1px 1px 1px black;
+        text-shadow: 1px 1px 1px #999;
     }
 
     p {
         display: block;
+        color: white;
         background-color: var(--tropical-areas-combined);
         margin-left: -$space/4;
         margin-right: -$space/4;
@@ -178,6 +178,9 @@ export default {
         // padding-inline: $space/4;
         border-radius: 4px;
         box-shadow: 2px 2px 0 0 var(--white);
+        a {
+            color: rgb(238, 230, 117) ;
+        }
     }
     transition: all 2s ease;
 }
