@@ -36,7 +36,8 @@ export default {
     border-top: 1px solid color(yellow--3);
 
     a {
-        color: color(yellow--3);
+        color: white;
+        text-shadow: 1px 1px 2px black;
         text-decoration: none;
     }
     *::selection {
