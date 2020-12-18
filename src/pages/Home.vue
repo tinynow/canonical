@@ -159,43 +159,6 @@ export default {
 <style lang="scss">
 .canon-home-page {
     min-height: 100vh;
-    outline: 2px solid honeydew;
-
-    h1 {
-        text-shadow: 1px 1px 1px #999;
-    }
-
-    p {
-        display: block;
-        color: white;
-        background-color: var(--tropical-areas-combined);
-        margin-left: -$space/4;
-        margin-right: -$space/4;
-        margin-inline: -$space/4;
-        padding-left: $space/4;
-        padding-right: $space/4;
-
-        // padding-inline: $space/4;
-        border-radius: 4px;
-        box-shadow: 2px 2px 0 0 var(--white);
-        a {
-            color: rgb(238, 230, 117) ;
-        }
-    }
-    transition: all 2s ease;
 }
-html {
-    // @include radial-gradient($birdRegionColors);
-    // background-image: radial-gradient(circle at 80%, 
-    // #84a25d 0%, #84a25d 20px, 
-    // #686641 20px,  #686641 28px, 
-    // #308cab 28px, #308cab 33px, 
-    // #3b9141 33px, #3b9141 44px, 
-    // #e5c552 44px, #e5c552 125px,
-    // #a28c44 125px, #a28c44 150px, 
-    // #e29c78 150px, #e29c78 170px, 
-    // #00abf5 170px,  #00abf5 190px, 
-    // #e36745 190px, #e36745 195px, 
-    // #bf6240 195px, #bf6240 220px,);
-}
+
 </style>

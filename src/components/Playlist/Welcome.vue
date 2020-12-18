@@ -1,8 +1,8 @@
 <template>
-<div class="flex flex-column">
+<div class="">
     <div class="canon-layout --tube tc pt3">
         <h2 class="fw800">
-            Your playlists were born from a backstory, not an algorithm.
+            Your playlists are born from a backstory, not an algorithm.
         </h2>
 
         <p class="canon-u-type--2 mt4">
@@ -11,10 +11,9 @@
         <p class="canon-u-type--2 mt2">
             Import Spotify playlists or curate a new mix. Add notes. Share.
         </p>
-    
  
         <button
-            class="canon-button canon-u-type--3 dib mt4"
+            class="canon-button canon-u-type--3 dib mt4 pill"
             type="button"
             aria-describedby="disclaimer"
             @click="createAccountClick"
@@ -36,7 +35,12 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions } = createNamespacedHelpers('songNotes');
 
 export default {
-    name: 'NewUser',
+    name: 'SongNoteWelcome',
+    computed: {
+        ...mapState({
+            isLoggedIn: state => state.isLoggedIn,
+        }),
+    },
     methods: {
         ...mapActions([
             'createAccount',
@@ -48,6 +52,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 </style>

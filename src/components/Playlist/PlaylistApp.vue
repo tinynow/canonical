@@ -1,7 +1,10 @@
 <template>
 <div>
-    <header class="pa1 bg--dark text--light">
+    <header class="pa1 bg--dark text--light flex">
         <p>songnotes</p>
+        <div class="mlauto mr0">
+            <div data-netlify-identity-menu></div>
+        </div>
     </header>
     <router-view />
 </div>
@@ -20,7 +23,7 @@ export default {
             ui: state => state.ui,
         }),
     },
-    created() {
+    mounted() {
         this.identify();
     },
     methods: {
@@ -28,9 +31,20 @@ export default {
             'fetchNewPlaylist',
             'changeUi',
             'identify',
+            'signIn',
         ]),
 
     },
 
 }
 </script>
+<style lang="scss">
+.netlify-identity-menu {
+    text-indent: initial;
+    margin: initial;
+}
+.netlify-identity-item {
+    display: inline-block;
+    padding: 0 0 0 $space/4;
+}
+</style>

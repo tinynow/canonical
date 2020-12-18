@@ -30,7 +30,7 @@ const PLAYLIST_REQUEST_OPTIONS = {
 };
 
 export default {
-    name: 'CanonPlaylistSelect',
+    name: 'CanonPlaylistStart',
 
     components: {
         CanonField,

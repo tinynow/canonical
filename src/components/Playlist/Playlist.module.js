@@ -1,5 +1,5 @@
 
-const netlifyIdentity = require('netlify-identity-widget');
+const netlifyIdentity = window.netlifyIdentity;
 
 // with gratitude: https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
 const milliToSeconds = milliseconds => {
@@ -31,6 +31,7 @@ export default {
         user: null,
         playlists: [],
         ui: 'empty',
+        isLoggedIn: false,
     },
     mutations: {
         SET(state, {key, value}) {
@@ -73,10 +74,20 @@ export default {
             });
             return response.json();
         },
-        identify() {
-            netlifyIdentity.init();
-            netlifyIdentity.open();
-            (console.log(netlifyIdentity.currentUser()))
+        identify({commit}) {
+            console.log(window.netlifyIdentity)
+            const changeLogin = user => {
+                commit('SET', { isLoggedIn: user });
+            }
+            netlifyIdentity.on('init', changeLogin)
+            netlifyIdentity.on('login', changeLogin);
+            netlifyIdentity.on('logout', changeLogin);            
+        },
+        createAccount() {
+            netlifyIdentity.open('signup'); 
+        },
+        logIn() {
+            netlifyIdentity.open('login'); 
         },
         
     },

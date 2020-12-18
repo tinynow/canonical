@@ -21,7 +21,7 @@ const routes = [
     { path: '/palette', component: PaletteDemo},
     { path: '/documentation', component: Docs},
     { path: '/kitchen-sink', component: KitchenSink},
-    { path: '/songnotes', component: PlaylistApp, children: SongNoteRoutes },
+    SongNoteRoutes,
 ];
 const router = new Router({
     mode: 'history',
