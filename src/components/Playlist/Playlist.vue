@@ -1,11 +1,13 @@
 <template>
 <div class="canon-playlist">
-    <div class="canon-playlist__selector canon-layout --auto-flow-compact">
+    <div class="canon-playlist__selector canon-layout --tube --auto-flow-compact --readable">
         <canon-field
             v-model="playlistInputVal"
             type="text"
         >
-            <span slot="label">Spotify Playlist ID or URI</span>
+            <span slot="label">Paste a Spotify Playlist ID or URI</span>
+            <span slot="hint">(Looks like "spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq" or "https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq?si=ovdUP4t1TwirWqlojhBX5g" )
+            </span>
         </canon-field>
         
         <canon-button @click="fetchPlaylist">
@@ -106,6 +108,9 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
 import CanonField from '../Field/Field';
 import CanonButton from '../Button/Button';
 import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
+import extractSpotifyId from './helpers/extractSpotifyId';
+import millisecondsToEnglish from './helpers/millisecondsToEnglish';
+
 const PLAYLIST_ENDPOINT = '../.netlify/functions/getPlaylist';
 const PLAYLIST_REQUEST_OPTIONS = {
     method: 'GET',
@@ -127,14 +132,7 @@ export default {
     },
     computed: {
         playlistId() {
-            // 7vdEZv4c4MG391dfTFqN95
-            // spotify:playlist:7vdEZv4c4MG391dfTFqN95
-            // 
-            if (this.playlistInputVal.startsWith('spotify:playlist:')) {
-                return this.playlistInputVal.substring(17);
-            } else {
-                return this.playlistInputVal;
-            }
+          return extractSpotifyId(this.playlistInputVal);
         },
 
 
@@ -201,6 +199,7 @@ export default {
             return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
         },
+
 
     },
 }
