@@ -47,14 +47,14 @@ $line-heights: (
 @function line-height($level) {
     @return map-get($line-heights, $level);
 }
-@function compact-line-height($level) {
-    @return map-get($line-heights, $level);
-}
+// @function compact-line-height($level) {
+//     @return map-get($line-heights, $level);
+// }
 @mixin type-setting($level: 0) {
     font-size: type-scale($level);
     line-height: line-height($level);
 }
 @mixin compact-type-setting($level: 0) {
     font-size: type-scale($level);
-    line-height: compact-line-height($level);
+    line-height: 1.2;
 }
