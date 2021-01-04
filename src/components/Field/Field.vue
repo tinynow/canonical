@@ -12,19 +12,19 @@
         <span class="canon-field__label-slot">
             <slot name="label" />
         </span>
-        <span
-            v-if="$slots.hint"
-            class="canon-field__hint-slot"
-        >
-            <slot name="hint" />
-        </span>
-        <span
-            v-show="$slots.error"
-            class="canon-field__label-error-slot"
-        >
-            <slot name="error" />
-        </span>
     </label>
+    <span
+        v-if="$slots.hint"
+        class="canon-field__hint-slot"
+    >
+        <slot name="hint" />
+    </span>
+    <span
+        v-show="$slots.error"
+        class="canon-field__error-slot"
+    >
+        <slot name="error" />
+    </span>
         
     <div class="canon-field__input-wrapper flex items-center">
         <div

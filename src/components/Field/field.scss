@@ -1,5 +1,6 @@
 .canon-field {
     position: relative;
+    overflow: hidden;
 }
 .canon-field__input-wrapper {
     @include border-radius(1);
@@ -21,8 +22,7 @@
 }
 .canon-field__hint-slot {
     display: block;
-    font-size: 16px;
-    line-height: 20px;
+    @include type-setting(0);
 }
 
 .canon-field__input { 
