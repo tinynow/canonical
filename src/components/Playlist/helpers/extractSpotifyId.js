@@ -5,7 +5,8 @@ export default function extractSpotifyID(spotifyUrlUriOrId) {
     if (spotifyUrlUriOrId.startsWith('spotify:playlist:')) {
         return spotifyUrlUriOrId.substring(17);
     } else if (spotifyUrlUriOrId.startsWith('https://open.spotify.com/playlist/')) {
-        return spotifyUrlUriOrId.substring(34)
+        const queryIndex = spotifyUrlUriOrId.indexOf('?');
+        return spotifyUrlUriOrId.substring(34, queryIndex);
     } else {
         return spotifyUrlUriOrId;
     }

@@ -1,13 +1,22 @@
 <template>
-<div class="canon-playlist">
-    <div class="canon-playlist__selector canon-layout --tube --auto-flow-compact --readable">
+<div class="canon-playlist  canon-layout --tube --auto-flow --readable">
+    <div class="canon-playlist__selector">
         <canon-field
             v-model="playlistInputVal"
             type="text"
         >
             <span slot="label">Paste a Spotify Playlist ID or URI</span>
-            <span slot="hint">(Looks like "spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq" or "https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq?si=ovdUP4t1TwirWqlojhBX5g" )
-            </span>
+            <div
+                slot="hint"
+                class="ctx-text --document"
+            >
+                Examples: <code
+                    class="canon-u-compact--sm"
+                    @click="copyToClipboard"
+                >spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <canon-clip class="canon-u-type--sm" :inline="true" :wrap="false">
+                    https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq?si=ovdUP4t1TwirWqlojhBX5g
+                </canon-clip>
+            </div>
         </canon-field>
         
         <canon-button @click="fetchPlaylist">
@@ -107,6 +116,7 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
 
 import CanonField from '../Field/Field';
 import CanonButton from '../Button/Button';
+import CanonClip from '../Clip/Clip';
 import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
 import extractSpotifyId from './helpers/extractSpotifyId';
 import millisecondsToEnglish from './helpers/millisecondsToEnglish';
@@ -120,6 +130,7 @@ export default {
     components: {
         CanonField,
         CanonButton,
+        CanonClip,
     },
     data() {
         return {
@@ -151,7 +162,7 @@ export default {
             //     this.rawResponse = result;
             // });
             this.rawResponse = fakeResponse;
-            this.savePlaylist()
+            // this.savePlaylist()
         },
 
         savePlaylist() {
@@ -198,6 +209,9 @@ export default {
             const seconds = ((milliseconds % 60000) / 1000).toFixed(0);
             return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
+        },
+        async copyToClipboard() {
+            await navigator.clipboard.writeText('Awesome');
         },
 
 
