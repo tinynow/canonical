@@ -9,8 +9,11 @@
 }
 
 .reset-button {
-    border: unset;
-    background: unset;
+    border: 0;
+    background: none;
+    padding: 0;
+    margin: 0;
+    text-align: inherit;
 }
 
 .reset-border {
