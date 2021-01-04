@@ -1,0 +1,12 @@
+.ctx-text {
+    &.--document {
+        // Not sure if this is the best path
+        code {
+            color: var(--background, white);
+            background-color: var(--foreground, dimgray);
+            padding: 2px 4px;
+            border-radius: 2px;
+
+        }
+    }
+}
