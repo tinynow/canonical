@@ -1,10 +1,10 @@
 import Vue from 'vue';
+import './styles/global.scss';
 import App from './App.vue';
 import Home from './pages/Home.vue';
 import Docs from './pages/Docs.vue';
 import PaletteDemo from './pages/PaletteDemo.vue';
 import KitchenSink from './pages/KitchenSink.vue';
-import PlaylistApp from './components/Playlist/PlaylistApp.vue';
 import SongNoteRoutes from './components/Playlist/routes';
 // import MegaMenu from './components/MegaMenu';
 import store from './store';
