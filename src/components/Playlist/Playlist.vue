@@ -10,18 +10,12 @@
                 slot="hint"
                 class="ctx-text --document"
             >
-                Examples: <code
-                    class="canon-u-compact--sm"
-                    @click="copyToClipboard"
-                >spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <canon-clip class="canon-u-type--sm" :inline="true" :wrap="false">
-                    https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq?si=ovdUP4t1TwirWqlojhBX5g
-                </canon-clip>
+                Examples: <pre><code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code></pre> or <pre><code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code></pre>
             </div>
+            <canon-button slot="suffix" class="flex-shrink-0" @click="fetchPlaylist">
+                Get Playlist {{ playlistId }}
+            </canon-button>
         </canon-field>
-        
-        <canon-button @click="fetchPlaylist">
-            Get Playlist {{ playlistId }}
-        </canon-button>
     </div>
     <div v-if="rawResponse">
         <pre>
@@ -81,7 +75,7 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
                         </a>
                     </div>
             
-                    <span class="mlauto mr0">{{ milliToSeconds(track.track.duration_ms) }}</span>
+                    <span class="mlauto mr0">{{ millisecondsToEnglish(track.track.duration_ms) }}</span>
                 </div>
                 <button
                     v-if="showPreviews"
@@ -116,7 +110,6 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
 
 import CanonField from '../Field/Field';
 import CanonButton from '../Button/Button';
-import CanonClip from '../Clip/Clip';
 import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
 import extractSpotifyId from './helpers/extractSpotifyId';
 import millisecondsToEnglish from './helpers/millisecondsToEnglish';
@@ -130,7 +123,6 @@ export default {
     components: {
         CanonField,
         CanonButton,
-        CanonClip,
     },
     data() {
         return {
@@ -145,8 +137,6 @@ export default {
         playlistId() {
           return extractSpotifyId(this.playlistInputVal);
         },
-
-
     },
     methods: {
         fetchPlaylist(playlistId) {
@@ -203,18 +193,7 @@ export default {
                 player.pause();
             }
         },
-        // with gratitude: https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
-        milliToSeconds(milliseconds) {  
-            const minutes = Math.floor(milliseconds / 60000);
-            const seconds = ((milliseconds % 60000) / 1000).toFixed(0);
-            return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-
-        },
-        async copyToClipboard() {
-            await navigator.clipboard.writeText('Awesome');
-        },
-
-
+        millisecondsToEnglish,
     },
 }
 </script>

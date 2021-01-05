@@ -1,6 +1,7 @@
 <template>
 <button
     class="canon-button"
+    :class="`--button-size-${size}`"
     v-bind="$attrs"
     v-on="$listeners"
 >
@@ -12,6 +13,12 @@
 export default {
     name: 'CanonButton',
     inheritAttrs: false,
+    props: {
+        size: {
+            type: String,
+            default: 'md',
+        },
+    },
 };
 </script>
 <style lang="scss">

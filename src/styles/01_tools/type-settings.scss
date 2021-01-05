@@ -1,60 +1,57 @@
-/**
-*
-* Generate consistent font sizes and line heights
-* @require $space
-*
-*/
-
-/* Keep size of fonts consistent */
 $type-scale: (
-    7s: 0.7rem,
-    7: 0.75rem,
-    6: 0.875rem,
-    5: 1rem,
-    // body text
-        4: 1.25rem,
-    // large text, h4
-        3: 1.75rem,
-    // h3
-        2: 2rem,
-    // h2
-        1: 2.5rem,
-    // h1,
+    xs: .75rem,
+    sm: .8rem, //16px
+    0: 1rem, //20px
+    1: 1.25rem, //25px
+    2: 1.5rem, //30px
+    3: 2.25rem, //36px
+    4: 3.375rem, //54px
+    5: 5rem, //120px
+    6: 7.6rem, //152px
 );
 
 @function type-scale($level) {
     @return map-get($type-scale, $level);
 }
 
-/* Vertical rhythm */
-/* 
-We aren't trying to be 100% automatic, 
-but synchronizing line-height with our standard spacing 
-allows you to create a perfect vertical rhythm, if you feel like it. 
-If you do nothing, it should look pretty good anyway.
+/**
+* Vertical rhythm
 */
 $line-heights: (
-    7s: 1,
-    7: $space * 0.75,
-    6: $space,
-    5: $space,
-    4: $space * 2,
-    3: $space * 2,
-    2: $space * 2,
-    1: $space * 2,
+    xs: 1.2,
+    sm: $space * 0.7,
+    0: $space,
+    1: $space,
+    2: $space,
+    3: $space * 1.75,
+    4: $space * 2.25,
+    5: 1,
+    6: $space * 3,
+);
+$compact-line-heights: (
+    xs: 1.2,
+    sm: $space * 0.5,
+    0: 1.2,
+    1: 1,
+    2: 1,
+    3: $space * 1.5,
+    4: 1,
+    5: 1,
+    6: $space * 3,   
 );
 
 @function line-height($level) {
     @return map-get($line-heights, $level);
 }
-// @function compact-line-height($level) {
-//     @return map-get($line-heights, $level);
-// }
+@function compact-line-height($level) {
+    @return map-get($compact-line-heights, $level);
+}
+
 @mixin type-setting($level: 0) {
     font-size: type-scale($level);
     line-height: line-height($level);
 }
-@mixin compact-type-setting($level: 0) {
+@mixin compact-type-setting($level) {
     font-size: type-scale($level);
-    line-height: 1.2;
+    line-height: compact-line-height($level);
 }

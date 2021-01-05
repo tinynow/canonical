@@ -3,14 +3,9 @@
     overflow: hidden;
 }
 .canon-field__input-wrapper {
-    @include border-radius(1);
-    @include neu-shadow();
-    border:  1px solid var(--border__control--light);
-    margin-top: 5px;//room for focus ring
-
     &:focus-within,
     .--hasFocusWithin {
-        outline: 3px double var(--outline__focus);
+        outline: 3px double var(--outline__focus, blue);
         outline-offset: 2px;
         outline-radius: 6px; //TODO: does autoprefixer handle this?
         -moz-outline-radius: 6px;
@@ -26,9 +21,11 @@
 }
 
 .canon-field__input { 
+    @include border-radius(1);
+    @include neu-shadow();
     width: 100%;
     padding: 4px 8px;
-    border: none;
+    border:  1px solid var(--border__control--light);
     background: transparent;
     appearance: none;
     outline: none;
@@ -36,7 +33,7 @@
         box-shadow: none; //hide default invalid red border
     }
     &:focus {
-
+        outline: 2px solid var(--outline__focus, blue);
     }
 }
 .canon-field__prefix {

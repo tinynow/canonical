@@ -56,12 +56,8 @@
             @input="input"
             v-on="listeners"
         >
-        <div
-            v-if="$slots.suffix"
-            class="canon-field__suffix"
-        >
-            <slot name="suffix" />
-        </div>
+    
+        <slot name="suffix" />
     </div>
     <div 
         v-if="$slots.after"
