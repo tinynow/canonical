@@ -4,3 +4,7 @@
 .focus-ring {
     box-shadow: 2px solid var(--outline--focus);
 }
+
+.well {
+    @include neu-shadow();
+}

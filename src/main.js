@@ -10,7 +10,7 @@ import SongNoteRoutes from './components/Playlist/routes';
 import store from './store';
 import Router from 'vue-router';
 import CanonRevealer from 'canon-revealer';
-
+import NotFound from './pages/NotFound.vue';
 
 Vue.use(Router);
 Vue.use(CanonRevealer);
@@ -22,6 +22,7 @@ const routes = [
     { path: '/documentation', component: Docs},
     { path: '/kitchen-sink', component: KitchenSink},
     SongNoteRoutes,
+    { path: '*', component: NotFound },
 ];
 const router = new Router({
     mode: 'history',

@@ -8,6 +8,7 @@
     :aria-hidden="!announceName"
     :aria-labelledby="announceName ? iconName : null"
     :style="cssVars"
+    focusable="false"
 >
     <title
         :id="iconName"
@@ -25,7 +26,7 @@ export default {
     props: {
         iconName: {
             type: String,
-            default: 'box',
+            default: 'icon',
         },
         iconStroke: {
             type: String,

@@ -1,7 +1,7 @@
 <template>
 <button
     class="canon-button"
-    :class="`--button-size-${size}`"
+    :class="`--size-${size}`"
     v-bind="$attrs"
     v-on="$listeners"
 >

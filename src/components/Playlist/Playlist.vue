@@ -6,12 +6,12 @@
             type="text"
         >
             <span slot="label">Paste a Spotify Playlist ID or URI</span>
-            <div
+            <span
                 slot="hint"
                 class="ctx-text --document"
             >
-                Examples: <pre><code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code></pre> or <pre><code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code></pre>
-            </div>
+                Examples: <code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code>
+            </span>
             <canon-button slot="suffix" class="flex-shrink-0" @click="fetchPlaylist">
                 Get Playlist {{ playlistId }}
             </canon-button>
