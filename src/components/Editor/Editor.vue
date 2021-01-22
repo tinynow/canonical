@@ -1,5 +1,7 @@
 <template>
 <div class="canon-editor__container">
+    <slot name="editor-label"></slot>
+
     <div class="editor-wrapper">
         <!-- copied from https://github.com/ueberdosis/tiptap/blob/main/examples/Components/Routes/Links/index.vue -->
         <editor-menu-bubble
@@ -39,14 +41,14 @@
                 </template>
             </div>
         </editor-menu-bubble>
+        
+        
         <editor-content :editor="editor" />
     </div>
-    <editor-menu-bar v-slot="{ commands, isActive, focused }" class="pt3" :editor="editor">
+
+    <editor-menu-bar v-slot="{ commands, isActive }" class="mt1" :editor="editor">
         <div
-            class="canon-editor__menu-container flex items-center"
-            :class="{
-                'db': !focused && !linkMenuIsActive,
-            }"
+            class="canon-editor__menu-container flex items-center content-stretch"
         >
             <button
                 v-for="control in controls"
@@ -54,6 +56,7 @@
                 type="button"
                 class="editor-menu-button flex items-center"
                 :class="{ 'is-active': isActive[control.name](control.opts ? control.opts : '') }"
+                :aria-pressed="isActive[control.name](control.opts ? control.opts : '') ? 'true' : 'false'"
                 @click="commands[control.name](control.opts)"
             >
                 <template v-if="control.icon">
@@ -63,7 +66,7 @@
             </button>
         </div>
     </editor-menu-bar>
-    <pre class="mt4"><code v-html="json"></code></pre>
+    <pre class="mt4"><code>{{ json }}</code></pre>
 </div>
 </template>
 
@@ -171,41 +174,51 @@ export default {
 <style lang="scss">
 .canon-editor__container {
     max-width: 75ch;
+
 }
 .canon-editor__menu-container {
-    max-height: $space*2;
-    transition: max-height 4s ease;
-    &[hidden] {
-        max-height: 0;
-    }
+    position: relative;
+    height: 3em;
+    overflow: hidden;
 }
-
 .editor-menu-button {
+    --bg-end: #e1e1e1;
+    --bg: linear-gradient(145deg,#555, #666);
+    --color: white;
+    --bg-hover: linear-gradient(175deg, black, #666 );
     // border: 1px solid var(--dark-gray, #555);
     border: none;
-    background-color: var(--white, white);
     padding: 8px 12px;
     margin-right: 8px;
+    color: white;
+    background: var(--bg);
     border-radius: 3px;
-    background: linear-gradient(145deg, #ffffff, #e6e6e6);
-    box-shadow:  -1px -1px 7px -5px #555, 4px 4px 7px #cccccc,
-                -4px -4px 7px #ffffff;
-
+    @include box-shadow(1);
+    transition: all .1s ease;
+    // animation-delay: 0;
+    // animation: slide-out-bck-tl 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530);
+    // opacity: 0;
+    // :not([aria-hidden]) > & {
+    //     animation-delay: 4s;
+    //     animation: slide-in-from-top-left 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    //     opacity: 1;
+    // }
     &.is-active {
         border-radius: 3px;
         background: #ffffff;
+        color: black;
         box-shadow: inset -1px -1px 1px black, inset 1px 1px 1px black, inset 4px 4px 7px #cccccc,
-                    inset -4px -4px 7px #ffffff;
-                    
+                    inset -4px -4px 7px #ffffff;            
     }
-    &:hover {
-       outline: 3px solid darkorange; 
+    &:hover:not(.is-active) {
+       background:  var(--bg-hover);
+       color: var(--text-color-hover, peachpuff)
     }
     &:focus {
         outline: 3px solid orangered;
     }
-    > span {
-        line-height: 1.25em;
+    span {
+        line-height: 1.25em; //size text label same as icons
     }
 }
 .ProseMirror {
@@ -218,7 +231,7 @@ export default {
                 inset -10px -10px 20px #ffffff;
 
     &:focus {
-        outline: 1px solid #ccc;
+        outline: 2px solid #aaa;
     }
     li > * {
         display: inline;
@@ -229,6 +242,7 @@ export default {
         font-size: 1.2em;
         font-style: italic;
     }
+
 }
 .editor-wrapper {
     position: relative;
