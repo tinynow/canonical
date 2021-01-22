@@ -1,22 +1,5 @@
 <template>
 <div class="canon-editor__container">
-    <editor-menu-bar v-slot="{ commands, isActive }" class="pt3" :editor="editor">
-        <div class="canon-editor__menu-container flex">
-            <button
-                v-for="control in controls"
-                :key="control.label"
-                type="button"
-                class="editor-menu-button flex items-center"
-                :class="{ 'is-active': isActive[control.name](control.opts ? control.opts : '') }"
-                @click="commands[control.name](control.opts)"
-            >
-                <template v-if="control.icon">
-                    <canon-icon :icon-name="control.icon" icon-size="1.25em" />
-                </template>
-                <span :class="control.icon ? 'visually-hidden' : null">{{ control.label }}</span>
-            </button>
-        </div>
-    </editor-menu-bar>
     <div class="editor-wrapper">
         <!-- copied from https://github.com/ueberdosis/tiptap/blob/main/examples/Components/Routes/Links/index.vue -->
         <editor-menu-bubble
@@ -58,7 +41,29 @@
         </editor-menu-bubble>
         <editor-content :editor="editor" />
     </div>
-    <pre><code v-html="json"></code></pre>
+    <editor-menu-bar v-slot="{ commands, isActive, focused }" class="pt3" :editor="editor">
+        <div
+            class="canon-editor__menu-container flex items-center"
+            :class="{
+                'db': !focused && !linkMenuIsActive,
+            }"
+        >
+            <button
+                v-for="control in controls"
+                :key="control.label"
+                type="button"
+                class="editor-menu-button flex items-center"
+                :class="{ 'is-active': isActive[control.name](control.opts ? control.opts : '') }"
+                @click="commands[control.name](control.opts)"
+            >
+                <template v-if="control.icon">
+                    <canon-icon :icon-name="control.icon" icon-size="1.25em" />
+                </template>
+                <span :class="control.icon ? 'visually-hidden' : null">{{ control.label }}</span>
+            </button>
+        </div>
+    </editor-menu-bar>
+    <pre class="mt4"><code v-html="json"></code></pre>
 </div>
 </template>
 
@@ -167,16 +172,23 @@ export default {
 .canon-editor__container {
     max-width: 75ch;
 }
+.canon-editor__menu-container {
+    max-height: $space*2;
+    transition: max-height 4s ease;
+    &[hidden] {
+        max-height: 0;
+    }
+}
 
 .editor-menu-button {
     // border: 1px solid var(--dark-gray, #555);
     border: none;
     background-color: var(--white, white);
-    padding: 4px 12px;
+    padding: 8px 12px;
     margin-right: 8px;
     border-radius: 3px;
     background: linear-gradient(145deg, #ffffff, #e6e6e6);
-    box-shadow:  4px 4px 7px #cccccc,
+    box-shadow:  -1px -1px 7px -5px #555, 4px 4px 7px #cccccc,
                 -4px -4px 7px #ffffff;
 
     &.is-active {
@@ -191,6 +203,9 @@ export default {
     }
     &:focus {
         outline: 3px solid orangered;
+    }
+    > span {
+        line-height: 1.25em;
     }
 }
 .ProseMirror {
