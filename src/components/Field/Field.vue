@@ -13,20 +13,14 @@
             <slot name="label" />
         </span>
     </label>
-    <span
+    <div
         v-if="$slots.hint"
         class="canon-field__hint-slot"
     >
         <slot name="hint" />
-    </span>
-    <span
-        v-show="$slots.error"
-        class="canon-field__error-slot"
-    >
-        <slot name="error" />
-    </span>
+    </div>
         
-    <div class="canon-field__input-wrapper flex items-center">
+    <div class="canon-field__input-wrapper flex items-center focus-wrapper">
         <div
             v-if="$slots.prefix"
             class="canon-field__prefix"
@@ -64,6 +58,12 @@
         class="canon-field__after"
     >
         <slot name="after" />
+    </div>
+    <div
+        v-show="$slots.error"
+        class="canon-field__error-slot"
+    >
+        <slot name="error" />
     </div>
 </div>
 </template>
@@ -116,7 +116,7 @@ export default {
         return {
             hasFocus: false,
             rootClasses: {
-                '--hasFocusWithin': this.hasFocus,
+                'focused': this.hasFocus,
             },
             validity: null,
             requiredSlots: [

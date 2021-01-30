@@ -1,3 +1,7 @@
-*:focus {
-    outline: 2px dotted var(--focus-outline--light);
+*:focus,
+.focused,
+.focus-wrapper:focus-within {
+    outline: 2px solid var(--focus-outline--light);
+    outline-offset: 1px;
+    -moz-outline-radius: 6px;
 }

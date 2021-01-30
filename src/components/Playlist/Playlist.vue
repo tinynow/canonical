@@ -1,24 +1,30 @@
 <template>
 <div class="canon-playlist  canon-layout --tube --auto-flow --readable">
-    <div class="canon-playlist__selector">
+    <div class="canon-playlist__selector pv3">
         <canon-field
             v-model="playlistInputVal"
             type="text"
+            class="mw6"
         >
             <span slot="label">Paste a Spotify Playlist ID or URI</span>
-            <span
+            <div
                 slot="hint"
-                class="ctx-text --document"
             >
-                Examples: <code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code>
-            </span>
-            <canon-button slot="suffix" class="flex-shrink-0" @click="fetchPlaylist">
-                Get Playlist {{ playlistId }}
+                <details>
+                    <summary>Examples:</summary> 
+                    <code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code>
+                </details>
+            </div>
+            <canon-button slot="suffix" class="flex-shrink-0 pa1" @click="fetchPlaylist">
+                Get Playlist
             </canon-button>
+            <p slot="error">
+                {{ getPlaylistError }}
+            </p>
         </canon-field>
     </div>
     <div v-if="rawResponse">
-        <pre>
+        <pre v-if="false">
 playlist: {{ Object.keys(rawResponse) }}
 playlist.tracks: {{ Object.keys(rawResponse.tracks) }}
 playlist.tracks.items[index]: {{ Object.keys(rawResponse.tracks.items[0]) }}
@@ -30,10 +36,8 @@ playlist.tracks.items[index].track.album.images: {{ Object.keys(rawResponse.trac
 playlist.tracks.items[index].track.album.images[0]: {{ Object.keys(rawResponse.tracks.items[0].track.album.images[0]) }}
 playlist.tracks.items[index].track.external_ids: {{ Object.keys(rawResponse.tracks.items[0].track.external_ids) }}
 playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.items[0].track.album) }}
-
-
         </pre>
-        <div class="playlist-header w-100 bg--dark text--light flex">
+        <div class="playlist-header w100 bg--dark text--light flex">
             <img
                 :src="rawResponse.images[1].url"
                 alt=""
@@ -46,6 +50,7 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
                 </p>
             </div>
         </div>
+        <pre>{{ Object.keys(rawResponse) }}</pre>
         <ol class="canon-track-list reset-list">
             <li
                 v-for="(track, index) in rawResponse.tracks.items"
@@ -63,7 +68,7 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
                     > 
                     <div class="pl1">
                         <h3 class="canon-u-type--1">
-                            {{ track.track.name }} {{ track.track.external_ids }}
+                            {{ track.track.name }}
                         </h3>
                         <a
                             v-for="artist in track.track.artists"
@@ -86,9 +91,9 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
                     Preview
                 </button>
                 <audio
-                    v-if="showPreviews"
+                    v-if="showPreviews && track.track.preview_url"
                     :ref="track.track.id"
-                    class="db w-100"
+                    class="db w100"
                     controls
                     :src="track.track.preview_url"
                 >
@@ -99,9 +104,6 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
                 </div>
             </li>
         </ol>
-        <pre>
-            {{ savedTrack }}
-        </pre>
     </div>
 </div>
 </template>
@@ -129,8 +131,10 @@ export default {
             playlistInputVal: '',
             playlist: [],
             rawResponse: fakeResponse,
+            tracks: [],
             showPreviews: false,
             savedTrack: null,
+            getPlaylistError: null,
         };
     },
     computed: {
@@ -146,12 +150,13 @@ export default {
             const params = new URLSearchParams();
             params.append('playlistId', this.playlistId);
             const uri = `${PLAYLIST_ENDPOINT}?${params}`;
-            // return fetch(uri, PLAYLIST_REQUEST_OPTIONS )
-            // .then(response => response.json())
-            // .then(result => {
-            //     this.rawResponse = result;
-            // });
-            this.rawResponse = fakeResponse;
+            return fetch(uri, PLAYLIST_REQUEST_OPTIONS )
+            .then(response => response.json())
+            .then(result => {
+                this.rawResponse = result;
+                this.tracks = result.tracks.items.map(track => track.track);
+            });
+            // this.rawResponse = fakeResponse;
             // this.savePlaylist()
         },
 
@@ -164,6 +169,7 @@ export default {
         createPlaylist() {
 
         },
+        // save an array of tracks to the tracks database
         createTracks(data) {
             return fetch('/.netlify/functions/tracksCreate', {
                 body: JSON.stringify(data),
@@ -172,12 +178,9 @@ export default {
                 return response.json()
             });
         },
-        
-
         playlistName() {
             return this.rawResponse.name;
         },
-    
         togglePlayer(id) {
             const player = this.$refs[id][0];
             console.log(player)

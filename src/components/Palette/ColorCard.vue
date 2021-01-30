@@ -18,7 +18,7 @@
     <div class="flex flex-wrap justify-between items-stretch">
         <div
             v-if="safeFor.anything.length"
-            class="pt3 w-100"
+            class="pt3 w100"
         >
             <div class="flex">
                 <canon-icon
@@ -37,7 +37,7 @@
         </div>
         <div
             v-if="safeFor.largeOnly.length"
-            class="pt4 w-100"
+            class="pt4 w100"
         >
             <div class="flex">
                 <canon-icon
@@ -56,7 +56,7 @@
         </div>
         <div
             v-if="safeFor.uiOnly.length"
-            class="pt4 w-100"
+            class="pt4 w100"
         >
             <div class="flex">
                 <canon-icon
@@ -77,7 +77,7 @@
 
         <div
             v-if="safeFor.uiOrLarge.length"
-            class="pt4 w-100"
+            class="pt4 w100"
         >
             <div class="flex">
                 <canon-icon
@@ -103,7 +103,7 @@
 
         <div
             v-if="safeFor.nothing.length && showFailures"
-            class="pt4 w-100"
+            class="pt4 w100"
         >
             <div class="flex">
                 <canon-icon

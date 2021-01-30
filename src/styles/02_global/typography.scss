@@ -93,3 +93,11 @@ h1,
         @include type-setting(5);
     }
 }
+
+code {
+    font-family: $monospace-font-family;
+    color: var(--background, white);
+    background-color: var(--foreground, dimgray);
+    padding: 2px 4px;
+    border-radius: 2px;
+}
