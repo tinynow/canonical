@@ -1,10 +1,11 @@
 <template>
-<div class="canon-playlist  canon-layout --tube --auto-flow --readable">
+<div class="canon-playlist  canon-layout --tube --auto-flow">
     <div class="canon-playlist__selector pv3">
         <canon-field
             v-model="playlistInputVal"
             type="text"
             class="mw6"
+            input-wrapper-classes="flex items-stretch"
         >
             <span slot="label">Paste a Spotify Playlist ID or URI</span>
             <div
@@ -15,7 +16,7 @@
                     <code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code>
                 </details>
             </div>
-            <canon-button slot="suffix" class="flex-shrink-0 pa1" @click="fetchPlaylist">
+            <canon-button slot="after" class="pa1 ml1 flex-shrink-0" @click="fetchPlaylist">
                 Get Playlist
             </canon-button>
             <p slot="error">
@@ -23,84 +24,86 @@
             </p>
         </canon-field>
     </div>
-    <div v-if="rawResponse">
-        <pre v-if="false">
-playlist: {{ Object.keys(rawResponse) }}
-playlist.tracks: {{ Object.keys(rawResponse.tracks) }}
-playlist.tracks.items[index]: {{ Object.keys(rawResponse.tracks.items[0]) }}
-playlist.tracks.items[index].track: {{ Object.keys(rawResponse.tracks.items[0].track) }}
-playlist.tracks.items[index].track.artists[index]: {{ Object.keys(rawResponse.tracks.items[0].track.artists[0]) }}
-playlist.tracks.items[index].track.external_urls: {{ Object.keys(rawResponse.tracks.items[0].track.external_urls) }}
-playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.items[0].track.album) }}
-playlist.tracks.items[index].track.album.images: {{ Object.keys(rawResponse.tracks.items[0].track.album.images) }}
-playlist.tracks.items[index].track.album.images[0]: {{ Object.keys(rawResponse.tracks.items[0].track.album.images[0]) }}
-playlist.tracks.items[index].track.external_ids: {{ Object.keys(rawResponse.tracks.items[0].track.external_ids) }}
-playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.items[0].track.album) }}
-        </pre>
-        <div class="playlist-header w100 bg--dark text--light flex">
+
+
+    <div v-if="playlist">
+        <div class="playlist-header w100 flex items-start">
             <img
-                :src="rawResponse.images[1].url"
+                :src="playlist.images[1].url"
                 alt=""
+                class="flex-shrink-0 mw3"
             >
-            <div>
-                <h2><a :href="rawResponse.external_urls.spotify">{{ rawResponse.name }}</a></h2>
-                <p>
-                    created by <a :href="rawResponse.owner.external_urls.spotify">{{ rawResponse.owner.display_name }}</a>   
-                    {{ rawResponse.collaborative ? 'with others' : '' }}
+            <div class="ml2">
+                <h2 class="canon-u-type--3 bold fw600">
+                    {{ playlist.name }}
+                </h2>
+                <a :href="playlist.external_urls.spotify" class="ttu canon-u-type--xs">{{ playlist.source }} Playlist</a>
+                <p class="di">
+                    created by <a :href="playlist.owner.external_urls.spotify">{{ playlist.owner.display_name }}</a>   
+                    {{ playlist.collaborative ? 'with others' : '' }}
                 </p>
             </div>
         </div>
-        <pre>{{ Object.keys(rawResponse) }}</pre>
-        <ol class="canon-track-list reset-list">
+        <ol class="canon-track-list reset-list mt2">
             <li
-                v-for="(track, index) in rawResponse.tracks.items"
-                :key="track.track.name"
-                class="canon-track"
+                v-for="(track, index) in tracks"
+                :key="track.name"
+                class="canon-track mt1"
             >
-                <div class="flex items-center pt1">
-                    <span class="pr3 pv2 canon-u-type--sm">{{ index + 1 }}</span>
-               
+                <div class="flex items-start pt1">
+                    <span class="pr1 pt1 canon-u-type--sm dn">{{ index + 1 }}</span>
+                    
                     <img
+                        v-if="false"
                         class="flex-shrink-0 show-at-md"
-                        :src="track.track.album.images[2].url"
-                        :width="track.track.album.images[2].width"
-                        :height="track.track.album.images[2].height"
+                        :src="track.album.images[2].url"
+                        :width="track.album.images[2].width"
+                        :height="track.album.images[2].height"
                     > 
-                    <div class="pl1">
-                        <h3 class="canon-u-type--1">
+                    <div>
+                        <h3 :id="`id_${track.track.external_ids.isrc}`" class="canon-u-type--1 dib">
                             {{ track.track.name }}
                         </h3>
                         <a
                             v-for="artist in track.track.artists"
                             :key="artist.id"
                             :href="artist.external_urls.spotify"
-                            class="pr1"
-                        >
-                            {{ artist.name }}
+                            class="pl1 canon-u-compact--0 dib"
+                        >{{ artist.name }}
                         </a>
                     </div>
             
-                    <span class="mlauto mr0">{{ millisecondsToEnglish(track.track.duration_ms) }}</span>
+                    <span class="mlauto mr0 ml1">{{ millisecondsToEnglish(track.track.duration_ms) }}</span>
                 </div>
+                <button
+                    type="button"
+                    :aria-describedby="`id_${track.track.external_ids.isrc}`"
+                    :aria-expanded="index === editing ? 'true' : 'false'"
+                    class="reset-button link-style"
+                    @click="editing = index"
+                >
+                    Edit
+                </button>
                 <button
                     v-if="showPreviews"
                     class="canon-track__preview-toggle reset-button pl1 link-style"
-                    :aria-expanded="track.previewExpanded"
-                    @click="togglePlayer(track.track.id)"
+                    :aria-expanded="previewExpanded"
+                    @click="togglePlayer(track.id)"
                 >
                     Preview
                 </button>
                 <audio
                     v-if="showPreviews && track.track.preview_url"
-                    :ref="track.track.id"
+                    :ref="track.id"
                     class="db w100"
                     controls
-                    :src="track.track.preview_url"
+                    :src="track.preview_url"
                 >
                     Your browser does not support the
                     <code>audio</code> element.
                 </audio>
-                <div class="canon-track-notes">
+                <div v-if="index === editing" class="canon-track-notes">
+                    <canon-editor />
                 </div>
             </li>
         </ol>
@@ -109,9 +112,9 @@ playlist.tracks.items[index].track.album: {{ Object.keys(rawResponse.tracks.item
 </template>
 
 <script>
-
 import CanonField from '../Field/Field';
 import CanonButton from '../Button/Button';
+import CanonEditor from '../Editor/Editor';
 import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
 import extractSpotifyId from './helpers/extractSpotifyId';
 import millisecondsToEnglish from './helpers/millisecondsToEnglish';
@@ -125,13 +128,17 @@ export default {
     components: {
         CanonField,
         CanonButton,
+        CanonEditor,
     },
     data() {
         return {
             playlistInputVal: '',
-            playlist: [],
+            playlist: {
+                source: 'spotify',
+            },
             rawResponse: fakeResponse,
             tracks: [],
+            editing: null,
             showPreviews: false,
             savedTrack: null,
             getPlaylistError: null,
@@ -141,6 +148,11 @@ export default {
         playlistId() {
           return extractSpotifyId(this.playlistInputVal);
         },
+    },
+    beforeMount() {
+        if (this.rawResponse) {
+            this.loadPlaylist();
+        }
     },
     methods: {
         fetchPlaylist(playlistId) {
@@ -154,12 +166,21 @@ export default {
             .then(response => response.json())
             .then(result => {
                 this.rawResponse = result;
-                this.tracks = result.tracks.items.map(track => track.track);
+                this.loadPlaylist();
             });
             // this.rawResponse = fakeResponse;
             // this.savePlaylist()
         },
-
+        loadPlaylist() {
+            const { tracks, ...playlistData } = this.rawResponse;
+            const { items, ...trackData} = tracks;
+            this.playlist = {
+                ...this.playlist,
+                ...playlistData,
+                ...trackData,
+            };
+            this.tracks = tracks.items;
+        },
         savePlaylist() {
             this.createTracks(this.rawResponse.tracks.items).then(response => {
                 console.log(response);
@@ -200,9 +221,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss">
-audio {
-    border-radius: 400px;
-}
-</style>

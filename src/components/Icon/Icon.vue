@@ -1,6 +1,6 @@
 <template>
 <svg
-    viewBox="0 0 24 24"
+    :viewBox="viewBox"
     :fill="iconFill"
     :stroke-width="strokeWidth"
     :stroke-linecap="sharp ? 'miter' : 'round'"
@@ -15,6 +15,7 @@
         lang="en"
     >{{ iconName }} icon</title>
     <g :stroke="iconStroke">
+        <slot v-bind="viewBox" />
         <component :is="icon" />
     </g>
 </svg>
@@ -52,6 +53,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        viewBox: {
+            type: String,
+            default: '0 0 24 24',
+        },
     },
     computed: {
         icon() {
@@ -64,13 +69,13 @@ export default {
             };
         },
         strokeWidth() {
-            return this.fat ? '4' : '2';
+            return  this.fat ? '4' : '2';
         },
     },
 };
 </script>
 
-<style scoped>
+<style>
 svg {
     width: var(--width);
     height: var(--height);

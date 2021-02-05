@@ -13,7 +13,7 @@
         </p>
  
         <button
-            class="canon-button canon-u-type--3 dib mt4 pill"
+            class="canon-button canon-u-type--3 dib mt4 pill pa2"
             type="button"
             aria-describedby="disclaimer"
             @click="createAccountClick"

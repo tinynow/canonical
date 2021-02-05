@@ -19,49 +19,45 @@
     >
         <slot name="hint" />
     </div>
-        
-    <div class="canon-field__input-wrapper flex items-center focus-wrapper">
-        <div
-            v-if="$slots.prefix"
-            class="canon-field__prefix"
-        >
-            <slot name="prefix" />
-        </div>
-        <textarea
-            v-if="type === 'textarea'"
-            :id="uid"
-            ref="input"
-            :key="uid"
-            class="canon-field__input"
-            :value="value"
-            v-bind="$attrs"
-            @input="input"
-            v-on="listeners"
-        />
-        <input
-            v-else
-            :id="uid"
-            ref="input"
-            :key="uid"
-            class="canon-field__input"
-            :type="type"
-            :value="value"
-            v-bind="$attrs"
-            @input="input"
-            v-on="listeners"
-        >
+    <div class="canon-field__input-wrapper" :class="inputWrapperClasses">
+        <div class="canon-field__input-skin flex items-center" :class="inputSkinClasses">
+            <div
+                v-if="$slots.prefix"
+                class="canon-field__prefix"
+            >
+                <slot name="prefix" />
+            </div>
+            <textarea
+                v-if="type === 'textarea'"
+                :id="uid"
+                ref="input"
+                :key="uid"
+                class="canon-field__input"
+                :value="value"
+                v-bind="$attrs"
+                @input="input"
+                v-on="listeners"
+            />
+            <input
+                v-else
+                :id="uid"
+                ref="input"
+                :key="uid"
+                class="canon-field__input"
+                :type="type"
+                :value="value"
+                v-bind="$attrs"
+                @input="input"
+                v-on="listeners"
+            >
     
-        <slot name="suffix" />
-    </div>
-    <div 
-        v-if="$slots.after"
-        class="canon-field__after"
-    >
+            <slot name="suffix" />
+        </div>
         <slot name="after" />
     </div>
     <div
-        v-show="$slots.error"
-        class="canon-field__error-slot"
+        v-show="$slots.feedback"
+        class="canon-field__feedback-slot"
     >
         <slot name="error" />
     </div>
@@ -110,6 +106,14 @@ export default {
         value: {
             type: String,
             default: '',
+        },
+        inputWrapperClasses: {
+            type: [String, Array, Object],
+            default: () => null,
+        },
+        inputSkinClasses: {
+            type: [String, Array, Object],
+            default: () => null,
         },
     },
     data() {

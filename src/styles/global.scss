@@ -12,6 +12,7 @@
 @import './03_contexts/layout.scss';
 @import './03_contexts/text.scss';
 
+@import './04_utilities/resets.scss'; // keep first so other utilities will work
 @import '04_utilities/display.scss';
 @import '04_utilities/flex.scss';
 @import '04_utilities/floats.scss';
@@ -23,7 +24,6 @@
 @import '04_utilities/text-transform.scss';
 @import '04_utilities/white-space.scss';
 @import '04_utilities/type.scss';
-@import './04_utilities/resets.scss';
 @import './04_utilities/visibility.scss';
 @import './04_utilities/width.scss';
 @import './04_utilities/colors.scss';

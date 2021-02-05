@@ -46,7 +46,7 @@
         <editor-content :editor="editor" />
     </div>
 
-    <editor-menu-bar v-slot="{ commands, isActive }" class="mt1" :editor="editor">
+    <editor-menu-bar v-slot="{ commands, isActive }" class="" :editor="editor">
         <div
             class="canon-editor__menu-container flex items-center content-stretch"
         >
@@ -60,13 +60,26 @@
                 @click="commands[control.name](control.opts)"
             >
                 <template v-if="control.icon">
-                    <canon-icon :icon-name="control.icon" icon-size="1.25em" />
+                    <canon-icon :icon-name="control.icon" icon-size="1em" />
                 </template>
                 <span :class="control.icon ? 'visually-hidden' : null">{{ control.label }}</span>
             </button>
+            <button
+                type="button"
+                class="editor-menu-button flex items-center"
+                @click="commands.undo"
+            >
+                <canon-icon icon-name="undo" icon-size="1em" view-box="0 0 512 512" />
+            </button>
+            <button
+                type="button"
+                class="editor-menu-button flex items-center"
+                @click="commands.redo"
+            >
+                <canon-icon icon-name="redo" icon-size="1em" view-box="0 0 512 512" />
+            </button>
         </div>
     </editor-menu-bar>
-    <pre class="mt4"><code>{{ json }}</code></pre>
 </div>
 </template>
 
@@ -81,6 +94,7 @@ export default {
         EditorMenuBar,
         EditorMenuBubble,
         CanonIcon,
+
     },
     data() {
         return {
@@ -183,16 +197,17 @@ export default {
 }
 .editor-menu-button {
     --bg-end: #e1e1e1;
-    --bg: linear-gradient(145deg,#555, #666);
-    --color: white;
-    --bg-hover: linear-gradient(175deg, black, #666 );
+    --bg-hover: linear-gradient(145deg,#555, #666);
+    --color-hover: white;
+    --bg: white;
     // border: 1px solid var(--dark-gray, #555);
     border: none;
     padding: 8px 12px;
     margin-right: 8px;
-    color: white;
+    color:var(--color, currentColor);
     background: var(--bg);
     border-radius: 3px;
+    box-shadow: inset 0 0 1px currentColor;
     @include box-shadow(1);
     transition: all .1s ease;
     // animation-delay: 0;
@@ -212,19 +227,18 @@ export default {
     }
     &:hover:not(.is-active) {
        background:  var(--bg-hover);
-       color: var(--text-color-hover, peachpuff)
+       color: var(--color-hover, white)
     }
     &:focus {
         outline: 3px solid orangered;
     }
-    span {
-        line-height: 1.25em; //size text label same as icons
+    > span {
+        line-height: 1;
     }
 }
 .ProseMirror {
     min-height: $space*4;
-    margin-top: $space;
-    padding: $space $space/2;
+    padding: $space/2;
     border-radius: 0px;
     background: #ffffff;
     box-shadow: inset 4px 4px 8px #d9d9d9,

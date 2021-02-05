@@ -1,10 +1,18 @@
 a, .link-style {
-    color: var(--link-color, brown);
+    color: var(--link-color, currentColor);
+    // text-decoration-color: red;
+    transition: all .4s ease, text-underline-offset .1s ease;
+
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+
     &:focus {
 
     }
     &:hover, &:active {
-        color: var(--link-color--hover, maroon);
+        text-decoration-style: wavy;
+        color: var(--link-color--hover, red);
+        text-underline-offset: 3px;
     }
     &:visited {
 
