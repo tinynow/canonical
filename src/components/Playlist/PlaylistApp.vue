@@ -28,10 +28,7 @@ export default {
     },
     methods: {
         ...mapActions([
-            'fetchNewPlaylist',
-            'changeUi',
             'identify',
-            'signIn',
         ]),
 
     },

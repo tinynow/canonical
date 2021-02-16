@@ -1,16 +1,9 @@
-
+import millisecondsToEnglish from './helpers/millisecondsToEnglish';
 const netlifyIdentity = window.netlifyIdentity;
-
-// with gratitude: https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
-const milliToSeconds = milliseconds => {
-    const minutes = Math.floor(milliseconds / 60000);
-    const seconds = ((milliseconds % 60000) / 1000).toFixed(0);
-    return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-};
 
 const spotifyToSongNoteTrack = t => ({
     name: t.track.name,
-    duration: milliToSeconds(t.track.duration_ms),
+    duration: millisecondsToEnglish(t.track.duration_ms),
     isrc: t.track.external_ids.isrc,
     spotify_id: t.track.id,
     album: {
@@ -73,6 +66,9 @@ export default {
                 method: 'POST',
             });
             return response.json();
+        },
+        async getUserData(context, data) {
+            return;
         },
         identify({commit}) {
             console.log(window.netlifyIdentity)

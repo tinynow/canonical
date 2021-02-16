@@ -1,10 +1,7 @@
 /* Import faunaDB sdk */
 const faunadb = require('faunadb')
 const q = faunadb.query
-const createTracks = data => q.Map(data, q.Lambda('track', q.Create(
-    q.Collection('Tracks'),
-    { data: q.Var('track') }
-)))
+const createUser = data => q.Create(q.Collection('Users'), { data });
 
 exports.handler = async (event) => {
     /* configure faunaDB Client with our secret */
@@ -13,10 +10,10 @@ exports.handler = async (event) => {
     })
     /* parse the string body into a useable JS object */
     const data = JSON.parse(event.body)
-    console.log('Function `tracksCreate` invoked', data)
+    console.log('Function `userCreate` invoked', data)
 
     /* construct the fauna query */
-    return client.query(createTracks(data))
+    return client.query(createUser(data))
         .then((response) => {
             console.log('success', response)
             /* Success! return the response with statusCode 200 */

@@ -1,32 +1,37 @@
 <template>
-<div class="canon-playlist  canon-layout --tube --auto-flow">
-    <div class="canon-playlist__selector pv3">
-        <canon-field
-            v-model="playlistInputVal"
-            type="text"
-            class="mw6"
-            input-wrapper-classes="flex items-stretch"
-        >
-            <span slot="label">Paste a Spotify Playlist ID or URI</span>
-            <div
-                slot="hint"
+<div class="canon-playlist canon-layout --tube">
+    <button @click="createUser(fakeUser)">
+        user
+    </button>
+    <div v-if="view === 'import'">
+        <div class="canon-playlist__selector pv3">
+            <canon-field
+                v-model="playlistInputVal"
+                type="text"
+                class="mw6"
+                input-wrapper-classes="flex items-stretch"
             >
-                <details>
-                    <summary>Examples:</summary> 
-                    <code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code>
-                </details>
-            </div>
-            <canon-button slot="after" class="pa1 ml1 flex-shrink-0" @click="fetchPlaylist">
-                Get Playlist
-            </canon-button>
-            <p slot="error">
-                {{ getPlaylistError }}
-            </p>
-        </canon-field>
+                <span slot="label">Paste a Spotify Playlist ID or URI</span>
+                <div
+                    slot="hint"
+                >
+                    <details>
+                        <summary>Examples:</summary> 
+                        <code class="canon-u-compact--xs">spotify:playlist:0hqMZ0dfGKiaq37NSmM1Oq</code> or <code class="canon-u-type--xs">https://open.spotify.com/playlist/0hqMZ0dfGKiaq37NSmM1Oq</code>
+                    </details>
+                </div>
+                <canon-button slot="after" class="pa1 ml1 flex-shrink-0" @click="fetchPlaylist">
+                    Get Playlist
+                </canon-button>
+                <p slot="error">
+                    {{ getPlaylistError }}
+                </p>
+            </canon-field>
+        </div>
     </div>
 
 
-    <div v-if="playlist">
+    <div class="slide">
         <div class="playlist-header w100 flex items-start">
             <img
                 :src="playlist.images[1].url"
@@ -49,6 +54,7 @@
                 v-for="(track, index) in tracks"
                 :key="track.name"
                 class="canon-track mt1"
+                :class="index === editing ? '--editing' : null"
             >
                 <div class="flex items-start pt1">
                     <span class="pr1 pt1 canon-u-type--sm dn">{{ index + 1 }}</span>
@@ -75,7 +81,13 @@
             
                     <span class="mlauto mr0 ml1">{{ millisecondsToEnglish(track.track.duration_ms) }}</span>
                 </div>
+                <transition name="slide-from-top">
+                    <div v-if="index === editing" class="canon-track-notes">
+                        <canon-editor />
+                    </div>
+                </transition>
                 <button
+                    v-if="index !== editing"
                     type="button"
                     :aria-describedby="`id_${track.track.external_ids.isrc}`"
                     :aria-expanded="index === editing ? 'true' : 'false'"
@@ -102,9 +114,6 @@
                     Your browser does not support the
                     <code>audio</code> element.
                 </audio>
-                <div v-if="index === editing" class="canon-track-notes">
-                    <canon-editor />
-                </div>
             </li>
         </ol>
     </div>
@@ -132,6 +141,7 @@ export default {
     },
     data() {
         return {
+            view: 'import',
             playlistInputVal: '',
             playlist: {
                 source: 'spotify',
@@ -142,6 +152,10 @@ export default {
             showPreviews: false,
             savedTrack: null,
             getPlaylistError: null,
+            fakeUser: {
+                name: 'Fake Joe',
+                id: 'fakeid',
+            },
         };
     },
     computed: {
@@ -193,6 +207,14 @@ export default {
         // save an array of tracks to the tracks database
         createTracks(data) {
             return fetch('/.netlify/functions/tracksCreate', {
+                body: JSON.stringify(data),
+                method: 'POST',
+            }).then(response => {
+                return response.json()
+            });
+        },
+        createUser(data) {
+            return fetch('/.netlify/functions/userCreate', {
                 body: JSON.stringify(data),
                 method: 'POST',
             }).then(response => {
