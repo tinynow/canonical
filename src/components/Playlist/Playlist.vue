@@ -1,6 +1,6 @@
 <template>
 <div class="canon-playlist canon-layout --tube">
-    <button @click="createUser(fakeUser)">
+    <button @click="createTracks(tracks)">
         user
     </button>
     <div v-if="view === 'import'">
@@ -201,8 +201,15 @@ export default {
                 // this.createPlaylist();
             });
         },
-        createPlaylist() {
-
+        createPlaylist(data) {
+            return fetch('/.netlify/functions/playlistCreate', {
+                body: JSON.stringify(data),
+                method: 'POST',
+            }).then(response => {
+                return response.json()
+            }).then(json => {
+                console.log(json);
+            });
         },
         // save an array of tracks to the tracks database
         createTracks(data) {
@@ -211,6 +218,8 @@ export default {
                 method: 'POST',
             }).then(response => {
                 return response.json()
+            }).then(json => {
+                console.log(json);
             });
         },
         createUser(data) {
