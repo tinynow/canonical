@@ -8,20 +8,31 @@
 </div>
 </template>
 <script>
-//import CanonProse from './components/Prose';
-import navigationData from './data/menu.json';
+
+import { mapGetters, mapActions } from 'vuex';
 
 
 export default {
     name: 'App',
-    data() {
-        return {
-            navigationData,
-        };
+    computed: {
+        ...mapGetters('songNotes', {
+            isLoggedIn: 'getUserStatus',
+            user: 'getUser',
+        }),
     },
-    // computed: {
-    //     route
-    // },
+    created() {
+        const currentUser = this.$netlifyIdentity.currentUser();
+        if (currentUser) {
+            this.updateUser({
+                currentUser,
+            });
+        }
+    },
+    methods: {
+        ...mapActions({
+            updateUser: 'songNotes/updateUser',
+        }),
+    },
 };
 </script>
 <style lang="scss">

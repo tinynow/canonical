@@ -68,7 +68,7 @@
                 Color Palette Contrasts
             </router-link>
             <router-link 
-                to="/songnotes"
+                :to="$store.getters['songNotes/getUserStatus'] ? 'songnotes/app' : '/songnotes'"
                 class="ml2"
             >
                 songnotes
@@ -80,12 +80,7 @@
     >
         <h1>A playground for serious play</h1>
     
-        <p>I am a multi-disciplinary person who works full time for a large state agency. There, I do web development and design with a focus on accessibility, design systems, and content strategy. Here, I am free to sweat the small stuff and revel in the green fields.</p>
-        <p>
-            <router-link to="/palette">
-                Try this not quite finished Color Combinations tool
-            </router-link>. Given a set of colors, it lets you know which combinations have accessible contrast ratios.
-        </p>
+        <p>I am a multi-disciplinary person who works full time for a large state agency doing web development and design with a focus on accessibility, design systems, and content strategy. Here, I am free to sweat the small stuff and revel in the green fields.</p>
     </main>
 </div>
 </template>

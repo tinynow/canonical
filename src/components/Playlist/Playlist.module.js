@@ -1,5 +1,4 @@
 import millisecondsToEnglish from './helpers/millisecondsToEnglish';
-const netlifyIdentity = window.netlifyIdentity;
 
 const spotifyToSongNoteTrack = t => ({
     name: t.track.name,
@@ -21,14 +20,24 @@ const spotifyToSongNoteTrack = t => ({
 export default {
     namespaced: true,
     state: {
-        user: null,
-        playlists: [],
-        ui: 'empty',
-        isLoggedIn: false,
+        user: window.localStorage.getItem('songnote_user'),
+    },
+    getters: {
+        getUserStatus: state => !!state.user,
+        getUser: state => JSON.parse(state.user),
     },
     mutations: {
         SET(state, {key, value}) {
             state[key] = value;
+        },
+        SET_USER(state, currentUser) {
+            if (!currentUser) {
+                state.user = null;
+                window.localStorage.removeItem('songnote_user');
+                return;
+            }
+            state.user = JSON.stringify(currentUser);
+            window.localStorage.setItem('songnote_user', state.user)
         },
     },
     actions: {
@@ -67,24 +76,14 @@ export default {
             });
             return response.json();
         },
-        async getUserData(context, data) {
-            return;
-        },
-        identify({commit}) {
-            console.log(window.netlifyIdentity)
-            const changeLogin = user => {
-                commit('SET', { isLoggedIn: user });
-            }
-            netlifyIdentity.on('init', changeLogin)
-            netlifyIdentity.on('login', changeLogin);
-            netlifyIdentity.on('logout', changeLogin);            
-        },
         createAccount() {
             netlifyIdentity.open('signup'); 
         },
-        logIn() {
-            netlifyIdentity.open('login'); 
-        },
-        
+        // logIn() {
+        //     netlifyIdentity.open('login'); 
+        // },
+        updateUser({ commit }, payload) {
+            commit('SET_USER', payload.currentUser);
+        }, 
     },
 }

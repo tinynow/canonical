@@ -12,7 +12,7 @@ export default {
             component: Welcome,
         },
         {
-            path: 'start',
+            path: 'app',
             component: Start,
         },
         {

@@ -3,7 +3,28 @@
     <header class="pa1 bg--dark text--light flex">
         <p>songnotes</p>
         <div class="mlauto mr0">
-            <div data-netlify-identity-menu></div>
+            <template
+                v-if="!isLoggedIn"
+            >
+                <button
+                    class="link-style reset-button ph1"
+                    type="button"
+                    @click="triggerNetlifyIdentityAction('login')"
+                >
+                    Log in
+                </button>
+                <button class="link-style reset-button ph1" type="button" @click="triggerNetlifyIdentityAction('signup')">
+                    Sign up
+                </button>    
+            </template>
+            <button
+                v-else
+                class="link-style reset-button ph1"
+                type="button"
+                @click="triggerNetlifyIdentityAction('logout')"
+            >
+                Log out
+            </button>
         </div>
     </header>
     <router-view />
@@ -12,25 +33,51 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-const { mapState, mapActions } = createNamespacedHelpers('songNotes');
+const { mapGetters, mapActions } = createNamespacedHelpers('songNotes');
 
 export default {
     name: 'CanonPlaylistApp',
     computed: {
-        ...mapState({
-            user: state => state.user,
-            playlists: state => state.playlists,
-            ui: state => state.ui,
+        ...mapGetters({
+            isLoggedIn: 'getUserStatus',
+            user: 'getUser',
         }),
     },
-    mounted() {
-        this.identify();
+    beforeRouteEnter: (to, from, next) => {
+        next(vm => {
+            const user = vm.$store.getters['songNotes/getUserStatus']
+            console.log(user)
+            if (user) {
+                return { path: 'app'};
+            } else {
+                return '/';
+            }
+        });
     },
     methods: {
-        ...mapActions([
-            'identify',
-        ]),
-
+        ...mapActions({
+            updateUser: 'updateUser',
+        }),
+        triggerNetlifyIdentityAction(action) {
+            const netlifyIdentity = this.$netlifyIdentity;
+            if (action === 'login' || action === 'signup') {
+                netlifyIdentity.open(action);
+                netlifyIdentity.on(action, user => {
+                    console.log(user)
+                    this.updateUser({
+                        currentUser: user,
+                    });
+                    netlifyIdentity.close();
+                    this.$router.push('songnotes/app');
+                });
+            } else if (action === 'logout') {
+                this.updateUser({
+                    currentUser: null,
+                });
+                netlifyIdentity.logout();
+                this.$router.push('/');
+            }
+        },
     },
 
 }
