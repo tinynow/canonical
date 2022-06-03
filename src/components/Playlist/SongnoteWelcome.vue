@@ -32,15 +32,10 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-const { mapState, mapActions } = createNamespacedHelpers('songNotes');
+const {  mapActions } = createNamespacedHelpers('songNotes');
 
 export default {
-    name: 'SongNoteWelcome',
-    computed: {
-        ...mapState({
-            isLoggedIn: state => state.isLoggedIn,
-        }),
-    },
+    name: 'SongnoteWelcome',
     methods: {
         ...mapActions([
             'createAccount',
@@ -49,6 +44,7 @@ export default {
             this.createAccount();
         },
     },
+
 }
 </script>
 

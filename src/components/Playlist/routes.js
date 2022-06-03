@@ -2,22 +2,26 @@ import PlaylistApp from './PlaylistApp.vue';
 import Playlist from './Playlist.vue';
 import Welcome from './Welcome.vue';
 import Start from './Start.vue';
+import SongnoteMixes from ''
 
 export default { 
     path: '/songnotes',
     component: PlaylistApp,
     children: [
         {
+            name: 'Welcome',
             path: '/',
-            component: Welcome,
+            component: SongnoteWelcome,
         },
         {
-            path: 'start',
-            component: Start,
+            name: 'Home',
+            path: 'mixes/:userId',
+            component: SongnoteHome,
         },
         {
-            path: 'playlist',
-            component: Playlist,
+            name: 'Edit',
+            path: 'mixes/:userId/:mixId',
+            component: SongnotePlaylist,
         },
     ],
 };
