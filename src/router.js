@@ -8,7 +8,7 @@ import SongNoteRoutes from './components/Playlist/routes';
 import NotFound from './pages/NotFound.vue';
 
 const routes = [
-    { path: '/', component: Home},
+    { path: '/', component: Home, name: 'home'},
     { path: '/palette', component: PaletteDemo},
     { path: '/documentation', component: Docs},
     { path: '/kitchen-sink', component: KitchenSink},

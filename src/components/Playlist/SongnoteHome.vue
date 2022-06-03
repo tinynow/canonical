@@ -1,40 +1,26 @@
 <template>
 <div>
-    <div
-        class="canon-layout --auto-flow-compact --readable"
-    >
-        <div class="canon-playlist__selector canon-layout --auto-flow-compact">
-            <canon-field
-                v-model="playlistInputVal"
-                type="text"
-            >
-                <span slot="label">Import a playlist</span>
-                <span slot="hint">Paste a Spotify playlist ID or URI</span>
-            </canon-field>
-        
-            <canon-button @click="fetchPlaylist">
-                Get Playlist {{ playlistId }}
-            </canon-button>
-        </div>
-    </div>
+    <h1>{{ user.name }}&apos;s Playlists</h1>
+    <template v-if="playlists.length">
+        <songnote-mixes />
+    </template>
+    <template v-else>
+        <p>Looks like you don't have any playlists.</p>
+        <h2>Import a Spotify playlist...</h2>
+    </template>
+    <songnote-import />
 </div>
 </template>
 
 <script>
-import CanonField from '../Field/Field';
-import CanonButton from '../Button/Button';
-import fakeResponse from '../../../api/fakePlaylistResponseBody.json';
-const PLAYLIST_ENDPOINT = '.netlify/functions/getPlaylist';
-const PLAYLIST_REQUEST_OPTIONS = {
-    method: 'GET',
-};
+import SongnoteImport from './SongnoteImport';
+import SongnoteMixes from './SongnoteMixes';
 
 export default {
-    name: 'CanonPlaylistStart',
+    name: 'SongnoteHome',
 
     components: {
-        CanonField,
-        CanonButton,
+        SongnoteImport,
     },
     data() {
         return {

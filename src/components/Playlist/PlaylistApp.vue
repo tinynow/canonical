@@ -45,12 +45,8 @@ export default {
     },
     beforeRouteEnter: (to, from, next) => {
         next(vm => {
-            const user = vm.$store.getters['songNotes/getUserStatus']
-            console.log(user)
-            if (user) {
-                return { path: 'app'};
-            } else {
-                return '/';
+            if (vm.isLoggedIn) {
+                return next({path: '/songnotes/app', replaceState: true });
             }
         });
     },
